@@ -1,0 +1,32 @@
+<div class="center-wrapper cater-bg" data-ng-controller="sessionCtrl">
+  <div class="center-content">
+    <div class="row no-margin">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 bg-white p-t-b">
+        <form role="form" class="form-layout p-l-r ">
+          <div class="text-center mb15">
+            <img data-ng-src="images/logo-dark.png" />
+          </div>
+
+        
+
+          <div class="form-inputs login-fonts">
+            <input type="email" class="form-control input-lg" placeholder="Email Address">
+            <input type="password" class="form-control input-lg" placeholder="Password">
+          </div>
+
+          <button class="btn btn-orange btn-block btn-lg mb15" type="submit" data-ng-click="submit()">
+            <span class="sign-in">SIGN IN</span>
+          </button>
+
+          <p class="text-center lower-btn">
+
+            <a ui-sref="user.signup">Create an account</a> ·
+            <a ui-sref="user.forgot">Forgot your password?</a>
+
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
