@@ -17,7 +17,9 @@ angular
     'ngStorage',
     'ngSanitize',
     'ui.utils',
-    'ngTouch'
+    'ngTouch',
+    'flow',
+    'oi.select'
   ])
   .constant('COLORS', {
     'default': '#e2e2e2',

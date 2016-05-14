@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "event": "Birthdays"
+    },
+    {
+        "id": 2,
+        "event": "Housewarming"
+    },
+    {
+        "id": 3,
+        "event": "Baby Shower"
+    },
+    {
+        "id": 4,
+        "event": "Baptisms"
+    },
+    {
+        "id": 5,
+        "event": "Breakfast"
+    },
+    {
+        "id": 6,
+        "event": "Lunch"
+    },
+    {
+        "id": 7,
+        "event": "Dinner"
+    },
+    {
+        "id": 8,
+        "event": "Office meeting"
+    },
+    {
+        "id": 9,
+        "event": "Team building"
+    },
+    {
+        "id": 10,
+        "event": "Barbeque"
+    },
+    {
+        "id": 11,
+        "event": "Tea Time snacks"
+    },
+    {
+        "id": 12,
+        "event": "After work"
+    },
+    {
+        "id": 13,
+        "event": "Cocktails"
+    },
+    {
+        "id": 14,
+        "event": "Seminar Buffet"
+    },
+    {
+        "id": 15,
+        "event": "Trade events"
+    },
+    {
+        "id": 16,
+        "event": "Box Lunches"
+    }
+
+
+]

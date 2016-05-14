@@ -1,0 +1,30 @@
+[
+    {
+     "id":1,
+     "needs":"Celiacs"
+    },
+    {
+     "id":2,
+     "needs":"Gluten free"
+    },
+    {
+     "id":3,
+     "needs":"Vegetarian"
+    },
+    {
+     "id":4,
+     "needs":"Vegan"
+    },
+    {
+     "id":5,
+     "needs":"Halal"
+    },
+    {
+     "id":6,
+     "needs":"Kosher"
+    },
+    {
+        "id":7,
+        "needs":"Alerrgic free food ( Nuts , Fish )"
+    }
+]

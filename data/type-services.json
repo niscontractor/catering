@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "service": "Full catering"
+    },
+    {
+        "id": 2,
+        "service": "Drop off"
+    },
+    {
+        "id": 3,
+        "service": "Barbeque"
+    },
+    {
+        "id": 4,
+        "service": "Paella"
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "service": "Cutlery"
+    },
+    {
+        "id": 2,
+        "service": "Tables"
+    },
+    {
+        "id": 3,
+        "service": "Cocktails"
+    },
+    {
+        "id": 4,
+        "service": "Pastry cart"
+    },
+    {
+        "id": 5,
+        "service": "Drinks"
+    },
+    {
+        "id": 6,
+        "service": "Music"
+    },
+    {
+        "id": 7,
+        "service": "Decoration"
+    },
+    {
+        "id": 8,
+        "service": "Corto de jamón"
+    },
+    {
+        "id": 9,
+        "service": "Wine tasting"
+    },
+    {
+        "id": 10,
+        "service": "Gin tasting"
+    },
+    {
+        "id": 11,
+        "service": "Beer tasting"
+    }
+]

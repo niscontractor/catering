@@ -1,264 +1,224 @@
 <div class="row">
-  <div class="col-sm-3">
-    <div class="profile-sidebar">
-      <div class="profile-sidebar-item profile-avatar">
-        <img data-ng-src="images/man.png" alt="" class="img-rounded">
-      </div>
-      <div class="profile-sidebar-item profile-info">
-        <span class="h5 bold">Samuel Perkins</span>
-        <p>Web Developer</p>
-        <div class="w150 center-block mt10">
-          <button class="btn btn-danger btn-block">
-            <span>Send a message</span>
-          </button>
-        </div>
-      </div>
+    <form name="registrationForm">
+        <div class="transparnt-bg m-t-2" data-ng-controller="dashboardCtrl as dashboard">
+            <!--        <div class="logo-inner text-center"><img src="images/logo-dark.png" height="199" width="308"/></div>
+                    <p class="text-center service-page-text">We are happy you are joining our platform. Together we can increase sales of your catering.<br/>
+                        Please provide us some information to help us improve your Catering sales</p>
+                    <div class="text-center"><img src="images/devider-line.png" height="12" width="203"/></div>-->
+            <div class="row mb25 mt30">
+                <div class="col-md-12">
+                    <div class="box-tab justified">
+                        <ul class="nav nav-tabs">
+                            <li class="position-r" ng-class="{active:dashboard.selectedTab === 'company'}"> 
+                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'company')" aria-expanded="false">
+                                    <img src="images/company.png" height="49" width="49"/>
+                                </a>
+                                <p class="active-text">Company</p>
+                                <span class="process-bar"><img src="images/process-bar-active.png" height="3" width="214"/></span> </li>
+                            <li class="position-r" ng-class="{active:dashboard.selectedTab === 'aboutFood'}">
+                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" aria-expanded="false"><img src="images/food.png" height="49" width="49"/></a>
+                                <p class="inactive-text">Tell us about your food</p>
+                                <span class="process-bar"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
+                            <li class="position-r" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}">
+                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered')" aria-expanded="false"><img src="images/service-offerd.png" height="49" width="49"/></a>
+                                <p>Service you offerd</p>
+                                <span class="process-bar"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
+                            <li class="" ng-class="{active:dashboard.selectedTab === 'info'}">
+                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'info');" aria-expanded="false"><img src="images/info.png" height="49" width="49"/></a>
+                                <p>Company Info</p>
+                            </li>
+                        </ul>
+                        <div class="service-info">
+                            <div class="tab-content">
+                                <div id="home4" ng-class="{active:dashboard.selectedTab === 'company'}" ng-show="dashboard.selectedTab === 'company'">
+                                    <form class="form-horizontal">
+                                        <div class="outer pull-left">
+                                            <div class="col-sm-6 service-input">
+                                                <div class="m-b-30" ng-class="{'has-error': (registrationForm.companyName.$invalid && registrationForm.companyName.$dirty)}">
+                                                    <input name="companyName" class="form-control" placeholder="Comany Name" ng-model="dashboard.companyDetails.companyName" required/>
+                                                    <div class="error,help-block" ng-show="(registrationForm.companyName.$dirty) && registrationForm.companyName.$invalid"> 
+                                                        <span class="help-block" ng-show="registrationForm.companyName.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+                                                <!--<input type="file"  class="file">-->
+                                                <!--<div class="input-group browse col-xs-12 m-b-30"> <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>-->
 
-      <hr>
+                                                <div class="col-xs-12 m-b-30 drop" flow-init="dashboard.uploadLogo"
+                                                     flow-name="dashboard.uploadPhoto.flow"
+                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
+                                                     flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
+                                                     flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
+                                                     flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
+                                                     flow-file-progress="dashboard.uploadImageProgress()"
+                                                     flow-drop>
+                                                    <span>
+                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0">
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your LOGO here
+                                                    </span>
 
-      <ul class="profile-sidebar-item profile-numbers-count">
-        <li>
-          <span class="bold">9854</span> followers
-        </li>
-        <li>
-          <span class="bold">7964</span> following
-        </li>
-      </ul>
+                                                </div>
 
-      <hr>
+                                                <div class="col-xs-12 m-b-30 drop" flow-init="dashboard.uploadBanner"
+                                                     flow-name="dashboard.uploadPhoto.flow"
+                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
+                                                     flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
+                                                     flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
+                                                     flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
+                                                     flow-file-progress="dashboard.uploadImageProgress()"
+                                                     flow-drop>
+                                                    <span>
+                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0">
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER here
+                                                    </span>
+                                                </div>
 
-      <div class="profile-sidebar-item profile-bio">
-        <small class="bold text-uppercase">About</small>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Curabitur blandit tempus porttitor. Vestibulum id ligula porta felis euismod semper.</p>
-      </div>
-
-      <hr>
-
-      <div class="profile-sidebar-item profile-reccomendations">
-        <small class="bold text-uppercase">Reccomendations</small>
-        <ul class="user-meta">
-          <li>
-            <a href="javascript:;">All stream</a>
-          </li>
-          <li>
-            <a href="javascript:;">Connected Apps</a>
-          </li>
-          <li>
-            <a href="javascript:;">Photos</a>
-          </li>
-          <li>
-            <a href="javascript:;">Most recent</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-sm-9">
-
-    <section class="profile-timeline composer">
-      <textarea placeholder="What's on your mind" rows="3" class="form-control"></textarea>
-
-      <div class="composer-options">
-        <button class="btn btn-default btn-sm" type="button">
-          <i class="fa fa-map-marker"></i>
-        </button>
-        <button class="btn btn-default btn-sm" type="button">
-          <i class="fa fa-image"></i>
-        </button>
-        <button class="btn btn-default btn-sm" type="button">
-          <i class="fa fa-video-camera"></i>
-        </button>
-        <button class="btn btn-default btn-sm" type="button">
-          <i class="fa fa-clock-o"></i>
-        </button>
-      </div>
-    </section>
-
-    <section class="profile-timeline">
-      <div class="profile-timeline-header">
-        <a href="#" class="profile-timeline-user">
-          <img data-ng-src="images/avatar.jpg" alt="" class="img-circle">
-        </a>
-        <div class="profile-timeline-user-details">
-          <a href="#" class="bold">Samuel Perkins</a>
-          <br>
-          <em class="text-success small">Submitted a new post</em>
-        </div>
-      </div>
-      <div class="profile-timeline-content">
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-        <div class="profile-timeline-controls">
-          <a class="pull-right" href="javascript:;">
-            <i class="fa fa-share-alt mr5"></i>
-          </a>
-          <a class="mr15" href="javascript:;">
-            <i class="fa fa-heart mr5"></i>Like
-          </a>
-          <a href="javascript:;">
-            <i class="fa fa-comment mr5"></i>Comment
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="profile-timeline">
-      <div class="profile-timeline-header">
-        <a href="#" class="profile-timeline-user">
-          <img data-ng-src="images/avatar.jpg" alt="" class="img-circle">
-        </a>
-        <div class="profile-timeline-user-details">
-          <a href="#" class="bold">Samuel Perkins</a>
-          <br>
-          <em class="text-danger small">Added 4 new pictures</em>
-        </div>
-      </div>
-      <div class="profile-timeline-content">
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-
-        <div class="profile-timeline-images clearfix">
-          <a href="javascript:;" class="image-link-smaller">
-            <img data-ng-src="http://placeimg.com/400/300?1" alt="" class="img-responsive">
-          </a>
-          <a href="javascript:;" class="image-link-smaller">
-            <img data-ng-src="http://placeimg.com/400/300?2" alt="" class="img-responsive">
-          </a>
-          <a href="javascript:;" class="image-link-smaller">
-            <img data-ng-src="http://placeimg.com/400/300?3" alt="" class="img-responsive">
-          </a>
-          <a href="javascript:;" class="image-link-smaller">
-            <img data-ng-src="http://placeimg.com/400/300?4" alt="" class="img-responsive">
-          </a>
-        </div>
-
-        <div class="profile-timeline-controls">
-          <a class="pull-right" href="javascript:;">
-            <i class="fa fa-share-alt mr5"></i>
-          </a>
-          <a class="mr15" href="javascript:;">
-            <i class="fa fa-heart mr5"></i>Like
-          </a>
-          <a href="javascript:;">
-            <i class="fa fa-comment mr5"></i>Comment
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="profile-timeline">
-      <div class="profile-timeline-header">
-        <a href="#" class="profile-timeline-user">
-          <img data-ng-src="images/avatar.jpg" alt="" class="img-circle">
-        </a>
-        <div class="profile-timeline-user-details">
-          <a href="#" class="bold">Samuel Perkins</a>
-          <br>
-          <em class="text-warning small">is listening to the Evantonites</em>
-        </div>
-      </div>
-      <div class="profile-timeline-content">
-        <div class="profile-timeline-audio clearfix">
-          <div class="audio">
-            <div class="fa fa-pause play_pause"></div>
-            <div class="audio-timeline">
-              <span class="progress">
-                                <span class="done"></span>
-              </span>
-            </div>
-            <div class="time">01:24</div>
-          </div>
-        </div>
-        <div class="profile-timeline-controls">
-          <a class="pull-right" href="javascript:;">
-            <i class="fa fa-share-alt mr5"></i>
-          </a>
-          <a class="mr15" href="javascript:;">
-            <i class="fa fa-heart mr5"></i>Like
-          </a>
-          <a href="javascript:;">
-            <i class="fa fa-comment mr5"></i>Comment
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="profile-timeline">
-      <div class="profile-timeline-header">
-        <a href="#" class="profile-timeline-user">
-          <img data-ng-src="images/avatar.jpg" alt="" class="img-circle">
-        </a>
-        <div class="profile-timeline-user-details">
-          <a href="#" class="bold">Samuel Perkins</a>
-          <br>
-          <em class="text-info small">created an album collection</em>
-        </div>
-      </div>
-      <div class="profile-timeline-content">
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-
-        <div class="profile-timeline-images clearfix">
-          <a href="javascript:;" class="image-link">
-            <img data-ng-src="http://placeimg.com/400/300?5" alt="" class="img-responsive">
-          </a>
-          <a href="javascript:;" class="image-link-smaller">
-            <img data-ng-src="http://placeimg.com/400/300?6" alt="" class="img-responsive">
-          </a>
-          <a href="javascript:;" class="image-link-smaller">
-            <img data-ng-src="http://placeimg.com/400/300?7" alt="" class="img-responsive">
-          </a>
-          <a href="javascript:;" class="image-link">
-            <img data-ng-src="http://placeimg.com/400/150?8" alt="" class="img-responsive">
-          </a>
-        </div>
-
-        <div class="profile-timeline-controls">
-          <a class="pull-right" href="javascript:;">
-            <i class="fa fa-share-alt mr5"></i>
-          </a>
-          <a class="mr15" href="javascript:;">
-            <i class="fa fa-heart mr5"></i>Like
-          </a>
-          <a href="javascript:;">
-            <i class="fa fa-comment mr5"></i>Comment
-          </a>
-        </div>
-
-        <div class="post-comments">
-
-
-          <div class="media">
-            <a class="pull-left" href="javascript:;">
-              <img class="media-object avatar" data-ng-src="images/face3.jpg" alt="">
-            </a>
-            <div class="comment">
-              <div class="comment-author heading-font">
-                <a href="javascript:;">
-                            Jane Doe
-                            <time datetime="2015-09-01" class="time">September 1st, 2015</time>
-                        </a>
-              </div>
-              <p>Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis.</p>
-              <hr>
-            </div>
-            <div class="media">
-              <a class="pull-left" href="javascript:;">
-                <img class="media-object avatar" data-ng-src="images/avatar.jpg" alt="">
-              </a>
-              <div class="comment">
-                <div class="comment-author heading-font">
-                  <a href="javascript:;">
-                                Jane Doe
-                                <time datetime="2015-09-02" class="time">September 2nd, 2015</time>
-                            </a>
+                                                <uib-progressbar animate="true" ng-show="dashboard.showProgressBar"  value="$file.progress() * 100" class="customProgressBar progress-striped active" max="100"></uib-progressbar>
+                                            </div>
+                                            <div class="col-sm-6 service-input">
+                                                <textarea rows="5" cols="100%" class="form-control m-b-30" placeholder="Description of your Company" ng-model="dashboard.companyDetails.companyDescription"></textarea>
+                                                <div class="m-b-30" ng-class="{'has-error': (registrationForm.tagLine.$invalid && registrationForm.tagLine.$dirty)}">
+                                                    <input name="tagLine" class="form-control" placeholder="Tag Line" ng-model="dashboard.companyDetails.tagLine" required/>
+                                                    <div class="error,help-block" ng-show="(registrationForm.tagLine.$dirty) && registrationForm.tagLine.$invalid"> 
+                                                        <span class="help-block" ng-show="registrationForm.tagLine.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-orange pull-right continue-btn" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" ng-disabled="!registrationForm.$valid">Continue <i class="fa fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" ng-class="{active:dashboard.selectedTab === 'aboutFood'}" ng-show="dashboard.selectedTab === 'aboutFood'">
+                                    <form class="form-horizontal">
+                                        <div class="outer col-sm-12 service-input">
+                                            <div class="col-sm-6">
+                                                <!--<input class="form-control m-b-30" placeholder="What type of cuisine you serve " ng-model="dashboard.companyDetails.typeOfCuisines"/>-->
+                                                <oi-select
+                                                    class="m-b-30"
+                                                    oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
+                                                    ng-model="dashboard.companyDetails.typeOfCuisines"
+                                                    multiple
+                                                    placeholder="What type of cuisine you serve?">
+                                                </oi-select>
+<!--                                                <input class="form-control m-b-30" placeholder="Do you provide special need  " ng-model="dashboard.companyDetails.specialNeeds"/>-->
+                                                <oi-select
+                                                    class="m-b-30"
+                                                    oi-options="specialNeed.needs for specialNeed in dashboard.specialNeeds track by specialNeed.id"
+                                                    ng-model="dashboard.companyDetails.specialNeeds"
+                                                    multiple
+                                                    placeholder="Do you provide special need?">
+                                                </oi-select>
+                                                <p class="text-white">Number of people you serve</p>
+                                                <input type="number" min="1" class="form-control m-b-30" placeholder="Min" ng-model="dashboard.companyDetails.minPerson"/>
+                                                <input type="number" min="1" class="form-control m-b-30" placeholder="Max" ng-model="dashboard.companyDetails.maxPerson"/>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="How many days before a client have to order." ng-model="dashboard.companyDetails.orderDays"/>
+                                            </div>
+                                            <div class="col-sm-6 service-input">
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="Cancellation notice period(in days)" ng-model="dashboard.companyDetails.cancellationDuration"/>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="Minimum amount to order." ng-model="dashboard.companyDetails.minOrderAmount"/>
+                                                <p class="text-white">Do you offer delivery ( Yes / No )</p>
+                                                <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
+                                                    <input type="checkbox" checked="" ng-model="dashboard.companyDetails.delivery">
+                                                    <span> <i class="handle"></i> </span> </label>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="How many kilometers around you deliver" ng-hide='!dashboard.companyDetails.delivery' ng-model="dashboard.companyDetails.deliveryKms"/>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}" ng-show="dashboard.selectedTab === 'serviceOffered'">
+                                    <form class="form-horizontal">
+                                        <div class="outer col-sm-12 service-input">
+                                            <div class="col-sm-12">
+                                                <oi-select
+                                                    class="m-b-30"
+                                                    oi-options="typeOfEvent.event for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent.id"
+                                                    ng-model="dashboard.companyDetails.typeOfEvents"
+                                                    multiple
+                                                    placeholder="What type of events you serve?">
+                                                </oi-select>
+                                                <!--<input class="form-control m-b-30" placeholder="What type of events you serve " ng-model="dashboard.companyDetails.typeOfEvents"/>-->
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <oi-select
+                                                    class="m-b-30"
+                                                    oi-options="serviceOffered.service for serviceOffered in dashboard.servicesOffered track by serviceOffered.id"
+                                                    ng-model="dashboard.companyDetails.servicesOffered"
+                                                    multiple
+                                                    placeholder="Services you offer?">
+                                                </oi-select>
+                                                <!--<input class="form-control m-b-30" placeholder="Services you offer" ng-model="dashboard.companyDetails.servicesOffered"/>-->
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <oi-select
+                                                    class="m-b-30"
+                                                    oi-options="typeOfService.service for typeOfService in dashboard.typeOfServices track by typeOfService.id"
+                                                    ng-model="dashboard.companyDetails.typeOfServices"
+                                                    multiple
+                                                    placeholder="Type of service">
+                                                </oi-select>
+                                                <!--<input class="form-control m-b-30" placeholder="Type of service" ng-model="dashboard.companyDetails.typeOfService"/>-->
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">Continue <i class="fa fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="contacts4" class="tab-pane" ng-class="{active:dashboard.selectedTab === 'info'}" ng-show="dashboard.selectedTab === 'info'">
+                                    <form class="form-horizontal">
+                                        <div class="outer col-sm-12 service-input">
+                                            <div class="col-sm-12">
+                                                <input class="form-control m-b-30" placeholder="Enter your CIF /NIF Number " ng-model="dashboard.companyDetails.registrationNumber"/>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <input class="form-control m-b-30" placeholder="Enter your Company Address  " ng-model="dashboard.companyDetails.address"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control m-b-30" placeholder="Enter your postal code" ng-model="dashboard.companyDetails.postalCode"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control m-b-30" placeholder="City" ng-model="dashboard.companyDetails.city"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control m-b-30" placeholder="Telephone number " ng-model="dashboard.companyDetails.contactNumber"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control m-b-30" placeholder="Email " type="email" ng-model="dashboard.companyDetails.email"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control m-b-30" placeholder="Bank Name " ng-model="dashboard.companyDetails.bankName"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control m-b-30" placeholder="IBAN NUmber  " ng-model="dashboard.companyDetails.ibanNumber"/>
+                                            </div>
+                                            <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto"
+                                                     flow-name="dashboard.uploadPhoto.flow"
+                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
+                                                     flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
+                                                     flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
+                                                     flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
+                                                     flow-file-progress="dashboard.uploadImageProgress()"
+                                                     flow-drop>
+                                                    <span>
+                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0">
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Profile Photo here
+                                                    </span>
+                                                </div>
+                                            <div class="col-sm-4">
+                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.register();">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p>Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis.</p>
-              </div>
             </div>
-
-          </div>
         </div>
-      </div>
-    </section>
-  </div>
+    </form>
 </div>
