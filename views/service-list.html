@@ -11,16 +11,16 @@
     <div class="col-md-3" ng-repeat="category in categories.categoryList">
         <div class="panel panel-primary" ng-class="{'panel-success':$index % 4 == 1,'panel-warning':$index % 4 == 2,'panel-danger':$index % 4 == 3}">
             <div class="panel-heading">
-                <div class="pull-left">{{category.title}}</div>
+                <div class="pull-left title-inner">{{category.title}}</div>
                 <div class="panel-controls">
                     <a href="javascript:;" class="panel-collapse" panel-control-collapse>
-                        <i class="panel-icon-chevron"></i>
+                        <i class="fa fa-arrow-down"></i>
                     </a>
                     <a href="javascript:;" class="ng-scope">
-                        <i class="glyphicon glyphicon-edit" ng-click="categories.editCategory(category.id)"></i>
+                        <i class="fa fa-pencil" ng-click="categories.editCategory(category.id)"></i>
                     </a>
                     <a href="javascript:;" class="ng-scope">
-                        <i class="panel-icon-plus" ng-click="categories.addCategoryItem(category.id)"></i>
+                        <i class="fa fa-plus" ng-click="categories.addCategoryItem(category.id)"></i>
                     </a>
                 </div>
             </div>

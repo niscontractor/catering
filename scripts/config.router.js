@@ -1102,7 +1102,7 @@ angular
                             templateUrl: 'views/extras-signup.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                        return $ocLazyLoad.load('scripts/controllers/session.js');
+                                        return $ocLazyLoad.load('scripts/controllers/signup.js');
                                     }]
                             },
                             data: {

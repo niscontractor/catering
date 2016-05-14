@@ -1,26 +1,59 @@
-<div class="center-wrapper" data-ng-controller="sessionCtrl">
-  <div class="center-content">
-    <div class="row no-margin">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-        <form role="form" class="form-layout">
-          <div class="text-center mb15">
-            <img data-ng-src="images/logo-dark.png" />
-          </div>
+<div class="center-wrapper" data-ng-controller="signupCtrl as signUp">
+    <div class="center-content">
+        <div class="row no-margin">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <form role="form" class="form-layout" name='signUp.signUpForm' novalidate>
+                    <div class="text-center mb15">
+                        <img data-ng-src="images/logo.png" />
+                    </div>
 
-          <p class="text-center mb30">Create your account.</p>
+                    <p class="text-center mb30">Welcome to {{app.name}}. Please sign up to new account</p>
+                    <div class='row'>
+                        <div class='col-md-6' style='padding-left: 15px'>
+                            <input type="text" name='firstName' ng-model='signUp.user.firstName' class="form-control input-lg" placeholder="First Name" ng-class='{"error":signUp.signUpForm.firstName.$invalid && signUp.signUpForm.$submitted}' maxlength="100" required>
+                            <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.firstName.$error">
+                                <label class='error' ng-message="required">Enter first name</label>                                
+                            </div>
+                        </div>
+                        <div class='col-md-6' style='padding-right: 15px'>
+                            <input type="text" class="form-control input-lg" ng-model='signUp.user.lastName' placeholder="Last Name" name='lastName' ng-class='{"error":signUp.signUpForm.lastName.$invalid && signUp.signUpForm.$submitted}' maxlength="100" required>
+                            <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.lastName.$error">
+                                <label class='error' ng-message="required">Enter last name</label>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-inputs">
+                        <input type="text" class="form-control input-lg" placeholder="Company(Optional)">
+                        <input type="email" ng-model='signUp.user.email' name='email' class="form-control input-lg" placeholder="Email Address" ng-class='{"error":signUp.signUpForm.email.$invalid && signUp.signUpForm.$submitted}' maxlength="500" required> 
+                        <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.email.$error">
+                            <label class='error' ng-message="email">Enter valid email address</label>    
+                            <label class='error' ng-message="required">Enter email address</label>    
+                        </div>
+                        <input type="number" class="form-control input-lg" ng-model='signUp.user.mobile' placeholder="Mobile" name='mobile' ng-class='{"error":signUp.signUpForm.mobile.$invalid && signUp.signUpForm.$submitted}' maxlength="20" required>
+                        <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.mobile.$error">
+                            <label class='error' ng-message="required">Enter mobile number</label>       
+                            <label class='error' ng-message="number">Enter valid mobile number</label>         
+                        </div>
+                        <input type="password" class="form-control input-lg" placeholder="Password" ng-model='signUp.user.password' name='password' ng-class='{"error":signUp.signUpForm.password.$invalid && signUp.signUpForm.$submitted}' maxlength="50" required>
+                        <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.password.$error">
+                            <label class='error' ng-message="required">Enter password</label>                                
+                        </div>
 
-          <div class="form-inputs">
-            <input type="text" class="form-control input-lg" placeholder="Full name">
-            <input type="text" class="form-control input-lg" placeholder="Email address">
-            <input type="password" class="form-control input-lg" placeholder="Password">
-          </div>
+                        <input type="password" class="form-control input-lg" placeholder="Retype Password" ng-model='signUp.user.confpassword' name='confpassword' ng-class='{"error":signUp.signUpForm.confpassword.$invalid && signUp.signUpForm.$submitted}' maxlength="50" compare-to="signUp.user.password" required>
+                        <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.confpassword.$error">
+                            <label class='error' ng-message="required">Enter confirm password</label>                           
+                            <label class='error' ng-message="compareTo">Password and confirm password do not match</label>                                
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block btn-lg mb15" type="submit" ng-click="signUp.register()">
+                        <span>Signup</span>
+                    </button>
+                    <p>
+                        <a class='pull-right' ui-sref='user.signin'>Have an account? Login</a></span>
+                    </p>
+                </form>
+            </div>
+        </div>
 
-          <button class="btn btn-success btn-block btn-lg mb15" type="submit" data-ng-click="signin()">Create Account</button>
-
-          <p class="text-left">By clicking signin up, you agree to our <a href="javascript:;">Terms of services &amp; Policies</a>.</p>
-
-        </form>
-      </div>
     </div>
-  </div>
 </div>

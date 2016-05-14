@@ -5,7 +5,7 @@
                     <p class="text-center service-page-text">We are happy you are joining our platform. Together we can increase sales of your catering.<br/>
                         Please provide us some information to help us improve your Catering sales</p>
                     <div class="text-center"><img src="images/devider-line.png" height="12" width="203"/></div>-->
-            <div class="row mb25 mt30">
+            <div class="row mb25 mt30 pt20">
                 <div class="col-md-12">
                     <div class="box-tab justified">
                         <ul class="nav nav-tabs">
@@ -14,15 +14,15 @@
                                     <img src="images/company.png" height="49" width="49"/>
                                 </a>
                                 <p class="active-text">Company</p>
-                                <span class="process-bar"><img src="images/process-bar-active.png" height="3" width="214"/></span> </li>
+                                <span class="process-bar-inner"><img src="images/process-bar-active.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'aboutFood'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" aria-expanded="false"><img src="images/food.png" height="49" width="49"/></a>
                                 <p class="inactive-text">Tell us about your food</p>
-                                <span class="process-bar"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
+                                <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered')" aria-expanded="false"><img src="images/service-offerd.png" height="49" width="49"/></a>
                                 <p>Service you offerd</p>
-                                <span class="process-bar"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
+                                <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="" ng-class="{active:dashboard.selectedTab === 'info'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'info');" aria-expanded="false"><img src="images/info.png" height="49" width="49"/></a>
                                 <p>Company Info</p>
@@ -43,7 +43,7 @@
                                                 <!--<input type="file"  class="file">-->
                                                 <!--<div class="input-group browse col-xs-12 m-b-30"> <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>-->
 
-                                                <div class="col-xs-12 m-b-30 drop" flow-init="dashboard.uploadLogo"
+                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.uploadLogo"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
@@ -52,7 +52,7 @@
                                                      flow-file-progress="dashboard.uploadImageProgress()"
                                                      flow-drop>
                                                     <span>
-                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0">
+                                                        <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
                                                         <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your LOGO here
                                                     </span>
 
@@ -67,21 +67,22 @@
                                                      flow-file-progress="dashboard.uploadImageProgress()"
                                                      flow-drop>
                                                     <span>
-                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0">
+                                                        <img flow-img="$flow.files[0]" style="width: 75px;"  ng-if="$flow.files.length > 0">
                                                         <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER here
                                                     </span>
                                                 </div>
 
                                                 <uib-progressbar animate="true" ng-show="dashboard.showProgressBar"  value="$file.progress() * 100" class="customProgressBar progress-striped active" max="100"></uib-progressbar>
                                             </div>
-                                            <div class="col-sm-6 service-input">
-                                                <textarea rows="5" cols="100%" class="form-control m-b-30" placeholder="Description of your Company" ng-model="dashboard.companyDetails.companyDescription"></textarea>
+                                            <div class="col-sm-6 service-input-inner">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.tagLine.$invalid && registrationForm.tagLine.$dirty)}">
                                                     <input name="tagLine" class="form-control" placeholder="Tag Line" ng-model="dashboard.companyDetails.tagLine" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.tagLine.$dirty) && registrationForm.tagLine.$invalid"> 
                                                         <span class="help-block" ng-show="registrationForm.tagLine.$error.required">Required</span>
                                                     </div>
                                                 </div>
+                                                <textarea rows="5" cols="100%" class="form-control m-b-30" placeholder="Description of your Company" ng-model="dashboard.companyDetails.companyDescription"></textarea>
+                                                
                                             </div>
                                             <div class="col-sm-12">
                                                 <button class="btn btn-orange pull-right continue-btn" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" ng-disabled="!registrationForm.$valid">Continue <i class="fa fa-arrow-right"></i></button>

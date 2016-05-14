@@ -131,7 +131,7 @@ body {
 }
 body.stop-scrolling {
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
 }
 a {
   color: inherit;
@@ -4297,7 +4297,7 @@ a.list-group-item-danger.active:focus {
   color: #616161;
 }
 .box-tab .nav-tabs li.active a::before {
-  background-color: white;
+  background-color: transparent;
   -webkit-transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
   transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
   border-top-left-radius: 2px;
@@ -13563,6 +13563,235 @@ td.align-middle {
 
 .border{border:1px solid rgba(0,0,0,0.06); margin-bottom:10px;}
 
-.body-overflow{max-height:130px; overflow-y:scroll;}
+.body-overflow{max-height:130px; overflow-y:scroll; min-height:130px;}
 
 .bg-green{background:#7bc147; color:#fff;}
+
+
+
+
+
+
+
+
+/*----------------------------fonts-----------------------------*/
+
+@font-face {
+	font-family: 'OpenSans';
+	src: url('../fonts/open-sanse/OpenSans.eot?#iefix') format('embedded-opentype'), url('../fonts/open-sanse/OpenSans.woff') format('woff'), url('OpenSans.ttf') format('truetype'), url('../fonts/open-sanse/OpenSans.svg#OpenSans') format('svg');
+	font-weight: normal !important;
+	font-style: normal !important;
+}
+@font-face {
+	font-family: 'OpenSans-Italic';
+	src: url('../fonts/open-sanse/OpenSans-Italic.eot?#iefix') format('embedded-opentype'), url('../fonts/open-sanse/OpenSans-Italic.woff') format('woff'), url('../fonts/open-sanse/OpenSans-Italic.ttf') format('truetype'), url('../fonts/open-sanse/OpenSans-Italic.svg#OpenSans-Italic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*------------------------------Login Area----------------------------*/
+
+
+.cater-bg {
+	background: url(../images/cater-bg.jpg) no-repeat center top;
+	z-index: 1000;
+	background-size:cover;
+	height:100%;
+	width:100%;
+}
+.login-fonts {
+	font-family: 'OpenSans' !important;
+	color: #000 !important;
+}
+.bg-white-login {
+	background:#fff;
+}
+.p-l-r {
+	padding: 6% 8%;
+}
+.lower-btn {
+	color: #505050;
+	font-family: 'OpenSans' !important;
+}
+.btn-orange {
+	background: #7d9e1d;
+	color: #fff !important;
+}
+.btn-orange:hover {
+	background: #627e12;
+	color: #fff !important;
+}
+.btn-orange:focus {
+	background: #627e12;
+	color: #fff !important;
+}
+
+
+/*------------------------------------ Service pages Area-----------------------------*/
+
+
+
+.inner-banner {
+	background: url(../images/banner-inner.png) no-repeat fixed center top;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+}
+.transparnt-bg {
+	background: rgba(255,255,255,0.95);
+}
+.service-page-text {
+	font-family: 'OpenSans-Italic';
+	color: #000;
+	font-size: 16px;
+}
+.service-info {
+	padding: 20px 70px !important;
+}
+.tab-content {
+	background: #414141 !important;
+}
+
+
+/*--tab Css----*/
+
+.position-r{position:relative;}
+.process-bar{position:absolute; top:22px; left:180px;}
+.process-bar-inner{position:absolute; top:22px; left:224px;}
+
+
+/*----------------*/
+
+
+
+ .form-control::-moz-placeholder {
+ color: #000;
+ font-size: 13px;
+}
+ .service-input .form-control::-moz-placeholder {
+ font-family: 'OpenSans-Italic';
+color:#8b8b8b;
+font-size:14px;
+}
+.outer {
+	padding: 3% 0%;
+}
+.continue-btn {
+	padding: 1.5% 4%;
+	font-family: 'OpenSans' !important;
+}
+.service-input input.form-control {
+	height: 47px;
+}
+
+.service-input textarea.form-control {
+	height: 125px;
+}
+
+
+
+.service-input-inner .form-control::-moz-placeholder {
+ font-family: 'OpenSans-Italic';
+color:#8b8b8b;
+font-size:14px;
+}
+
+.service-input-inner input.form-control {
+	height: 47px;
+}
+
+.service-input-inner textarea.form-control {
+	height: 207px;
+}
+
+
+.file {
+	visibility: visible;
+	position: absolute;
+	right: 0;
+	width: 100px;
+	top: 82px;
+	z-index: 10;
+	height:30px;
+}
+.file1 {
+	visibility: visible;
+	position: absolute;
+	right: 0;
+	width: 100px;
+	top: 163px;
+	z-index: 10;
+	height:30px;
+}
+input.file {
+	-moz-opacity: 0;
+ filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 4;
+}
+
+input.file1 {
+	-moz-opacity: 0;
+ filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 4;
+}
+
+.input-group-btn {
+	font-size: 0;
+	padding: 7px 12px;
+	position: absolute;
+	right: 87px;
+	white-space: nowrap;
+	z-index: 3;
+}
+.m-b-30 {
+	margin-bottom: 30px
+}
+
+.m-b-35 {
+	margin-bottom: 35px;
+}
+.m-t-2 {
+	margin-top: 2%;
+}
+.logo-inner {
+	padding: 2% 0% 0%;
+}
+.box-tab .nav-tabs li.active a::before {
+	background: url(../images/company.png) no-repeat scroll center center;
+	-webkit-transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
+	transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	z-index: 1;
+	font-family: 'OpenSans-Italic' !important;
+}
+
+.active-text {
+
+	font-family: 'OpenSans-Italic' !important;
+	color: #7d9e1d !important;
+}
+
+.inactive-text {
+
+	font-family: 'OpenSans-Italic' !important;
+}
+
+.box-tab .nav-tabs li.active {
+
+	font-family: 'OpenSans-Italic' !iservice-inputmportant;
+	color: #7d9e1d !important;
+}
+
+p{color:inherit !important;}
+
+.text-white{color:#fff !important;}
+
+.drop-design{line-height: 75px !important; vertical-align: middle;}
+
+.img-float{float: right;}
+
+
+.title-inner{font-family: 'OpenSans-Bold' !important; font-weight:normal !important;}
