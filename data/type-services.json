@@ -1,18 +1,18 @@
 [
     {
-        "id": 1,
-        "service": "Full catering"
+        "_id": 1,
+        "name": "Full catering"
     },
     {
-        "id": 2,
-        "service": "Drop off"
+        "_id": 2,
+        "name": "Drop off"
     },
     {
-        "id": 3,
-        "service": "Barbeque"
+        "_id": 3,
+        "name": "Barbeque"
     },
     {
-        "id": 4,
-        "service": "Paella"
+        "_id": 4,
+        "name": "Paella"
     }
 ]

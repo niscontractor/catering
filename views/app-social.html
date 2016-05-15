@@ -16,7 +16,7 @@
                                 <p class="active-text">Company</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-active.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'aboutFood'}">
-                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" aria-expanded="false"><img src="images/food.png" height="49" width="49"/></a>
+                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" aria-expanded="false"><img src="images/food_icon.png" height="49" width="49"/></a>
                                 <p class="inactive-text">Tell us about your food</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}">
@@ -35,7 +35,7 @@
                                         <div class="outer pull-left">
                                             <div class="col-sm-6 service-input">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.companyName.$invalid && registrationForm.companyName.$dirty)}">
-                                                    <input name="companyName" class="form-control" placeholder="Comany Name" ng-model="dashboard.companyDetails.companyName" required/>
+                                                    <input name="companyName" class="form-control" placeholder="Comany Name" ng-model="dashboard.companyDetails.name" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.companyName.$dirty) && registrationForm.companyName.$invalid"> 
                                                         <span class="help-block" ng-show="registrationForm.companyName.$error.required">Required</span>
                                                     </div>
@@ -81,7 +81,7 @@
                                                         <span class="help-block" ng-show="registrationForm.tagLine.$error.required">Required</span>
                                                     </div>
                                                 </div>
-                                                <textarea rows="5" cols="100%" class="form-control m-b-30" placeholder="Description of your Company" ng-model="dashboard.companyDetails.companyDescription"></textarea>
+                                                <textarea rows="5" cols="100%" class="form-control m-b-30" placeholder="Description of your Company" ng-model="dashboard.companyDetails.description"></textarea>
                                                 
                                             </div>
                                             <div class="col-sm-12">
@@ -97,32 +97,32 @@
                                                 <!--<input class="form-control m-b-30" placeholder="What type of cuisine you serve " ng-model="dashboard.companyDetails.typeOfCuisines"/>-->
                                                 <oi-select
                                                     class="m-b-30"
-                                                    oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
-                                                    ng-model="dashboard.companyDetails.typeOfCuisines"
+                                                    oi-options="cuisineType.name for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
+                                                    ng-model="dashboard.companyDetails.cuisine"
                                                     multiple
                                                     placeholder="What type of cuisine you serve?">
                                                 </oi-select>
 <!--                                                <input class="form-control m-b-30" placeholder="Do you provide special need  " ng-model="dashboard.companyDetails.specialNeeds"/>-->
                                                 <oi-select
                                                     class="m-b-30"
-                                                    oi-options="specialNeed.needs for specialNeed in dashboard.specialNeeds track by specialNeed.id"
-                                                    ng-model="dashboard.companyDetails.specialNeeds"
+                                                    oi-options="specialNeed.name for specialNeed in dashboard.specialNeeds track by specialNeed._id"
+                                                    ng-model="dashboard.companyDetails.special_need"
                                                     multiple
                                                     placeholder="Do you provide special need?">
                                                 </oi-select>
                                                 <p class="text-white">Number of people you serve</p>
-                                                <input type="number" min="1" class="form-control m-b-30" placeholder="Min" ng-model="dashboard.companyDetails.minPerson"/>
-                                                <input type="number" min="1" class="form-control m-b-30" placeholder="Max" ng-model="dashboard.companyDetails.maxPerson"/>
-                                                <input type="number" min="0" class="form-control m-b-30" placeholder="How many days before a client have to order." ng-model="dashboard.companyDetails.orderDays"/>
+                                                <input type="number" min="1" class="form-control m-b-30" placeholder="Min" ng-model="dashboard.companyDetails.min_people"/>
+                                                <input type="number" min="1" class="form-control m-b-30" placeholder="Max" ng-model="dashboard.companyDetails.max_people"/>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="How many days before a client have to order." ng-model="dashboard.companyDetails.no_of_days"/>
                                             </div>
                                             <div class="col-sm-6 service-input">
-                                                <input type="number" min="0" class="form-control m-b-30" placeholder="Cancellation notice period(in days)" ng-model="dashboard.companyDetails.cancellationDuration"/>
-                                                <input type="number" min="0" class="form-control m-b-30" placeholder="Minimum amount to order." ng-model="dashboard.companyDetails.minOrderAmount"/>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="Cancellation notice period(in days)" ng-model="dashboard.companyDetails.cancellation_notic_period"/>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="Minimum amount to order." ng-model="dashboard.companyDetails.minimum_amount_order"/>
                                                 <p class="text-white">Do you offer delivery ( Yes / No )</p>
                                                 <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
                                                     <input type="checkbox" checked="" ng-model="dashboard.companyDetails.delivery">
                                                     <span> <i class="handle"></i> </span> </label>
-                                                <input type="number" min="0" class="form-control m-b-30" placeholder="How many kilometers around you deliver" ng-hide='!dashboard.companyDetails.delivery' ng-model="dashboard.companyDetails.deliveryKms"/>
+                                                <input type="number" min="0" class="form-control m-b-30" placeholder="How many kilometers around you deliver" ng-hide='!dashboard.companyDetails.delivery' ng-model="dashboard.companyDetails.kilometers"/>
                                             </div>
                                             <div class="col-sm-12">
                                                 <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
@@ -136,8 +136,8 @@
                                             <div class="col-sm-12">
                                                 <oi-select
                                                     class="m-b-30"
-                                                    oi-options="typeOfEvent.event for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent.id"
-                                                    ng-model="dashboard.companyDetails.typeOfEvents"
+                                                    oi-options="typeOfEvent.name for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
+                                                    ng-model="dashboard.companyDetails.events"
                                                     multiple
                                                     placeholder="What type of events you serve?">
                                                 </oi-select>
@@ -146,8 +146,8 @@
                                             <div class="col-sm-12">
                                                 <oi-select
                                                     class="m-b-30"
-                                                    oi-options="serviceOffered.service for serviceOffered in dashboard.servicesOffered track by serviceOffered.id"
-                                                    ng-model="dashboard.companyDetails.servicesOffered"
+                                                    oi-options="serviceOffered.name for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
+                                                    ng-model="dashboard.companyDetails.services"
                                                     multiple
                                                     placeholder="Services you offer?">
                                                 </oi-select>
@@ -156,8 +156,8 @@
                                             <div class="col-sm-12">
                                                 <oi-select
                                                     class="m-b-30"
-                                                    oi-options="typeOfService.service for typeOfService in dashboard.typeOfServices track by typeOfService.id"
-                                                    ng-model="dashboard.companyDetails.typeOfServices"
+                                                    oi-options="typeOfService.name for typeOfService in dashboard.typeOfServices track by typeOfService._id"
+                                                    ng-model="dashboard.companyDetails.services_type"
                                                     multiple
                                                     placeholder="Type of service">
                                                 </oi-select>
@@ -173,28 +173,28 @@
                                     <form class="form-horizontal">
                                         <div class="outer col-sm-12 service-input">
                                             <div class="col-sm-12">
-                                                <input class="form-control m-b-30" placeholder="Enter your CIF /NIF Number " ng-model="dashboard.companyDetails.registrationNumber"/>
+                                                <input class="form-control m-b-30" placeholder="Enter your CIF /NIF Number " ng-model="dashboard.companyDetails.cif"/>
                                             </div>
                                             <div class="col-sm-12">
                                                 <input class="form-control m-b-30" placeholder="Enter your Company Address  " ng-model="dashboard.companyDetails.address"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control m-b-30" placeholder="Enter your postal code" ng-model="dashboard.companyDetails.postalCode"/>
+                                                <input class="form-control m-b-30" placeholder="Enter your postal code" ng-model="dashboard.companyDetails.postal_code"/>
                                             </div>
                                             <div class="col-sm-4">
                                                 <input class="form-control m-b-30" placeholder="City" ng-model="dashboard.companyDetails.city"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control m-b-30" placeholder="Telephone number " ng-model="dashboard.companyDetails.contactNumber"/>
+                                                <input class="form-control m-b-30" placeholder="Telephone number " ng-model="dashboard.companyDetails.telephone_number"/>
                                             </div>
                                             <div class="col-sm-4">
                                                 <input class="form-control m-b-30" placeholder="Email " type="email" ng-model="dashboard.companyDetails.email"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control m-b-30" placeholder="Bank Name " ng-model="dashboard.companyDetails.bankName"/>
+                                                <input class="form-control m-b-30" placeholder="Bank Name " ng-model="dashboard.companyDetails.bank_name"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control m-b-30" placeholder="IBAN NUmber  " ng-model="dashboard.companyDetails.ibanNumber"/>
+                                                <input class="form-control m-b-30" placeholder="IBAN NUmber  " ng-model="dashboard.companyDetails.iban_number"/>
                                             </div>
                                             <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto"
                                                      flow-name="dashboard.uploadPhoto.flow"

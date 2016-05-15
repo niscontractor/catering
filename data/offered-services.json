@@ -1,46 +1,46 @@
 [
     {
-        "id": 1,
-        "service": "Cutlery"
+        "_id": 1,
+        "name": "Cutlery"
     },
     {
-        "id": 2,
-        "service": "Tables"
+        "_id": 2,
+        "name": "Tables"
     },
     {
-        "id": 3,
-        "service": "Cocktails"
+        "_id": 3,
+        "name": "Cocktails"
     },
     {
-        "id": 4,
-        "service": "Pastry cart"
+        "_id": 4,
+        "name": "Pastry cart"
     },
     {
-        "id": 5,
-        "service": "Drinks"
+        "_id": 5,
+        "name": "Drinks"
     },
     {
-        "id": 6,
-        "service": "Music"
+        "_id": 6,
+        "name": "Music"
     },
     {
-        "id": 7,
-        "service": "Decoration"
+        "_id": 7,
+        "name": "Decoration"
     },
     {
-        "id": 8,
-        "service": "Corto de jamón"
+        "_id": 8,
+        "name": "Corto de jamón"
     },
     {
-        "id": 9,
-        "service": "Wine tasting"
+        "_id": 9,
+        "name": "Wine tasting"
     },
     {
-        "id": 10,
-        "service": "Gin tasting"
+        "_id": 10,
+        "name": "Gin tasting"
     },
     {
-        "id": 11,
-        "service": "Beer tasting"
+        "_id": 11,
+        "name": "Beer tasting"
     }
 ]

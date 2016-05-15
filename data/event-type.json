@@ -1,67 +1,67 @@
 [
     {
-        "id": 1,
-        "event": "Birthdays"
+        "_id": 1,
+        "name": "Birthdays"
     },
     {
-        "id": 2,
-        "event": "Housewarming"
+        "_id": 2,
+        "name": "Housewarming"
     },
     {
-        "id": 3,
-        "event": "Baby Shower"
+        "_id": 3,
+        "name": "Baby Shower"
     },
     {
-        "id": 4,
-        "event": "Baptisms"
+        "_id": 4,
+        "name": "Baptisms"
     },
     {
-        "id": 5,
-        "event": "Breakfast"
+        "_id": 5,
+        "name": "Breakfast"
     },
     {
-        "id": 6,
-        "event": "Lunch"
+        "_id": 6,
+        "name": "Lunch"
     },
     {
-        "id": 7,
-        "event": "Dinner"
+        "_id": 7,
+        "name": "Dinner"
     },
     {
-        "id": 8,
-        "event": "Office meeting"
+        "_id": 8,
+        "name": "Office meeting"
     },
     {
-        "id": 9,
-        "event": "Team building"
+        "_id": 9,
+        "name": "Team building"
     },
     {
-        "id": 10,
-        "event": "Barbeque"
+        "_id": 10,
+        "name": "Barbeque"
     },
     {
-        "id": 11,
-        "event": "Tea Time snacks"
+        "_id": 11,
+        "name": "Tea Time snacks"
     },
     {
-        "id": 12,
-        "event": "After work"
+        "_id": 12,
+        "name": "After work"
     },
     {
-        "id": 13,
-        "event": "Cocktails"
+        "_id": 13,
+        "name": "Cocktails"
     },
     {
-        "id": 14,
-        "event": "Seminar Buffet"
+        "_id": 14,
+        "name": "Seminar Buffet"
     },
     {
-        "id": 15,
-        "event": "Trade events"
+        "_id": 15,
+        "name": "Trade names"
     },
     {
-        "id": 16,
-        "event": "Box Lunches"
+        "_id": 16,
+        "name": "Box Lunches"
     }
 
 

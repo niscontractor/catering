@@ -2,18 +2,23 @@
 
 function common($q, $http, $rootScope) {
     var output = {};
-    var apiUrl = $rootScope.apipath + '/common/authenticate';
+    var apiUrl = $rootScope.apipath + '/authenticate';
 
     output.authenticate = function (json) {
         output.user = {};
         var deferred = $q.defer();
-        return $http.post(apiUrl,json)
+        return $http.post(apiUrl, json)
                 .success(function (data) {
-                    output.user = data;
-                    deferred.resolve(data);
+                    console.log(data);
+                    if (data.success === 'true') {
+                        output.user = data;
+                        deferred.resolve(data);
+                    }else{
+                        deferred.reject(data);
+                    }
                 })
                 .error(function (data) {
-                    deferred.reject(data);
+                    deferred.reject();
                 });
         //return deferred.promise;
     };

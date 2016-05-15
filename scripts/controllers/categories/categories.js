@@ -1,17 +1,74 @@
 'use strict';
 
-function categoryCtrl($scope, $modal, $log, CategoryService) {
+function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     var ctrl = this;
 
     $scope.getCategoryList = function () {
         //api call to get category list
         console.log('hello')
         ctrl.categoryList = [
-            {'id': 1, 'title': 'Soup1', 'items': ['Chilli1', 'Manchow1','sdasd','asdasd']},
-            {'id': 2, 'title': 'Soup2', 'items': ['Chilli2', 'Manchow2']},
-            {'id': 3, 'title': 'Soup3', 'items': ['Chilli3', 'Manchow3']},
-            {'id': 4, 'title': 'Soup4', 'items': ['Chilli4', 'Manchow4']}
+            {
+                "id": 1,
+                "title": "Soup1",
+                "items": [
+                    {"id": 1, "name": "Chilli1"},
+                    {"id": 2, "name": "Chilli2"},
+                    {"id": 3, "name": "Chilli3"},
+                    {"id": 4, "name": "Chilli4"}
+                ]
+            },
+            {
+                "id": 2,
+                "title": "Soup2",
+                "items": [
+                    {"id": 1, "name": "Chilli1"},
+                    {"id": 2, "name": "Chilli2"},
+                    {"id": 3, "name": "Chilli3"},
+                    {"id": 4, "name": "Chilli4"}
+                ]
+            },
+            {
+                "id": 3,
+                "title": "Soup3",
+                "items": [
+                    {"id": 1, "name": "Chilli1"},
+                    {"id": 2, "name": "Chilli2"},
+                    {"id": 3, "name": "Chilli3"},
+                    {"id": 4, "name": "Chilli4"}
+                ]
+            },
+            {
+                "id": 4,
+                "title": "Soup4",
+                "items": [
+                    {"id": 1, "name": "Chilli1"},
+                    {"id": 2, "name": "Chilli2"},
+                    {"id": 3, "name": "Chilli3"},
+                    {"id": 4, "name": "Chilli4"}
+                ]
+            }
         ];
+//TODO $rootScope.user.username
+        CategoryService.getCategories('cool').then(angular.bind(this, function then() {
+            //save or reject handle
+        }));
+    }
+
+    ctrl.editCategory = function (category) {
+        var modalInstance = $modal.open({
+            templateUrl: 'editCategory.html',
+            controller: ('EditCategoryCtrl', ['$scope', '$modalInstance', 'category', EditCategoryCtrl]),
+            size: 'med',
+            resolve: {
+                category: function () {
+                    return category;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+//            $scope.getCategoryList();
+        });
     }
 
     ctrl.addCategory = function () {
@@ -47,6 +104,24 @@ function categoryCtrl($scope, $modal, $log, CategoryService) {
             $scope.getCategoryList();
         });
     };
+    
+    ctrl.editCategoryItem = function (item) {
+        console.log('categoryItem: ', item);
+        var modalInstance = $modal.open({
+            templateUrl: 'editCategoryItem.html',
+            controller: ('EditItemCtrl', ['$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
+            size: 'med',
+            resolve: {
+                categoryItem: function () {
+                    return item;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            $scope.getCategoryList();
+        });
+    };
 
 
 }
@@ -63,8 +138,20 @@ function AddCategoryCtrl($scope, $modalInstance) {
     };
 }
 
-function AddItemCtrl($scope, $modalInstance, categoryId) {
+function EditCategoryCtrl($scope, $modalInstance, category) {
+    $scope.category = category;
+    $scope.ok = function () {
+        console.log('api call to edit category');
+        $modalInstance.close();
+    };
 
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}
+
+function AddItemCtrl($scope, $modalInstance, categoryId) {
+    $scope.category = {};
     $scope.ok = function () {
         console.log('api call to add item to list', categoryId);
         $modalInstance.close();
@@ -75,6 +162,18 @@ function AddItemCtrl($scope, $modalInstance, categoryId) {
     };
 }
 
+function EditItemCtrl($scope, $modalInstance, categoryItem) {
+    $scope.categoryItem = categoryItem;
+    $scope.ok = function () {
+        console.log('api call to add item to list', categoryItem);
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}
+
 angular
         .module('urbanApp')
-        .controller('categoryCtrl', ['$scope', '$modal', '$log', 'CategoryService', categoryCtrl]);
+        .controller('categoryCtrl', ['$scope', '$modal', '$log', '$rootScope', 'CategoryService', categoryCtrl]);

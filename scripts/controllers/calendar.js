@@ -7,11 +7,14 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
     var y = date.getFullYear();
 
     $scope.initCalendar = function () {
+        console.log('inside calendar init');
         OrderService.today().then(angular.bind(this, function then() {
+            console.log('----->',OrderService.events);
             $scope.events = OrderService.events;
         }));
 
         OrderService.month().then(angular.bind(this, function then() {
+            console.log('----->>>>',OrderService.monthEvents);
             $scope.eventSources = OrderService.monthEvents;
         }));
     }

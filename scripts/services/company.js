@@ -4,26 +4,29 @@ function CompanyService($q, $http, $rootScope) {
     var output = {};
     var apiUrl = $rootScope.apipath + '/company/';
 
-//    output.today = function () {
-//        output.events = [];
-//        var deferred = $q.defer();
-//        return $http.get(apiUrl+'today')
-//                .success(function (data) {
-//                    output.events = data;
-//                    deferred.resolve(data);
-//                })
-//                .error(function (data) {
-//                    deferred.reject(data);
-//                });
-//        //return deferred.promise;
-//    };
+    output.saveOrUpdate = function (company) {
+        output.events = [];
+        var deferred = $q.defer();
+        console.log(JSON.stringify(company));
+        return $http.put(apiUrl + 'edit/' + company.company_id, company)
+                .success(function (data) {
+                    output.events = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
 
     return output;
 }
 
-function readJson($q, $http) {
+function readJson($q, $http, $rootScope) {
     var output = {};
-    var cuisineUrl = 'data/cuisines.json';
+    var apiUrl = $rootScope.apipath2;
+
+    var cuisineUrl = apiUrl + '/cuisine';
 
     output.getCuisines = function () {
         output.cuisines = [];
@@ -38,6 +41,7 @@ function readJson($q, $http) {
                 });
     };
 
+    //TODO: apiUrl + '/special-need';
     var specialNeedsUrl = 'data/special-needs.json';
 
     output.getSpecialNeeds = function () {
@@ -52,7 +56,7 @@ function readJson($q, $http) {
                     deferred.reject(data);
                 });
     };
-    
+
     var typeOfEventsUrl = 'data/event-type.json';
 
     output.getTypeOfEvents = function () {
@@ -67,7 +71,7 @@ function readJson($q, $http) {
                     deferred.reject(data);
                 });
     };
-    
+
     var serviceOfferedUrl = 'data/offered-services.json';
 
     output.getOfferedServices = function () {
@@ -82,7 +86,7 @@ function readJson($q, $http) {
                     deferred.reject(data);
                 });
     };
-    
+
     var typeOfServicesUrl = 'data/type-services.json';
 
     output.getTypeOfServices = function () {
@@ -99,9 +103,10 @@ function readJson($q, $http) {
     };
 
     return output;
-};
+}
+;
 
 angular
         .module('urbanApp')
         .factory('CompanyService', ['$q', '$http', '$rootScope', CompanyService])
-        .factory('ReadJson', ['$q', '$http', readJson]);
+        .factory('ReadJson', ['$q', '$http', '$rootScope', readJson]);

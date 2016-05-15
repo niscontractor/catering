@@ -1,57 +1,39 @@
 <div data-ng-controller="galleryCtrl">
   <div class="clearfix">
-    <button type="button" class="btn btn-default"><span class="fa fa-paint-brush mr5"></span>New Album</button>
-    <div class="pull-right">
-      <button type="button" class="btn btn-default btn-outline btn-xs no-border disabled"><span class="bl"></span>
-      </button>
-      <button type="button" class="btn btn-default btn-outline no-border"><span class="fa fa-cog"></span>
-      </button>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default"><span class="fa fa-angle-left"></span>
-        </button>
-        <button type="button" class="btn btn-default"><span class="fa fa-angle-right"></span>
-        </button>
-      </div>
-    </div>
+    <button type="button" class="btn btn-default"><span class="fa fa-paint-brush mr5"></span>New Package</button>
+
   </div>
 
   <hr>
 
   <div class="row">
-    <div class="col-sm-3">
-      <ul class="nav nav-stacked nav-pills mb15">
-        <li class="disabled text-uppercase">
-          <a href="javascript:;">
-            <strong>favourites</strong>
-          </a>
-        </li>
-        <li data-ng-repeat="favourite in favourites">
-          <a href="javascript:;">
-                        {{favourite.name}}
-                    </a>
-        </li>
-      </ul>
-
-      <ul class="nav nav-stacked nav-pills">
-        <li class="disabled text-uppercase">
-          <a href="javascript:;">
-            <strong>Filter</strong>
-          </a>
-        </li>
-        <li data-ng-repeat="filter in filters">
-          <a href="javascript:;">
-                        {{filter.name}}
-                    </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-9">
+    
+    <div class="col-sm-12">
       <div class="gallery">
-        <div class="col-md-3 col-sm-4 col-xs-6" data-ng-repeat="id in ran">
-          <a href="http://placeimg.com/800/440" title="Gallery Demo" data-gallery="">
-            <img data-ng-src="http://placeimg.com/600/500?{{id}}" alt="">
+        <div class="col-md-3 col-sm-4 col-xs-6 img-data" data-ng-repeat="id in ran">
+          <a href="./images/food-popup.png" title="Package 1" data-gallery="">
+            <img data-ng-src="./images/food.png" alt="">
+            
+            <p class="img-main-package-name">Package 1</p>
+           
+            <div class="black-overlay ">
+            	<p class="img-data-heading">Cali-Mex Taqueria</p>
+                <div class="img-border-line"></div>
+                <p class="img-data-heading-inner">Mexican Party and Junk Party Packs</p>
+                <p class="img-data-heading-inner">2 days notice - HK$980 minimum</p>
+            </div>
+         
+            
+            
+            
           </a>
+          
+          
+          
         </div>
+        
+        
+        
       </div>
     </div>
   </div>
@@ -61,8 +43,8 @@
     <div class="slides"></div>
     <!-- Controls for the borderless lightbox -->
     <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
+    <!--<a class="prev">‹</a>
+    <a class="next">›</a>-->
     <a class="close">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
@@ -70,19 +52,54 @@
     <div class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-green-dark">
             <button type="button" class="close" aria-hidden="true">&times;</button>
             <h4 class="modal-title"></h4>
           </div>
-          <div class="modal-body next"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left prev">
+          <div class="modal-body next">
+          
+          <div class="popup-logo"><img data-ng-src="./images/food-popup-logo.png"/></div>
+          
+          <p class="img-popup-heading">Cali-Mex Taqueria</p>
+          
+          <p class="img-popup-heading-inner">Mexican Party and Junk Party Packs</p>
+          
+          <div class="img-popup-containt">
+          
+          	<div class="col-sm-3 br-1px">
+            	<p>Hours</p>
+                <p>Mon - Sun, 10:00am - 10:00pm</p>
+            </div>
+            <div class="col-sm-3 br-1px">
+            	<p>Order notice</p>
+                <p>2 Days</p>
+            </div>
+            <div class="col-sm-3 br-1px">
+            	<p>Order min.</p>
+                <p>HK$ 980.00</p>
+            </div>
+            <div class="col-sm-3">
+            	<p>Delivers to</p>
+                <p>Hong Kong Island, Kowloon</p>
+            </div>
+          
+          
+          </div>
+          
+          </div>
+          <div class="modal-footer bg-green-dark-footer">
+          
+          <h4>Recommended for</h4>
+          <p>Office Lunch Catering, Junk Parties, Celebrations, Office Happy Hour, BBQs</p>
+          
+          
+           <!-- <button type="button" class="btn btn-default pull-left prev">
               <i class="fa fa-chevron-left"></i> Previous
-            </button>
-            <button type="button" class="btn btn-primary next">
+            </button>-->
+           <!-- <button type="button" class="btn btn-primary next">
               Next
               <i class="fa fa-chevron-right"></i>
-            </button>
+            </button>-->
           </div>
         </div>
       </div>

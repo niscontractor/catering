@@ -5,7 +5,10 @@ angular
         .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope, $state, $stateParams) {
                 $rootScope.$state = $state;
-                $rootScope.apipath = 'api';
+                $rootScope.baseUrl = 'http://139.162.20.41:3000';
+//                $rootScope.baseUrl = 'http://localhost:3000';
+                $rootScope.apipath = $rootScope.baseUrl + '/api';
+                $rootScope.apipath2 = $rootScope.baseUrl + '/api2';
                 $rootScope.$stateParams = $stateParams;
                 $rootScope.$on('$stateChangeSuccess', function () {
                     window.scrollTo(0, 0);
@@ -132,7 +135,7 @@ angular
 
 
                         .state('app.service-list', {
-                            url: '/service-list',
+                            url: '/product',
                             templateUrl: 'views/service-list.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -868,7 +871,7 @@ angular
                             url: '/apps',
                         })
                         .state('app.apps.calendar', {
-                            url: '/calendar',
+                            url: '/dashboard',
                             templateUrl: 'views/app-calendar.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -908,7 +911,7 @@ angular
                             }
                         })
                         .state('app.apps.gallery', {
-                            url: '/gallery',
+                            url: '/packages',
                             templateUrl: 'views/app-gallery.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -953,7 +956,7 @@ angular
                             }
                         })
                         .state('app.apps.social', {
-                            url: '/social',
+                            url: '/profile',
                             templateUrl: 'views/app-social.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
