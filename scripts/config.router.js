@@ -158,7 +158,7 @@ angular
                                             {
                                             }]).then(function () {
                                             return $ocLazyLoad.load('scripts/controllers/categories/categories.js').then(function () {
-                                                return $ocLazyLoad.load('scripts/services/category.js');
+                                                return $ocLazyLoad.load('scripts/services/category.service.js');
                                             });
                                         });
                                     }]
@@ -901,7 +901,7 @@ angular
                                                 ]
                                             }]).then(function () {
                                             return $ocLazyLoad.load('scripts/controllers/calendar.js').then(function () {
-                                                return $ocLazyLoad.load('scripts/services/order.js');
+                                                return $ocLazyLoad.load('scripts/services/order.service.js');
                                             });
                                         });
                                     }]
@@ -961,7 +961,7 @@ angular
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load('scripts/controllers/dashboard/dashboard.js').then(function () {
-                                            return $ocLazyLoad.load('scripts/services/company.js');
+                                            return $ocLazyLoad.load('scripts/services/company.service.js');
                                         });
                                     }]
                             },
@@ -1091,7 +1091,7 @@ angular
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load('scripts/controllers/session.js').then(function () {
-                                            return $ocLazyLoad.load('scripts/services/common.js');
+                                            return $ocLazyLoad.load('scripts/services/common.service.js');
                                         });
                                     }]
                             },
