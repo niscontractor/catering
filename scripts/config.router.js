@@ -789,7 +789,7 @@ angular
                                 title: 'Nvd3 Charts',
                             }
                         })
-                        .state('app.charts.c3', {
+                        .state('app.apps.c3', {
                             url: '/c3',
                             templateUrl: 'views/charts-c3.html',
                             resolve: {
@@ -919,6 +919,37 @@ angular
                             },
                             data: {
                                 title: 'Calendar',
+                            }
+                        })
+                        .state('app.apps.newpackage', {
+                            url: '/newpackage',
+                            templateUrl: 'views/newpackage.html',
+                            resolve: {
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            {
+                                                serie: true,
+                                                files: [
+                                                    'vendor/jquery.ui/ui/core.js',
+                                                    'vendor/jquery.ui/ui/widget.js',
+                                                    'vendor/jquery.ui/ui/mouse.js',
+                                                    'vendor/jquery.ui/ui/draggable.js',
+                                                    'vendor/jquery.ui/ui/droppable.js'
+                                                    
+                                                ]
+                                            }]).then(function () {
+                                            return $ocLazyLoad.load([
+                                                'vendor/bootstrap-treeview/dist/bootstrap-treeview.min.css',
+                                                'vendor/bootstrap-treeview/dist/bootstrap-treeview.min.js',
+                                                'scripts/directives/dragdrop.js',
+                                                'scripts/services/category.service.js',
+                                                'scripts/controllers/newpackage.js'
+                                            ]);
+                                        });
+                                    }]
+                            },
+                            data: {
+                                title: 'New Package',
                             }
                         })
                         .state('app.apps.gallery', {

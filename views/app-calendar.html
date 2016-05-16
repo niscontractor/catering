@@ -11,10 +11,10 @@
 
         <ul class="external-events">
             <li ng-repeat="e in events">
-                <div class="external-event event-{{e.listColor}}">
+                <div class="external-event event-primary">
                     <div class="row">
                         <div class="col-sm-9">
-                            <input ng-model="e.order_event" class="form-control no-border no-bg pl0">
+                            <input ng-model="e.order_event" class="form-control no-border no-bg pl0 danger">
                         </div>
                         <div class="col-sm-3">
                             <span class="pull-right cursor small" ng-click="remove($index)"><i class="glyphicon glyphicon-trash"></i></span>
@@ -28,7 +28,7 @@
                             <small>Qty : {{e.qty}} </small>
                         </div>
                         <div class="col-sm-6">
-                            <small>Customer : {{e.customer_id}}</small><br/>
+                            <small>Location : {{e.order_location}}</small><br/>
                             <small>Package : {{e.package_id}}</small><br/>
                             <small> Price : ${{e.price}}</small><br/>
                         </div>
