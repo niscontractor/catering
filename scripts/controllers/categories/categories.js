@@ -106,7 +106,7 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
         var obj = new Object();
         obj.name = $scope.category.name;
         obj.desc = $scope.category.desc;
-        obj.id = category;
+        obj.id = $scope.category._id;
         var category = JSON.stringify(obj);
         $modalInstance.close(category);
     };
