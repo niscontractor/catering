@@ -29,7 +29,7 @@
             <div class="panel-body body-overflow">
                 <span ng-repeat="item in category.items">
                     <span class="cursor" ng-click="categories.editCategoryItem(item,category)">{{item.name}}</span>
-                    <span class="pull-right" ng-click="categories.deleteCategoryItem(item,category)"><i class="glyphicon glyphicon-trash"></i></span>
+                    <span class="pull-right cursor" ng-click="categories.deleteCategoryItem(item,category)"><i class="glyphicon glyphicon-trash"></i></span>
                     <div class="border"></div>
                 </span>
             </div>

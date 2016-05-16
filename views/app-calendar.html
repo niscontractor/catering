@@ -1,27 +1,46 @@
 <div class="row" ng-controller="CalendarCtrl" ng-init="initCalendar()">
-  <div class="col-sm-3">
+    <div class="col-sm-3">
 
-<!--    <button type="button" class="btn btn-green" data-ng-click="addEvent()">
-      <span class="fa fa-plus mr5"></span>
-      <span>Add new event</span>
-    </button>-->
-<span  class="btn-green">Todays event</span>
-    <hr>
+        <!--    <button type="button" class="btn btn-green" data-ng-click="addEvent()">
+              <span class="fa fa-plus mr5"></span>
+              <span>Add new event</span>
+            </button>-->
+        <span  class="btn-green col-sm-12 center-content">Todays event</span>
+        <br/>
+        <hr>
 
-    <ul class="external-events">
-      <li ng-repeat="e in events">
-        <div class="external-event event-{{e.listColor}}">
-          <input ng-model="e.title" class="form-control no-border no-bg pl0">
-          <small>{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}</small>
-          <a class="small ml5 remove" ng-click="remove($index)">Remove</a>
-        </div>
-      </li>
-    </ul>
+        <ul class="external-events">
+            <li ng-repeat="e in events">
+                <div class="external-event event-{{e.listColor}}">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <input ng-model="e.order_event" class="form-control no-border no-bg pl0">
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="pull-right cursor small" ng-click="remove($index)"><i class="glyphicon glyphicon-trash"></i></span>
+                        </div>
+                    </div>
 
-  </div>
-  <div class="col-sm-9">
-    <div class="calendar-viewer">
-      <div ui-calendar="uiConfig.calendar" class="fullcalendar" calendar="myCalendar" ng-model="eventSources"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <small>Order Id : {{e.order_id}}</small><br/>
+                            <small>Customer : {{e.customer_id}}</small><br/>
+                            <small>Qty : {{e.qty}} </small>
+                        </div>
+                        <div class="col-sm-6">
+                            <small>Customer : {{e.customer_id}}</small><br/>
+                            <small>Package : {{e.package_id}}</small><br/>
+                            <small> Price : ${{e.price}}</small><br/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
     </div>
-  </div>
+    <div class="col-sm-9">
+        <div class="calendar-viewer">
+            <div ui-calendar="uiConfig.calendar" class="fullcalendar" calendar="myCalendar" ng-model="eventSources"></div>
+        </div>
+    </div>
 </div>
