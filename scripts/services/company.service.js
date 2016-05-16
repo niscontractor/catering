@@ -5,18 +5,27 @@ function CompanyService($q, $http, $rootScope) {
     var apiUrl = $rootScope.apipath + '/company/';
 
     output.saveOrUpdate = function (company) {
-        output.events = [];
         var deferred = $q.defer();
-        console.log(JSON.stringify(company));
-        return $http.put(apiUrl + 'edit/' + company.company_id, company)
+        $http.put(apiUrl + 'edit/' + company._id, company)
                 .success(function (data) {
-                    output.events = data;
                     deferred.resolve(data);
                 })
                 .error(function (data) {
                     deferred.reject(data);
                 });
-        //return deferred.promise;
+        return deferred.promise;
+    };
+
+    output.getCompanyById = function (companyId) {
+        var deferred = $q.defer();
+        $http.get(apiUrl + companyId)
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        return deferred.promise;
     };
 
     return output;
