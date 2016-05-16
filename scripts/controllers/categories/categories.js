@@ -100,7 +100,13 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
         });
     };
 
-
+    ctrl.deleteCategoryItem = function (item, category) {
+        CategoryService.deleteCategoryItem(category.name,item.name).then(angular.bind(this, function then() {
+            CategoryService.getCategories('').then(angular.bind(this, function then() {
+                ctrl.categoryList = CategoryService.categories;
+            }));
+        }));
+    };
 }
 
 function AddCategoryCtrl($scope, $modalInstance) {
