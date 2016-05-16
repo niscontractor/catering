@@ -6,7 +6,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     $scope.getCategoryList = function () {
 
 //TODO $rootScope.user.username
-        CategoryService.getCategories('cool').then(angular.bind(this, function then() {
+        CategoryService.getCategories('').then(angular.bind(this, function then() {
             console.log(CategoryService.categories);
             ctrl.categoryList = CategoryService.categories;
         }));
@@ -60,8 +60,15 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
             }
         });
 
-        modalInstance.result.then(function () {
-            $scope.getCategoryList();
+        modalInstance.result.then(function (categoryItem) {
+            ctrl.categoryList
+            CategoryService.addCategoryItem(categoryItem).then(angular.bind(this, function then() {
+                console.log(CategoryService.categoryItem);
+                CategoryService.getCategories('').then(angular.bind(this, function then() {
+                    console.log(CategoryService.categories);
+                    ctrl.categoryList = CategoryService.categories;
+                }));
+            }));
         });
     };
 
@@ -118,10 +125,12 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
 }
 
 function AddItemCtrl($scope, $modalInstance, categoryId) {
-    $scope.category = {};
     $scope.ok = function () {
-        console.log('api call to add item to list', categoryId);
-        $modalInstance.close();
+        var obj = new Object();
+        obj.name = $scope.categoryItem.name;
+        obj.desc = $scope.categoryItem.desc;
+        obj.categoryName = categoryId.name;
+        $modalInstance.close(obj);
     };
 
     $scope.cancel = function () {

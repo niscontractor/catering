@@ -46,6 +46,21 @@ function CategoryService($q, $http, $rootScope) {
         //return deferred.promise;
     };
 
+    output.addCategoryItem = function (category) {
+        var categoryName = category.categoryName;
+        var deferred = $q.defer();
+        console.log(apiUrl+":"+categoryName);
+        return $http.post(apiUrl+""+categoryName, category)
+                .success(function (data) {
+                    output.category = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
+    
     return output;
 }
 
