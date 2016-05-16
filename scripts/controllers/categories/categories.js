@@ -40,7 +40,8 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
 
         modalInstance.result.then(function (category) {
             CategoryService.addCategories(category).then(angular.bind(this, function then() {
-                ctrl.categoryList.push(category);
+                console.log(CategoryService.category);
+                ctrl.categoryList.push(CategoryService.category);
             }));
         });
     };
