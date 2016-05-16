@@ -26,7 +26,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
 
         modalInstance.result.then(function (category) {
             CategoryService.editCategories(category).then(angular.bind(this, function then() {
-                ctrl.categoryList.push()(category);
+                ctrl.categoryList.push(category);
             }));
         });
     }
