@@ -61,6 +61,22 @@ function CategoryService($q, $http, $rootScope) {
         //return deferred.promise;
     };
     
+     output.editCategoryItem = function (categoryItem) {
+        var categoryName = categoryItem.categoryName;
+        var itemName = categoryItem.categorItemName;
+        var deferred = $q.defer();
+        console.log(apiUrl+""+categoryName+"/"+itemName);
+        return $http.put(apiUrl+""+categoryName+"/"+itemName, categoryItem)
+                .success(function (data) {
+                    output.category = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
+    
     return output;
 }
 

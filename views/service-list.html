@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-md-3" ng-repeat="category in categories.categoryList">
-        <div class="panel panel-primary" ng-class="{'panel-success':$index % 4 == 1,'panel-warning':$index % 4 == 2,'panel-danger':$index % 4 == 3}">
+        <div class="panel panel-primary" ng-class="{'panel-success':$index % 4 == 1, 'panel-warning':$index % 4 == 2, 'panel-danger':$index % 4 == 3}">
             <div class="panel-heading">
                 <div class="pull-left title-inner">
                     <span>{{category.name}}</span>
@@ -28,8 +28,8 @@
             </div>
             <div class="panel-body body-overflow">
                 <span ng-repeat="item in category.items">
-                    <span class="cursor" ng-click="categories.editCategoryItem(item)">{{item.name}}</span>
-                    <span class="pull-right" ng-click="categories.deleteCategoryItem(item)"><i class="glyphicon glyphicon-trash"></i></span>
+                    <span class="cursor" ng-click="categories.editCategoryItem(item,category)">{{item.name}}</span>
+                    <span class="pull-right" ng-click="categories.deleteCategoryItem(item,category)"><i class="glyphicon glyphicon-trash"></i></span>
                     <div class="border"></div>
                 </span>
             </div>
@@ -138,16 +138,15 @@
     <div class="form-group">
     <label class="col-sm-2 control-label">Description</label>
     <div class="col-sm-10">
-    <textarea rows="3" class="form-control" ng-model="categoryItem.description"></textarea>
+    <textarea rows="3" class="form-control" ng-model="categoryItem.desc"></textarea>
     </div>
     </div>
 
-
-    </form>
-    </div>
     <div class="modal-footer">
     <button class="btn btn-primary btn-sm" ng-click="ok()">OK</button>
     <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+    </div>
+    </form>
     </div>
 </script>
 

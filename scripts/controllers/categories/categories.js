@@ -72,21 +72,31 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
         });
     };
 
-    ctrl.editCategoryItem = function (item) {
-        console.log('categoryItem: ', item);
+    ctrl.editCategoryItem = function (item, category) {
+        console.log('categoryItem: ', item.name + " -" + category.name + "-");
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
             controller: ('EditItemCtrl', ['$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
             size: 'med',
             resolve: {
                 categoryItem: function () {
-                    return item;
+                    var itemCategory = new Object();
+                    itemCategory.item = item.name;
+                    itemCategory.name = item.name;
+                    itemCategory.desc = item.desc;
+                    itemCategory.category = category.name;
+                    console.log(JSON.stringify(itemCategory));
+                    return itemCategory;
                 }
             }
         });
 
-        modalInstance.result.then(function () {
-            $scope.getCategoryList();
+        modalInstance.result.then(function (categoryItem) {
+            CategoryService.editCategoryItem(categoryItem).then(angular.bind(this, function then() {
+                CategoryService.getCategories('').then(angular.bind(this, function then() {
+                    ctrl.categoryList = CategoryService.categories;
+                }));
+            }));
         });
     };
 
@@ -140,9 +150,14 @@ function AddItemCtrl($scope, $modalInstance, categoryId) {
 
 function EditItemCtrl($scope, $modalInstance, categoryItem) {
     $scope.categoryItem = categoryItem;
+    console.log("categoryItem " + categoryItem);
     $scope.ok = function () {
-        console.log('api call to add item to list', categoryItem);
-        $modalInstance.close();
+        var obj = new Object();
+        obj.name = $scope.categoryItem.name;
+        obj.desc = $scope.categoryItem.desc;
+        obj.categoryName = $scope.categoryItem.category;
+        obj.categorItemName = $scope.categoryItem.item;
+        $modalInstance.close(obj);
     };
 
     $scope.cancel = function () {
