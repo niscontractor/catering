@@ -2,25 +2,34 @@
 
 function common($q, $http, $rootScope) {
     var output = {};
-    var apiUrl = $rootScope.apipath + '/authenticate';
+    var apiUrl = $rootScope.apipath;
 
     output.authenticate = function (json) {
-        output.user = {};
         var deferred = $q.defer();
-        return $http.post(apiUrl, json)
+        $http.post(apiUrl + '/authenticate', json)
                 .success(function (data) {
-                    console.log(data);
-                    if (data.success === 'true') {
-                        output.user = data;
+                    if (data.success === true) {
                         deferred.resolve(data);
-                    }else{
+                    } else {
                         deferred.reject(data);
                     }
                 })
                 .error(function (data) {
-                    deferred.reject();
+                    deferred.reject(data);
                 });
-        //return deferred.promise;
+        return deferred.promise;
+    };
+
+    output.getUserById = function (userId) {
+        var deferred = $q.defer();
+        $http.get(apiUrl + '/user/' + userId)
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        return deferred.promise;
     };
 
     return output;

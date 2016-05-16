@@ -39,9 +39,11 @@ function dashboardCtrl($scope, $interval, $timeout, ReadJson, CompanyService) {
     ctrl.register = function () {
 //        submit data
         console.log('inside register', ctrl.companyDetails);
-        CompanyService.saveOrUpdate(ctrl.companyDetails).then(angular.bind(this, function then() {
-            //save or reject handle
-        }));
+        CompanyService.saveOrUpdate(ctrl.companyDetails).then(function(){
+            
+        }).catch(function(){
+            
+        });
     }
 
         //upload image

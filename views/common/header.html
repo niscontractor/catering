@@ -85,9 +85,9 @@
 
   <li class="dropdown" dropdown>
     <a href="javascript:;" class="dropdown-toggle" dropdown-toggle>
-      <img data-ng-src="{{user.avatar}}" class="header-avatar img-circle ml10" alt="user" title="user">
+      <img data-ng-src="{{user.profile_pic?user.profile_pic:"images/avtar.jpg"}}" class="header-avatar img-circle ml10" alt="" title="" fallback-src="images/avatar.jpg">
       <span class="pull-left user-name">
-        {{user.fname}} {{user.lname}}
+        {{user.name}}
       </span>
     </a>
     <ul class="dropdown-menu user-inner">

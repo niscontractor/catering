@@ -2,8 +2,8 @@
 
 angular
         .module('urbanApp')
-        .run(['$rootScope', '$state', '$stateParams',
-            function ($rootScope, $state, $stateParams) {
+        .run(['$rootScope', '$state', '$stateParams', 'toaster',
+            function ($rootScope, $state, $stateParams, toaster) {
                 $rootScope.$state = $state;
                 $rootScope.baseUrl = 'http://139.162.20.41:3000';
 //                $rootScope.baseUrl = 'http://localhost:3000';
@@ -13,6 +13,17 @@ angular
                 $rootScope.$on('$stateChangeSuccess', function () {
                     window.scrollTo(0, 0);
                 });
+                $rootScope.addMessage = function (msg, type) {
+                    if (type === "success") {
+                        toaster.success(msg);
+                    } else if (type === "error") {
+                        toaster.error(msg);
+                    } else if (type === "warning") {
+                        toaster.warning(msg);
+                    } else {
+                        toaster.error(msg);
+                    }
+                };
                 FastClick.attach(document.body);
             },
         ])
@@ -1185,4 +1196,14 @@ angular
                     debug: false,
                     events: false
                 });
-            }]);
+            }])
+        .directive('fallbackSrc', function () {
+            var fallbackSrc = {
+                link: function postLink(scope, iElement, iAttrs) {
+                    iElement.bind('error', function () {
+                        angular.element(this).attr("src", iAttrs.fallbackSrc);
+                    });
+                }
+            }
+            return fallbackSrc;
+        });
