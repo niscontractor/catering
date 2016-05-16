@@ -6,10 +6,38 @@ function CategoryService($q, $http, $rootScope) {
 
     output.getCategories = function (username) {
         output.categories = [];
+        output.category;
         var deferred = $q.defer();
-        return $http.get(apiUrl + username)
+        return $http.get(apiUrl)
                 .success(function (data) {
                     output.categories = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
+
+    output.addCategories = function (category) {
+        output.category;
+        var deferred = $q.defer();
+        return $http.post(apiUrl, category)
+                .success(function (data) {
+                    output.category = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
+
+    output.editCategories = function (category) {
+        var deferred = $q.defer();
+        return $http.put(apiUrl, category)
+                .success(function (data) {
+                    output.category = data;
                     deferred.resolve(data);
                 })
                 .error(function (data) {

@@ -4,53 +4,11 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     var ctrl = this;
 
     $scope.getCategoryList = function () {
-        //api call to get category list
-        console.log('hello')
-        ctrl.categoryList = [
-            {
-                "id": 1,
-                "title": "Soup1",
-                "items": [
-                    {"id": 1, "name": "Chilli1"},
-                    {"id": 2, "name": "Chilli2"},
-                    {"id": 3, "name": "Chilli3"},
-                    {"id": 4, "name": "Chilli4"}
-                ]
-            },
-            {
-                "id": 2,
-                "title": "Soup2",
-                "items": [
-                    {"id": 1, "name": "Chilli1"},
-                    {"id": 2, "name": "Chilli2"},
-                    {"id": 3, "name": "Chilli3"},
-                    {"id": 4, "name": "Chilli4"}
-                ]
-            },
-            {
-                "id": 3,
-                "title": "Soup3",
-                "items": [
-                    {"id": 1, "name": "Chilli1"},
-                    {"id": 2, "name": "Chilli2"},
-                    {"id": 3, "name": "Chilli3"},
-                    {"id": 4, "name": "Chilli4"}
-                ]
-            },
-            {
-                "id": 4,
-                "title": "Soup4",
-                "items": [
-                    {"id": 1, "name": "Chilli1"},
-                    {"id": 2, "name": "Chilli2"},
-                    {"id": 3, "name": "Chilli3"},
-                    {"id": 4, "name": "Chilli4"}
-                ]
-            }
-        ];
+
 //TODO $rootScope.user.username
         CategoryService.getCategories('cool').then(angular.bind(this, function then() {
-            //save or reject handle
+            console.log(CategoryService.categories);
+            ctrl.categoryList = CategoryService.categories;
         }));
     }
 
@@ -66,8 +24,10 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
             }
         });
 
-        modalInstance.result.then(function () {
-//            $scope.getCategoryList();
+        modalInstance.result.then(function (category) {
+            CategoryService.addCategories(category).then(angular.bind(this, function then() {
+                ctrl.categoryList.put(category);
+            }));
         });
     }
 
@@ -78,11 +38,10 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
             size: 'med'
         });
 
-        modalInstance.result.then(function () {
-            $scope.getCategoryList();
-            var index = ctrl.categoryList.length + 1;
-            var newObj = {'id': index, 'title': 'Soup' + index};
-            ctrl.categoryList.push(newObj);
+        modalInstance.result.then(function (category) {
+            CategoryService.addCategories(category).then(angular.bind(this, function then() {
+                ctrl.categoryList.push(category);
+            }));
         });
     };
 
@@ -104,7 +63,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
             $scope.getCategoryList();
         });
     };
-    
+
     ctrl.editCategoryItem = function (item) {
         console.log('categoryItem: ', item);
         var modalInstance = $modal.open({
@@ -129,8 +88,11 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
 function AddCategoryCtrl($scope, $modalInstance) {
 
     $scope.ok = function () {
-        console.log('api call to add new category');
-        $modalInstance.close();
+        var obj = new Object();
+        obj.name = $scope.category.name;
+        obj.desc = $scope.category.desc;
+        var category = JSON.stringify(obj);
+        $modalInstance.close(category);
     };
 
     $scope.cancel = function () {
@@ -141,8 +103,12 @@ function AddCategoryCtrl($scope, $modalInstance) {
 function EditCategoryCtrl($scope, $modalInstance, category) {
     $scope.category = category;
     $scope.ok = function () {
-        console.log('api call to edit category');
-        $modalInstance.close();
+        var obj = new Object();
+        obj.name = $scope.category.name;
+        obj.desc = $scope.category.desc;
+        obj.id = category;
+        var category = JSON.stringify(obj);
+        $modalInstance.close(category);
     };
 
     $scope.cancel = function () {
