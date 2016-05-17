@@ -935,7 +935,7 @@ angular
                                                     'vendor/jquery.ui/ui/mouse.js',
                                                     'vendor/jquery.ui/ui/draggable.js',
                                                     'vendor/jquery.ui/ui/droppable.js'
-                                                    
+
                                                 ]
                                             }]).then(function () {
                                             return $ocLazyLoad.load([
@@ -1147,7 +1147,9 @@ angular
                             templateUrl: 'views/extras-signup.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                        return $ocLazyLoad.load('scripts/controllers/signup.js');
+                                         return $ocLazyLoad.load('scripts/controllers/signup.js').then(function () {
+                                            return $ocLazyLoad.load('scripts/services/common.service.js');
+                                        });
                                     }]
                             },
                             data: {
@@ -1160,78 +1162,78 @@ angular
                             templateUrl: 'views/extras-forgot.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                        return $ocLazyLoad.load('scripts/controllers/session.js');
-                                    }]
+                                    return $ocLazyLoad.load('scripts/controllers/session.js').then(function () {
+                                return $ocLazyLoad.load('scripts/services/common.service.js');
+                                        });
+                                }]
                             },
-                            data: {
-                                appClasses: 'bg-white usersession',
-                                contentClasses: 'full-height'
+                        data: {
+                            appClasses: 'bg-white usersession',
+                            contentClasses: 'full-height'
                             }
-                        })
+                            })
 
-                        .state('app.404', {
-                            url: '/404',
+                                .state('app.404', {
+                                url: '/404',
                             templateUrl: 'views/extras-404.html',
-                            data: {
-                                title: 'Page Not Found',
-                                contentClasses: 'no-padding',
+                        data: {
+                            title: 'Page Not Found',
+                            contentClasses: 'no-padding',
                             }
-                        })
-                        .state('user.500', {
-                            url: '/500',
+                            })
+                                .state('user.500', {
+                                url: '/500',
                             templateUrl: 'views/extras-500.html',
-                            data: {
-                                appClasses: 'usersession',
-                                contentClasses: 'full-height'
-                            }
-                        })
-                        .state('user.lockscreen', {
+                        data: {
+                        appClasses: 'usersession',
+                            contentClasses: 'full-height'
+                            }                         })
+                                .state('user.lockscreen', {
                             url: '/lockscreen',
-                            templateUrl: 'views/extras-lockscreen.html',
+                                        templateUrl: 'views/extras-lockscreen.html',
                             resolve: {
-                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                        return $ocLazyLoad.load('scripts/controllers/session.js');
+                            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load('scripts/controllers/session.js');
                                     }]
                             },
-                            data: {
-                                appClasses: 'usersession',
-                                contentClasses: 'full-height'
+                        data: {
+                        appClasses: 'usersession',
+                            contentClasses: 'full-height'
                             }
-                        })
+                            })
 
 
-                        .state('app.documentation', {
+                                .state('app.documentation', {
                             url: '/documentation',
-                            templateUrl: 'views/docs.html',
-                            resolve: {
-                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                        return $ocLazyLoad.load([
+                                        templateUrl: 'views/docs.html',
+                                            resolve: {
+                                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                                    return $ocLazyLoad.load([
                                             {
-                                                serie: true,
+                                                    serie: true,
                                                 files: [
-                                                    'vendor/prism/themes/prism.css',
-                                                    'vendor/prism/prism.js',
-                                                ]
-                                            }]);
+                                            'vendor/prism/themes/prism.css',
+                            'vendor/prism/prism.js',
+                                ]
+                                }]);
                                     }]
                             },
-                            data: {
-                                title: 'Documentation',
-                                contentClasses: 'no-padding'
+                        data: {
+        title: 'Documentation',
+                contentClasses: 'no-padding'
                             }
-                        });
-            }
+                    });
+                    }
         ])
         .config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
-                $ocLazyLoadProvider.config({
-                    debug: false,
+                $ocLazyLoadProvider.config({                     debug: false,
                     events: false
-                });
+                    });
             }])
-        .directive('fallbackSrc', function () {
+                        .directive('fallbackSrc', function () {
             var fallbackSrc = {
                 link: function postLink(scope, iElement, iAttrs) {
-                    iElement.bind('error', function () {
+        iElement.bind('error', function () {
                         angular.element(this).attr("src", iAttrs.fallbackSrc);
                     });
                 }

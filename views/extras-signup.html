@@ -1,14 +1,14 @@
-<div class="center-wrapper" data-ng-controller="signupCtrl as signUp">
+<div class="center-wrapper cater-bg" data-ng-controller="signupCtrl as signUp">
     <div class="center-content">
         <div class="row no-margin">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                <form role="form" class="form-layout" name='signUp.signUpForm' novalidate>
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 bg-white p-t-b">
+                <form role="form" class="form-layout p-l-r" name='signUp.signUpForm' novalidate>
                     <div class="text-center mb15">
-                        <img data-ng-src="images/logo.png" />
+                        <img data-ng-src="images/logo-dark.png" />
                     </div>
 
-                    <p class="text-center mb30">Welcome to {{app.name}}. Please sign up to new account</p>
-                    <div class='row'>
+                    <p class="text-center mb25">Welcome to Online Catering. Please sign up to new account</p>
+                    <div class='row form-inputs login-fonts'>
                         <div class='col-md-6' style='padding-left: 15px'>
                             <input type="text" name='firstName' ng-model='signUp.user.firstName' class="form-control input-lg" placeholder="First Name" ng-class='{"error":signUp.signUpForm.firstName.$invalid && signUp.signUpForm.$submitted}' maxlength="100" required>
                             <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.firstName.$error">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="form-inputs">
-                        <input type="text" class="form-control input-lg" placeholder="Company(Optional)">
+                        <input type="text" class="form-control input-lg" placeholder="Company" ng-model='signUp.user.company'>
                         <input type="email" ng-model='signUp.user.email' name='email' class="form-control input-lg" placeholder="Email Address" ng-class='{"error":signUp.signUpForm.email.$invalid && signUp.signUpForm.$submitted}' maxlength="500" required> 
                         <div ng-if='signUp.signUpForm.$submitted' ng-messages="signUp.signUpForm.email.$error">
                             <label class='error' ng-message="email">Enter valid email address</label>    
@@ -45,7 +45,7 @@
                             <label class='error' ng-message="compareTo">Password and confirm password do not match</label>                                
                         </div>
                     </div>
-                    <button class="btn btn-success btn-block btn-lg mb15" type="submit" ng-click="signUp.register()">
+                    <button class="btn btn-orange btn-block btn-lg mb15" type="submit" ng-click="signUp.register()">
                         <span>Signup</span>
                     </button>
                     <p>

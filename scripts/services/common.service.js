@@ -32,6 +32,22 @@ function common($q, $http, $rootScope) {
         return deferred.promise;
     };
 
+    output.signup = function (json) {
+        var deferred = $q.defer();
+        $http.post(apiUrl + '/signup', json)
+                .success(function (data) {
+                    if (data.success === true) {
+                        deferred.resolve(data);
+                    } else {
+                        deferred.reject(data);
+                    }
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        return deferred.promise;
+    };
+    
     return output;
 }
 
