@@ -36,7 +36,7 @@ function common($q, $http, $rootScope) {
         var deferred = $q.defer();
         $http.post(apiUrl + '/signup', json)
                 .success(function (data) {
-                    if (data.success === true) {
+                    if (data.succes === true) {
                         deferred.resolve(data);
                     } else {
                         deferred.reject(data);

@@ -11,7 +11,6 @@ function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, R
         }
         CompanyService.getCompanyById($rootScope.company_id).then(function (response) {
             ctrl.company = response;
-            ctrl.initImageJson($rootScope.company_id);
         }).catch(function (response) {
 
         });
@@ -57,25 +56,24 @@ function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, R
     ctrl.fileUploaded = false;
     ctrl.allowFileUpload = false;
 
-    ctrl.initImageJson = function (companyId) {
-        ctrl.uploadLogo = {
-            target: 'company/logo/' + companyId,
-            singleFile: true,
-            testChunks: false
-        }
+    ctrl.uploadLogo = {
+        target: $rootScope.apipath + '/company/logo/' + $localStorage.company_id,
+        singleFile: true,
+        testChunks: false,
+    };
 
-        ctrl.uploadProfilePhoto = {
-            target: 'company/profile-pic/' + companyId,
-            singleFile: true,
-            testChunks: false
-        }
+    ctrl.uploadProfilePhoto = {
+        target: $rootScope.apipath + '/company/profile-pic/' + $localStorage.company_id,
+        singleFile: true,
+        testChunks: false
+    };
 
-        ctrl.uploadBanner = {
-            target: 'company/banner/' + companyId,
-            singleFile: true,
-            testChunks: false
-        }
-    }
+    ctrl.uploadBanner = {
+        target: $rootScope.apipath + '/company/banner/' + $localStorage.company_id,
+        singleFile: true,
+        testChunks: false
+    };
+
     ctrl.uploadImage = function ($file, $event, $flow) {
         ctrl.fileUploaded = true;
         if (ctrl.allowFileUpload) {

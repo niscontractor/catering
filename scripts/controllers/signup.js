@@ -17,6 +17,7 @@ function signupCtrl($state, Common,$rootScope,$localStorage) {
             Common.signup(jsonString).then(function (response) {
                if(response.succes){
                     $rootScope.addMessage(response.msg, 'success');
+                    $state.go('user.signin');
                }else{
                    $rootScope.addMessage(response.msg, 'error');
                }
