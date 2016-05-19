@@ -320,7 +320,7 @@ blockquote::before {
     float: left;
     margin-right: 10px;
     color: #E2E4E9;
-    content: "“";
+    content: "â€œ";
     font-size: 40px;
     font-family: Georgia, serif;
     line-height: 1;
@@ -338,7 +338,7 @@ blockquote p {
 .pullquote::before {
     float: left;
     color: #E2E4E9;
-    content: "“";
+    content: "â€œ";
     font-style: normal;
     font-size: 40px;
     font-family: Georgia, serif;
@@ -2400,15 +2400,15 @@ footer.content-footer li a:active {
     background-color: #efefef;
 }
 .switch :checked + span {
-    border-color: #2ecc71;
-    -webkit-box-shadow: #2ecc71 0px 0px 0px 21px inset;
-    -moz-box-shadow: #2ecc71 0px 0px 0px 21px inset;
-    box-shadow: #2ecc71 0px 0px 0px 21px inset;
+    border-color: #7bc147;
+    -webkit-box-shadow: #7bc147 0px 0px 0px 21px inset;
+    -moz-box-shadow: #7bc147 0px 0px 0px 21px inset;
+    box-shadow: #7bc147 0px 0px 0px 21px inset;
     -webkit-transition: border 300ms, box-shadow 300ms, background-color 1.2s;
     -moz-transition: border 300ms, box-shadow 300ms, background-color 1.2s;
     -o-transition: border 300ms, box-shadow 300ms, background-color 1.2s;
     transition: border 300ms, box-shadow 300ms, background-color 1.2s;
-    background-color: #2ecc71;
+    background-color: #7bc147;
 }
 .switch :checked + span i {
     padding-right: 0;
@@ -2429,15 +2429,14 @@ footer.content-footer li a:active {
     padding-left: 13px;
 }
 .switch.switch-lg {
-    width: 66px;
-    height: 40px;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
+   border-radius: 40px;
+    height: 30px;
+    width: 55px;
+    border-color: #7bc147;
 }
 .switch.switch-lg span i::before {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 }
 .switch.switch-lg :checked + span i {
     padding-left: 26px;
@@ -13853,4 +13852,85 @@ p{color:inherit !important;}
 
 .cursor{
     cursor: pointer;
+}
+
+/*------------------------------package page css start from here--------------------------------*/
+
+
+.droppable-package .list-group-item{display:inline-block; margin:4px; font-family: 'OpenSans';}
+
+.form-fixed{position:fixed; top:95px; width:100%; left:0; z-index:2; background:#7bc147; padding:1% 0%; color:#fff; font-family: 'OpenSans';}
+.inner-data-packages{margin-top:75px;}
+
+
+
+.treeview-packageCtr {max-height:680px; overflow-y:scroll; overflow-x:hidden !important; font-family: 'OpenSans'; font-weight:normal !important; font-size:14px; max-width:450px; position:fixed;min-width:450px;}
+
+.col-md-4 .panel-header{padding:10px 15px; font-size:14px; font-family: 'OpenSans';}
+
+.bg-green-dark-package{background:#538f26; color:#fff; font-family: 'OpenSans';}
+
+.package-detail label{font-family: 'OpenSans';}
+
+.item-label{margin-right:20px;}
+
+.item-label input{width:100px;}
+
+
+/*----------------------outline btn---------------------*/
+
+.line-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.line-primary.line-outline {
+    color: #428bca;
+    border:1px solid #428bca;
+
+}
+
+.line-success.line-outline {
+    color: #5cb85c;
+    border:1px solid #5cb85c;
+}
+
+.line-info.line-outline {
+    color: #5bc0de;
+    border:1px solid #5bc0de;
+}
+
+.line-warning.line-outline {
+    color: #f0ad4e;
+    border:1px solid #f0ad4e;
+}
+
+.line-danger.line-outline {
+    color: #d9534f;
+    border:1px solid #d9534f;
+}
+
+.line-primary.line-outline:hover,
+.line-success.line-outline:hover,
+.line-info.line-outline:hover,
+.line-warning.line-outline:hover,
+.line-danger.line-outline:hover {
+    color: #000;
+}
+
+.droppable-package .node-:hover:not(.node-disabled) {background-color: transparent !important;;}
+
+/*----------------Out line Button Close-------------------*/
+
+
+@media all and (min-width:1200px) and (max-width:1400px) {
+
+    .form-fixed{top:82px;}
+    .inner-data-packages{margin-top:48px;}
+
+    .treeview-packageCtr{max-width:300px; max-height:400px; min-width:300px;}
+    .item-label input{width:60px;}
+
+
 }

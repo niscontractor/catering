@@ -30,7 +30,7 @@ var dragDropDir = function ($timeout) {
                         angular.forEach(data, function (obj) {
                             $timeout(function () {
                                 if ($(element).find('.badge:contains(' + obj.id + ')').length == 0) {
-                                    var template = '<li class="list-group-item node-"><span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon"></span>' +
+                                    var template = '<li class="list-group-item line-success line-outline node-"><span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon"></span>' +
                                             obj.text
                                             + '<span class="badge">' + obj.id + '</span></li>';
                                     $(template).appendTo(element);
@@ -59,7 +59,7 @@ var dragDropDir = function ($timeout) {
 
                         var draggableObj = $(ui.draggable[0]).clone();
                         $(draggableObj).appendTo(this);
-//                        $("<li class='list-group-item li-formula'></li>").text(ui.draggable.text()).appendTo(this);
+//                        $("<li class='list-group-item line-primary line-outline li-formula'></li>").text(ui.draggable.text()).appendTo(this);
 //                        ui.draggable.remove();
                     }
                 });

@@ -1,6 +1,6 @@
 'use strict';
 
-function packageCtrl($scope, $interval, COLORS, CategoryService) {
+function packageCtrl($scope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
     var ctrl = this;
 
     $scope.getCategoryList = function () {
@@ -19,7 +19,7 @@ function packageCtrl($scope, $interval, COLORS, CategoryService) {
                 angular.forEach(category.items, function (item) {
                     var node = {};
                     node.id = item._id;
-                    node.selectable = false;   
+                    node.selectable = false;
                     node.text = item.name;
                     node.tags = [index];
                     index = index + 1;
@@ -30,62 +30,63 @@ function packageCtrl($scope, $interval, COLORS, CategoryService) {
             console.log(ctrl.categories);
         }));
     }
-//    in below array tags is necessary. assign object id inside tags to work drag and drop properly
-    ctrl.categories1 = [
-        {
-            text: 'Soups',
-            selectable: false,
-            nodes: [
-                {
-                    id: 1,
-                    text: 'Tomato',
-                    selectable: false,
-                    tags: [1]
-                },
-                {
-                    id: 2,
-                    text: 'Hot & Sour',
-                    selectable: false,
-                    tags: [2]
-                }
-            ]
-        },
-        {
-            text: 'Starter',
-            selectable: false,
-            nodes: [
-                {
-                    id: 3,
-                    text: 'Spring Roll',
-                    selectable: false,
-                    tags: [3]
-                },
-                {
-                    id: 4,
-                    selectable: false,
-                    text: 'Harabhara Kabab',
-                    tags: [4]
-                },
-                {
-                    id: 5,
-                    selectable: false,
-                    text: 'Manchurian',
-                    tags: [5]
-                }
-            ]
-        }
-    ];
+
     console.log(ctrl.categories1);
-    ctrl.package = {sections: [{}]};
-    ctrl.package = {"sections": [{"list_of_menu": [{"id": 1, "text": "Tomato", "selectable": false, "tags": [1]}]}], "name": "Package Lunch", "price": "350", "title": "Happy hours", "description": "Delicious lunch"};
+    ctrl.package = {sections: []};
+//    ctrl.package = {"sections": [{"list_of_menu": [{"id": 1, "text": "Tomato", "selectable": false, "tags": [1]}]}], "name": "Package Lunch", "price": "350", "title": "Happy hours", "description": "Delicious lunch"};
     ctrl.addSection = function () {
         ctrl.package.sections.push({});
     };
-    ctrl.savePackage = function () {
-        console.log(JSON.stringify(ctrl.package))
+
+    ctrl.addPackage = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'addPackage.html',
+            controller: ('AddPackageCtrl', ['$scope', '$modalInstance', AddPackageCtrl]),
+            size: 'med'
+        });
+
+        modalInstance.result.then(function (packageJson) {
+            PackageService.addPackage(packageJson).then(angular.bind(this, function then() {
+                console.log(CategoryService.categories);
+                ctrl.package = PackageService.package;
+                console.log(ctrl.categories);
+            }));
+        });
     };
+
+
+
+    function AddPackageCtrl($scope, $modalInstance) {
+
+        $scope.ok = function () {
+            var obj = new Object();
+            var obj = {};
+            obj.name = $scope.package.name;
+            obj.title = $scope.package.title;
+            obj.image = $scope.package.image;
+            obj.desc = $scope.package.desc;
+            obj.price = $scope.package.price;
+            var packageJson = JSON.stringify(obj);
+            $modalInstance.close(packageJson);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }
+
+    ctrl.savePackage = function () {
+        PackageService.addPackage(ctrl.package).then(angular.bind(this, function then() {
+            console.log(CategoryService.categories);
+            ctrl.package = PackageService.package;
+            console.log(ctrl.categories);
+        }));
+
+    };
+    
+    ctrl.addPackage();
 }
 
 angular
         .module('urbanApp')
-        .controller('packageCtrl', ['$scope', '$interval', 'COLORS', 'CategoryService', packageCtrl]);
+        .controller('packageCtrl', ['$scope','$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);
