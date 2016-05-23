@@ -75,10 +75,10 @@
                                                 <uib-progressbar animate="true" ng-show="dashboard.showProgressBar"  value="$file.progress() * 100" class="customProgressBar progress-striped active" max="100"></uib-progressbar>
                                             </div>
                                             <div class="col-sm-6 service-input-inner">
-                                                <div class="m-b-30" ng-class="{'has-error': (registrationForm.tagLine.$invalid && registrationForm.tagLine.$dirty)}">
-                                                    <input name="tagLine" class="form-control" placeholder="Tag Line" ng-model="dashboard.company.tagLine" required/>
-                                                    <div class="error,help-block" ng-show="(registrationForm.tagLine.$dirty) && registrationForm.tagLine.$invalid"> 
-                                                        <span class="help-block" ng-show="registrationForm.tagLine.$error.required">Required</span>
+                                                <div class="m-b-30" ng-class="{'has-error': (registrationForm.tagline.$invalid && registrationForm.tagline.$dirty)}">
+                                                    <input name="tagline" class="form-control" placeholder="Tag Line" ng-model="dashboard.company.tagline" required/>
+                                                    <div class="error,help-block" ng-show="(registrationForm.tagline.$dirty) && registrationForm.tagline.$invalid"> 
+                                                        <span class="help-block" ng-show="registrationForm.tagline.$error.required">Required</span>
                                                     </div>
                                                 </div>
                                                 <textarea rows="5" cols="100%" class="form-control m-b-30" placeholder="Description of your Company" ng-model="dashboard.company.description"></textarea>

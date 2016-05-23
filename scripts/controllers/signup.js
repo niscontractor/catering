@@ -10,7 +10,7 @@ function signupCtrl($state, Common,$rootScope,$localStorage) {
             obj.repassword = ctrl.user.confpassword;
             obj.name = ctrl.user.firstName;
             obj.mobile = ctrl.user.mobile;
-            obj.compan = ctrl.user.company;
+            obj.company = ctrl.user.company;
             
             var jsonString = JSON.stringify(obj);
 
