@@ -1,6 +1,6 @@
 'use strict';
 
-function CategoryService($q, $http, $rootScope) {
+function CategoryService($q, $http, $rootScope, $localStorage) {
     var output = {};
     var apiUrl = $rootScope.apipath + '/categories/';
 
@@ -8,7 +8,7 @@ function CategoryService($q, $http, $rootScope) {
         output.categories = [];
         output.category;
         var deferred = $q.defer();
-        return $http.get(apiUrl)
+        return $http.get(apiUrl + $localStorage.user.id)
                 .success(function (data) {
                     output.categories = data;
                     deferred.resolve(data);
@@ -22,7 +22,7 @@ function CategoryService($q, $http, $rootScope) {
     output.addCategories = function (category) {
         output.category;
         var deferred = $q.defer();
-        return $http.post(apiUrl, category)
+        return $http.post(apiUrl + $localStorage.user.id, category)
                 .success(function (data) {
                     output.category = data;
                     deferred.resolve(data);
@@ -35,7 +35,7 @@ function CategoryService($q, $http, $rootScope) {
 
     output.editCategories = function (category) {
         var deferred = $q.defer();
-        return $http.put(apiUrl, category)
+        return $http.put(apiUrl + $localStorage.user.id, category)
                 .success(function (data) {
                     output.category = data;
                     deferred.resolve(data);
@@ -50,7 +50,7 @@ function CategoryService($q, $http, $rootScope) {
         var categoryName = category.categoryName;
         var deferred = $q.defer();
         console.log(apiUrl+":"+categoryName);
-        return $http.post(apiUrl+""+categoryName, category)
+        return $http.post(apiUrl + categoryName + '/item', category)
                 .success(function (data) {
                     output.category = data;
                     deferred.resolve(data);
@@ -99,4 +99,4 @@ function CategoryService($q, $http, $rootScope) {
 
 angular
         .module('urbanApp')
-        .factory('CategoryService', ['$q', '$http', '$rootScope', CategoryService]);
+        .factory('CategoryService', ['$q', '$http', '$rootScope', '$localStorage', CategoryService]);

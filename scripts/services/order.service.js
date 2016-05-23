@@ -1,12 +1,12 @@
 'use strict';
 
-function OrderService($q, $http, $rootScope) {
+function OrderService($q, $http, $rootScope, $localStorage) {
     var output = {};
     var apiUrl = $rootScope.apipath + '/orders/';
 
     output.today = function () {
         var deferred = $q.defer();
-        $http.get(apiUrl + 'today')
+        $http.get(apiUrl + $localStorage.user.id + '/today')
                 .success(function (data) {
                     deferred.resolve(data);
                 })
@@ -19,7 +19,7 @@ function OrderService($q, $http, $rootScope) {
     output.month = function () {
         var month = new Date().getMonth();
         var deferred = $q.defer();
-        $http.get(apiUrl + (month + 1))
+        $http.get(apiUrl + $localStorage.user.id + '/' + (month + 1))
                 .success(function (data) {
                     deferred.resolve(data);
                 })
@@ -34,4 +34,4 @@ function OrderService($q, $http, $rootScope) {
 
 angular
         .module('urbanApp')
-        .factory('OrderService', ['$q', '$http', '$rootScope', OrderService]);
+        .factory('OrderService', ['$q', '$http', '$rootScope', '$localStorage', OrderService]);

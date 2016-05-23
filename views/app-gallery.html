@@ -1,4 +1,4 @@
-<div data-ng-controller="galleryCtrl">
+<div data-ng-controller="galleryCtrl" ng-init="getUserPackages()">
     <div class="clearfix">
         <a ui-sref="app.apps.newpackage" class="btn btn-default"><span class="fa fa-paint-brush mr5"></span>New Package</a>
     </div>
@@ -8,15 +8,15 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="gallery">
-                <div class="col-md-3 col-sm-4 col-xs-6 img-data" data-ng-repeat="id in ran">
-                    <a href="./images/food-popup.png" title="Package 1" data-gallery="">
+                <div class="col-md-3 col-sm-4 col-xs-6 img-data" data-ng-repeat="userPack in userPackages">
+                    <a href="./images/food-popup.png" title="{{userPack.name}}" data-gallery="">
                         <img data-ng-src="./images/food.png" alt="">
-                        <p class="img-main-package-name">Package 1</p>
+                        <p class="img-main-package-name">{{userPack.name}}</p>
                         <div class="black-overlay ">
-                            <p class="img-data-heading">Cali-Mex Taqueria</p>
+                            <p class="img-data-heading">{{userPack.title}}</p>
                             <div class="img-border-line"></div>
-                            <p class="img-data-heading-inner">Mexican Party and Junk Party Packs</p>
-                            <p class="img-data-heading-inner">2 days notice - HK$980 minimum</p>
+                            <p class="img-data-heading-inner">{{userPack.desc}}</p>
+                            <p class="img-data-heading-inner">{{userPack.price}}</p>
                         </div>
                     </a>
                 </div>

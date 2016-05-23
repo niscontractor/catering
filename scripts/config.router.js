@@ -6,7 +6,7 @@ angular
             function ($rootScope, $state, $stateParams, toaster) {
                 $rootScope.$state = $state;
                 $rootScope.baseUrl = 'http://139.162.20.41:3000';
-//              $rootScope.baseUrl = 'http://localhost:3000';
+                // $rootScope.baseUrl = 'http://localhost:3000';
                 $rootScope.apipath = $rootScope.baseUrl + '/api';
                 $rootScope.apipath2 = $rootScope.baseUrl + '/api2';
                 $rootScope.$stateParams = $stateParams;
@@ -978,7 +978,8 @@ angular
                                                 serie: true,
                                                 files: [
                                                     'vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js',
-                                                    'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js'
+                                                    'vendor/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js',
+                                                    'scripts/services/package.service.js'
                                                 ]
                                             }]).then(function () {
                                             return $ocLazyLoad.load('scripts/controllers/gallery.js');

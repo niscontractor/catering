@@ -5,10 +5,19 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+    $scope.events = [];
 
     $scope.initCalendar = function () {
         OrderService.today().then(function(response) {
-            $scope.events = response;
+            for(var row in response) {
+                $scope.events.push({
+                    id:response[row]._id,
+                    title: response[row].order_event,
+                    start: new Date(),
+                    listColor: 'danger',
+                    className: ['event-danger', 'event-name-light']
+                });
+            }
         });
 
         OrderService.month().then(function(response) {
@@ -24,56 +33,7 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
         currentTimezone: 'America/Chicago' // an option!
     };
     /* event source that contains custom events on the scope */
-    $scope.events = [
-        {
-            title: 'Birthday Events',
-            start: new Date(y, m, 1),
-            listColor: 'danger',
-            className: ['event-danger', 'event-name-light']
-
-
-
-        },
-        {
-            title: 'Wedding Events',
-            start: new Date(y, m, d - 5),
-            end: new Date(y, m, d - 2),
-            listColor: 'success',
-            className: ['event-success', 'event-name-light']
-        },
-        {
-            id: 999,
-            title: 'Repeating Event',
-            start: new Date(y, m, d - 3, 16, 0),
-            allDay: false,
-            listColor: 'info',
-            className: ['event-info', 'event-name-light']
-        },
-        {
-            id: 999,
-            title: 'Inauguration event',
-            start: new Date(y, m, d + 4, 16, 0),
-            allDay: false,
-            listColor: 'primary',
-            className: ['event-primary', 'event-name-light']
-        },
-        {
-            title: 'Corporate Events',
-            start: new Date(y, m, d + 1, 19, 0),
-            end: new Date(y, m, d + 1, 22, 30),
-            allDay: false,
-            listColor: 'default',
-            className: ['event-default', 'event-name-light']
-        },
-        {
-            title: 'Family Events',
-            start: new Date(y, m, 28),
-            end: new Date(y, m, 29),
-            url: 'http://google.com/',
-            listColor: 'warning',
-            className: ['event-warning', 'event-name-light']
-        }
-    ];
+    
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
         var s = new Date(start).getTime() / 1000;

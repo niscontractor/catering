@@ -1,10 +1,19 @@
 'use strict';
 
-function galleryCtrl($scope) {
+function galleryCtrl($scope, PackageService) {
   $scope.ran = [];
 
   for (var i = 1; i <= 28; i += 1) {
     $scope.ran.push(i);
+  }
+
+  $scope.getUserPackages = function() {
+    PackageService.getPackages().then(function(response) {
+      $scope.userPackages = response;
+    }).catch(function (response) {
+        console.log('failure', response);
+        $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+    });
   }
 
   $scope.favourites = [{
@@ -33,4 +42,4 @@ function galleryCtrl($scope) {
 
 angular
   .module('urbanApp')
-  .controller('galleryCtrl', ['$scope', galleryCtrl]);
+  .controller('galleryCtrl', ['$scope', 'PackageService', galleryCtrl]);

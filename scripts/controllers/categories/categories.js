@@ -73,7 +73,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     };
 
     ctrl.editCategoryItem = function (item, category) {
-        console.log('categoryItem: ', item.name + " -" + category.name + "-");
+        console.log('categoryItem: ', item.name + " -" + category._id + "-");
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
             controller: ('EditItemCtrl', ['$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
@@ -84,7 +84,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
                     itemCategory.item = item.name;
                     itemCategory.name = item.name;
                     itemCategory.desc = item.desc;
-                    itemCategory.category = category.name;
+                    itemCategory.category = category._id;
                     console.log(JSON.stringify(itemCategory));
                     return itemCategory;
                 }
@@ -101,7 +101,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     };
 
     ctrl.deleteCategoryItem = function (item, category) {
-        CategoryService.deleteCategoryItem(category.name,item.name).then(angular.bind(this, function then() {
+        CategoryService.deleteCategoryItem(category._id,item.name).then(angular.bind(this, function then() {
             CategoryService.getCategories('').then(angular.bind(this, function then() {
                 ctrl.categoryList = CategoryService.categories;
             }));
@@ -130,6 +130,7 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
         var obj = new Object();
         obj.name = $scope.category.name;
         obj.desc = $scope.category.desc;
+        obj.price = $scope.category.price;
         obj.id = $scope.category._id;
         var category = JSON.stringify(obj);
         $modalInstance.close(category);
@@ -145,7 +146,7 @@ function AddItemCtrl($scope, $modalInstance, categoryId) {
         var obj = new Object();
         obj.name = $scope.categoryItem.name;
         obj.desc = $scope.categoryItem.desc;
-        obj.categoryName = categoryId.name;
+        obj.categoryName = categoryId._id;
         $modalInstance.close(obj);
     };
 
