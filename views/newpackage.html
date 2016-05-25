@@ -25,15 +25,12 @@
                     <div class="panel panel-default">
                         <div class="panel-header bg-primary">
                             <div class="row" ng-app="MyApp">
-                                Title for section :  <span ng-controller="MyCtrl" class="item-label"> <span id="item{{$index}}" class="item-title">click here to edit</span>
-                                    <input id="item{{$index}}-display" style="display:none;" class="item-title-display"/>
-                                </span> 
-
-                            </div>
+                                <!--Title for section :--> 
+                                <input id="item-display" class="form-control" placeholder="What are you serving?" style="display: inline;width: 60%;"/>
+<!--                            </div>
                             <div class="row">
-                                Number of option :   <span ng-controller="MyCtrl" class="item-label"> <span id="amount{{$index}}" class="amount-title">0</span>
-                                    <input id="amount{{$index}}_entry" style="display:none;"  class="amount-title-entry"/>
-                                </span>
+                                Number of option :  -->
+<input id="amount_entry" class="form-control" placeholder="Quantity?" style="display: inline;margin-left: 10px;width: 30%;"/>
                             </div>
                         </div>
                         <div class="panel-body">
