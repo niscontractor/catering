@@ -25,7 +25,12 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage) {
                     $rootScope.addMessage('Invalid User.', 'error');
                 });
                 $rootScope.addMessage('Login successful.', 'success');
-                $state.go('app.apps.calendar');
+                if (response.isFirstTime) {
+                    $state.go('app.apps.social');
+                } else {
+                    $state.go('app.apps.calendar');
+                }
+                
             }).catch(function (response) {
                 console.log('failure', response);
                 $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
