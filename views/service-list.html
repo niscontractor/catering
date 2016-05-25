@@ -83,34 +83,6 @@
     <textarea rows="3" class="form-control" ng-model="category.desc"></textarea>
     </div>
     </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Price</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" ng-model="category.price">  
-            </div>
-        <label class="col-sm-3 control-label">Available for sale</label>
-        <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
-             <input type="checkbox" checked="" ng-model="dashboard.company.delivery">
-             <span> <i class="handle"></i> </span>
-         </label>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-2"></div>
-            <div class="col-xs-9 m-b-30 drop drop-design" flow-init="dashboard.uploadLogo"
-                 flow-name="dashboard.uploadPhoto.flow"
-                 flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
-                 flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
-                 flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
-                 flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
-                 flow-file-progress="dashboard.uploadImageProgress()"
-                 flow-drop>
-                <span> 
-                    <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
-                    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
-                    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
-                </span>
-            </div>
-        </div>
     <div class="modal-footer">
     <button class="btn btn-primary btn-sm" data-ng-click="ok()">OK</button>
     <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
@@ -140,8 +112,8 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Price</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" ng-model="package.price">  
-            </div>
+                <input type="text" class="form-control" ng-model="package.price" placeholder="€">  
+            </div>  
         <label class="col-sm-3 control-label">Available for sale</label>
         <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
              <input type="checkbox" checked="" ng-model="dashboard.company.delivery">
