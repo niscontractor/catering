@@ -42,6 +42,7 @@ var dragDropDir = function ($timeout) {
                 $(element).droppable({
                     accept: ".list-group-item",
                     drop: function (event, ui) {
+                        var itemName = ui.draggable.text().replace(ui.draggable.find('.badge').text(), "");
                         scope.$apply(function () {
                             if (scope.selectedData == null) {
                                 scope.selectedData = [];
@@ -49,7 +50,10 @@ var dragDropDir = function ($timeout) {
                             if (scope.categories != null) {
                                 angular.forEach(scope.categories, function (category) {
                                     angular.forEach(category.nodes, function (node) {
-                                        if (node.id == Number(ui.draggable.find('.badge').text())) {
+                                        // if (node.id == Number(ui.draggable.find('.badge').text())) {
+                                        //     scope.selectedData.push(angular.copy(node));
+                                        // }
+                                        if (node.text == itemName) {
                                             scope.selectedData.push(angular.copy(node));
                                         }
                                     });
@@ -60,7 +64,7 @@ var dragDropDir = function ($timeout) {
                         var draggableObj = $(ui.draggable[0]).clone();
                         $(draggableObj).appendTo(this);
 //                        $("<li class='list-group-item line-primary line-outline li-formula'></li>").text(ui.draggable.text()).appendTo(this);
-//                        ui.draggable.remove();
+                        // ui.draggable.remove();
                     }
                 });
             }

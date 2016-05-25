@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-6 text-right">
                 <button class="btn btn-danger" ng-click="packageCtr.addSection()">Add Section</button>
-                <button class="btn btn-primary" ng-click="">Save Section</button>
+                <button class="btn btn-primary" ng-click="packageCtr.saveSections()">Save Section</button>
             </div>
         </div>
     </form>
@@ -24,20 +24,13 @@
                 <div class="col-md-4" ng-repeat='section in currentPackage.sections'>
                     <div class="panel panel-default">
                         <div class="panel-header bg-primary">
-                            <div class="row" ng-app="MyApp">
-                                Title for section :  <span ng-controller="MyCtrl" class="item-label"> <span id="item{{$index}}" class="item-title">click here to edit</span>
-                                    <input id="item{{$index}}-display" style="display:none;" class="item-title-display"/>
-                                </span> 
-
-                            </div>
-                            <div class="row">
-                                Number of option :   <span ng-controller="MyCtrl" class="item-label"> <span id="amount{{$index}}" class="amount-title">0</span>
-                                    <input id="amount{{$index}}_entry" style="display:none;"  class="amount-title-entry"/>
-                                </span>
+                           <div class="row" ng-app="MyApp">
+                                <input id="item-display" ng-model="section.title" class="form-control" placeholder="What are you serving?" style="display: inline;width: 60%;"/>
+                                <input id="amount_entry" ng-model="section.options" class="form-control" placeholder="Quantity?" style="display: inline;margin-left: 10px;width: 30%;"/>
                             </div>
                         </div>
                         <div class="panel-body">
-                            <div  drag-drop droppable="true" class='droppable-package bg-white' categories="packageCtr.categories" selected-data='section.list_of_menu' style="height: 250px; overflow-y:scroll;" > </div>
+                            <div drag-drop droppable="true" class='droppable-package bg-white' categories="packageCtr.categories" selected-data='section.list_of_menu' style="height: 250px; overflow-y:scroll;" > </div>
                         </div>
                     </div>
                 </div>

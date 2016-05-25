@@ -35,7 +35,9 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         var modalInstance = $modal.open({
             templateUrl: 'addPackage.html',
             controller: ('AddPackageCtrl', ['$scope', '$modalInstance', AddPackageCtrl]),
-            size: 'med'
+            size: 'med',
+            keyboard: false,
+            backdrop: 'static'
         });
 
         modalInstance.result.then(function (packageJson) {
@@ -46,6 +48,14 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         });
     };
 
+    ctrl.savePackage = function () {
+        PackageService.addPackage(ctrl.package).then(angular.bind(this, function then() {
+            console.log(CategoryService.categories);
+            ctrl.package = PackageService.package;
+            console.log(ctrl.categories);
+        }));
+
+    };
 
 
     function AddPackageCtrl($scope, $modalInstance) {
@@ -77,13 +87,10 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         $scope.currentPackage.sections.push({});
     };
 
-    ctrl.savePackage = function () {
-        PackageService.addPackage(ctrl.package).then(angular.bind(this, function then() {
-            console.log(CategoryService.categories);
-            ctrl.package = PackageService.package;
-            console.log(ctrl.categories);
-        }));
-
+    ctrl.saveSections = function () {
+        PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function(result) {
+            console.log(result);
+        });
     };
 }
 
