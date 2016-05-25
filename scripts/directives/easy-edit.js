@@ -2,37 +2,38 @@ angular.module('MyApp', [])
 
 .controller('MyCtrl', [function() {
     angular.element(document).ready(function () {
-        $('#amount').click(function() {
-    $('#amount').css('display', 'none');
-	 $('#amount_entry').css('color', 'black');
-    $('#amount_entry')
-        .val($('#amount').text())
+        
+$('.amount-title').click(function() {
+    $(this.id).css('display', 'none');
+    $(this.id+'_entry').css('color', 'black');
+    $(this.id+'_entry')
+        .val($(this.id).text())
         .css('display', '')
         .focus();
 });
 
-$('#amount_entry').blur(function() {
-    $('#amount_entry').css('display', 'none');
-	
-    $('#amount')
-        .text($('#amount_entry').val())
+$('.amount-title-entry').blur(function() {
+    $(this.id).css('display', 'none');	
+    var id = this.id.replace('-entry','');
+    $(id)
+        .text($(this.id).val())
         .css('display', '');
 });
 
-$('#item').click(function() {
-    $('#item').css('display', 'none');
-	 $('#item-display').css('color', 'black');
-    $('#item-display')
-        .val($('#item').text())
+$('.item-title').click(function() {
+    $(this.id).css('display', 'none');
+    $(this.id+'-display').css('color', 'black');
+    $(this.id+'-display')
+        .val($(this.id).text())
         .css('display', '')
         .focus();
 });
 
-$('#item-display').blur(function() {
-    $('#item-display').css('display', 'none');
-	
-    $('#item')
-        .text($('#item-display').val())
+$('.item-title-display').blur(function() {
+    $(this.id).css('display', 'none');
+    var id = this.id.replace('-display','');
+    $(id)
+        .text($(this.id).val())
         .css('display', '');
 });
 
