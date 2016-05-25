@@ -5,10 +5,13 @@
 </style>
 <div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList()" ui-jq="checkBo">
     <form class="form-horizontal form-fixed">
-        <div class="col-sm-12 text-right" ng-controller="ModalDemoCtrl">
-            <div>
+        <div  ng-controller="ModalDemoCtrl">
+            <div class="col-sm-6 text-left">
+                <div>{{package.title}}</div>
+            </div>
+            <div class="col-sm-6 text-right">
                 <button class="btn btn-danger" ng-click="packageCtr.addSection()">Add Section</button>
-                <button class="btn btn-primary" ng-click="packageCtr.addPackage()">Save</button>
+                <button class="btn btn-primary" ng-click="">Save Section</button>
             </div>
         </div>
     </form>
@@ -19,17 +22,17 @@
         <div class="col-sm-9">
             <div style="padding:1%;">
                 <div class="col-md-4" ng-repeat='section in packageCtr.package.sections'>
-                   <div class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-header bg-primary">
                             <div class="row" ng-app="MyApp">
-                            Title for section :  <span ng-controller="MyCtrl" class="item-label"> <span id="item">click here to edit</span>
-                                    <input id="item-display" style="display:none;"/>
+                                Title for section :  <span ng-controller="MyCtrl" class="item-label"> <span id="item{{$index}}" class="item-title">click here to edit</span>
+                                    <input id="item{{$index}}-display" style="display:none;" class="item-title-display"/>
                                 </span> 
-                                
+
                             </div>
                             <div class="row">
-                              Number of option :   <span ng-controller="MyCtrl" class="item-label"> <span id="amount">0</span>
-                                    <input id="amount_entry" style="display:none;"/>
+                                Number of option :   <span ng-controller="MyCtrl" class="item-label"> <span id="amount{{$index}}" class="amount-title">0</span>
+                                    <input id="amount{{$index}}_entry" style="display:none;"  class="amount-title-entry"/>
                                 </span>
                             </div>
                         </div>
