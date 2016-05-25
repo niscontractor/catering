@@ -3,11 +3,11 @@
         display: none
     }
 </style>
-<div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList();addPackage()" ui-jq="checkBo">
+<div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList();getPackageData()" ui-jq="checkBo">
     <form class="form-horizontal form-fixed">
         <div  ng-controller="ModalDemoCtrl">
             <div class="col-sm-6 text-left">
-                <div>{{package.title}}</div>
+                <div>{{currentPackage.title}}</div>
             </div>
             <div class="col-sm-6 text-right">
                 <button class="btn btn-danger" ng-click="packageCtr.addSection()">Add Section</button>
@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-9">
             <div style="padding:1%;">
-                <div class="col-md-4" ng-repeat='section in packageCtr.package.sections'>
+                <div class="col-md-4" ng-repeat='section in currentPackage.sections'>
                     <div class="panel panel-default">
                         <div class="panel-header bg-primary">
                             <div class="row" ng-app="MyApp">
@@ -45,49 +45,3 @@
         </div>
     </div>
 </div>
-<script type="text/ng-template" id="addPackage.html">
-    <div ui-jq="checkBo">
-    <div class="modal-header bg-green-dark-package">
-    <h3 class="modal-title">Package Detail</h3>
-    </div>
-    <div class="modal-body package-detail">
-    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Package Name</label>
-    <div class="col-sm-9">
-    <input type="text" class="form-control" ng-model="package.name"/> 
-    </div>
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Package Title</label>
-    <div class="col-sm-9">
-    <input type="text" class="form-control" ng-model="package.title"/> 
-    </div>
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Price</label>
-    <div class="col-sm-9">
-    <input type="text" class="form-control" ng-model="package.price">  
-    </div>
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Upload Image</label>
-    <div class="col-sm-9">
-    <input type="file" ng-model="package.image">
-    </div> 
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Description</label>
-    <div class="col-sm-9">
-    <textarea type="text" class="form-control" row="5" cols="100%" ng-model="package.desc"></textarea>
-    </div>
-    </div>
-
-    <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="ok()">Save</button>
-    <!--    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>-->
-    </div>
-    </form>
-    </div>
-    </div>
-</script> 

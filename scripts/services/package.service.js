@@ -27,7 +27,19 @@ function PackageService($q, $http, $rootScope, $localStorage) {
 
     output.getPackages = function (packageObj) {
         var deferred = $q.defer();
-        $http.get(apiUrl + $localStorage.user.id)
+        $http.get(apiUrl + 'user/' + $localStorage.user.id)
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+                return deferred.promise;
+    };
+
+    output.getPackageById = function (packageId) {
+        var deferred = $q.defer();
+        $http.get(apiUrl + packageId)
                 .success(function (data) {
                     deferred.resolve(data);
                 })

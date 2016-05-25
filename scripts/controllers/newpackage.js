@@ -1,6 +1,6 @@
 'use strict';
 
-function packageCtrl($scope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
+function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
     var ctrl = this;
 
     $scope.getCategoryList = function () {
@@ -27,18 +27,11 @@ function packageCtrl($scope, $modal,$modal$interval, COLORS, CategoryService, Pa
                 });
                 ctrl.categories.push(cat);
             });
-            console.log(ctrl.categories);
         }));
     }
-
-    console.log(ctrl.categories1);
-    ctrl.package = {sections: []};
 //    ctrl.package = {"sections": [{"list_of_menu": [{"id": 1, "text": "Tomato", "selectable": false, "tags": [1]}]}], "name": "Package Lunch", "price": "350", "title": "Happy hours", "description": "Delicious lunch"};
-    ctrl.addSection = function () {
-        ctrl.package.sections.push({});
-    };
 
-    ctrl.addPackage = function () {
+    $scope.addPackage = function () {
         var modalInstance = $modal.open({
             templateUrl: 'addPackage.html',
             controller: ('AddPackageCtrl', ['$scope', '$modalInstance', AddPackageCtrl]),
@@ -47,9 +40,8 @@ function packageCtrl($scope, $modal,$modal$interval, COLORS, CategoryService, Pa
 
         modalInstance.result.then(function (packageJson) {
             PackageService.addPackage(packageJson).then(angular.bind(this, function then() {
-                console.log(CategoryService.categories);
                 ctrl.package = PackageService.package;
-                console.log(ctrl.categories);
+                $state.go('app.apps.packagedetail', {packageId: PackageService.package._id}, {})
             }));
         });
     };
@@ -75,6 +67,16 @@ function packageCtrl($scope, $modal,$modal$interval, COLORS, CategoryService, Pa
         };
     }
 
+    $scope.getPackageData = function() {
+        PackageService.getPackageById($rootScope.$stateParams.packageId).then(function(result) {
+            $scope.currentPackage = result;
+        });
+    }
+
+    ctrl.addSection = function () {
+        $scope.currentPackage.sections.push({});
+    };
+
     ctrl.savePackage = function () {
         PackageService.addPackage(ctrl.package).then(angular.bind(this, function then() {
             console.log(CategoryService.categories);
@@ -83,10 +85,8 @@ function packageCtrl($scope, $modal,$modal$interval, COLORS, CategoryService, Pa
         }));
 
     };
-    
-    ctrl.addPackage();
 }
 
 angular
         .module('urbanApp')
-        .controller('packageCtrl', ['$scope','$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);
+        .controller('packageCtrl', ['$scope', '$state', '$rootScope', '$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);
