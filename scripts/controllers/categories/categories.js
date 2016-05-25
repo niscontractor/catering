@@ -51,7 +51,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
         console.log('category: ', id);
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
-            controller: ('AddItemCtrl', ['$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
+            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
             size: 'med',
             resolve: {
                 categoryId: function () {
@@ -73,10 +73,11 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     };
 
     ctrl.editCategoryItem = function (item, category) {
+        console.log(item);
         console.log('categoryItem: ', item.name + " -" + category._id + "-");
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
-            controller: ('EditItemCtrl', ['$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
+            controller: ('EditItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
             size: 'med',
             resolve: {
                 categoryItem: function () {
@@ -84,7 +85,10 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
                     itemCategory.item = item.name;
                     itemCategory.name = item.name;
                     itemCategory.desc = item.desc;
+                    itemCategory.price = item.price;
+                    itemCategory.available = item.available;
                     itemCategory.category = category._id;
+                    itemCategory.image = item.image;
                     console.log(JSON.stringify(itemCategory));
                     return itemCategory;
                 }
@@ -141,11 +145,59 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
     };
 }
 
-function AddItemCtrl($scope, $modalInstance, categoryId) {
+function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
+
+    $scope.uploadPhoto = {};
+    $scope.$file;
+    $scope.showProgressBar = false;
+    $scope.fileUploaded = false;
+    $scope.allowFileUpload = false;
+    $scope.profilePhoto = '';
+
+    $scope.uploadCategoryImage = {
+        target: $rootScope.apipath + '/category/' + categoryId._id + '/item-upload',
+        singleFile: true,
+        testChunks: false,
+    };
+
+    $scope.uploadImage = function ($file, $event, $flow) {
+        $scope.fileUploaded = true;
+        if ($scope.allowFileUpload) {
+            $flow.upload();
+            console.log($file);
+        }
+    };
+    $scope.uploadImageSuccess = function ($file, $message, $flow) {
+        console.log('success');
+        
+        $scope.profilePhoto = JSON.parse($message);
+    };
+    $scope.uploadImageFailure = function ($file, $message, $flow) {
+        console.log('failed');
+        //addMessage("Upload Failed");
+    };
+    $scope.uploadImageProgress = function ($file, $flow) {
+        $scope.showProgressBar = true;
+    };
+    $scope.imageAdded = function ($file, $event, $flow) {
+        $scope.$file = $file;
+        var imageExtension = ["png", "gif", "jpg", "jpeg"];
+        if ((imageExtension.indexOf($file.getExtension())) < 0) {
+            //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
+            console.log('inside image extension');
+            $scope.allowFileUpload = false;
+        } else {
+            $scope.allowFileUpload = true;
+        }
+    };
+
     $scope.ok = function () {
         var obj = new Object();
         obj.name = $scope.categoryItem.name;
         obj.desc = $scope.categoryItem.desc;
+        obj.price = $scope.categoryItem.price;
+        obj.available = $scope.categoryItem.available;
+        obj.image = $scope.profilePhoto.filename || '';
         obj.categoryName = categoryId._id;
         $modalInstance.close(obj);
     };
@@ -155,15 +207,66 @@ function AddItemCtrl($scope, $modalInstance, categoryId) {
     };
 }
 
-function EditItemCtrl($scope, $modalInstance, categoryItem) {
+function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
     $scope.categoryItem = categoryItem;
-    console.log("categoryItem " + categoryItem);
+    $scope.profilePhoto = '';
+
+    console.log(categoryItem);
+    
+    $scope.uploadPhoto = {};
+    $scope.$file;
+    $scope.showProgressBar = false;
+    $scope.fileUploaded = false;
+    $scope.allowFileUpload = false;
+
+    $scope.uploadCategoryImage = {
+        target: $rootScope.apipath + '/category/' + categoryItem.category + '/item-upload',
+        singleFile: true,
+        testChunks: false,
+    };
+
+    $scope.uploadImage = function ($file, $event, $flow) {
+        $scope.fileUploaded = true;
+        if ($scope.allowFileUpload) {
+            $flow.upload();
+        }
+    };
+    $scope.uploadImageSuccess = function ($file, $message, $flow) {
+        $scope.profilePhoto = JSON.parse($message);
+    };
+    $scope.uploadImageFailure = function ($file, $message, $flow) {
+        console.log('failed');
+    };
+    $scope.uploadImageProgress = function ($file, $flow) {
+        $scope.showProgressBar = true;
+    };
+    $scope.imageAdded = function ($file, $event, $flow) {
+        $scope.$file = $file;
+        var imageExtension = ["png", "gif", "jpg", "jpeg"];
+        if ((imageExtension.indexOf($file.getExtension())) < 0) {
+            //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
+            console.log('inside image extension');
+            $scope.allowFileUpload = false;
+        } else {
+            $scope.allowFileUpload = true;
+        }
+    };
+
+
+
     $scope.ok = function () {
         var obj = new Object();
         obj.name = $scope.categoryItem.name;
         obj.desc = $scope.categoryItem.desc;
+        obj.price = $scope.categoryItem.price;
+        obj.available = $scope.categoryItem.available;
         obj.categoryName = $scope.categoryItem.category;
         obj.categorItemName = $scope.categoryItem.item;
+
+        if ($scope.profilePhoto && $scope.profilePhoto.filename) {
+            obj.image = $scope.profilePhoto.filename;    
+        }
+
         $modalInstance.close(obj);
     };
 
