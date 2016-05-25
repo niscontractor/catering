@@ -10,10 +10,8 @@
                     <div class="box-tab justified">
                         <ul class="nav nav-tabs">
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'company'}"> 
-                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'company')" aria-expanded="false">
-                                    <img src="images/company.png" height="49" width="49"/>
-                                </a>
-                                <p class="active-text">Company</p>
+                                <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'company')" aria-expanded="false"><img src="images/company.png" height="49" width="49"/></a>
+                                <p class="inactive-text">Company</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-active.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'aboutFood'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" aria-expanded="false"><img src="images/food_icon.png" height="49" width="49"/></a>
