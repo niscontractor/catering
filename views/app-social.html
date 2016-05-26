@@ -88,6 +88,7 @@
                                                 
                                             </div>
                                             <div class="col-sm-12">
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
                                                 <button class="btn btn-orange pull-right continue-btn" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" >Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
@@ -128,6 +129,7 @@
                                                 <input type="number" min="0" class="form-control m-b-30" placeholder="How many kilometers around you deliver" ng-hide='!dashboard.company.delivery' ng-model="dashboard.company.kilometers"/>
                                             </div>
                                             <div class="col-sm-12">
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
                                                 <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
@@ -167,6 +169,7 @@
                                                 <!--<input class="form-control m-b-30" placeholder="Type of service" ng-model="dashboard.company.typeOfService"/>-->
                                             </div>
                                             <div class="col-sm-12">
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
                                                 <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>

@@ -17,6 +17,7 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage) {
 
             Common.authenticate(jsonString).then(function (response) {
                 $rootScope.company_id = response.user.company_id;
+                $rootScope.isFirstTime = response.isFirstTime;
                 $localStorage.company_id = $rootScope.company_id;
                 Common.getUserById(response.user._id).then(function (response) {
                     $rootScope.user = response;

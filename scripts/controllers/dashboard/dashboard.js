@@ -1,6 +1,6 @@
 'use strict';
 
-function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, ReadJson, CompanyService) {
+function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, ReadJson, CompanyService, Common) {
     var ctrl = this;
     ctrl.company = {};
     ctrl.selectedTab = 'company';
@@ -86,6 +86,13 @@ function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, R
             ctrl.showProgressBar = false;
         }, 500);
         ctrl.profilePhoto = JSON.parse($message);
+
+        Common.getUserById($localStorage.user.id).then(function (response) {
+            $rootScope.user = response;
+            $localStorage.user = $rootScope.user;
+        }).catch(function (response) {
+            $rootScope.addMessage('Invalid User.', 'error');
+        });
     };
     ctrl.uploadImageFailure = function ($file, $message, $flow) {
         console.log('failed');
@@ -113,4 +120,4 @@ function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, R
 
 angular
         .module('urbanApp')
-        .controller('dashboardCtrl', ['$scope', '$rootScope', '$localStorage', '$interval', '$timeout', 'ReadJson', 'CompanyService', dashboardCtrl]);
+        .controller('dashboardCtrl', ['$scope', '$rootScope', '$localStorage', '$interval', '$timeout', 'ReadJson', 'CompanyService', 'Common', dashboardCtrl]);

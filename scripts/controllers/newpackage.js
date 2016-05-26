@@ -89,7 +89,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
     ctrl.saveSections = function () {
         PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function(result) {
-            console.log(result);
+            $state.go('app.apps.gallery');
         });
     };
 }

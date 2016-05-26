@@ -1051,7 +1051,7 @@ angular
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load('scripts/controllers/dashboard/dashboard.js').then(function () {
-                                            return $ocLazyLoad.load('scripts/services/company.service.js');
+                                            return $ocLazyLoad.load(['scripts/services/company.service.js', 'scripts/services/common.service.js']);
                                         });
                                     }]
                             },
