@@ -1,6 +1,6 @@
 'use strict';
 
-function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, ReadJson, CompanyService, Common) {
+function dashboardCtrl($scope, $rootScope, $state, $localStorage, $interval, $timeout, ReadJson, CompanyService, Common) {
     var ctrl = this;
     ctrl.company = {};
     ctrl.selectedTab = 'company';
@@ -44,6 +44,7 @@ function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, R
 //        submit data
         CompanyService.saveOrUpdate(ctrl.company).then(function (response) {
             $rootScope.addMessage('Company updated successfully', 'success');
+            $state.go('app.apps.calendar');
         }).catch(function (response) {
             $rootScope.addMessage('Company update failed', 'error');
         });
@@ -120,4 +121,4 @@ function dashboardCtrl($scope, $rootScope, $localStorage, $interval, $timeout, R
 
 angular
         .module('urbanApp')
-        .controller('dashboardCtrl', ['$scope', '$rootScope', '$localStorage', '$interval', '$timeout', 'ReadJson', 'CompanyService', 'Common', dashboardCtrl]);
+        .controller('dashboardCtrl', ['$scope', '$rootScope', '$state', '$localStorage', '$interval', '$timeout', 'ReadJson', 'CompanyService', 'Common', dashboardCtrl]);
