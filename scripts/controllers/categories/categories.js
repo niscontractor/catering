@@ -165,15 +165,18 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
         if ($scope.allowFileUpload) {
             $flow.upload();
             console.log($file);
+            $scope.showProgressBar = true;
         }
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
         console.log('success');
         
         $scope.profilePhoto = JSON.parse($message);
+        $scope.showProgressBar = false;
     };
     $scope.uploadImageFailure = function ($file, $message, $flow) {
         console.log('failed');
+        $scope.showProgressBar = false;
         //addMessage("Upload Failed");
     };
     $scope.uploadImageProgress = function ($file, $flow) {
@@ -229,13 +232,16 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
         $scope.fileUploaded = true;
         if ($scope.allowFileUpload) {
             $flow.upload();
+            $scope.showProgressBar = true;
         }
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
         $scope.profilePhoto = JSON.parse($message);
+        $scope.showProgressBar = false;
     };
     $scope.uploadImageFailure = function ($file, $message, $flow) {
         console.log('failed');
+        $scope.showProgressBar = false;
     };
     $scope.uploadImageProgress = function ($file, $flow) {
         $scope.showProgressBar = true;

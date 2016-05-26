@@ -39,7 +39,8 @@
                         </div>
 
                         <div ng-class="{'has-error': (signUp.signUpForm.mobile.$invalid && signUp.signUpForm.mobile.$dirty)}">
-                            <input type="text" class="form-control input-lg" ng-model='signUp.user.mobile' placeholder="Mobile" name='mobile' ng-pattern='/^[0-9]{10,10}$/' maxlength="20" required>
+                            <input type="text" class="form-control input-lg" ng-model='signUp.user.mobile' placeholder="Mobile" name='mobile'>
+                            <!-- <input type="text" class="form-control input-lg" ng-model='signUp.user.mobile' placeholder="Mobile" name='mobile' ng-pattern='/^[0-9]{10,10}$/' maxlength="20" required> -->
                             <div class="error,help-block" ng-show="(signUp.signUpForm.mobile.$dirty) && signUp.signUpForm.mobile.$invalid"> 
                                 <span class="help-block" ng-show="signUp.signUpForm.mobile.$error.required">Enter mobile number</span>
                                 <span class="help-block" ng-show="signUp.signUpForm.mobile.$error.pattern">Enter a valid 10 digit mobile number</span>
