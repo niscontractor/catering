@@ -1,6 +1,6 @@
 <div data-ng-controller="galleryCtrl" ng-init="getUserPackages()">
     <div class="clearfix">
-        <a ui-sref="app.apps.newpackage" class="btn btn-default"><span class="fa fa-paint-brush mr5"></span>New Package</a>
+        <a ui-sref="app.apps.newpackage" class="btn btn-default"></a><span class="fa fa-paint-brush mr5"></span>New Package</a>
     </div>
 
     <hr>
@@ -19,58 +19,82 @@
                             <p class="img-data-heading-inner">{{userPack.price}}</p>
                         </div>
                     </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-    <div id="blueimp-gallery" class="blueimp-gallery">
-        <!-- The container for the modal slides -->
-        <div class="slides"></div>
-        <!-- Controls for the borderless lightbox -->
-        <h3 class="title"></h3>
-        <!--<a class="prev">‹</a>
-        <a class="next">›</a>-->
-        <a class="close">×</a>
-        <a class="play-pause"></a>
-        <ol class="indicator"></ol>
-        <!-- The modal dialog, which will be used to wrap the lightbox content -->
-        <div class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-green-dark">
-                        <button type="button" class="close" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title"></h4>
-                    </div>
-                    <div class="modal-body next">
-                        <div class="popup-logo"><img data-ng-src="./images/food-popup-logo.png"/></div>
-                        <p class="img-popup-heading">Cali-Mex Taqueria</p>
-                        <p class="img-popup-heading-inner">Mexican Party and Junk Party Packs</p>
-                        <div class="img-popup-containt">
-                            <div class="col-sm-3 br-1px">
-                                <p>Hours</p>
-                                <p>Mon - Sun, 10:00am - 10:00pm</p>
-                            </div>
-                            <div class="col-sm-3 br-1px">
-                                <p>Order notice</p>
-                                <p>2 Days</p>
-                            </div>
-                            <div class="col-sm-3 br-1px">
-                                <p>Order min.</p>
-                                <p>HK$ 980.00</p>
-                            </div>
-                            <div class="col-sm-3">
-                                <p>Delivers to</p>
-                                <p>Hong Kong Island, Kowloon</p>
-                            </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="img-main-package-name col-sm-6 bold-font" >Package 1</div>
+                            <div class="img-main-package-name col-sm-6 text-right"><span class="bold-font">Price:</span> <span class="text-danger ml5">$20</span></div>
                         </div>
                     </div>
-                    <div class="modal-footer bg-green-dark-footer">
-                        <h4>Recommended for</h4>
-                        <p>Office Lunch Catering, Junk Parties, Celebrations, Office Happy Hour, BBQs</p>
-                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<script type="text/ng-template" id="myModalContent.html">
+        <div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList()" ui-jq="checkBo">
+
+        <div class="modal-header bg-green-dark-package">
+        <h3 class="modal-title">Package Detail</h3>
+        </div>
+        <div class="modal-body package-detail package-standerd">
+        <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+        <div class="form-group">
+        <label class="col-sm-3 control-label">Package Name</label>
+        <div class="col-sm-9">
+        <p>Sendwich</p>
+        </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-sm-3 control-label">No. of Serve</label>
+        <div class="col-sm-9">
+        <p>10</p>
+        </div>
+        </div>
+
+
+
+        <div class="form-group">
+        <label class="col-sm-3 control-label">Soup</label>
+        <span class="label label-info content-lable">Tometo</span>
+        <span class="label label-success content-lable">Bisque</span>
+        <span class="label label-danger content-lable">Chilli</span>
+        <span class="label label-primary content-lable">Ajiaco</span>
+        <span class="label label-warning content-lable">Albondigas</span>
+        </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+        <label class="col-sm-3 control-label">Price</label>
+        <div class="col-sm-9">
+        <p>$ 20</p>  
+        </div>
+        </div>
+
+
+
+        <div class="form-group">
+        <label class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-9">
+
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
+
+        </div>
+        </div>
+
+
+
+        </form>
+
+        </div>
+        </div>
+        <div class="modal-footer bg-light">
+        <button class="btn btn-primary btn-sm" ng-click="packageCtr.savePackage()">Edit</button>
+        <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+        </div>
+</script> 
