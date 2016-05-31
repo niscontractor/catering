@@ -2,7 +2,7 @@
 
 angular
         .module('urbanApp')
-        .factory('Auth', function() {
+        .factory('Auth', ['$localStorage', function($localStorage) {
 
             var user;
 
@@ -11,10 +11,14 @@ angular
                     user = aUser;
                 },
                 isLoggedIn: function() {
-                    return (user) ? user : false;
+                    if (user) {
+                        return user;    
+                    } else {
+                        return ($localStorage.user) ? $localStorage.user : false;
+                    }
                 }
             }
-        })
+        }])
         .run(['$rootScope', '$state', '$stateParams', '$q', 'toaster', 'Auth', '$location',
             function ($rootScope, $state, $stateParams, $q, toaster, Auth, $location) {
 
@@ -28,20 +32,20 @@ angular
                     window.scrollTo(0, 0);
                 });
 
-                $rootScope.$on('$stateChangeStart', function (event, toState) {
+                // $rootScope.$on('$stateChangeStart', function (event, toState) {
 
-                    var deferred = $q.defer();
-                    if (toState.name.includes("app")) {
-                        if (Auth.isLoggedIn()) {
-                            deferred.resolve();
-                        } else {
-                            deferred.reject();
-                            $location.path('signin');
-                        }
-                    }
+                //     var deferred = $q.defer();
+                //     if (toState.name.includes("app")) {
+                //         if (Auth.isLoggedIn()) {
+                //             deferred.resolve();
+                //         } else {
+                //             deferred.reject();
+                //             $location.path('signin');
+                //         }
+                //     }
 
-                    return deferred.promise;
-                });
+                //     return deferred.promise;
+                // });
 
                 $rootScope.addMessage = function (msg, type) {
                     if (type === "success") {
@@ -60,6 +64,22 @@ angular
         .config(['$stateProvider', '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
 
+                var checkLogin = function ($q, Auth, $location, $state, $timeout) {
+
+                    var deferred = $q.defer();
+
+                    $timeout( function(){
+                        if (Auth.isLoggedIn()) {
+                            deferred.resolve()
+                        } else {
+                            $location.path('signin');
+                            deferred.reject()
+                        }
+                    });
+
+                    return deferred.promise;
+                }
+
                 // For unmatched routes
                 $urlRouterProvider.otherwise('/signin');
 
@@ -70,7 +90,7 @@ angular
                             controller: 'MainAppCtrl',
                             templateUrl: 'views/common/layout.html',
                             resolve: {
-                                // loggedIn: checkLogin,
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                     return $ocLazyLoad.load([
                                         'scripts/controllers/mainapp.js'
@@ -84,6 +104,7 @@ angular
                             url: '/dashboard',
                             templateUrl: 'views/dashboard.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -188,6 +209,7 @@ angular
                             url: '/product',
                             templateUrl: 'views/service-list.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -832,6 +854,7 @@ angular
                             url: '/c3',
                             templateUrl: 'views/charts-c3.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -924,6 +947,7 @@ angular
                             url: '/dashboard',
                             templateUrl: 'views/app-calendar.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -964,6 +988,7 @@ angular
                             url: '/newpackage',
                             templateUrl: 'views/newpackage.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -1003,6 +1028,7 @@ angular
                             url: '/package/:packageId',
                             templateUrl: 'views/package-detail.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -1042,6 +1068,7 @@ angular
                             url: '/packages',
                             templateUrl: 'views/app-gallery.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             {
@@ -1070,6 +1097,7 @@ angular
                         })
                         .state('app.apps.messages', {
                             url: '/messages',
+                            loggedIn: checkLogin,
                             templateUrl: 'views/app-messages.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -1088,6 +1116,7 @@ angular
                             url: '/profile',
                             templateUrl: 'views/app-social.html',
                             resolve: {
+                                loggedIn: checkLogin,
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load('scripts/controllers/dashboard/dashboard.js').then(function () {
                                             return $ocLazyLoad.load(['scripts/services/company.service.js', 'scripts/services/common.service.js']);
