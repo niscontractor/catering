@@ -1,6 +1,6 @@
 'use strict';
 
-function sessionCtrl($scope, $rootScope, $state, Common, $localStorage) {
+function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
 
     var ctrl = this;
 
@@ -22,6 +22,7 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage) {
                 Common.getUserById(response.user._id).then(function (response) {
                     $rootScope.user = response;
                     $localStorage.user = $rootScope.user;
+                    Auth.setUser(response);
                 }).catch(function (response) {
                     $rootScope.addMessage('Invalid User.', 'error');
                 });
@@ -46,4 +47,4 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage) {
 
 angular
         .module('urbanApp')
-        .controller('sessionCtrl', ['$scope', '$rootScope', '$state', 'Common', '$localStorage', sessionCtrl]);
+        .controller('sessionCtrl', ['$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth', sessionCtrl]);

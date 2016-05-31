@@ -2,8 +2,22 @@
 
 angular
         .module('urbanApp')
-        .run(['$rootScope', '$state', '$stateParams', 'toaster',
-            function ($rootScope, $state, $stateParams, toaster) {
+        .factory('Auth', function() {
+
+            var user;
+
+            return {
+                setUser: function(aUser) {
+                    user = aUser;
+                },
+                isLoggedIn: function() {
+                    return (user) ? user : false;
+                }
+            }
+        })
+        .run(['$rootScope', '$state', '$stateParams', '$q', 'toaster', 'Auth', '$location',
+            function ($rootScope, $state, $stateParams, $q, toaster, Auth, $location) {
+
                 $rootScope.$state = $state;
                 $rootScope.baseUrl = 'http://139.162.20.41:3000';
                 // $rootScope.baseUrl = 'http://localhost:3000';
@@ -13,6 +27,22 @@ angular
                 $rootScope.$on('$stateChangeSuccess', function () {
                     window.scrollTo(0, 0);
                 });
+
+                $rootScope.$on('$stateChangeStart', function (event, toState) {
+
+                    var deferred = $q.defer();
+                    if (toState.name.includes("app")) {
+                        if (Auth.isLoggedIn()) {
+                            deferred.resolve();
+                        } else {
+                            deferred.reject();
+                            $location.path('signin');
+                        }
+                    }
+
+                    return deferred.promise;
+                });
+
                 $rootScope.addMessage = function (msg, type) {
                     if (type === "success") {
                         toaster.success(msg);
@@ -37,7 +67,16 @@ angular
                 $stateProvider
                         .state('app', {
                             abstract: true,
+                            controller: 'MainAppCtrl',
                             templateUrl: 'views/common/layout.html',
+                            resolve: {
+                                // loggedIn: checkLogin,
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load([
+                                        'scripts/controllers/mainapp.js'
+                                    ]);
+                                }]
+                            }
                         })
 
 
@@ -1180,7 +1219,9 @@ angular
                             templateUrl: 'views/extras-signin.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                        return $ocLazyLoad.load('scripts/controllers/session.js').then(function () {
+                                        return $ocLazyLoad.load([
+                                            'scripts/controllers/session.js'
+                                        ]).then(function () {
                                             return $ocLazyLoad.load('scripts/services/common.service.js');
                                         });
                                     }]
