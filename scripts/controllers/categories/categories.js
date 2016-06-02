@@ -85,6 +85,7 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
                     itemCategory.item = item.name;
                     itemCategory.name = item.name;
                     itemCategory.desc = item.desc;
+                    itemCategory.qty = item.qty;
                     itemCategory.price = item.price;
                     itemCategory.available = item.available;
                     itemCategory.category = category._id;
@@ -198,6 +199,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
         var obj = new Object();
         obj.name = $scope.categoryItem.name;
         obj.desc = $scope.categoryItem.desc;
+        obj.qty = $scope.categoryItem.qty;
         obj.price = $scope.categoryItem.price;
         obj.available = $scope.categoryItem.available;
         obj.image = $scope.profilePhoto.filename || '';
@@ -264,6 +266,7 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
         var obj = new Object();
         obj.name = $scope.categoryItem.name;
         obj.desc = $scope.categoryItem.desc;
+        obj.qty = $scope.categoryItem.qty;
         obj.price = $scope.categoryItem.price;
         obj.available = $scope.categoryItem.available;
         obj.categoryName = $scope.categoryItem.category;

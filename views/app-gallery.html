@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="gallery">
-                <div class="col-md-3 col-sm-4 col-xs-6 img-data" data-ng-repeat="userPack in userPackages">
+                <div class="col-md-3 col-sm-4 col-xs-6 img-data" ng-click="getPackageDetail(userPack)" data-ng-repeat="userPack in userPackages">
                     <a href="./images/food-popup.png" title="{{userPack.name}}" data-gallery="">
                         <img data-ng-src="./images/food.png" alt="">
                         <p class="img-main-package-name">{{userPack.name}}</p>
@@ -32,37 +32,32 @@
     </div>
 </div>
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<script type="text/ng-template" id="myModalContent.html">
-        <div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList()" ui-jq="checkBo">
-
+<script type="text/ng-template" id="packageDetail.html">
+        <div>
         <div class="modal-header bg-green-dark-package">
         <h3 class="modal-title">Package Detail</h3>
         </div>
         <div class="modal-body package-detail package-standerd">
         <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
         <div class="form-group">
-        <label class="col-sm-3 control-label">Package Name</label>
+        <label class="col-sm-3 control-label">Name</label>
         <div class="col-sm-9">
-        <p>Sendwich</p>
+        <p>{{packDetailDetail.name}}</p>
         </div>
         </div>
 
         <div class="form-group">
         <label class="col-sm-3 control-label">No. of Serve</label>
         <div class="col-sm-9">
-        <p>10</p>
+        <p>{{packDetailDetail.qty}}</p>
         </div>
         </div>
 
 
 
-        <div class="form-group">
-        <label class="col-sm-3 control-label">Soup</label>
-        <span class="label label-info content-lable">Tometo</span>
-        <span class="label label-success content-lable">Bisque</span>
-        <span class="label label-danger content-lable">Chilli</span>
-        <span class="label label-primary content-lable">Ajiaco</span>
-        <span class="label label-warning content-lable">Albondigas</span>
+        <div class="form-group" ng-repeat="sec in packDetailDetail.sections">
+        <label class="col-sm-3 control-label">{{sec.title}}</label>
+        <span class="label label-info content-lable" ng-repeat="menu in sec.list_of_menu">{{menu.text}}</span>
         </div>
         </div>
 
@@ -72,7 +67,7 @@
         <div class="form-group">
         <label class="col-sm-3 control-label">Price</label>
         <div class="col-sm-9">
-        <p>$ 20</p>  
+        <p>$ {{packDetailDetail.price}}</p>  
         </div>
         </div>
 
@@ -82,7 +77,7 @@
         <label class="col-sm-3 control-label">Description</label>
         <div class="col-sm-9">
 
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
+        <p>{{packDetailDetail.desc}}</p>
 
         </div>
         </div>

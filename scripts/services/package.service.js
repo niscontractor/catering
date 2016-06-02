@@ -14,6 +14,7 @@ function PackageService($q, $http, $rootScope, $localStorage) {
         obj.image = packageObj.image;
         obj.desc = packageObj.desc;
         obj.price = packageObj.price;
+        obj.qty = packageObj.qty;
         $http.post(apiUrl + 'user/' + $localStorage.user.id, obj)
                 .success(function (data) {
                     output.package = data;

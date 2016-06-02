@@ -68,6 +68,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
             obj.image = $scope.package.image;
             obj.desc = $scope.package.desc;
             obj.price = $scope.package.price;
+            obj.qty = $scope.package.qty;
             var packageJson = JSON.stringify(obj);
             $modalInstance.close(packageJson);
         };
