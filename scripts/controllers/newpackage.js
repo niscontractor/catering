@@ -7,7 +7,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
 //TODO $rootScope.user.username
         CategoryService.getCategories('').then(angular.bind(this, function then() {
-            console.log(CategoryService.categories);
+            //console.log(CategoryService.categories);
             ctrl.categories = [];
             angular.forEach(CategoryService.categories, function (category) {
                 var cat = {};
@@ -60,16 +60,66 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
     function AddPackageCtrl($scope, $modalInstance) {
 
+        $scope.uploadPhoto = {};
+        $scope.$file;
+        $scope.showProgressBar = false;
+        $scope.fileUploaded = false;
+        $scope.allowFileUpload = false;
+        $scope.profilePhoto = '';
+
+        $scope.uploadCategoryImage = {
+            target: $rootScope.apipath + '/package' + '/item-upload',
+            singleFile: true,
+            testChunks: false,
+        };
+
+        $scope.uploadImage = function ($file, $event, $flow) {
+        $scope.fileUploaded = true;
+            if ($scope.allowFileUpload) {
+                $flow.upload();
+                $scope.showProgressBar = true;
+            }
+        };
+        $scope.uploadImageSuccess = function ($file, $message, $flow) {
+            //console.log('success');
+            $scope.profilePhoto = JSON.parse($message);
+            $scope.fileName = $scope.profilePhoto.filename;
+            $scope.showProgressBar = false;
+        };
+
+        $scope.uploadImageFailure = function ($file, $message, $flow) {
+            //console.log('failed');
+            $scope.showProgressBar = false;
+            //addMessage("Upload Failed");
+        };
+
+        $scope.uploadImageProgress = function ($file, $flow) {
+            $scope.showProgressBar = true;
+        };
+
+        $scope.imageAdded = function ($file, $event, $flow) {
+            $scope.$file = $file;
+            var imageExtension = ["png", "gif", "jpg", "jpeg"];
+            if ((imageExtension.indexOf($file.getExtension())) < 0) {
+                //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
+                console.log('inside image extension');
+                $scope.allowFileUpload = false;
+            } else {
+                $scope.allowFileUpload = true;
+            }
+        };
+
         $scope.ok = function () {
             var obj = new Object();
             var obj = {};
             obj.name = $scope.package.name;
             obj.title = $scope.package.title;
-            obj.image = $scope.package.image;
+            obj.image = $scope.fileName;
             obj.desc = $scope.package.desc;
             obj.price = $scope.package.price;
             obj.qty = $scope.package.qty;
             var packageJson = JSON.stringify(obj);
+            console.log(obj);
             $modalInstance.close(packageJson);
         };
 
@@ -86,6 +136,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
     ctrl.addSection = function () {
         $scope.currentPackage.sections.push({});
+        console.log("$scope.currentPackage");
     };
 
     ctrl.saveSections = function () {

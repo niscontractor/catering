@@ -6,7 +6,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
 
     output.getCategories = function (username) {
         output.categories = [];
-        output.category;
+        output.categor1y;
         var deferred = $q.defer();
         return $http.get(apiUrl + $localStorage.user.id)
                 .success(function (data) {

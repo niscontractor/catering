@@ -2,7 +2,6 @@
 
 function galleryCtrl($scope, $modal, PackageService) {
   $scope.ran = [];
-
   for (var i = 1; i <= 28; i += 1) {
     $scope.ran.push(i);
   }

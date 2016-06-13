@@ -50,6 +50,7 @@ var dragDropDir = function ($timeout) {
                             if (scope.categories != null) {
                                 angular.forEach(scope.categories, function (category) {
                                     angular.forEach(category.nodes, function (node) {
+                                        console.log(scope.selectedData);
                                         // if (node.id == Number(ui.draggable.find('.badge').text())) {
                                         //     scope.selectedData.push(angular.copy(node));
                                         // }

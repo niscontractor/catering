@@ -9,20 +9,20 @@
         <div class="col-sm-12">
             <div class="gallery">
                 <div class="col-md-3 col-sm-4 col-xs-6 img-data" ng-click="getPackageDetail(userPack)" data-ng-repeat="userPack in userPackages">
+                <div class="col-sm-12">
                     <a href="./images/food-popup.png" title="{{userPack.name}}" data-gallery="">
-                        <img data-ng-src="./images/food.png" alt="">
-                        <p class="img-main-package-name">{{userPack.name}}</p>
-                        <div class="black-overlay ">
-                            <p class="img-data-heading">{{userPack.title}}</p>
+                        <img data-ng-src="{{userPack.image}}" alt="" style="height: 150px;">
+                        <div class="black-overlay" style="width:100%">
+                            <p class="img-data-heading">{{userPack.name}}</p>
                             <div class="img-border-line"></div>
                             <p class="img-data-heading-inner">{{userPack.desc}}</p>
-                            <p class="img-data-heading-inner">{{userPack.price}}</p>
                         </div>
                     </a>
+                    <div>
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="img-main-package-name col-sm-6 bold-font" >Package 1</div>
-                            <div class="img-main-package-name col-sm-6 text-right"><span class="bold-font">Price:</span> <span class="text-danger ml5">$20</span></div>
+                            <div class="img-main-package-name col-sm-6 bold-font" >{{userPack.title}}</div>
+                            <div class="img-main-package-name col-sm-6 text-right"><span class="bold-font">Price:</span> <span class="text-danger ml5">{{userPack.price}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -54,13 +54,14 @@
         </div>
 
 
-
-        <div class="form-group" ng-repeat="sec in packDetailDetail.sections">
+        <div class="form-group">
+        <div  ng-repeat="sec in packDetailDetail.sections">
         <label class="col-sm-3 control-label">{{sec.title}}</label>
+        <div class="col-sm-9">
         <span class="label label-info content-lable" ng-repeat="menu in sec.list_of_menu">{{menu.text}}</span>
         </div>
         </div>
-
+        </div>
 
 
 
