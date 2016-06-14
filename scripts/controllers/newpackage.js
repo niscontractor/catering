@@ -125,6 +125,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
+            $state.go('app.dashboard');
         };
     }
 
