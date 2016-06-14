@@ -39,8 +39,6 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
         } else {
             $rootScope.addMessage('Email and password are required.', 'error');
         }
-
-
     };
 }
 
