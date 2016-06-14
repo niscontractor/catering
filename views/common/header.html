@@ -29,16 +29,16 @@
     </a>
   </li>
 
-  <li class="dropdown" dropdown>
+  <li class="dropdown" dropdown style="min-width: 100px">
     <a href="javascript:;" class="dropdown-toggle" dropdown-toggle>
-      <i class="fa fa-bell-o text-white"></i>
+        <i class="fa fa-bell-o text-white" style="float: left"></i>
       <div class="status bg-danger border-danger animated bounce"></div>
     </a>
     <ul class="dropdown-menu notifications">
       <li class="notifications-header">
-        <p class="text-muted small">You have 3 new messages</p>
+        <p class="text-muted small">No new messages</p>
       </li>
-      <li>
+<!--      <li>
         <ul class="notifications-list">
           <li>
             <a href="javascript:;">
@@ -76,14 +76,14 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li class="notifications-footer">
+      </li>-->
+<!--      <li class="notifications-footer">
         <a href="javascript:;">See all messages</a>
-      </li>
+      </li>-->
     </ul>
   </li>
 
-  <li class="dropdown" dropdown style="min-width: 150px">
+  <li class="dropdown" dropdown>
     <a href="javascript:;" class="dropdown-toggle" dropdown-toggle>
       <img data-ng-src="{{user.profile_pic}}" class="header-avatar img-circle ml10" alt="" title="" fallback-src="images/avatar.jpg" ng-if="user.profile_pic">
       <img src="images/avatar.jpg" class="header-avatar img-circle ml10" alt="" title=""  ng-if="!user.profile_pic">

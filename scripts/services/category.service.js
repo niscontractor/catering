@@ -45,6 +45,21 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
                 });
         //return deferred.promise;
     };
+    
+    output.deleteCategory = function (category) {
+        output.category;
+        var deferred = $q.defer();
+        var id = {"id": category._id};
+        return $http.delete(apiUrl + $localStorage.user.id,id)
+                .success(function (data) {
+                    output.category = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
 
     output.addCategoryItem = function (category) {
         var categoryName = category.categoryName;
