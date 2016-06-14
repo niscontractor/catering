@@ -14,7 +14,7 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
             obj.email = ctrl.email;
             obj.password = ctrl.password;
             var jsonString = JSON.stringify(obj);
-            $rootScope.addMessage('Please wait...', 'info');  
+            $rootScope.addMessage('Please wait...', 'success');  
             Common.authenticate(jsonString).then(function (response) {
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
