@@ -14,7 +14,7 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
             obj.email = ctrl.email;
             obj.password = ctrl.password;
             var jsonString = JSON.stringify(obj);
-
+            $rootScope.addMessage('Please wait...', 'success');  
             Common.authenticate(jsonString).then(function (response) {
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
@@ -23,16 +23,15 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
                     $rootScope.user = response;
                     $localStorage.user = $rootScope.user;
                     Auth.setUser(response);
+//                    $rootScope.addMessage('Login successful.', 'success');
+                    if (response.isFirstTime) {
+                        $state.go('app.apps.social');
+                    } else {
+                        $state.go('app.apps.calendar');
+                    }
                 }).catch(function (response) {
                     $rootScope.addMessage('Invalid User.', 'error');
                 });
-                $rootScope.addMessage('Login successful.', 'success');
-                if (response.isFirstTime) {
-                    $state.go('app.apps.social');
-                } else {
-                    $state.go('app.apps.calendar');
-                }
-                
             }).catch(function (response) {
                 console.log('failure', response);
                 $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
@@ -40,8 +39,6 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
         } else {
             $rootScope.addMessage('Email and password are required.', 'error');
         }
-
-
     };
 }
 
