@@ -369,6 +369,10 @@ blockquote p {
     top: 15px;
     right: 13px;
 }
+.allLabel {
+    color: white;
+    font-size: larger;
+}
 /* $preloader
  ------------------------------------------*/
 @-webkit-keyframes loading-bar {
