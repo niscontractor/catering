@@ -23,16 +23,15 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
                     $rootScope.user = response;
                     $localStorage.user = $rootScope.user;
                     Auth.setUser(response);
+                    $rootScope.addMessage('Login successful.', 'success');
+                    if (response.isFirstTime) {
+                        $state.go('app.apps.social');
+                    } else {
+                        $state.go('app.apps.calendar');
+                    }
                 }).catch(function (response) {
                     $rootScope.addMessage('Invalid User.', 'error');
                 });
-                $rootScope.addMessage('Login successful.', 'success');
-                if (response.isFirstTime) {
-                    $state.go('app.apps.social');
-                } else {
-                    $state.go('app.apps.calendar');
-                }
-                
             }).catch(function (response) {
                 console.log('failure', response);
                 $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
