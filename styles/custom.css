@@ -10,7 +10,8 @@ and open the template in the editor.
 
 .drop {
     color: white;
-    padding: 15px;
+    padding: 25px;
+    height: 150px;
     border: 2px #bbbbbb dashed;
     border-radius: 5px;
     line-height: 34px;

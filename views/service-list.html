@@ -24,6 +24,9 @@
                     <a href="javascript:;" class="ng-scope">
                         <i class="fa fa-plus" ng-click="categories.addCategoryItem(category)"></i>
                     </a>
+                    <a href="javascript:;" class="ng-scope">
+                        <i class="glyphicon glyphicon-trash" ng-click="categories.deleteCategory(category)"></i>
+                    </a>
                 </div>
             </div>
             <div class="panel-body body-overflow">
@@ -46,14 +49,14 @@
     <div class="form-group">
     <label class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" ng-model="category.name">
+    <input type="text" class="form-control" ng-model="category.name" required>
     </div>
     </div>
 
     <div class="form-group">
     <label class="col-sm-2 control-label">Description</label>
     <div class="col-sm-10">
-    <textarea rows="3" class="form-control" ng-model="category.desc"></textarea>
+    <textarea rows="3" class="form-control" ng-model="category.desc" required></textarea>
     </div>
     </div>
     <div class="modal-footer">
@@ -100,25 +103,25 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Title</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="categoryItem.name">
+                <input type="text" class="form-control" ng-model="categoryItem.name" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10">
-                <textarea rows="3" class="form-control" ng-model="categoryItem.desc"></textarea>
+                <textarea rows="3" class="form-control" ng-model="categoryItem.desc" required></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">No. of Serve</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="categoryItem.qty">
+                <input type="text" class="form-control" ng-model="categoryItem.qty" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Price</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" ng-model="categoryItem.price" placeholder="€">  
+                <input type="text" class="form-control" ng-model="categoryItem.price" placeholder="€" required>  
             </div>  
         <label class="col-sm-3 control-label">Available for sale</label>
         <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
@@ -126,8 +129,8 @@
              <span> <i class="handle"></i> </span>
          </label>
         </div>
-        <div class="form-group">
-            <div class="col-xs-3"></div>
+        <div class="form-group"">
+             <label class="col-sm-2 control-label">Item Cover</label>
             <div class="col-xs-9 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
                  flow-name="uploadPhoto.flow"
                  flow-file-success="uploadImageSuccess( $file, $message, $flow )"
@@ -142,6 +145,8 @@
                     <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
                 </span>
             </div>
+            <div class="col-xs-3"></div>
+
             <div class="col-xs-offset-3 col-xs-9">
                 <div ng-show="showProgressBar">Uploading...</div>
             </div>
@@ -194,9 +199,6 @@
     </div>
 
     <div class="form-group">
-            <div class="col-xs-3">
-                <img ng-if="categoryItem.image" src="{{categoryItem.image}}" class="img-responsive">
-            </div>
             <div class="col-xs-9 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
                  flow-name="uploadPhoto.flow"
                  flow-file-success="uploadImageSuccess( $file, $message, $flow )"
@@ -204,13 +206,17 @@
                  flow-files-submitted="uploadImage( $files, $event, $flow )"
                  flow-file-error="uploadImageFailure( $file, $message, $flow )"
                  flow-file-progress="uploadImageProgress()"
-                 flow-drop>
+                 flow-drop style="width: auto;margin-left: 70px;margin-right: 70px;">
                 <span> 
                     <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
                     <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
                     <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
                 </span>
             </div>
+            <div class="col-xs-3">
+                <img ng-if="categoryItem.image" src="{{categoryItem.image}}" class="img-responsive">
+            </div>
+
             <div class="col-xs-offset-3 col-xs-9">
                 <div ng-show="showProgressBar">Uploading...</div>
             </div>

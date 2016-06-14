@@ -20,7 +20,7 @@ angular
             'ngTouch',
             'flow',
             'oi.select',
-            'toaster'
+            'toaster',
         ])
         .constant('COLORS', {
             'default': '#e2e2e2',
