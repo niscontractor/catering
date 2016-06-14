@@ -14,7 +14,7 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
             obj.email = ctrl.email;
             obj.password = ctrl.password;
             var jsonString = JSON.stringify(obj);
-            $rootScope.addMessage('Please wait...', 'information');  
+            $rootScope.addMessage('Please wait...', 'info');  
             Common.authenticate(jsonString).then(function (response) {
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
@@ -23,7 +23,7 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
                     $rootScope.user = response;
                     $localStorage.user = $rootScope.user;
                     Auth.setUser(response);
-                    $rootScope.addMessage('Login successful.', 'success');
+//                    $rootScope.addMessage('Login successful.', 'success');
                     if (response.isFirstTime) {
                         $state.go('app.apps.social');
                     } else {
