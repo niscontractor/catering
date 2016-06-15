@@ -14,7 +14,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
 
     ReadJson.getTags().then(angular.bind(this, function then() {
         ctrl.tags = ReadJson.tags;
-        console.log("---> "+ctrl.logs);
+        console.log("---> "+ctrl.tags);
     }));
 
     ctrl.editCategory = function (category) {
