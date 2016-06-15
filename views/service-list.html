@@ -68,30 +68,30 @@
 </script>
 
 <script type="text/ng-template" id="editCategory.html">
-<div class="modal-header bg-green">
+    <div class="modal-header bg-green">
     <h4 class="modal-title">Edit Category </h4>
-</div>
-<div class="modal-body">
+    </div>
+    <div class="modal-body">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Title</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="category.name" required >
-            </div>
-        </div>
+    <div class="form-group">
+    <label class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" ng-model="category.name" required >
+    </div>
+    </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
-                <textarea rows="3" class="form-control" ng-model="category.desc" required></textarea>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary btn-sm" data-ng-click="ok()">OK</button>
-            <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
-        </div>
+    <div class="form-group">
+    <label class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+    <textarea rows="3" class="form-control" ng-model="category.desc" required></textarea>
+    </div>
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-primary btn-sm" data-ng-click="ok()">OK</button>
+    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+    </div>
     </form>
-</div>
+    </div>
 </script>
 
 <script type="text/ng-template" id="addCategoryItem.html">
@@ -111,6 +111,14 @@
             <div class="col-sm-10">
                 <textarea rows="3" class="form-control" ng-model="categoryItem.desc" required></textarea>
             </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Tag your product</label>
+           <oi-select class="m-b-30"
+                oi-options="tag.name for tag in dashboard.typeOfServices track by tag.name"
+                ng-model="categoryItem.tag"
+                multiple>
+            </oi-select>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">No. of Serve</label>
@@ -180,47 +188,47 @@
     </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">No. of Serve</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="categoryItem.qty">
-        </div>
+    <label class="col-sm-2 control-label">No. of Serve</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" ng-model="categoryItem.qty">
+    </div>
     </div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Price</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control" ng-model="categoryItem.price">  
-        </div>
-        <label class="col-sm-3 control-label">Available for sale</label>
-        <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
-             <input type="checkbox" checked="" ng-model="categoryItem.available">
-            <span> <i class="handle"></i> </span>
-        </label>
+    <label class="col-sm-2 control-label">Price</label>
+    <div class="col-sm-3">
+    <input type="text" class="form-control" ng-model="categoryItem.price">  
+    </div>
+    <label class="col-sm-3 control-label">Available for sale</label>
+    <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
+    <input type="checkbox" checked="" ng-model="categoryItem.available">
+    <span> <i class="handle"></i> </span>
+    </label>
     </div>
 
     <div class="form-group">
-            <div class="col-xs-9 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
-                 flow-name="uploadPhoto.flow"
-                 flow-file-success="uploadImageSuccess( $file, $message, $flow )"
-                 flow-file-added="imageAdded( $file, $event, $flow )"
-                 flow-files-submitted="uploadImage( $files, $event, $flow )"
-                 flow-file-error="uploadImageFailure( $file, $message, $flow )"
-                 flow-file-progress="uploadImageProgress()"
-                 flow-drop style="width: auto;margin-left: 70px;margin-right: 70px;">
-                <span> 
-                    <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
-                    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
-                    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
-                </span>
-            </div>
-            <div class="col-xs-3">
-                <img ng-if="categoryItem.image" src="{{categoryItem.image}}" class="img-responsive">
-            </div>
+    <div class="col-xs-9 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
+    flow-name="uploadPhoto.flow"
+    flow-file-success="uploadImageSuccess( $file, $message, $flow )"
+    flow-file-added="imageAdded( $file, $event, $flow )"
+    flow-files-submitted="uploadImage( $files, $event, $flow )"
+    flow-file-error="uploadImageFailure( $file, $message, $flow )"
+    flow-file-progress="uploadImageProgress()"
+    flow-drop style="width: auto;margin-left: 70px;margin-right: 70px;">
+    <span> 
+    <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
+    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
+    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
+    </span>
+    </div>
+    <div class="col-xs-3">
+    <img ng-if="categoryItem.image" src="{{categoryItem.image}}" class="img-responsive">
+    </div>
 
-            <div class="col-xs-offset-3 col-xs-9">
-                <div ng-show="showProgressBar">Uploading...</div>
-            </div>
-        </div>
+    <div class="col-xs-offset-3 col-xs-9">
+    <div ng-show="showProgressBar">Uploading...</div>
+    </div>
+    </div>
 
     <div class="modal-footer">
     <button class="btn btn-primary btn-sm" ng-click="ok()">OK</button>

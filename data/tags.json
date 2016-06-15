@@ -1,0 +1,42 @@
+[
+    {
+     "id":1,
+     "cuisine":"Spanish"
+    },
+    {
+     "id":2,
+     "cuisine":"French"
+    },
+    {
+     "id":3,
+     "cuisine":"Italian"
+    },
+    {
+     "id":4,
+     "cuisine":"Indian"
+    },
+    {
+     "id":5,
+     "cuisine":"Lebanese"
+    },
+    {
+     "id":6,
+     "cuisine":"Middle Eastern"
+    },
+    {
+     "id":7,
+     "cuisine":"Fusion"
+    },
+    {
+     "id":8,
+     "cuisine":"Author"
+    },
+    {
+     "id":9,
+     "cuisine":"Other"
+    },
+    {
+     "id":10,
+     "cuisine":"Patries"
+    }
+]

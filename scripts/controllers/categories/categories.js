@@ -1,6 +1,6 @@
 'use strict';
 
-function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
+function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService) {
     var ctrl = this;
 
     $scope.getCategoryList = function () {
@@ -11,6 +11,10 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
             ctrl.categoryList = CategoryService.categories;
         }));
     }
+
+    ReadJson.getTags().then(angular.bind(this, function then() {
+        ctrl.tags = ReadJson.tags;
+    }));
 
     ctrl.editCategory = function (category) {
         var modalInstance = $modal.open({
