@@ -222,6 +222,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
         obj.price = $scope.categoryItem.price;
         obj.available = $scope.categoryItem.available;
         obj.image = $scope.profilePhoto.filename || '';
+        obj.tag = $scope.categoryItem.tag;
         obj.categoryName = categoryId._id;
         $modalInstance.close(obj);
     };
@@ -288,7 +289,7 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
         obj.available = $scope.categoryItem.available;
         obj.categoryName = $scope.categoryItem.category;
         obj.categorItemName = $scope.categoryItem.item;
-
+        obj.tag = $scope.categoryItem.tag;
         if ($scope.profilePhoto && $scope.profilePhoto.filename) {
             obj.image = $scope.profilePhoto.filename;
         }
