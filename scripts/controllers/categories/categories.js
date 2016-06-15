@@ -14,7 +14,6 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
 
     ReadJson.getTags().then(angular.bind(this, function then() {
         ctrl.tags = ReadJson.tags;
-        console.log("---> "+ctrl.tags);
     }));
 
     ctrl.editCategory = function (category) {
@@ -69,7 +68,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
         console.log('category: ', id);
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
-            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
+            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId','ctrl', AddItemCtrl]),
             size: 'med',
             resolve: {
                 categoryId: function () {
@@ -169,7 +168,7 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
     };
 }
 
-function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
+function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId,ctrl) {
     $scope.tags = ctrl.tags; 
     $scope.uploadPhoto = {};
     $scope.$file;
