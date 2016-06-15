@@ -138,7 +138,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
 }
 
 function AddCategoryCtrl($scope, $modalInstance) {
-
+    $scope.tags = ctrl.tags; 
     $scope.ok = function () {
         var obj = new Object();
         obj.name = $scope.category.name;
