@@ -17,7 +17,7 @@ function dashboardCtrl($scope, $rootScope, $state, $localStorage, $interval, $ti
     }
 
     ReadJson.getCuisines().then(angular.bind(this, function then() {
-        ctrl.typeOfCuisines = ReadJson.cuisines;
+        ctrl.typeOfCuisines = ReadJson.typeOfCuisines;
     }));
 
     ReadJson.getSpecialNeeds().then(angular.bind(this, function then() {

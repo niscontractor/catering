@@ -50,7 +50,12 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
         output.category;
         var deferred = $q.defer();
         var id = {"id": category._id};
-        return $http.delete(apiUrl + $localStorage.user.id,id)
+        return $http({
+                method: 'DELETE',
+                url: apiUrl + $localStorage.user.id,
+                data: id,
+                headers: {'Content-Type': 'application/json;charset=utf-8'}
+        })
                 .success(function (data) {
                     output.category = data;
                     deferred.resolve(data);

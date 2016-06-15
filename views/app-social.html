@@ -108,8 +108,8 @@
                                                 <label class="allLabel">What type of cuisine you serve?</label>
                                                 <oi-select
                                                     class="m-b-30"
-                                                    oi-options="cuisineType.name for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
-                                                    ng-model="dashboard.company.cuisine"
+                                                    oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
+                                                    ng-model="dashboard.company.cuisine_name"
                                                     multiple
                                                     placeholder="What type of cuisine you serve?">
                                                 </oi-select>

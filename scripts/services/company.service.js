@@ -35,14 +35,14 @@ function readJson($q, $http, $rootScope) {
     var output = {};
     var apiUrl = $rootScope.apipath2;
 
-    var cuisineUrl = apiUrl + '/cuisine';
+    var cuisineUrl = 'data/cuisines.json';
 
     output.getCuisines = function () {
-        output.cuisines = [];
+        output.typeOfCuisines = [];
         var deferred = $q.defer();
         return $http.get(cuisineUrl)
                 .success(function (data) {
-                    output.cuisines = data;
+                    output.typeOfCuisines = data;
                     deferred.resolve(data);
                 })
                 .error(function (data) {

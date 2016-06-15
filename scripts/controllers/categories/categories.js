@@ -47,9 +47,17 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
     };
 
     ctrl.deleteCategory = function (category) {
-        CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
-            console.log(CategoryService.category);
+        var resule = confirm("Do you want to Delete ?");
+        if (resule==true) {
+            CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
+                console.log(CategoryService.category);
+                CategoryService.getCategories('').then(angular.bind(this, function then() {
+                console.log(CategoryService.categories);
+                ctrl.categoryList = CategoryService.categories;
         }));
+
+            }));
+        }
     };
 
     ctrl.addCategoryItem = function (id) {
