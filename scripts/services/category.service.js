@@ -121,10 +121,12 @@ function readJson($q, $http, $rootScope) {
         var deferred = $q.defer();
         return $http.get(tagUrl)
                 .success(function (data) {
+                    console.log("suc : data "+data);
                     output.tags = data;
                     deferred.resolve(data);
                 })
                 .error(function (data) {
+                    console.log("err : data "+data);
                     deferred.reject(data);
                 });
     };
