@@ -101,6 +101,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
                     itemCategory.desc = item.desc;
                     itemCategory.qty = item.qty;
                     itemCategory.price = item.price;
+                    itemCategory.tag = item.tag;
                     itemCategory.available = item.available;
                     itemCategory.category = category._id;
                     itemCategory.image = item.image;
