@@ -1,42 +1,42 @@
 [
     {
      "id":1,
-     "cuisine":"Spanish"
+     "name":"Spanish"
     },
     {
      "id":2,
-     "cuisine":"French"
+     "name":"French"
     },
     {
      "id":3,
-     "cuisine":"Italian"
+     "name":"Italian"
     },
     {
      "id":4,
-     "cuisine":"Indian"
+     "name":"Indian"
     },
     {
      "id":5,
-     "cuisine":"Lebanese"
+     "name":"Lebanese"
     },
     {
      "id":6,
-     "cuisine":"Middle Eastern"
+     "name":"Middle Eastern"
     },
     {
      "id":7,
-     "cuisine":"Fusion"
+     "name":"Fusion"
     },
     {
      "id":8,
-     "cuisine":"Author"
+     "name":"Author"
     },
     {
      "id":9,
-     "cuisine":"Other"
+     "name":"Other"
     },
     {
      "id":10,
-     "cuisine":"Patries"
+     "name":"Patries"
     }
 ]
