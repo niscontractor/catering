@@ -299,4 +299,4 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
 
 angular
         .module('urbanApp')
-        .controller('categoryCtrl', ['$scope', '$modal', '$log', '$rootScope', 'CategoryService', categoryCtrl]);
+        .controller('categoryCtrl', ['$scope', '$modal', '$log','ReadJson','$rootScope', 'CategoryService', categoryCtrl]);
