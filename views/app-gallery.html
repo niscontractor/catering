@@ -1,40 +1,30 @@
 <div data-ng-controller="galleryCtrl" ng-init="getUserPackages()">
-    <div class="clearfix">
-        <a ui-sref="app.apps.newpackage" class="btn btn-default"><span class="fa fa-plus mr5"> New Package</span></a>
+    <div class="col-sm-12">
+        <button ui-sref="app.apps.newpackage" class="btn btn-green mb20"><span class="fa fa-plus mr5"></span><span> New Package</span></button>
     </div>
-
     <hr>
 
     <div class="row">
-        <div class="col-sm-12">
-            <div class="gallery">
-                <div class="col-md-3 col-sm-4 col-xs-6 img-data" ng-click="getPackageDetail(userPack)" data-ng-repeat="userPack in userPackages">
-                <div class="col-sm-12">
-                    <a href="./images/food-popup.png" title="{{userPack.name}}" data-gallery="">
-                        
-                        <img data-ng-src="{{userPack.image}}" ng-if="item.logo!=''" style="height: 150px;">
-                        <img ng-if="item.logo==''" src="images/def-order-online.png" style="height: 150px;">
-                        <div class="black-overlay" style="width:100%">
-                            <p class="img-data-heading">{{userPack.name}}</p>
-                            <div class="img-border-line"></div>
-                            <p class="img-data-heading-inner">{{userPack.desc}}</p>
+        <div class="gallery">
+            <div class="col-md-3 col-sm-4 col-xs-6 img-data" data-ng-repeat="userPack in userPackages">
+                <div class="text-center">
+                    <img data-ng-src="{{userPack.image}}" ng-if="userPack.image != ''" style="height: 150px;">
+                    <img ng-if="userPack.image == ''" src="images/def-order-online.png" style="height: 150px;">
+                    <div class="black-overlay" style="width:100%;padding 10px;cursor: pointer;z-index: 1"  ng-click="getPackageDetail(userPack)">
+                        <div class="col-sm-12" style="z-index: 2">
+                            <span class="pull-right cursor large" style="color: red;padding: 10px" onclick="alert(1);window.event.stopPropagation();"><i class="glyphicon glyphicon-trash"></i></span>
                         </div>
-                    </a>
-                    <div>
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="img-main-package-name col-sm-6 bold-font" >{{userPack.title}}</div>
-                            <div class="img-main-package-name col-sm-6 text-right"><span class="bold-font">Price:</span> <span class="text-danger ml5">{{userPack.price}}</span></div>
-                        </div>
+                        <p class="img-data-heading">{{userPack.name}}</p>
+                        <div class="img-border-line"></div>
+                        <p class="img-data-heading-inner">{{userPack.desc}}</p>
                     </div>
+                    <div class="img-main-package-name bold-font" style="padding-top: 0px" >Name: <span class="text-danger ml5">{{userPack.title}}</span>&nbsp;&nbsp;&nbsp;<span class="bold-font">Price:</span> <span class="text-danger ml5">{{userPack.price}}</span></div>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
-<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<script type="text/ng-template" id="packageDetail.html">
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+    <script type="text/ng-template" id="packageDetail.html">
         <div>
         <div class="modal-header bg-green-dark-package">
         <h3 class="modal-title">Package Detail</h3>
@@ -95,4 +85,4 @@
         <!--<button class="btn btn-primary btn-sm" ng-click="packageCtr.savePackage()">Edit</button>-->
         <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
         </div>
-</script> 
+    </script> 

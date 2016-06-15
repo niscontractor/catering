@@ -107,16 +107,15 @@
                                                 <!--<input class="form-control m-b-30" placeholder="What type of cuisine you serve " ng-model="dashboard.company.typeOfCuisines"/>-->
                                                 <label class="allLabel">What type of cuisine you serve?</label>
                                                 <oi-select
-                                                    class="m-b-30"
+                                                    class="m-b-30" style="height: 47px"
                                                     oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
                                                     ng-model="dashboard.company.cuisine_name"
-                                                    multiple
-                                                    placeholder="What type of cuisine you serve?">
+                                                    multiple>
                                                 </oi-select>
 <!--                                                <input class="form-control m-b-30" placeholder="Do you provide special need  " ng-model="dashboard.company.specialNeeds"/>-->
                                                 <label class="allLabel">Do you provide special need?</label>
                                                 <oi-select
-                                                    class="m-b-30"
+                                                    class="m-b-30" style="height: 47px"
                                                     oi-options="specialNeed.name for specialNeed in dashboard.specialNeeds track by specialNeed._id"
                                                     ng-model="dashboard.company.special_need"
                                                     multiple>
@@ -131,8 +130,6 @@
                                                 <label class="allLabel">Max</label>
                                                 <input type="number" min="1" class="form-control m-b-30" ng-model="dashboard.company.max_people"/>
 
-                                                <label class="allLabel">How many days before a client have to order?</label>
-                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.no_days_before_order"/>
                                             </div>
                                             <div class="col-sm-6 service-input">
 
@@ -141,11 +138,16 @@
 
                                                 <label class="allLabel">Minimum amount to order.</label>
                                                 <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.minimum_amount_order"/>
-                                                <p class="text-white">Do you offer delivery ( Yes / No )</p>
-                                                <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
+                                               <p class="text-white">&nbsp;</p>
+                                                <label class="allLabel">How many days before a client have to order?</label>
+                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.no_days_before_order"/>
+                                                <label class="allLabel">Do you offer delivery ( Yes / No )</label></br>
+                                                <label class="switch switch-lg mb15 m-b-30 mt5 ">
                                                     <input type="checkbox" checked="" ng-model="dashboard.company.delivery">
-                                                    <span> <i class="handle"></i> </span> </label>
-                                                <input type="number" min="0" class="form-control m-b-30" ng-hide='!dashboard.company.delivery' ng-model="dashboard.company.kilometers"/>
+                                                    <span> <i class="handle"></i> </span>
+                                                </label>
+                                                <!--<input type="number" min="0" class="form-control m-b-30" ng-hide='!dashboard.company.delivery' ng-model="dashboard.company.kilometers"/>-->
+
                                             </div>
                                             <div class="col-sm-12">
                                                 <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
@@ -160,7 +162,7 @@
                                             <div class="col-sm-12">
                                                 <label class="allLabel">What type of events you serve?</label>
                                                 <oi-select
-                                                    class="m-b-30"
+                                                    class="m-b-30" style="height: 47px"
                                                     oi-options="typeOfEvent.name for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
                                                     ng-model="dashboard.company.events"
                                                     multiple>
@@ -170,7 +172,7 @@
                                             <div class="col-sm-12">
                                                 <label class="allLabel">Services you offer?</label>
                                                 <oi-select
-                                                    class="m-b-30"
+                                                    class="m-b-30" style="height: 47px"
                                                     oi-options="serviceOffered.name for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
                                                     ng-model="dashboard.company.services"
                                                     multiple>
@@ -180,7 +182,7 @@
                                             <div class="col-sm-12">
                                                 <label class="allLabel">Type of service</label>
                                                 <oi-select
-                                                    class="m-b-30"
+                                                    class="m-b-30" style="height: 47px"
                                                     oi-options="typeOfService.name for typeOfService in dashboard.typeOfServices track by typeOfService._id"
                                                     ng-model="dashboard.company.services_type"
                                                     multiple>
@@ -230,7 +232,7 @@
                                                 <input class="form-control m-b-30"  ng-model="dashboard.company.iban_number"/>
                                             </div>
                     
-                                            <div style="margin-right: 10px" class="col-sm-9 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto"
+                                            <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
