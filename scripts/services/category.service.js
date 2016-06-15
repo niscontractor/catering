@@ -114,7 +114,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
 
 function readJson($q, $http, $rootScope) {
     var output = {};
-    var tagUrl = 'data/tag.json';
+    var tagUrl = 'data/tags.json';
 
     output.getTags = function () {
         output.tags = [];
