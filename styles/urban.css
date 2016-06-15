@@ -12023,7 +12023,7 @@ input.file1 {
     padding: 2% 0% 0%;
 }
 .box-tab .nav-tabs li.active a::before {
-    background: url(../images/company.png) no-repeat scroll center center;
+    background: url(../images/active.png) no-repeat scroll center center;
     -webkit-transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
     transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
     border-top-left-radius: 2px;

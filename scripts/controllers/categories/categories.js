@@ -46,6 +46,11 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
         });
     };
 
+    ctrl.deleteCategory = function (category) {
+        CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
+            console.log(CategoryService.category);
+        }));
+    };
 
     ctrl.addCategoryItem = function (id) {
         console.log('category: ', id);
@@ -105,9 +110,18 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
         });
     };
 
-    
+    ctrl.deleteCategoryItem = function (item, category) {
+        var ans = confirm("Do you want to delete ?");
+        if (ans == true) {
+            CategoryService.deleteCategoryItem(category._id, item.name).then(angular.bind(this, function then() {
+                CategoryService.getCategories('').then(angular.bind(this, function then() {
+                    ctrl.categoryList = CategoryService.categories;
+                }));
+            }));
+        }
+        ;
+    }
 
-       
 }
 
 function AddCategoryCtrl($scope, $modalInstance) {
@@ -167,7 +181,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
         console.log('success');
-        
+
         $scope.profilePhoto = JSON.parse($message);
         $scope.showProgressBar = false;
     };
@@ -213,7 +227,7 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
     $scope.profilePhoto = '';
 
     console.log(categoryItem);
-    
+
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
@@ -269,7 +283,7 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
         obj.categorItemName = $scope.categoryItem.item;
 
         if ($scope.profilePhoto && $scope.profilePhoto.filename) {
-            obj.image = $scope.profilePhoto.filename;    
+            obj.image = $scope.profilePhoto.filename;
         }
 
         $modalInstance.close(obj);
