@@ -68,11 +68,13 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
         console.log('category: ', id);
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
-            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId','ctrl', AddItemCtrl]),
+            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId','logs', AddItemCtrl]),
             size: 'med',
             resolve: {
                 categoryId: function () {
                     return id;
+                },logs : fucntion (){
+                    return ctrl.logs;
                 }
             }
         });
