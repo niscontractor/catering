@@ -11,7 +11,7 @@ function signupCtrl($state, Common,$rootScope,$localStorage) {
             obj.name = ctrl.user.firstName;
             obj.mobile = ctrl.user.mobile;
             obj.company = ctrl.user.company;
-            
+            obj.isCaterer = true;
             var jsonString = JSON.stringify(obj);
 
             Common.signup(jsonString).then(function (response) {

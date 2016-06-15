@@ -77,21 +77,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
         //return deferred.promise;
     };
     
-     output.deleteCategoryItem = function (category , item) {
-        var categoryName = category;
-        var itemName = item;
-        var deferred = $q.defer();
-        console.log(apiUrl+""+categoryName+"/"+itemName);
-        return $http.delete(apiUrl+""+categoryName+"/"+itemName)
-                .success(function (data) {
-                    output.category = data;
-                    deferred.resolve(data);
-                })
-                .error(function (data) {
-                    deferred.reject(data);
-                });
-        //return deferred.promise;
-    };
+    
     
     
     return output;
