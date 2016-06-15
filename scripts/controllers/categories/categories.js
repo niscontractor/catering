@@ -138,7 +138,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
 }
 
 function AddCategoryCtrl($scope, $modalInstance) {
-    $scope.tags = ctrl.tags; 
+
     $scope.ok = function () {
         var obj = new Object();
         obj.name = $scope.category.name;
@@ -170,7 +170,7 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
 }
 
 function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
-
+    $scope.tags = ctrl.tags; 
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
@@ -238,7 +238,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
 function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
     $scope.categoryItem = categoryItem;
     $scope.profilePhoto = '';
-
+    $scope.tags = ctrl.tags; 
     console.log(categoryItem);
 
     $scope.uploadPhoto = {};
