@@ -1,6 +1,6 @@
 <div data-ng-controller="galleryCtrl" ng-init="getUserPackages()">
     <div class="clearfix">
-        <a ui-sref="app.apps.newpackage" class="btn btn-default"><span class="fa fa-plus mr5">New Package</span></a>
+        <a ui-sref="app.apps.newpackage" class="btn btn-default"><span class="fa fa-plus mr5"> New Package</span></a>
     </div>
 
     <hr>
@@ -11,7 +11,9 @@
                 <div class="col-md-3 col-sm-4 col-xs-6 img-data" ng-click="getPackageDetail(userPack)" data-ng-repeat="userPack in userPackages">
                 <div class="col-sm-12">
                     <a href="./images/food-popup.png" title="{{userPack.name}}" data-gallery="">
-                        <img data-ng-src="{{userPack.image}}" alt="images/def-order-online.png" style="height: 150px;">
+                        
+                        <img data-ng-src="{{userPack.image}}" ng-if="item.logo!=''" style="height: 150px;">
+                        <img ng-if="item.logo==''" src="images/def-order-online.png" style="height: 150px;">
                         <div class="black-overlay" style="width:100%">
                             <p class="img-data-heading">{{userPack.name}}</p>
                             <div class="img-border-line"></div>

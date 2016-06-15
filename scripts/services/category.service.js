@@ -45,7 +45,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
                 });
         //return deferred.promise;
     };
-    
+
     output.deleteCategory = function (category) {
         output.category;
         var deferred = $q.defer();
@@ -56,6 +56,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
                 data: id,
                 headers: {'Content-Type': 'application/json;charset=utf-8'}
         })
+
                 .success(function (data) {
                     output.category = data;
                     deferred.resolve(data);
@@ -69,7 +70,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
     output.addCategoryItem = function (category) {
         var categoryName = category.categoryName;
         var deferred = $q.defer();
-        console.log(apiUrl+":"+categoryName);
+        console.log(apiUrl + ":" + categoryName);
         return $http.post(apiUrl + categoryName + '/item', category)
                 .success(function (data) {
                     output.category = data;
@@ -80,13 +81,13 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
                 });
         //return deferred.promise;
     };
-    
-     output.editCategoryItem = function (categoryItem) {
+
+    output.editCategoryItem = function (categoryItem) {
         var categoryName = categoryItem.categoryName;
         var itemName = categoryItem.categorItemName;
         var deferred = $q.defer();
-        console.log(apiUrl+""+categoryName+"/"+itemName);
-        return $http.put(apiUrl+""+categoryName+"/"+itemName, categoryItem)
+        console.log(apiUrl + "" + categoryName + "/" + itemName);
+        return $http.put(apiUrl + "" + categoryName + "/" + itemName, categoryItem)
                 .success(function (data) {
                     output.category = data;
                     deferred.resolve(data);
@@ -96,13 +97,50 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
                 });
         //return deferred.promise;
     };
-    
-    
-    
-    
+
+
+    output.deleteCategoryItem = function (category, item) {
+        var categoryName = category;
+        var itemName = item;
+        var deferred = $q.defer();
+        console.log(apiUrl + "" + categoryName + "/" + itemName);
+        return $http.delete(apiUrl + "" + categoryName + "/" + itemName)
+                .success(function (data) {
+                    output.category = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        //return deferred.promise;
+    };
+
+
+    return output;
+}
+
+function readJson($q, $http, $rootScope) {
+    var output = {};
+    var tagUrl = 'data/tags.json';
+
+    output.getTags = function () {
+        output.tags = [];
+        var deferred = $q.defer();
+        return $http.get(tagUrl)
+                .success(function (data) {
+                    console.log("suc : data "+data);
+                    output.tags = data;
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+    };
+
     return output;
 }
 
 angular
         .module('urbanApp')
-        .factory('CategoryService', ['$q', '$http', '$rootScope', '$localStorage', CategoryService]);
+        .factory('CategoryService', ['$q', '$http', '$rootScope', '$localStorage', CategoryService])
+        .factory('ReadJson', ['$q', '$http', '$rootScope', readJson]);

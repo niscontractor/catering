@@ -1,6 +1,6 @@
 'use strict';
 
-function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
+function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService) {
     var ctrl = this;
 
     $scope.getCategoryList = function () {
@@ -11,6 +11,11 @@ function categoryCtrl($scope, $modal, $log, $rootScope, CategoryService) {
             ctrl.categoryList = CategoryService.categories;
         }));
     }
+
+    ReadJson.getTags().then(angular.bind(this, function then() {
+        ctrl.tags = ReadJson.tags;
+        console.log("---> "+ctrl.logs);
+    }));
 
     ctrl.editCategory = function (category) {
         var modalInstance = $modal.open({
@@ -304,4 +309,4 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
 
 angular
         .module('urbanApp')
-        .controller('categoryCtrl', ['$scope', '$modal', '$log', '$rootScope', 'CategoryService', categoryCtrl]);
+        .controller('categoryCtrl', ['$scope', '$modal', '$log','ReadJson','$rootScope', 'CategoryService', categoryCtrl]);
