@@ -13,7 +13,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
     }
 
     ReadJson.getTags().then(angular.bind(this, function then() {
-        ctrl.tags = ReadJson.tags;
+        $rootScope.tags = ReadJson.tags;
     }));
 
     ctrl.editCategory = function (category) {
@@ -65,16 +65,13 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
     };
 
     ctrl.addCategoryItem = function (id) {
-        console.log('category: ', id);
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
-            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId','logs', AddItemCtrl]),
+            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
             size: 'med',
             resolve: {
                 categoryId: function () {
                     return id;
-                },logs : function (){
-                    return ctrl.logs;
                 }
             }
         });
@@ -92,8 +89,6 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
     };
 
     ctrl.editCategoryItem = function (item, category) {
-        console.log(item);
-        console.log('categoryItem: ', item.name + " -" + category._id + "-");
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
             controller: ('EditItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
@@ -170,8 +165,8 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
     };
 }
 
-function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId,tags) {
-    $scope.tags = tags; 
+function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
+    $scope.tags = $rootScope.tags; 
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
@@ -239,9 +234,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId,tags) {
 function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
     $scope.categoryItem = categoryItem;
     $scope.profilePhoto = '';
-    $scope.tags = ctrl.tags; 
-    console.log(categoryItem);
-
+    $scope.tags = $rootScope.tags;
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
