@@ -115,7 +115,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Tag your product</label>
            <oi-select class="m-b-30"
-                oi-options="tag.name for tag in dashboard.typeOfServices track by tag.name"
+                oi-options="tag.name for tag in tags track by tag.id"
                 ng-model="categoryItem.tag"
                 multiple>
             </oi-select>
