@@ -170,8 +170,8 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
     };
 }
 
-function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId,ctrl) {
-    $scope.tags = ctrl.tags; 
+function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId,tags) {
+    $scope.tags = tags; 
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
