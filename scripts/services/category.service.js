@@ -126,7 +126,6 @@ function readJson($q, $http, $rootScope) {
                     deferred.resolve(data);
                 })
                 .error(function (data) {
-                    console.log("err : data "+data);
                     deferred.reject(data);
                 });
     };
