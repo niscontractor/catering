@@ -12,8 +12,8 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
         }));
     }
 
-    ReadJson.getTags().then(angular.bind(this, function then() {
-        ctrl.tags = ReadJson.tags;
+    ReadJson.getTags().then(angular.bind(this, function then(data) {
+        ctrl.tags = data;
         console.log("---> "+ctrl.logs);
     }));
 
