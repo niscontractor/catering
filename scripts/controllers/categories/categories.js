@@ -73,7 +73,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
             resolve: {
                 categoryId: function () {
                     return id;
-                },logs : fucntion (){
+                },logs : function (){
                     return ctrl.logs;
                 }
             }
