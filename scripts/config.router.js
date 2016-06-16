@@ -51,8 +51,6 @@ angular
                 // });
 
                 $rootScope.addMessage = function (msg, type) {
-                    console.log(msg);
-                    console.log(type);
                     if (type === "success") {
                         toaster.success(msg);
                     } else if (type === "error") {

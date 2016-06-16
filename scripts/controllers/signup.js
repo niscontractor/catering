@@ -22,8 +22,7 @@ function signupCtrl($state, Common,$rootScope,$localStorage) {
                    $rootScope.addMessage(response.msg, 'error');
                }
             }).catch(function (response) {
-                console.log('failure', response);
-                $rootScope.addMessage('Email already exists.');
+                $rootScope.addMessage('Email already exists.','error');
             });
         }
     };
