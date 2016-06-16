@@ -29,11 +29,8 @@ var dragDropDir = function ($timeout) {
                     if (data != null) {
                         angular.forEach(data, function (obj) {
                             $timeout(function () {
+                                console.log("1");
                                 if ($(element).find('.badge:contains(' + obj.id + ')').length == 0) {
-                                    var template = '<li class="list-group-item line-success line-outline node-"><span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon"></span>' +
-                                            obj.text
-                                            + '<span class="badge">' + obj.id + '</span></li>';
-                                    $(template).appendTo(element);
                                 }
                             })
                         });
