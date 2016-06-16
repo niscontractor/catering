@@ -4,7 +4,7 @@
     <div class="col-sm-12">
         <button data-ng-click="categories.addCategory()" class="btn btn-green mb20" type="button">
             <span class="fa fa-plus mr5"></span>
-            <span>Add New Catagory</span>
+            <span>Add New Category</span>
         </button>
     </div>
 
@@ -45,22 +45,22 @@
     <h4 class="modal-title">Add New Category </h4>
     </div>
     <div class="modal-body">
-    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addCategoryForm">
     <div class="form-group">
     <label class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" ng-model="category.name" required>
+    <input type="text" class="form-control" ng-model="category.name" ng-required="true">
     </div>
     </div>
 
     <div class="form-group">
     <label class="col-sm-2 control-label">Description</label>
     <div class="col-sm-10">
-    <textarea rows="3" class="form-control" ng-model="category.desc" required></textarea>
+    <textarea rows="3" class="form-control" ng-model="category.desc" ng-required="true"></textarea>
     </div>
     </div>
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" data-ng-click="ok()">OK</button>
+    <button class="btn btn-primary btn-sm" data-ng-click="ok()" type="submit" ng-disabled="addCategoryForm.$invalid">OK</button>
     <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
     </div>
     </form>
@@ -72,22 +72,22 @@
     <h4 class="modal-title">Edit Category </h4>
     </div>
     <div class="modal-body">
-    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="editCategoryForm">
     <div class="form-group">
     <label class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" ng-model="category.name" required >
+    <input type="text" class="form-control" ng-model="category.name" ng-required="true" >
     </div>
     </div>
 
     <div class="form-group">
     <label class="col-sm-2 control-label">Description</label>
     <div class="col-sm-10">
-    <textarea rows="3" class="form-control" ng-model="category.desc" required></textarea>
+    <textarea rows="3" class="form-control" ng-model="category.desc" ng-required="true"></textarea>
     </div>
     </div>
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" data-ng-click="ok()">OK</button>
+    <button class="btn btn-primary btn-sm" data-ng-click="ok()" type="submit" ng-disabled="editCategoryForm.$invalid">OK</button>
     <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
     </div>
     </form>
@@ -99,47 +99,53 @@
     <h4 class="modal-title">Add New Item </h4>
 </div>
 <div class="modal-body">
-    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addCategoryItemForm">
         <div class="form-group">
-            <label class="col-sm-2 control-label">Title</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="categoryItem.name" required>
+            <label class="col-sm-3 control-label">Title</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" ng-model="categoryItem.name" ng-required="true">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
-                <textarea rows="3" class="form-control" ng-model="categoryItem.desc" required></textarea>
+            <label class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+                <textarea rows="3" class="form-control" ng-model="categoryItem.desc" ng-required="true"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Tag your product{{tags}}</label>
-           <oi-select class="m-b-30"
+            <label class="col-sm-3 control-label">Tag your product</label>
+           <div class="col-sm-9">
+            <oi-select class="m-b-30"
                 oi-options="tag.name for tag in tags track by tag.id"
                 ng-model="categoryItem.tag"
                 multiple>
             </oi-select>
+   </div> 
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">No. of Serve</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" ng-model="categoryItem.qty" required>
+            <label class="col-sm-3 control-label">No. of Serve</label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" ng-model="categoryItem.qty" ng-required="true">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Price</label>
-            <div class="col-sm-3">
-                <input type="number" class="form-control" ng-model="categoryItem.price" placeholder="€" required>  
+            <label class="col-sm-3 control-label">Price</label>
+            <div class="col-sm-9">
+                <input type="number" class="form-control" ng-model="categoryItem.price" placeholder="€" ng-required="true">  
             </div>  
-        <label class="col-sm-3 control-label">Available for sale</label>
-        <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
+        </div>
+<div class="form-group">
+            <label class="col-sm-3 control-label" style="padding-top: 15px;">Available for sale</label>
+        <div class="col-sm-9">
+            <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
              <input type="checkbox" checked="" ng-model="categoryItem.available">
              <span> <i class="handle"></i> </span>
          </label>
+ </div>
         </div>
         <div class="form-group"">
-             <label class="col-sm-2 control-label">Item Cover</label>
-            <div class="col-xs-9 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
+             <label class="col-sm-3 control-label">Item Cover</label>
+            <div class="col-xs-6 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
                  flow-name="uploadPhoto.flow"
                  flow-file-success="uploadImageSuccess( $file, $message, $flow )"
                  flow-file-added="imageAdded( $file, $event, $flow )"
@@ -160,7 +166,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary btn-sm" type="submit" data-ng-click="ok()">OK</button>
+            <button class="btn btn-primary btn-sm" type="submit" data-ng-click="ok()" type="submit" ng-disabled="addCategoryItemForm.$invalid">OK</button>
             <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
         </div>
 
@@ -173,48 +179,63 @@
     <h4 class="modal-title">Edit Item </h4>
     </div>
     <div class="modal-body">
-    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="editCategoryItemForm">
     <div class="form-group">
-    <label class="col-sm-2 control-label">Title</label>
-    <div class="col-sm-10">
-    <input type="text" class="form-control" ng-model="categoryItem.name">
+    <label class="col-sm-3 control-label">Title</label>
+    <div class="col-sm-9">
+    <input type="text" class="form-control" ng-model="categoryItem.name" ng-required="true">
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-2 control-label">Description</label>
-    <div class="col-sm-10">
-    <textarea rows="3" class="form-control" ng-model="categoryItem.desc"></textarea>
+    <label class="col-sm-3 control-label">Description</label>
+    <div class="col-sm-9">
+    <textarea rows="3" class="form-control" ng-model="categoryItem.desc" ng-required="true"></textarea>
     </div>
     </div>
     <div class="form-group">
-    <label class="col-sm-2 control-label">No. of Serve</label>
-    <div class="col-sm-10">
-    <input type="text" class="form-control" ng-model="categoryItem.qty">
+            <label class="col-sm-3 control-label">Tag your product</label>
+            <div class="col-sm-9">
+            <oi-select class="m-b-30"
+                oi-options="tag.name for tag in tags track by tag.id"
+                ng-model="categoryItem.tag"
+                multiple>
+            </oi-select>
+    </div>
+    </div>
+    <div class="form-group">
+    <label class="col-sm-3 control-label">No. of Serve</label>
+    <div class="col-sm-9">
+    <input type="text" class="form-control" ng-model="categoryItem.qty" ng-required="true">
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-2 control-label">Price</label>
-    <div class="col-sm-3">
-    <input type="text" class="form-control" ng-model="categoryItem.price">  
+    <label class="col-sm-3 control-label">Price</label>
+    <div class="col-sm-9">
+    <input type="text" class="form-control" ng-model="categoryItem.price" ng-required="true">  
     </div>
-    <label class="col-sm-3 control-label">Available for sale</label>
+    </div>
+    <div class="form-group">
+    <label class="col-sm-3 control-label" style="padding-top: 15px;">Available for sale</label>
+    <div class="col-sm-9">
     <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
     <input type="checkbox" checked="" ng-model="categoryItem.available">
     <span> <i class="handle"></i> </span>
     </label>
     </div>
+    </div>
 
     <div class="form-group">
-    <div class="col-xs-9 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
+    <label class="col-sm-3 control-label">Item Cover</label>
+    <div class="col-xs-6 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
     flow-name="uploadPhoto.flow"
     flow-file-success="uploadImageSuccess( $file, $message, $flow )"
     flow-file-added="imageAdded( $file, $event, $flow )"
     flow-files-submitted="uploadImage( $files, $event, $flow )"
     flow-file-error="uploadImageFailure( $file, $message, $flow )"
     flow-file-progress="uploadImageProgress()"
-    flow-drop style="width: auto;margin-left: 70px;margin-right: 70px;">
+    flow-drop>
     <span> 
     <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
     <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
@@ -231,7 +252,7 @@
     </div>
 
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="ok()">OK</button>
+    <button class="btn btn-primary btn-sm" ng-click="ok()" type="submit" ng-disabled="editCategoryItemForm.$invalid">OK</button>
     <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
     </div>
     </form>

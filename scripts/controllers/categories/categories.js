@@ -13,8 +13,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
     }
 
     ReadJson.getTags().then(angular.bind(this, function then() {
-        ctrl.tags = ReadJson.tags;
-        console.log("---> "+ctrl.logs);
+        $rootScope.tags = ReadJson.tags;
     }));
 
     ctrl.editCategory = function (category) {
@@ -66,7 +65,6 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
     };
 
     ctrl.addCategoryItem = function (id) {
-        console.log('category: ', id);
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
             controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
@@ -91,8 +89,6 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
     };
 
     ctrl.editCategoryItem = function (item, category) {
-        console.log(item);
-        console.log('categoryItem: ', item.name + " -" + category._id + "-");
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
             controller: ('EditItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
@@ -105,6 +101,7 @@ function categoryCtrl($scope, $modal, $log,ReadJson, $rootScope, CategoryService
                     itemCategory.desc = item.desc;
                     itemCategory.qty = item.qty;
                     itemCategory.price = item.price;
+                    itemCategory.tag = item.tag;
                     itemCategory.available = item.available;
                     itemCategory.category = category._id;
                     itemCategory.image = item.image;
@@ -170,7 +167,7 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
 }
 
 function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
-
+    $scope.tags = $rootScope.tags; 
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
@@ -226,6 +223,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
         obj.price = $scope.categoryItem.price;
         obj.available = $scope.categoryItem.available;
         obj.image = $scope.profilePhoto.filename || '';
+        obj.tag = $scope.categoryItem.tag;
         obj.categoryName = categoryId._id;
         $modalInstance.close(obj);
     };
@@ -238,9 +236,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
 function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
     $scope.categoryItem = categoryItem;
     $scope.profilePhoto = '';
-
-    console.log(categoryItem);
-
+    $scope.tags = $rootScope.tags;
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
@@ -294,7 +290,7 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
         obj.available = $scope.categoryItem.available;
         obj.categoryName = $scope.categoryItem.category;
         obj.categorItemName = $scope.categoryItem.item;
-
+        obj.tag = $scope.categoryItem.tag;
         if ($scope.profilePhoto && $scope.profilePhoto.filename) {
             obj.image = $scope.profilePhoto.filename;
         }

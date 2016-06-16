@@ -11847,7 +11847,7 @@ td.align-middle {
 }
 .body-overflow {
     max-height: 130px;
-    overflow-y: scroll;
+    overflow-y: auto;
     min-height: 130px;
 }
 .bg-green {
