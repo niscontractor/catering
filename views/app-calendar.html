@@ -28,10 +28,12 @@
                             <small> Price : <span style="color:#7bc147">{{e.totalAmount}}&euro;</span></small><br/>
                         </div>
                     </div>
-                    <div class="row">
-                        Product :
-                        <div ng-repeat="item in e.items">
-                            {{item.itemName}}  :  {{item.totalNumber}}
+                    <div class="row ">
+                        <div class="col-sm-12 small">
+                            Product :
+                            <div ng-repeat="item in e.items" style="color:#7bc147">
+                                {{item.itemName}}  :  {{item.totalNumber}}
+                            </div>
                         </div>
                     </div>
                 </div>
