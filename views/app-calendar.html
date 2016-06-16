@@ -20,14 +20,14 @@
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <small>Order Id : {{e.order_id}}</small><br/>
-                            <small>Customer : {{e.customer_id}}</small><br/>
-                            <small>Qty : {{e.qty}} </small>
+                            <small>Order Id : <span style="color:#7bc147">{{e.id}}</span></small><br/>
+                            <small>Customer : <span style="color:#7bc147">{{e.customer_name}}</span></small><br/>
+                            <small>Qty : <span style="color:#7bc147">{{e.qty}}</span> </small>
                         </div>
                         <div class="col-sm-6">
-                            <small>Location : {{e.order_location}}</small><br/>
-                            <small>Package : {{e.package_id}}</small><br/>
-                            <small> Price : ${{e.price}}</small><br/>
+                            <small>Location :<span style="color:#7bc147"> {{e.order_location}}</span></small><br/>
+                            <small>Package : <span style="color:#7bc147">{{e.package_id}}</span></small><br/>
+                            <small> Price : <span style="color:#7bc147">{{e.totalAmount}}</span></small><br/>
                         </div>
                     </div>
                 </div>

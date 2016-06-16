@@ -11,11 +11,14 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
         OrderService.today().then(function(response) {
             for(var row in response) {
                 $scope.events.push({
-                    id:response[row]._id,
+                    id:response[row].order_id,
                     title: response[row].order_event,
                     start: new Date(),
                     listColor: 'danger',
-                    className: ['event-danger', 'event-name-light']
+                    className: ['event-danger', 'event-name-light'],
+                    customer_name : response[row].customer_name,
+                    order_location : response[row].customer_city,
+                    totalAmount : response[row].totalAmount
                 });
             }
         });
