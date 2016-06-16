@@ -12239,13 +12239,13 @@ p {
     margin-top: 75px;
 }
 .treeview-packageCtr {
-    max-height: 680px;
+    max-height: 400px;
     overflow-y: scroll;
     overflow-x: hidden !important;
     font-family: 'OpenSans';
     font-weight: normal !important;
     font-size: 14px;
-    position: fixed;
+    /*position: fixed;*/
     min-width: 330px;
 }
 .col-md-4 .panel-header {
