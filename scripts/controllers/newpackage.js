@@ -2,6 +2,8 @@
 
 function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
     var ctrl = this;
+    
+    
 
     $scope.getCategoryList = function () {
 
@@ -60,6 +62,15 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
     function AddPackageCtrl($scope, $modalInstance) {
 
+        $scope.showNewPackageUploadedImage = true;
+        $scope.showNewPackageRemove = false;
+
+        $scope.removeNewPackageImage = function(){
+            console.log("ajay");
+            $scope.showNewPackageUploadedImage = false;
+            $scope.showNewPackageRemove = false;
+        }
+
         $scope.uploadPhoto = {};
         $scope.$file;
         $scope.showProgressBar = false;
@@ -82,6 +93,8 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         };
         $scope.uploadImageSuccess = function ($file, $message, $flow) {
             //console.log('success');
+            $scope.showNewPackageRemove = true;
+            $scope.showNewPackageUploadedImage = true;
             $scope.profilePhoto = JSON.parse($message);
             $scope.fileName = $scope.profilePhoto.filename;
             $scope.showProgressBar = false;
@@ -118,6 +131,9 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
             obj.desc = $scope.package.desc;
             obj.price = $scope.package.price;
             obj.qty = $scope.package.qty;
+            if ($scope.showNewPackageUploadedImage == false) {
+                obj.image = "";
+            }
             var packageJson = JSON.stringify(obj);
             console.log(obj);
             $modalInstance.close(packageJson);

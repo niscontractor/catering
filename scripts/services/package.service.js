@@ -38,6 +38,20 @@ function PackageService($q, $http, $rootScope, $localStorage) {
                 return deferred.promise;
     };
 
+    output.deletePackage = function (package_id) {
+        var deferred = $q.defer();
+        $http.delete(apiUrl  + package_id)
+                .success(function (data) {
+                    deferred.resolve(data);
+                    console.log("success");
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                    console.log("error");
+                });
+                return deferred.promise;
+    };
+
     output.getPackageById = function (packageId) {
         var deferred = $q.defer();
         $http.get(apiUrl + packageId)

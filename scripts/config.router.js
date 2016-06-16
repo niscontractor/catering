@@ -24,8 +24,8 @@ angular
 
                 $rootScope.$state = $state;
 
-                //$rootScope.baseUrl = 'http://192.168.0.103:3000';
-                $rootScope.baseUrl = 'http://139.162.20.41:8080';
+                $rootScope.baseUrl = 'http://192.168.0.103:3000';
+                //$rootScope.baseUrl = 'http://139.162.20.41:8080';
 
                 // $rootScope.baseUrl = 'http://localhost:3000';
                 $rootScope.apipath = $rootScope.baseUrl + '/api';
@@ -51,6 +51,8 @@ angular
                 // });
 
                 $rootScope.addMessage = function (msg, type) {
+                    console.log(msg);
+                    console.log(type);
                     if (type === "success") {
                         toaster.success(msg);
                     } else if (type === "error") {

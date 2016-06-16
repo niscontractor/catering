@@ -1,6 +1,6 @@
 'use strict';
 
-function galleryCtrl($scope, $modal, PackageService) {
+function galleryCtrl(SweetAlert,$scope, $modal, PackageService) {
   $scope.ran = [];
   for (var i = 1; i <= 28; i += 1) {
     $scope.ran.push(i);
@@ -44,6 +44,38 @@ function galleryCtrl($scope, $modal, PackageService) {
         };
     }
 
+    $scope.deletePackage = function(index){
+        window.event.stopPropagation();
+        var package_id = $scope.userPackages[index]._id;
+        SweetAlert.swal({
+           title: "Are you sure?",
+           text: "Your will not be able to recover this package!",
+           type: "warning",
+           showCancelButton: true,
+           confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
+           cancelButtonText: "No, cancel!",
+           closeOnConfirm: false,
+           closeOnCancel: false }, 
+        function(isConfirm){ 
+            if (isConfirm) {
+              SweetAlert.swal("Deleted!", "Your package has been deleted.", "success");
+              PackageService.deletePackage(package_id).then(angular.bind(this, function then() {
+                PackageService.getPackages().then(function(response) {
+                    $scope.userPackages = response;
+                    }).catch(function (response) {
+                        console.log('failure', response);
+                        $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+                    });
+            }));
+           } 
+           else {
+              SweetAlert.swal("Cancelled", "Your package is safe :)", "error");
+           }
+        });
+    }
+
+
+
   $scope.favourites = [{
     name: 'Animals'
     }, {
@@ -70,4 +102,4 @@ function galleryCtrl($scope, $modal, PackageService) {
 
 angular
   .module('urbanApp')
-  .controller('galleryCtrl', ['$scope', '$modal', 'PackageService', galleryCtrl]);
+  .controller('galleryCtrl', ['SweetAlert','$scope', '$modal', 'PackageService', galleryCtrl]);
