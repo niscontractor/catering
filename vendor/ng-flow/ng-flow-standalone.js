@@ -70,7 +70,7 @@
      * @type {Object}
      */
     this.defaults = {
-      chunkSize: 1024 * 1024,
+      chunkSize: 2048 * 2048,
       forceChunkSize: false,
       simultaneousUploads: 3,
       singleFile: false,

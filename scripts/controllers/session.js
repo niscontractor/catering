@@ -19,12 +19,14 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
                 $localStorage.company_id = $rootScope.company_id;
+
                 Common.getUserById(response.user._id).then(function (response) {
                     $rootScope.user = response;
                     $localStorage.user = $rootScope.user;
                     Auth.setUser(response);
 //                    $rootScope.addMessage('Login successful.', 'success');
-                    if (response.isFirstTime) {
+                    if ($rootScope.isFirstTime==true) {
+                        console.log($rootScope.isFirstTime);
                         $state.go('app.apps.social');
                     } else {
                         $state.go('app.apps.calendar');

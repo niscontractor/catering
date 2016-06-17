@@ -36,7 +36,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
     $scope.addPackage = function () {
         var modalInstance = $modal.open({
             templateUrl: 'addPackage.html',
-            controller: ('AddPackageCtrl', ['$scope', '$modalInstance', AddPackageCtrl]),
+            controller: ('AddPackageCtrl', ['SweetAlert','$scope', '$modalInstance', AddPackageCtrl]),
             size: 'med',
             keyboard: false,
             backdrop: 'static'
@@ -60,7 +60,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
     };
 
 
-    function AddPackageCtrl($scope, $modalInstance) {
+    function AddPackageCtrl(SweetAlert,$scope, $modalInstance) {
 
         $scope.showNewPackageUploadedImage = true;
         $scope.showNewPackageRemove = false;
@@ -112,6 +112,11 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
         $scope.imageAdded = function ($file, $event, $flow) {
             $scope.$file = $file;
+            if ($file.size > 1024 * 1024) {
+            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+            console.log("Can not upload");
+            return false;
+            }
             var imageExtension = ["png", "gif", "jpg", "jpeg"];
             if ((imageExtension.indexOf($file.getExtension())) < 0) {
                 //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");

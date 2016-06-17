@@ -82,7 +82,7 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
     ctrl.addCategoryItem = function (id) {
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
-            controller: ('AddItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
+            controller: ('AddItemCtrl', ['SweetAlert','$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
             size: 'med',
             resolve: {
                 categoryId: function () {
@@ -107,7 +107,7 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
         $scope.showDeleteIcon = true;
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
-            controller: ('EditItemCtrl', ['$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
+            controller: ('EditItemCtrl', ['SweetAlert','$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
             size: 'med',
             resolve: {
                 categoryItem: function () {
@@ -200,7 +200,7 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
 
 
 
-function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
+function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) {
     $scope.showNewItemUploadedImage = true;
     $scope.removeNewItemImage = function(){
         console.log("Removed");
@@ -217,10 +217,19 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
     $scope.allowFileUpload = false;
     $scope.profilePhoto = '';
 
+//     $scope.validate = function (file) {
+//   if (file.size > 10) {
+//     $scope.errors.push({file:file, error: "file is too big"});
+//     console.log("error");
+//     return false;
+//   }
+//   return true;
+// }
+
     $scope.uploadCategoryImage = {
         target: $rootScope.apipath + '/category/' + categoryId._id + '/item-upload',
         singleFile: true,
-        testChunks: false,
+        testChunks: true,
     };
 
     $scope.uploadImage = function ($file, $event, $flow) {
@@ -249,6 +258,11 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
     };
     $scope.imageAdded = function ($file, $event, $flow) {
         $scope.$file = $file;
+        if ($file.size > 1024 * 1024) {
+            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+            console.log("Can not upload");
+            return false;
+        }
         var imageExtension = ["png", "gif", "jpg", "jpeg"];
         if ((imageExtension.indexOf($file.getExtension())) < 0) {
             //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
@@ -277,7 +291,7 @@ function AddItemCtrl($rootScope, $scope, $modalInstance, categoryId) {
     };
 }
 
-function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
+function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryItem) {
     
     $scope.categoryItem = categoryItem;
     $scope.profilePhoto = '';
@@ -316,6 +330,11 @@ function EditItemCtrl($rootScope, $scope, $modalInstance, categoryItem) {
     };
     $scope.imageAdded = function ($file, $event, $flow) {
         $scope.$file = $file;
+        if ($file.size > 1024 * 1024) {
+            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+            console.log("Can not upload");
+            return false;
+        }
         var imageExtension = ["png", "gif", "jpg", "jpeg"];
         if ((imageExtension.indexOf($file.getExtension())) < 0) {
             //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");

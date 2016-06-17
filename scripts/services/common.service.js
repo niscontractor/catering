@@ -1,6 +1,6 @@
 'use strict';
 
-function common($q, $http, $rootScope) {
+function common($q, $http, $rootScope,$state) {
     var output = {};
     var apiUrl = $rootScope.apipath;
 
@@ -8,6 +8,7 @@ function common($q, $http, $rootScope) {
         var deferred = $q.defer();
         $http.post(apiUrl + '/authenticate', json)
                 .success(function (data) {
+                    console.log(data);
                     if (data.success === true) {
                         deferred.resolve(data);
                     } else {
@@ -53,4 +54,4 @@ function common($q, $http, $rootScope) {
 
 angular
         .module('urbanApp')
-        .factory('Common', ['$q', '$http', '$rootScope', common]);
+        .factory('Common', ['$q', '$http', '$rootScope','$state', common]);
