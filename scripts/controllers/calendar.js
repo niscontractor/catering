@@ -18,7 +18,8 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
                     className: ['event-danger', 'event-name-light'],
                     customer_name : response[row].customer_name,
                     order_location : response[row].customer_city,
-                    totalAmount : response[row].totalAmount
+                    totalAmount : response[row].totalAmount,
+                    items : response[row].item_info
                 });
             }
         });
