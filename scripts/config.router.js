@@ -1027,6 +1027,47 @@ angular
                                 title: 'New Package',
                             }
                         })
+                        .state('app.apps.editpackage', {
+                            url: '/editpackage',
+                            templateUrl: 'views/editpackage.html',
+                            resolve: {
+                                loggedIn: checkLogin,
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            {
+                                                serie: true,
+                                                files: [
+                                                    'vendor/checkbo/src/0.1.4/js/checkBo.min.js',
+                                                    'vendor/chosen_v1.4.0/chosen.jquery.min.js',
+                                                    'vendor/jquery.ui/ui/core.js',
+                                                    'vendor/jquery.ui/ui/widget.js',
+                                                    'vendor/jquery.ui/ui/mouse.js',
+                                                    'vendor/jquery.ui/ui/draggable.js',
+                                                    'vendor/jquery.ui/ui/droppable.js'
+													
+                                                ]
+                                            }]).then(function () {
+                                            return $ocLazyLoad.load([
+                                                'vendor/bootstrap-treeview/dist/bootstrap-treeview.min.css',
+                                                'vendor/bootstrap-treeview/dist/bootstrap-treeview.min.js',
+                                                'scripts/directives/dragdrop.js',
+                                                'scripts/services/category.service.js',
+                                                'scripts/services/package.service.js',
+                                                'scripts/controllers/editpackage.js',
+                                                'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
+                                                'vendor/chosen_v1.4.0/chosen.min.css',
+                                                'scripts/controllers/bootstrap.ui.js',
+                                                'scripts/directives/easy-edit.js',
+												
+                                            ]);
+                                        });
+                                    }]
+                            },
+                            data: {
+                                title: 'Edit Package',
+                            }
+                        })
+
                         .state('app.apps.packagedetail', {
                             url: '/package/:packageId',
                             templateUrl: 'views/package-detail.html',
