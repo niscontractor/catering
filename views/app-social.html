@@ -61,15 +61,15 @@
                                                     <span>
                                                         
                                                         <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your LOGO here
-                                                        <div style="display: inline-block;margin-left: 20px;" ng-show="uploadedLogo">
+                                                        <div style="display: inline-block;margin-left: 20px;">
                                                             <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
                                                         </div>
                                                     </span>
-                                                    <span ng-show="showRemovedLogoButton" ng-click="removeUploadedLogoImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span>
+                                                   <!--  <span ng-show="showRemovedLogoButton" ng-click="removeUploadedLogoImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span -->
 
 
                                                 </div>
-                                                <div class="col-xs-3" ng-show="userLogoImage">
+                                                <div class="col-xs-3">
                                                     <img src="{{dashboard.company.logo}}" ng-show="dashboard.company.logo" class="img-responsive" style="height: 130px">
                                                 </div>
 
@@ -85,12 +85,12 @@
                                                     <span>
                                                         
                                                         <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER here
-                                                        <div style="display: inline-block;margin-left: 20px;" ng-show="uploadedBanner">
+                                                        <div style="display: inline-block;margin-left: 20px;">
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0"></div>
-                                                        <span ng-show="showRemovedBannerButton" ng-click="removeUploadedBannerImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span>
+                                                       <!--  <span ng-show="showRemovedBannerButton" ng-click="removeUploadedBannerImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
                                                     </span>
                                                 </div>
-                                                <div class="col-xs-3" ng-show="userBannerImage">
+                                                <div class="col-xs-3">
                                                     <img src="{{dashboard.company.banner}}" ng-show="dashboard.company.banner" class="img-responsive"  style="height: 130px">
                                                 </div>
 
@@ -258,13 +258,13 @@
                                                      flow-drop>
                                                     <span>
                                                         <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Profile Photo here
-                                                        <div ng-show="showUploadedImage" style="    display: inline-block;margin-left: 20px;">
+                                                        <div style="display: inline-block;margin-left: 20px;">
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div>
                                                     </span>
-                                                     <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span>
+                                                     <!-- <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
                                                 </div>
 
-                                            <div class="col-xs-3" ng-show="userProfileImage">
+                                            <div class="col-xs-3">
                                                 <img src="{{dashboard.company.profile_pic}}" ng-show="dashboard.company.profile_pic" class="img-responsive" style="height: 130px">
                                             </div>
                                             <div class="col-sm-12">

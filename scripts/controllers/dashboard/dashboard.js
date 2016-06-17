@@ -6,35 +6,35 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     ctrl.selectedTab = 'company';
 
 
-    $scope.showRemovedButton = true;
-    $scope.userProfileImage = true;
-    $scope.userLogoImage = true;
-    $scope.showRemovedLogoButton = true;
-    $scope.uploadedLogo = true;
-    $scope.showRemovedBannerButton = true;
-    $scope.uploadedBanner = true;
-    $scope.userBannerImage = true;
+    // $scope.showRemovedButton = true;
+    // $scope.userProfileImage = true;
+    // $scope.userLogoImage = true;
+    // $scope.showRemovedLogoButton = true;
+    // $scope.uploadedLogo = true;
+    // $scope.showRemovedBannerButton = true;
+    // $scope.uploadedBanner = true;
+    // $scope.userBannerImage = true;
 
-    $scope.removeUploadedImage = function(){
-        $scope.showRemovedButton = false;
-        $scope.showUploadedImage = false;
-        $scope.userLogoImage = false;
-        ctrl.company.profile_pic = '';
-    }
+    // $scope.removeUploadedImage = function(){
+    //     $scope.showRemovedButton = false;
+    //     $scope.showUploadedImage = false;
+    //     $scope.userLogoImage = false;
+    //     ctrl.company.profile_pic = '';
+    // }
 
-    $scope.removeUploadedLogoImage = function(){
-        $scope.showRemovedLogoButton = false;
-        $scope.uploadedLogo = false;
-        $scope.userLogoImage = false;
-        ctrl.company.logo = '';
-    }
+    // $scope.removeUploadedLogoImage = function(){
+    //     $scope.showRemovedLogoButton = false;
+    //     $scope.uploadedLogo = false;
+    //     $scope.userLogoImage = false;
+    //     ctrl.company.logo = '';
+    // }
 
-    $scope.removeUploadedBannerImage = function(){
-        $scope.showRemovedBannerButton = false;
-        $scope.uploadedBanner = false;
-        $scope.userBannerImage = false;
-        ctrl.company.banner = '';
-    }
+    // $scope.removeUploadedBannerImage = function(){
+    //     $scope.showRemovedBannerButton = false;
+    //     $scope.uploadedBanner = false;
+    //     $scope.userBannerImage = false;
+    //     ctrl.company.banner = '';
+    // }
 
     $scope.initCompanyProfile = function () {
         if (!angular.isDefined($rootScope.company_id)) {
@@ -116,13 +116,13 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     };
     ctrl.uploadImageSuccess = function ($file, $message, $flow) {
         console.log('success');
-        $scope.showRemovedLogoButton = true;
-        $scope.showRemovedButton = true;
-        $scope.showUploadedImage = true;
-        $scope.uploadedLogo = true;
+        // $scope.showRemovedLogoButton = true;
+        // $scope.showRemovedButton = true;
+        // $scope.showUploadedImage = true;
+        // $scope.uploadedLogo = true;
 
-        $scope.showRemovedBannerButton = true;
-        $scope.uploadedBanner = true;
+        // $scope.showRemovedBannerButton = true;
+        // $scope.uploadedBanner = true;
 
         $timeout(function () {
             ctrl.showProgressBar = false;
