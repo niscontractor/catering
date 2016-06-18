@@ -3,10 +3,7 @@
         display: none
     }
 </style>
-<div data-ng-controller="packageCtrl
-                as
-        packageCtr" ng-init="getCategoryList();
-                        getPackageData()" ui-jq="checkBo">
+<div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList();getPackageData()" ui-jq="checkBo">
     <form class="form-horizontal form-fixed">
         <div  ng-controller="ModalDemoCtrl">
             <div class="col-sm-6 text-left">
@@ -27,7 +24,7 @@
                 <div class="col-md-4" ng-repeat='section in currentPackage.sections'>
                     <div class="panel panel-default">
                         <div class="panel-header bg-primary">
-                            <div class="row" ng-app="MyApp">
+                           <div class="row" ng-app="MyApp">
                                 <input id="item-display" ng-model="section.title" class="form-control" placeholder="What are you serving?" style="display: inline;width: 60%;"/>
                                 <input id="amount_entry" ng-model="section.options" class="form-control" placeholder="Quantity?" style="display: inline;margin-left: 10px;width: 28%;"/>
                                 <span style="color: red;" ng-click="packageCtr.removeSection(currentPackage.sections,section);" class="cursor large glyphicon glyphicon-trash" title="Delete section"></span>
@@ -39,11 +36,11 @@
                                     <span>{{item.text}}</span><span class="badge">1</span>
                                     <span style="color: red;padding-left: 5px" ng-click="packageCtr.removeSectionItem(section.list_of_menu, item);" class="cursor large glyphicon glyphicon-trash" title="Delete item"></span>
                                 </li>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
