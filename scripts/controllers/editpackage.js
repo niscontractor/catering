@@ -1,11 +1,7 @@
 'use strict';
 
-function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS, CategoryService, PackageService) {
+function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
     var ctrl = this;
-
-    
-    $scope.onlyNumbers = /^\d+$/;
-
     $scope.getCategoryList = function () {
 
 //TODO $rootScope.user.username
@@ -34,51 +30,38 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
     }
 //    ctrl.package = {"sections": [{"list_of_menu": [{"id": 1, "text": "Tomato", "selectable": false, "tags": [1]}]}], "name": "Package Lunch", "price": "350", "title": "Happy hours", "description": "Delicious lunch"};
 
-    $scope.addPackage = function () {
+    $scope.editPackage = function () {
+        console.log("-"+$rootScope.packageId);
         var modalInstance = $modal.open({
-            templateUrl: 'addPackage.html',
-            controller: ('AddPackageCtrl', ['SweetAlert', '$scope', '$modalInstance', AddPackageCtrl]),
+            templateUrl: 'editpackage.html',
+            controller: ('EditPackageCtrl', ['$scope', '$modalInstance','$rootScope', EditPackageCtrl]),
             size: 'med',
             keyboard: false,
             backdrop: 'static'
         });
 
         modalInstance.result.then(function (packageJson) {
-            PackageService.addPackage(packageJson).then(angular.bind(this, function then() {
+                            console.log("--after edit----"+packageJson);
+            PackageService.editPackage(packageJson).then(angular.bind(this, function then() {
                 ctrl.package = PackageService.package;
-                $state.go('app.apps.packagedetail', {packageId: PackageService.package._id}, {})
+                $state.go('app.apps.packagedetail', {packageId: $rootScope.packageId}, {});
+                console.log("--after edit----"+$rootScope.packageId);
             }));
         });
     };
 
-    ctrl.savePackage = function () {
-        PackageService.addPackage(ctrl.package).then(angular.bind(this, function then() {
-            console.log(CategoryService.categories);
-            ctrl.package = PackageService.package;
-            console.log(ctrl.categories);
-        }));
-
-    };
-
-
-    function AddPackageCtrl(SweetAlert, $scope, $modalInstance) {
-
+    function EditPackageCtrl($scope, $modalInstance,$rootScope) {
         $scope.showNewPackageUploadedImage = true;
-        //$scope.showNewPackageRemove = false;
-
-
-        // $scope.removeNewPackageImage = function(){
-        //     console.log("ajay");
-        //     $scope.showNewPackageUploadedImage = false;
-        //     //$scope.showNewPackageRemove = false;
-        // }
-
-        $scope.removeNewPackageImage = function () {
-            console.log("ajay");
+        $scope.showNewPackageRemove = false;
+        console.log("--- in edit ctr : "+$rootScope.packageId);
+        PackageService.getPackageById($rootScope.packageId).then(function(result) {
+            $scope.package = result;
+        });
+        
+        $scope.removeNewPackageImage = function(){
             $scope.showNewPackageUploadedImage = false;
             $scope.showNewPackageRemove = false;
         }
-
 
         $scope.uploadPhoto = {};
         $scope.$file;
@@ -91,11 +74,10 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
             target: $rootScope.apipath + '/package' + '/item-upload',
             singleFile: true,
             testChunks: false,
-            chunkSize: 1024*1024*5
         };
 
         $scope.uploadImage = function ($file, $event, $flow) {
-            $scope.fileUploaded = true;
+        $scope.fileUploaded = true;
             if ($scope.allowFileUpload) {
                 $flow.upload();
                 $scope.showProgressBar = true;
@@ -103,7 +85,7 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
         };
         $scope.uploadImageSuccess = function ($file, $message, $flow) {
             //console.log('success');
-            //$scope.showNewPackageRemove = true;
+            $scope.showNewPackageRemove = true;
             $scope.showNewPackageUploadedImage = true;
             $scope.profilePhoto = JSON.parse($message);
             $scope.fileName = $scope.profilePhoto.filename;
@@ -122,13 +104,6 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
 
         $scope.imageAdded = function ($file, $event, $flow) {
             $scope.$file = $file;
-
-            if ($file.size > 1024 * 1024 * 5) {
-            SweetAlert.swal("Failed!", "Upload Image less than 5MB");
-            console.log("Can not upload");
-            return false;
-
-            }
             var imageExtension = ["png", "gif", "jpg", "jpeg"];
             if ((imageExtension.indexOf($file.getExtension())) < 0) {
                 //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
@@ -148,6 +123,7 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
             obj.desc = $scope.package.desc;
             obj.price = $scope.package.price;
             obj.qty = $scope.package.qty;
+            obj._id = $rootScope.packageId;
             if ($scope.showNewPackageUploadedImage == false) {
                 obj.image = "";
             }
@@ -162,32 +138,23 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
         };
     }
 
-    $scope.getPackageData = function () {
-        PackageService.getPackageById($rootScope.$stateParams.packageId).then(function (result) {
+    $scope.getPackageData = function() {
+        PackageService.getPackageById($rootScope.$stateParams.packageId).then(function(result) {
             $scope.currentPackage = result;
+            console.log(JSON.stringify(result));
         });
     }
 
     ctrl.addSection = function () {
         $scope.currentPackage.sections.push({});
-        console.log("in new js");
+        console.log(JSON.stringify(ctrl.package.sections));
     };
 
     ctrl.saveSections = function () {
-        PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function (result) {
+        PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function(result) {
             $state.go('app.apps.gallery');
         });
     };
-
-    ctrl.removeSectionItem = function (section, item) {
-        var index = section.indexOf(item);
-        section.splice(index, 1);
-    }
-
-    ctrl.removeSection = function (section, item) {
-        var index = section.indexOf(item);
-        section.splice(index, 1);
-    }
 }
 
 angular

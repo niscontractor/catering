@@ -1,21 +1,21 @@
 'use strict';
 
-function galleryCtrl(SweetAlert,$scope, $modal, PackageService) {
-  $scope.ran = [];
-  for (var i = 1; i <= 28; i += 1) {
-    $scope.ran.push(i);
-  }
+function galleryCtrl(SweetAlert, $scope, $modal, $state, PackageService,$rootScope) {
+    $scope.ran = [];
+    for (var i = 1; i <= 28; i += 1) {
+        $scope.ran.push(i);
+    }
 
-  $scope.getUserPackages = function() {
-    PackageService.getPackages().then(function(response) {
-      $scope.userPackages = response;
-    }).catch(function (response) {
-        console.log('failure', response);
-        $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
-    });
-  }
+    $scope.getUserPackages = function () {
+        PackageService.getPackages().then(function (response) {
+            $scope.userPackages = response;
+        }).catch(function (response) {
+            console.log('failure', response);
+            $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+        });
+    }
 
-   $scope.getPackageDetail = function (packageD) {
+    $scope.getPackageDetail = function (packageD) {
 
         var modalInstance = $modal.open({
             templateUrl: 'packageDetail.html',
@@ -28,7 +28,8 @@ function galleryCtrl(SweetAlert,$scope, $modal, PackageService) {
             }
         });
 
-        modalInstance.result.then(function (status) {});
+        modalInstance.result.then(function (status) {
+        });
     };
 
     function PackageDetailCtrl($scope, $modalInstance, packDetail) {
@@ -42,64 +43,71 @@ function galleryCtrl(SweetAlert,$scope, $modal, PackageService) {
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+
+        $scope.editPackage = function () {
+            $modalInstance.dismiss('cancel');
+            $rootScope.packageId = packDetail._id;
+            console.log("-------> "+packDetail._id)
+            $state.go('app.apps.editpackage');
+        };
     }
 
-    $scope.deletePackage = function(index){
+    $scope.deletePackage = function (index) {
         window.event.stopPropagation();
         var package_id = $scope.userPackages[index]._id;
         SweetAlert.swal({
-           title: "Are you sure?",
-           text: "Your will not be able to recover this package!",
-           type: "warning",
-           showCancelButton: true,
-           confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
-           cancelButtonText: "No, cancel!",
-           closeOnConfirm: false,
-           closeOnCancel: false }, 
-        function(isConfirm){ 
+            title: "Are you sure?",
+            text: "Your will not be able to recover this package!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
             if (isConfirm) {
-              SweetAlert.swal("Deleted!", "Your package has been deleted.", "success");
-              PackageService.deletePackage(package_id).then(angular.bind(this, function then() {
-                PackageService.getPackages().then(function(response) {
-                    $scope.userPackages = response;
+                SweetAlert.swal("Deleted!", "Your package has been deleted.", "success");
+                PackageService.deletePackage(package_id).then(angular.bind(this, function then() {
+                    PackageService.getPackages().then(function (response) {
+                        $scope.userPackages = response;
                     }).catch(function (response) {
                         console.log('failure', response);
                         $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
                     });
-            }));
-           } 
-           else {
-              SweetAlert.swal("Cancelled", "Your package is safe :)", "error");
-           }
+                }));
+            }
+            else {
+                SweetAlert.swal("Cancelled", "Your package is safe :)", "error");
+            }
         });
     }
 
 
 
-  $scope.favourites = [{
-    name: 'Animals'
-    }, {
-    name: 'Architecture'
-    }, {
-    name: 'Nature'
-    }, {
-    name: 'People'
-    }, {
-    name: 'Tech'
-    }];
+    $scope.favourites = [{
+            name: 'Animals'
+        }, {
+            name: 'Architecture'
+        }, {
+            name: 'Nature'
+        }, {
+            name: 'People'
+        }, {
+            name: 'Tech'
+        }];
 
-  $scope.filters = [{
-    name: 'Black and White'
-    }, {
-    name: 'Colored'
-    }, {
-    name: 'Monotone'
-    }, {
-    name: 'Alpha Channel'
-    }];
+    $scope.filters = [{
+            name: 'Black and White'
+        }, {
+            name: 'Colored'
+        }, {
+            name: 'Monotone'
+        }, {
+            name: 'Alpha Channel'
+        }];
 
 }
 
 angular
-  .module('urbanApp')
-  .controller('galleryCtrl', ['SweetAlert','$scope', '$modal', 'PackageService', galleryCtrl]);
+        .module('urbanApp')
+        .controller('galleryCtrl', ['SweetAlert', '$scope', '$modal', '$state', 'PackageService','$rootScope', galleryCtrl]);
