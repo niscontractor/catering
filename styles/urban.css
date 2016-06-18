@@ -12248,6 +12248,10 @@ p {
     /*position: fixed;*/
     min-width: 330px;
 }
+
+.treeview-packageCtr li{
+    z-index: 3;
+}
 .col-md-4 .panel-header {
     padding: 10px 15px;
     font-size: 14px;
