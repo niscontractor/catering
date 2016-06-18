@@ -4,6 +4,20 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     var ctrl = this;
     ctrl.company = {};
     ctrl.selectedTab = 'company';
+    ctrl.company.display_image = '';
+    ctrl.company.banner = '';
+    ctrl.company.logo = '';
+    ctrl.company.profile_pic = '';
+
+    $scope.showOldLogo = true;
+    $scope.showNewLogo = false;
+    $scope.showOldProfilePic = true;
+    $scope.showNewProfilePic = false;
+    $scope.showOldDisplayImage = true;
+    $scope.showNewDisplayImage = false;
+    $scope.showOldBannerImage = true;
+    $scope.showNewBannerImage = false;
+
 
 
     // $scope.showRemovedButton = true;
@@ -75,6 +89,7 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
 
     ctrl.register = function () {
 //        submit data
+        console.log(ctrl.company);
         CompanyService.saveOrUpdate(ctrl.company).then(function (response) {
             $rootScope.addMessage('Company updated successfully', 'success');
             $state.go('app.apps.calendar');
@@ -94,18 +109,21 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         target: $rootScope.apipath + '/company/logo/' + $localStorage.company_id,
         singleFile: true,
         testChunks: false,
+        chunkSize: 1024*1024*5
     };
 
     ctrl.uploadProfilePhoto = {
         target: $rootScope.apipath + '/company/profile-pic/' + $localStorage.company_id,
         singleFile: true,
-        testChunks: false
+        testChunks: false,
+        chunkSize: 1024*1024*5
     };
 
     ctrl.uploadBanner = {
         target: $rootScope.apipath + '/company/banner/' + $localStorage.company_id,
         singleFile: true,
-        testChunks: false
+        testChunks: false,
+        chunkSize: 1024*1024*5
     };
 
     ctrl.uploadImage = function ($file, $event, $flow) {
@@ -114,8 +132,37 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
             $flow.upload();
         }
     };
-    ctrl.uploadImageSuccess = function ($file, $message, $flow) {
+    ctrl.uploadImageSuccess = function ($file, $message, $flow , type) {
+        var fileName = JSON.parse($message).filename;
+        if (type == 'display_image') {
+            ctrl.company.display_image = fileName;
+            console.log(type);
+        } 
+        else if(type == 'banner'){
+            ctrl.company.banner = fileName;
+            console.log(type);
+        }
+        else if(type == 'logo'){
+            ctrl.company.logo = fileName;
+            console.log(type);
+        }
+        else if(type == 'profile_pic'){
+            ctrl.company.profile_pic = fileName;
+            console.log(type);
+        }
+        else{
+            
+        }
         console.log('success');
+        $scope.showOldLogo = false;
+        $scope.showNewLogo = true;
+        $scope.showOldProfilePic = false;
+        $scope.showNewProfilePic = true;
+        $scope.showOldDisplayImage = false;
+        $scope.showNewDisplayImage = true;
+        $scope.showOldBannerImage = false;
+        $scope.showNewBannerImage = true;
+         $scope.fileSize = $file.size;
         // $scope.showRemovedLogoButton = true;
         // $scope.showRemovedButton = true;
         // $scope.showUploadedImage = true;
@@ -148,11 +195,14 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     };
     ctrl.imageAdded = function ($file, $event, $flow) {
 
-        if ($file.size > 1024 * 1024) {
-            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+        if ($file.size > 1024 * 1024 * 5) {
+            SweetAlert.swal("Failed!", "Upload Image less than 5MB");
             console.log("Can not upload");
             return false;
         }
+
+
+
         ctrl.$file = $file;
         var imageExtension = ["png", "gif", "jpg", "jpeg"];
         if ((imageExtension.indexOf($file.getExtension())) < 0) {

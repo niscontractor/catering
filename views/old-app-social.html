@@ -34,7 +34,7 @@
                                             <div class="col-sm-6 service-input">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.companyName.$invalid && registrationForm.companyName.$dirty)}">
                                                 <label class="allLabel">Brand Name</label>
-                                                    <input name="companyName" class="form-control" ng-model="dashboard.company.brand_name" required/>
+                                                    <input name="companyName" class="form-control" ng-model="dashboard.company.name" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.companyName.$dirty) && registrationForm.companyName.$invalid"> 
                                                         <span class="help-block" ng-show="registrationForm.companyName.$error.required">Required</span>
                                                     </div>
@@ -50,51 +50,49 @@
 
 
                                                 
-                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.uploadLogo"
+                                                <div class="col-xs-9 m-b-30 drop drop-design" flow-init="dashboard.uploadLogo"
                                                      flow-name="dashboard.uploadPhoto.flow"
-                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow ,'display_image')"
+                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
                                                      flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
                                                      flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
                                                      flow-file-progress="dashboard.uploadImageProgress()"
-                                                     flow-drop style="display: inline-flex;">
+                                                     flow-drop>
                                                     <span>
                                                         
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop Display Image here
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop Dislay Image here
                                                         <div style="display: inline-block;margin-left: 20px;">
-                                                            
+                                                            <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
                                                         </div>
                                                     </span>
-                                                    <img flow-img="$flow.files[0]" style="width: 100px;height: 100px;margin-left: 15px; "  class="img-responsive"" ng-if="$flow.files.length > 0 && showNewDisplayImage" ng-model="dashboard.company.display_image">
-                                                        <img ng-if="showOldDisplayImage" src="{{dashboard.company.display_image}}" class="img-responsive" style="height: 100px;margin-left: 15px;">
                                                    <!--  <span ng-show="showRemovedLogoButton" ng-click="removeUploadedLogoImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span -->
 
 
                                                 </div>
-                                                <!-- <div class="col-xs-3">
+                                                <div class="col-xs-3">
                                                     <img src="{{dashboard.company.logo}}" ng-show="dashboard.company.logo" class="img-responsive" style="height: 130px">
-                                                </div> -->
+                                                </div>
 
                                                 
-                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.uploadBanner"
+                                                <div class="col-xs-9 m-b-30 drop drop-design" flow-init="dashboard.uploadBanner"
                                                      flow-name="dashboard.uploadPhoto.flow"
-                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow ,'banner')"
+                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
                                                      flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
                                                      flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
                                                      flow-file-progress="dashboard.uploadImageProgress()"
-                                                     flow-drop style="display: inline-flex;" >
+                                                     flow-drop>
                                                     <span>
                                                         
                                                         <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER here
                                                         <div style="display: inline-block;margin-left: 20px;">
-                                                        </div>
+                                                        <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0"></div>
                                                        <!--  <span ng-show="showRemovedBannerButton" ng-click="removeUploadedBannerImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
                                                     </span>
-                                                    <img ng-if="showNewBannerImage" flow-img="$flow.files[0]" style="width: 100px;height: 100px;margin-left: 15px; " class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.banner">
-                                                    <img ng-if="showOldBannerImage" style="width: 100px;height: 100px;margin-left: 15px; " src="{{dashboard.company.banner}}" ng-show="dashboard.company.banner" class="img-responsive"  style="height: 130px">
                                                 </div>
-                                                
+                                                <div class="col-xs-3">
+                                                    <img src="{{dashboard.company.banner}}" ng-show="dashboard.company.banner" class="img-responsive"  style="height: 130px">
+                                                </div>
 
                                                 <uib-progressbar animate="true" ng-show="dashboard.showProgressBar"  value="$file.progress() * 100" class="customProgressBar progress-striped active" max="100"></uib-progressbar>
                                             </div>
@@ -127,7 +125,7 @@
                                                 <oi-select
                                                     class="m-b-30" style="height: 47px"
                                                     oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
-                                                    ng-model="dashboard.company.cuisine"
+                                                    ng-model="dashboard.company.cuisine_name"
                                                     multiple>
                                                 </oi-select>
 <!--                                                <input class="form-control m-b-30" placeholder="Do you provide special need  " ng-model="dashboard.company.specialNeeds"/>-->
@@ -217,118 +215,40 @@
                                 <div id="contacts4" class="tab-pane" ng-class="{active:dashboard.selectedTab === 'info'}" ng-show="dashboard.selectedTab === 'info'">
                                     <form class="form-horizontal">
                                         <div class="outer col-sm-12 service-input">
-                                            <div class="col-sm-6">
-                                                <label class="allLabel">Company Name</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.name"/>
-                                                <label class="allLabel">Company VAT Number</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.vat"/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="allLabel">Company Logo</label>
-                                                <div style="height: auto;" class="drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
-                                                     flow-name="dashboard.uploadPhoto.flow"
-                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow, 'logo' )"
-                                                     flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
-                                                     flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
-                                                     flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
-                                                     flow-file-progress="dashboard.uploadImageProgress()"
-                                                     flow-drop>
-                                                    <span>
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Logo here
-                                                        <!-- <div style="display: inline-block;margin-left: 20px;">
-                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div> -->
-                                                    </span>
-                                                     <!-- <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
-                                            
-                                                        <img src="{{dashboard.company.logo}}" ng-if="showOldLogo" style="display:inline-block;height: 130px;width: 150px;" class="img-responsive">
-                                                        <img ng-if="showNewLogo" flow-img="$flow.files[0]" style="height:130px;display: inline-block;margin-left: 20px;width: 150px;" class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.logo">
-                                                    
-                                                </div>
-                                            </div>
-
                                             <div class="col-sm-12">
-                                                <label class="allLabel">Company Address</label>
+                                                <label class="allLabel">Enter your CIF /NIF Number</label>
+                                                <input class="form-control m-b-30" ng-model="dashboard.company.cif"/>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label class="allLabel">Enter your Company Address</label>
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.address"/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="allLabel">Enter your  postal code</label>
+                                                <input class="form-control m-b-30" ng-model="dashboard.company.postal_code"/>
                                             </div>
                                             <div class="col-sm-4">
                                                 <label class="allLabel">City</label>
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.city"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <label class="allLabel">Pincode</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.postal_code"/>
-                                            </div>
-                                            <div class="col-sm-4">
                                                 <label class="allLabel">Telephone number</label>
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.telephone_number"/>
                                             </div>
-
-
+                                            <div class="col-sm-4">
+                                                <label class="allLabel">Email</label>
+                                                <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/>
+                                            </div>
                                             <div class="col-sm-4">
                                                 <label class="allLabel">Bank Name</label>
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.bank_name"/>
                                             </div>
-
-                                             <div class="col-sm-4">
-                                                <label class="allLabel">A/C No</label>
-                                                <input class="form-control m-b-30" type="text" ng-model="dashboard.company.account_number"/>
-                                            </div>
-                                            <!-- <div class="col-sm-4">
-                                                <label class="allLabel">Bank Name</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.bank_name"/>
-                                            </div> -->
                                             <div class="col-sm-4">
                                                 <label class="allLabel">IBAN NUmber</label>
                                                 <input class="form-control m-b-30"  ng-model="dashboard.company.iban_number"/>
                                             </div>
-
-                                            <!--  <div class="col-sm-4">
-                                                <label class="allLabel">Email</label>
-                                                <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/>
-                                            </div> -->
-                                            <div class="col-sm-6">
-                                                <div class="col-sm-12">
-                                                    <label class="allLabel">Contact Person</label>
-                                                    <input class="form-control m-b-30"  ng-model="dashboard.company.contact_person"/>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <label class="allLabel">Email</label>
-                                                    <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <label class="allLabel">Contact Number</label>
-                                                    <input class="form-control m-b-30" type="number" ng-model="dashboard.company.contact_number"/>
-                                                </div>
-                                                
-                                            </div>
-
-
-                                            <div class="col-sm-6">
-                                                <label class="allLabel">Profile picture</label>
-                                                <div style="height: auto;" class="drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
-                                                     flow-name="dashboard.uploadPhoto.flow"
-                                                     flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow,'profile_pic')"
-                                                     flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
-                                                     flow-files-submitted="dashboard.uploadImage( $files, $event, $flow )"
-                                                     flow-file-error="dashboard.uploadImageFailure( $file, $message, $flow )"
-                                                     flow-file-progress="dashboard.uploadImageProgress()"
-                                                     flow-drop>
-                                                    <span>
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Profile here
-                                                        <!-- <div style="display: inline-block;margin-left: 20px;">
-                                                        <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div> -->
-                                                    </span>
-                                                     <!-- <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
-                                                     
-                                                        <img ng-if="showOldProfilePic" src="{{dashboard.company.profile_pic}}" style="display:inline-block;height: 145px;width: 145px;" class="img-responsive">
-                                                        <img ng-if="showNewProfilePic" flow-img="$flow.files[0]" style="height:130px;display: inline-block;margin-left: 20px;width: 145px;" class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.profile_pic">
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.register();" style="padding: 1.5% 9%;margin-top: 20px;">Submit</button>
-                                            </div>
-                                            <!-- <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
+                    
+                                            <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow )"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
@@ -342,12 +262,14 @@
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div>
                                                     </span>
                                                      <!-- <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
-                                                <!-- </div> -->
+                                                </div>
 
-                                            
-                                            <!-- <div class="col-sm-6">
+                                            <div class="col-xs-3">
+                                                <img src="{{dashboard.company.profile_pic}}" ng-show="dashboard.company.profile_pic" class="img-responsive" style="height: 130px">
+                                            </div>
+                                            <div class="col-sm-12">
                                                 <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.register();">Submit</button>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

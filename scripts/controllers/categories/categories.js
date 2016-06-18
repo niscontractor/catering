@@ -227,22 +227,22 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
 // }
 
     $scope.uploadCategoryImage = {
-        target: $rootScope.apipath + '/category/' + categoryId._id + '/item-upload',
+        target: $rootScope.apipath + '/category/' + categoryId._id + '/item-upload/',
         singleFile: true,
         testChunks: true,
+
     };
 
     $scope.uploadImage = function ($file, $event, $flow) {
         $scope.fileUploaded = true;
         if ($scope.allowFileUpload) {
             $flow.upload();
-            console.log($file);
             $scope.showProgressBar = true;
         }
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
         console.log('success');
-
+        
         $scope.profilePhoto = JSON.parse($message);
         $scope.showProgressBar = false;
         $scope.showNewItemRemove = true;
@@ -258,8 +258,8 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
     };
     $scope.imageAdded = function ($file, $event, $flow) {
         $scope.$file = $file;
-        if ($file.size > 1024 * 1024) {
-            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+        if ($file.size > 1024 * 1024 * 5) {
+            SweetAlert.swal("Failed!", "Upload Image less than 5MB");
             console.log("Can not upload");
             return false;
         }

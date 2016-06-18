@@ -24,8 +24,8 @@ angular
 
                 $rootScope.$state = $state;
 
-                //$rootScope.baseUrl = 'http://192.168.0.106:3000';
-                $rootScope.baseUrl = 'http://139.162.20.41:3000';
+                $rootScope.baseUrl = 'http://192.168.0.106:3000';
+                //$rootScope.baseUrl = 'http://139.162.20.41:3000';
 
                 // $rootScope.baseUrl = 'http://localhost:3000';
                 $rootScope.apipath = $rootScope.baseUrl + '/api';
@@ -1281,6 +1281,22 @@ angular
                         .state('user.forgot', {
                             url: '/forgot',
                             templateUrl: 'views/extras-forgot.html',
+                            resolve: {
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                    return $ocLazyLoad.load('scripts/controllers/session.js').then(function () {
+                                return $ocLazyLoad.load('scripts/services/common.service.js');
+                                        });
+                                    }]
+                            },
+                            data: {
+                                appClasses: 'bg-white usersession',
+                                contentClasses: 'full-height'
+                            }
+                        })
+
+                        .state('user.forgetPassword', {
+                            url: '/forgetPassword',
+                            templateUrl: 'views/reset-password.html',
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                     return $ocLazyLoad.load('scripts/controllers/session.js').then(function () {

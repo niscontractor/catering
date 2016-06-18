@@ -1,8 +1,39 @@
 'use strict';
 
-function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
+function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
 
     var ctrl = this;
+    var token = $location.search().userToken;
+    $scope.signin = function(){
+        var baseUrl = $rootScope.baseUrl + '/api/forgetPassword';
+        $http.post(baseUrl,{'emailAddress':$scope.emailAddress})
+            .success(function(response){
+                if (response.success=="true") {
+                    SweetAlert.swal('Success', response.message, 'success');
+                    $state.go('user.signin');
+                }
+                else{
+
+                }
+            })
+            .error(function(error){
+                console.log(error);
+            });
+    }
+
+    $scope.reset_password = function(){
+        var baseUrl = $rootScope.baseUrl + '/api/resetPassword';
+        $http.post(baseUrl,{'userToken':token,'password':$scope.password})
+            .success(function(response){
+                console.log(response);
+                SweetAlert.swal('Success', response.message, 'success');
+                $state.go('user.signin');
+            })
+            .error(function(error){
+                console.log(error);
+                $state.go('user.signin');
+            });
+    }
 
     ctrl.signin = function () {
         $state.go('app.service');
@@ -46,4 +77,4 @@ function sessionCtrl($scope, $rootScope, $state, Common, $localStorage, Auth) {
 
 angular
         .module('urbanApp')
-        .controller('sessionCtrl', ['$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth', sessionCtrl]);
+        .controller('sessionCtrl', ['$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth', sessionCtrl]);

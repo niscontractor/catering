@@ -3,7 +3,7 @@
 function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
     var ctrl = this;
     
-    
+    $scope.onlyNumbers = /^\d+$/;
 
     $scope.getCategoryList = function () {
 
@@ -63,13 +63,13 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
     function AddPackageCtrl(SweetAlert,$scope, $modalInstance) {
 
         $scope.showNewPackageUploadedImage = true;
-        $scope.showNewPackageRemove = false;
+        //$scope.showNewPackageRemove = false;
 
-        $scope.removeNewPackageImage = function(){
-            console.log("ajay");
-            $scope.showNewPackageUploadedImage = false;
-            $scope.showNewPackageRemove = false;
-        }
+        // $scope.removeNewPackageImage = function(){
+        //     console.log("ajay");
+        //     $scope.showNewPackageUploadedImage = false;
+        //     //$scope.showNewPackageRemove = false;
+        // }
 
         $scope.uploadPhoto = {};
         $scope.$file;
@@ -82,6 +82,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
             target: $rootScope.apipath + '/package' + '/item-upload',
             singleFile: true,
             testChunks: false,
+            chunkSize: 1024*1024*5
         };
 
         $scope.uploadImage = function ($file, $event, $flow) {
@@ -93,7 +94,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         };
         $scope.uploadImageSuccess = function ($file, $message, $flow) {
             //console.log('success');
-            $scope.showNewPackageRemove = true;
+            //$scope.showNewPackageRemove = true;
             $scope.showNewPackageUploadedImage = true;
             $scope.profilePhoto = JSON.parse($message);
             $scope.fileName = $scope.profilePhoto.filename;
@@ -112,8 +113,8 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
 
         $scope.imageAdded = function ($file, $event, $flow) {
             $scope.$file = $file;
-            if ($file.size > 1024 * 1024) {
-            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+            if ($file.size > 1024 * 1024 * 5) {
+            SweetAlert.swal("Failed!", "Upload Image less than 5MB");
             console.log("Can not upload");
             return false;
             }

@@ -70,7 +70,7 @@
      * @type {Object}
      */
     this.defaults = {
-      chunkSize: 1024 * 1024,
+      chunkSize: 2048 * 2048,
       forceChunkSize: false,
       simultaneousUploads: 3,
       singleFile: false,
@@ -299,6 +299,7 @@
       // and last chunk of a file quickly; this let's the server check the file's
       // metadata and determine if there's even a point in continuing.
       var found = false;
+      console.log("ajay");
       if (this.opts.prioritizeFirstAndLastChunk) {
         each(this.files, function (file) {
           if (!file.paused && file.chunks.length &&
