@@ -8,17 +8,22 @@
         <div class="gallery">
             <div class="col-md-3 col-sm-4 col-xs-6 img-data" data-ng-repeat="userPack in userPackages">
                 <div class="text-center">
-                    <img data-ng-src="{{userPack.image}}" ng-if="userPack.image != ''" style="height: 150px;">
+                    <img data-ng-src="{{userPack.image}}" ng-if="userPack.image != ''" style="height: 150px;max-width: 100%">
                     <img ng-if="userPack.image == ''" src="images/def-order-online.png" style="height: 150px;">
-                    <div class="black-overlay" style="width:100%;padding 10px;cursor: pointer;z-index: 1"  ng-click="getPackageDetail(userPack)">
+                    <div class="black-overlay" style="width:100%;padding:10px;cursor: pointer;z-index: 1"  ng-click="getPackageDetail(userPack)">
                         <div class="col-sm-12" style="z-index: 2">
                             <span class="pull-right cursor large" style="color: red;padding: 10px" ng-click="deletePackage($index)"><i class="glyphicon glyphicon-trash"></i></span>
                         </div>
-                        <p class="img-data-heading">{{userPack.name}}</p>
-                        <div class="img-border-line"></div>
-                        <p class="img-data-heading-inner">{{userPack.desc}}</p>
+                        <div class="col-sm-12">
+                            <p class="img-data-heading">{{userPack.title}}</p>
+                            <p class="img-border-line"></p>
+                            <p class="img-data-heading-inner">{{userPack.desc}}</p>
+                        </div>
                     </div>
-                    <div class="img-main-package-name bold-font" style="padding-top: 0px" >Name: <span class="text-danger ml5">{{userPack.title}}</span>&nbsp;&nbsp;&nbsp;<span class="bold-font">Price:</span> <span class="text-danger ml5">{{userPack.price}}</span></div>
+                    <div  style="padding-top: 10px" >
+                        <p><span class="text-danger ml5">{{userPack.name}}</span></p>
+                        <p><span class="bold-font">Price:</span> <span class="text-danger ml5">{{userPack.price}}&euro;</span><span class="bold-font" style="margin-left: 50px;">No. of Serve:</span> <span class="text-danger ml5">{{userPack.qty}}</span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +65,7 @@
         <div class="form-group">
         <label class="col-sm-3 control-label">Price</label>
         <div class="col-sm-9">
-        <p>$ {{packDetailDetail.price}}</p>  
+        <p>&euro; {{packDetailDetail.price}}</p>  
         </div>
         </div>
 
