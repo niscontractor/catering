@@ -29,7 +29,6 @@ var dragDropDir = function ($timeout) {
                     if (data != null) {
                         angular.forEach(data, function (obj) {
                             $timeout(function () {
-                                console.log("1");
                                 if ($(element).find('.badge:contains(' + obj.id + ')').length == 0) {
                                 }
                             })
@@ -60,13 +59,9 @@ var dragDropDir = function ($timeout) {
                         });
 
                         var draggableObj = $(ui.draggable[0]).clone();
-                        $(draggableObj).appendTo(this);
-//                        $("<li class='list-group-item line-primary line-outline li-formula'></li>").text(ui.draggable.text()).appendTo(this);
-                        // ui.draggable.remove();
                     }
                 });
-            }
-            ;
+            };
             scope.$watch("treeview", function (data) {
                 if (data != null) {
                     $(element).treeview({
