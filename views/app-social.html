@@ -124,7 +124,7 @@
                                                 
                                             </div>
                                             <div class="col-sm-12">
-                                                <!-- <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a> -->
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
                                                 <button class="btn btn-orange pull-right continue-btn" ng-disabled="((registrationForm.companyName.$untouched && registrationForm.companyName.$invalid )|| dashboard.company.brand_name==null) || ((registrationForm.tagline.$untouched && registrationForm.tagline.$invalid)|| dashboard.company.tagline==null) ||((registrationForm.description.$untouched && registrationForm.description.$invalid)|| dashboard.company.description==null) || (dashboard.company.display_image==null) ||(dashboard.company.banner==null)" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" >Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@
 
                                             </div>
                                             <div class="col-sm-12">
-                                                <!-- <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a> -->
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
                                                 <button class="btn btn-orange pull-right continue-btn " ng-disabled="((yourFood.min_people.$untouched && yourFood.min_people.$invalid)||dashboard.company.min_people==null) || ((yourFood.max_people.$untouched && yourFood.max_people.$invalid)||dashboard.company.max_people==null) || ((yourFood.cancellation_notice_period.$untouched && yourFood.cancellation_notice_period.$invalid)|| dashboard.company.cancellation_notice_period==null) || ((yourFood.no_days_before_order.$untouched && yourFood.no_days_before_order.$invalid)||dashboard.company.no_days_before_order==null) || ((yourFood.minimum_amount_order.$untouched && yourFood.minimum_amount_order.$invalid)||dashboard.company.minimum_amount_order==null) || ((yourFood.special_need.$untouched && yourFood.special_need.$invalid) || dashboard.company.special_need==null)|| ((yourFood.cuisine.$untouched && yourFood.cuisine.$invalid)||dashboard.company.cuisine==null)" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
@@ -308,7 +308,7 @@
                                                 <!--<input class="form-control m-b-30" placeholder="Type of service" ng-model="dashboard.company.typeOfService"/>-->
                                             </div>
                                             <div class="col-sm-12">
-                                                <!-- <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a> -->
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
                                                 <button ng-disabled="((service_you_offerd.events.$untouched && service_you_offerd.events.$invalid)||dashboard.company.events==null) ||((service_you_offerd.services.$untouched && service_you_offerd.services.$invalid)||dashboard.company.services==null) ||((service_you_offerd.services_type.$untouched && service_you_offerd.services_type.$invalid)|| dashboard.company.services_type==null)" class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
