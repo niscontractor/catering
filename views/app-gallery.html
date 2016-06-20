@@ -51,13 +51,20 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group" ng-if="packDetailDetail.sections.length > 0">
         <div  ng-repeat="sec in packDetailDetail.sections">
         <label class="col-sm-3 control-label">{{sec.title}}</label>
         <div class="col-sm-9">
         <span class="label label-info content-lable" ng-repeat="menu in sec.list_of_menu">{{menu.text}}</span>
         </div>
         </div>
+        </div>
+
+        <div class="form-group" ng-if="packDetailDetail.sections.length == 0">
+         <label class="col-sm-3 control-label">Section</label>
+        <div class="col-sm-9">
+             <p>No section available in this package</p>
+     </div>
         </div>
 
 

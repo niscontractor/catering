@@ -3,7 +3,7 @@
         display: none
     }
 </style>
-<div data-ng-controller="packageCtrl as packageCtr" ng-init="getCategoryList();editPackage()" ui-jq="checkBo">
+<div data-ng-controller="packageCtrl as packageCtr" ng-init="editPackage()" ui-jq="checkBo">
     <form class="form-horizontal form-fixed">
         <div  ng-controller="ModalDemoCtrl">
             <div class="col-sm-6 text-left">
@@ -15,29 +15,6 @@
             </div>
         </div>
     </form>
-    <div class="row small inner-data-packages">
-        <div class="col-sm-3">
-            <div class='treeview-packageCtr small' drag-drop dragabble="true" treeview='packageCtr.categories'></div>
-        </div>
-        <div class="col-sm-9">
-            <div style="padding:1%;">
-                <div class="col-md-4" ng-repeat='section in packageCtr.package.sections'>
-                    <div class="panel panel-default">
-                        <div class="panel-header bg-primary">
-                            <div class="row" ng-app="MyApp">
-                                <div class="col-md-9"><input id="item-display" class="form-control" placeholder="What are you serving?" style="display: inline;"/></div>
-                                <div class="col-md-3"><input id="amount_entry" class="form-control" placeholder="Qty." style="display: inline;"/></div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            {{section.list_of_menu}}
-                            <div  drag-drop droppable="true" class='droppable-package bg-white' categories="packageCtr.categories" selectedData="section.list_of_menu" style="height: 250px;overflow-y: auto;" > </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <script type="text/ng-template" id="editpackage.html" >
     <div ui-jq="checkBo">

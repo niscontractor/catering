@@ -1053,7 +1053,7 @@ angular
                                                 'scripts/directives/dragdrop.js',
                                                 'scripts/services/category.service.js',
                                                 'scripts/services/package.service.js',
-                                                'scripts/controllers/editpackage.js',
+                                                'scripts/controllers/var name = new type(arguments);package.js',
                                                 'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
                                                 'vendor/chosen_v1.4.0/chosen.min.css',
                                                 'scripts/controllers/bootstrap.ui.js',

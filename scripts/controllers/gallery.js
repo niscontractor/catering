@@ -47,7 +47,6 @@ function galleryCtrl(SweetAlert, $scope, $modal, $state, PackageService,$rootSco
         $scope.editPackage = function () {
             $modalInstance.dismiss('cancel');
             $rootScope.packageId = packDetail._id;
-            console.log("-------> "+packDetail._id)
             $state.go('app.apps.editpackage');
         };
     }

@@ -1,64 +1,70 @@
 'use strict';
 
-function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS, CategoryService, PackageService) {
+function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS, CategoryService, PackageService) {
     var ctrl = this;
-    $scope.getCategoryList = function () {
+//    $scope.getCategoryList = function () {
 
 //TODO $rootScope.user.username
-        CategoryService.getCategories('').then(angular.bind(this, function then() {
-            //console.log(CategoryService.categories);
-            ctrl.categories = [];
-            angular.forEach(CategoryService.categories, function (category) {
-                var cat = {};
-                cat.text = category.name;
-                cat.id = category._id;
-                cat.selectable = false;
-                cat.nodes = [];
-                var index = 0;
-                angular.forEach(category.items, function (item) {
-                    var node = {};
-                    node.id = item._id;
-                    node.selectable = false;
-                    node.text = item.name;
-                    node.tags = [index];
-                    index = index + 1;
-                    cat.nodes.push(node);
-                });
-                ctrl.categories.push(cat);
-            });
-        }));
-    }
+//        CategoryService.getCategories('').then(angular.bind(this, function then() {
+//            console.log("result " + result);
+//            console.log("--- back " + CategoryService.categories);
+//            ctrl.categories = [];
+//            angular.forEach(CategoryService.categories, function (category) {
+//                var cat = {};
+//                cat.text = category.name;
+//                cat.id = category._id;
+//                cat.selectable = false;
+//                cat.nodes = [];
+//                var index = 0;
+//                angular.forEach(category.items, function (item) {
+//                    var node = {};
+//                    node.id = item._id;
+//                    node.selectable = false;
+//                    node.text = item.name;
+//                    node.tags = [index];
+//                    index = index + 1;
+//                    cat.nodes.push(node);
+//                });
+//                ctrl.categories.push(cat);
+//            });
+//        }, function (reason) {
+//            alert('Failed: ' + reason);
+//        }, function (update) {
+//            alert('Got notification: ' + update);
+//        }));
+//    }
 //    ctrl.package = {"sections": [{"list_of_menu": [{"id": 1, "text": "Tomato", "selectable": false, "tags": [1]}]}], "name": "Package Lunch", "price": "350", "title": "Happy hours", "description": "Delicious lunch"};
 
     $scope.editPackage = function () {
-        console.log("-"+$rootScope.packageId);
+        alert(5);
+        console.log("-" + $rootScope.packageId);
         var modalInstance = $modal.open({
             templateUrl: 'editpackage.html',
-            controller: ('EditPackageCtrl', ['$scope', '$modalInstance','$rootScope', EditPackageCtrl]),
+            controller: ('EditPackageCtrl', ['$scope', '$modalInstance', '$rootScope', EditPackageCtrl]),
             size: 'med',
             keyboard: false,
             backdrop: 'static'
         });
 
         modalInstance.result.then(function (packageJson) {
-                            console.log("--after edit----"+packageJson);
+            console.log("--after edit----" + packageJson);
             PackageService.editPackage(packageJson).then(angular.bind(this, function then() {
                 ctrl.package = PackageService.package;
                 $state.go('app.apps.packagedetail', {packageId: $rootScope.packageId}, {});
-                console.log("--after edit----"+$rootScope.packageId);
+                console.log("--after edit----" + $rootScope.packageId);
             }));
         });
     };
 
-    function EditPackageCtrl($scope, $modalInstance,$rootScope) {
+    function EditPackageCtrl($scope, $modalInstance, $rootScope) {
         $scope.showNewPackageUploadedImage = true;
         $scope.showNewPackageRemove = false;
-        console.log("--- in edit ctr : "+$rootScope.packageId);
-        PackageService.getPackageById($rootScope.packageId).then(function(result) {
+        console.log("--- in edit ctr : " + $rootScope.packageId);
+        PackageService.getPackageById($rootScope.packageId).then(function (result) {
             $scope.package = result;
         });
-        
-        $scope.removeNewPackageImage = function(){
+
+        $scope.removeNewPackageImage = function () {
             $scope.showNewPackageUploadedImage = false;
             $scope.showNewPackageRemove = false;
         }
@@ -77,7 +83,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         };
 
         $scope.uploadImage = function ($file, $event, $flow) {
-        $scope.fileUploaded = true;
+            $scope.fileUploaded = true;
             if ($scope.allowFileUpload) {
                 $flow.upload();
                 $scope.showProgressBar = true;
@@ -138,8 +144,8 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
         };
     }
 
-    $scope.getPackageData = function() {
-        PackageService.getPackageById($rootScope.$stateParams.packageId).then(function(result) {
+    $scope.getPackageData = function () {
+        PackageService.getPackageById($rootScope.$stateParams.packageId).then(function (result) {
             $scope.currentPackage = result;
             console.log(JSON.stringify(result));
         });
@@ -151,7 +157,7 @@ function packageCtrl($scope, $state, $rootScope, $modal,$modal$interval, COLORS,
     };
 
     ctrl.saveSections = function () {
-        PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function(result) {
+        PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function (result) {
             $state.go('app.apps.gallery');
         });
     };
