@@ -321,7 +321,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.name.$invalid && company_info.name.$dirty)}">
                                                 <label class="allLabel">Company Name<span>*</span></label>
-                                                <input name="name" class="form-control m-b-30" ng-model="dashboard.company.name" required/>
+                                                <input name="name" class="form-control" ng-model="dashboard.company.name" required/>
                                                  <div class="error,help-block" ng-show="(company_info.name.$dirty) && company_info.name.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.name.$error.required">Required</span>
                                                     </div>
@@ -329,7 +329,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.vat.$invalid && company_info.vat.$dirty)}">
                                                 <label class="allLabel">Company VAT Number<span>*</span></label>
-                                                <input name="vat" class="form-control m-b-30" ng-model="dashboard.company.vat" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="vat" class="form-control" ng-model="dashboard.company.vat" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.vat.$dirty) && company_info.vat.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.vat.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.vat.$error.pattern">Invalid Number</span>
@@ -367,7 +367,7 @@
                                             <div class="col-sm-12">
                                                  <div class="m-b-30" ng-class="{'has-error': (company_info.address.$invalid && company_info.address.$dirty)}">
                                                 <label class="allLabel">Company Address<span>*</span></label>
-                                                <input name="address" class="form-control m-b-30" ng-model="dashboard.company.address" required />
+                                                <input name="address" class="form-control" ng-model="dashboard.company.address" required />
                                                 <div class="error,help-block" ng-show="(company_info.address.$dirty) && company_info.address.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.address.$error.required">Required</span>
                                                     </div>
@@ -376,7 +376,7 @@
                                             <div class="col-sm-4">
                                             <div class="m-b-30" ng-class="{'has-error': (company_info.city.$invalid && company_info.city.$dirty)}">
                                                 <label class="allLabel">City<span>*</span></label>
-                                                <input name="city" class="form-control m-b-30" ng-model="dashboard.company.city" required />
+                                                <input name="city" class="form-control" ng-model="dashboard.company.city" required />
                                                 <div class="error,help-block" ng-show="(company_info.city.$dirty) && company_info.city.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.city.$error.required">Required</span>
                                                     </div>
@@ -388,7 +388,7 @@
                                             <div class="col-sm-4">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.postal_code.$invalid && company_info.postal_code.$dirty)}">
                                                 <label class="allLabel">Pincode<span>*</span></label>
-                                                <input name="postal_code" class="form-control m-b-30" ng-model="dashboard.company.postal_code" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="postal_code" class="form-control" ng-model="dashboard.company.postal_code" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.postal_code.$dirty) && company_info.postal_code.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.postal_code.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.postal_code.$error.pattern">Invalid Postal Code</span>
@@ -401,7 +401,7 @@
                                             <div class="col-sm-4">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.telephone_number.$invalid && company_info.telephone_number.$dirty)}">
                                                 <label class="allLabel">Telephone number<span>*</span></label>
-                                                <input name="telephone_number" class="form-control m-b-30" ng-model="dashboard.company.telephone_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="telephone_number" class="form-control" ng-model="dashboard.company.telephone_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.telephone_number.$dirty) && company_info.telephone_number.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.telephone_number.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.telephone_number.$error.pattern">Invalid Number</span>
@@ -412,11 +412,11 @@
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.telephone_number"/> -->
                                             </div>
 
-
+                                            <div class="col-sm-12" style="margin-left:0px;padding-left: 0px;padding-right: 0px;margin-bottom: 30px;">
                                             <div class="col-sm-4">
-                                                <div class="m-b-30" ng-class="{'has-error': (company_info.bank_name.$invalid && company_info.bank_name.$dirty)}">
+                                                <div class="" ng-class="{'has-error': (company_info.bank_name.$invalid && company_info.bank_name.$dirty)}">
                                                 <label class="allLabel">Bank Name<span>*</span></label>
-                                                <input name="bank_name" class="form-control m-b-30" ng-model="dashboard.company.bank_name"  required />
+                                                <input name="bank_name" class="form-control" ng-model="dashboard.company.bank_name"  required />
                                                 <div class="error,help-block" ng-show="(company_info.bank_name.$dirty) && company_info.bank_name.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.bank_name.$error.required">Required</span>
                                                     
@@ -428,9 +428,9 @@
                                             </div>
 
                                              <div class="col-sm-4">
-                                                <div class="m-b-30" ng-class="{'has-error': (company_info.account_number.$invalid && company_info.account_number.$dirty)}">
+                                                <div class="" ng-class="{'has-error': (company_info.account_number.$invalid && company_info.account_number.$dirty)}">
                                                 <label class="allLabel">A/C No<span>*</span></label>
-                                                <input name="account_number" class="form-control m-b-30" ng-model="dashboard.company.account_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="account_number" class="form-control" ng-model="dashboard.company.account_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.account_number.$dirty) && company_info.account_number.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.account_number.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.account_number.$error.pattern">Invalid Number</span>
@@ -440,14 +440,15 @@
                                                 <!-- <label class="allLabel">A/C No</label>
                                                 <input class="form-control m-b-30" type="text" ng-model="dashboard.company.account_number"/> -->
                                             </div>
+
                                             <!-- <div class="col-sm-4">
                                                 <label class="allLabel">Bank Name</label>
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.bank_name"/>
                                             </div> -->
                                             <div class="col-sm-4">
-                                                <div class="m-b-30" ng-class="{'has-error': (company_info.iban_number.$invalid && company_info.iban_number.$dirty)}">
+                                                <div class="" ng-class="{'has-error': (company_info.iban_number.$invalid && company_info.iban_number.$dirty)}">
                                                 <label class="allLabel">IBAN NUmber<span>*</span></label>
-                                                <input name="iban_number" class="form-control m-b-30" ng-model="dashboard.company.iban_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="iban_number" class="form-control" ng-model="dashboard.company.iban_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.iban_number.$dirty) && company_info.iban_number.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.iban_number.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.iban_number.$error.pattern">Invalid Number</span>
@@ -457,16 +458,16 @@
                                                 <!-- <label class="allLabel">IBAN NUmber</label>
                                                 <input class="form-control m-b-30"  ng-model="dashboard.company.iban_number"/> -->
                                             </div>
-
+                                            </div>
                                             <!--  <div class="col-sm-4">
                                                 <label class="allLabel">Email</label>
                                                 <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/>
                                             </div> -->
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6" style="padding-left: 0px;">
                                                 <div class="col-sm-12">
                                                     <div class="m-b-30" ng-class="{'has-error': (company_info.contact_person.$invalid && company_info.contact_person.$dirty)}">
                                                 <label class="allLabel">Contact Person<span>*</span></label>
-                                                <input name="contact_person" class="form-control m-b-30" ng-model="dashboard.company.contact_person" required />
+                                                <input name="contact_person" class="form-control " ng-model="dashboard.company.contact_person" required />
                                                 <div class="error,help-block" ng-show="(company_info.contact_person.$dirty) && company_info.contact_person.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.contact_person.$error.required">Required</span>
                                                     </div>
@@ -478,7 +479,7 @@
                                                 <div class="col-sm-12">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.email.$invalid && company_info.email.$dirty)}">
                                                 <label class="allLabel">Email<span>*</span></label>
-                                                <input name="email" class="form-control m-b-30" ng-model="dashboard.company.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                                                <input name="email" class="form-control" ng-model="dashboard.company.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.email.$dirty) && company_info.email.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.email.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.email.$error.pattern">Invalid email</span>
@@ -491,7 +492,7 @@
                                                 <div class="col-sm-12">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.contact_number.$invalid && company_info.contact_number.$dirty)}">
                                                 <label class="allLabel">Contact Number<span>*</span></label>
-                                                <input name="contact_number" class="form-control m-b-30" ng-model="dashboard.company.contact_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="contact_number" class="form-control" ng-model="dashboard.company.contact_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.contact_number.$dirty) && company_info.contact_number.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.contact_number.$error.required">Required</span>
                                                         <span class="help-block" ng-show="company_info.contact_number.$error.pattern">Invalid Number</span>
