@@ -116,7 +116,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.description.$invalid && registrationForm.description.$dirty)}">
                                                 <label class="allLabel">Description<span>*</span></label>
-                                                <textarea rows="5" cols="100%" name="description" class="form-control m-b-30" ng-model="dashboard.company.description" maxlength="500" required></textarea>
+                                                <textarea rows="5" cols="100%" name="description" class="form-control" ng-model="dashboard.company.description" maxlength="500" required></textarea>
                                                 <div class="error,help-block" ng-show="(registrationForm.description.$dirty) && registrationForm.description.$invalid"> 
                                                         <span class="help-block" ng-show="registrationForm.description.$error.required">Required</span>
                                                     </div>
@@ -138,7 +138,7 @@
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.cuisine.$invalid && yourFood.cuisine.$dirty)}">
                                                 <label class="allLabel">What type of cuisine you serve?<span>*</span></label>
                                                 <oi-select name="cuisine"
-                                                    class="m-b-30" style="height: 47px"
+                                                    class="" style="height: 47px"
                                                     oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
                                                     ng-model="dashboard.company.cuisine"
                                                     multiple required>
@@ -151,7 +151,7 @@
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.special_need.$invalid && yourFood.special_need.$dirty)}">
                                                 <label class="allLabel">Do you provide special need?<span>*</span></label>
                                                 <oi-select name="special_need"
-                                                    class="m-b-30" style="height: 47px"
+                                                    class="" style="height: 47px"
                                                     oi-options="specialNeed.name for specialNeed in dashboard.specialNeeds track by specialNeed._id"
                                                     ng-model="dashboard.company.special_need"
                                                     multiple required>
@@ -167,7 +167,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.min_people.$invalid && yourFood.min_people.$dirty)}">
                                                 <label class="text-white" style="display: block;">Min<span>*</span></label>
-                                                <input  name="min_people" min="0" class="form-control m-b-30" ng-model="dashboard.company.min_people" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input  name="min_people" min="0" class="form-control" ng-model="dashboard.company.min_people" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.min_people.$dirty) && yourFood.min_people.$invalid"> 
                                                         <span class="help-block" ng-show="yourFood.min_people.$error.required">Required</span>
                                                         <span class="help-block" ng-show="yourFood.min_people.$error.pattern">Invalid Number</span>
@@ -182,7 +182,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.max_people.$invalid && yourFood.max_people.$dirty)}">
                                                 <label class="text-white">Max<span>*</span></label>
-                                                <input  name="max_people" min="0" class="form-control m-b-30" ng-model="dashboard.company.max_people" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input  name="max_people" min="0" class="form-control" ng-model="dashboard.company.max_people" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.max_people.$dirty) && yourFood.max_people.$invalid"> 
                                                         <span class="help-block" ng-show="yourFood.max_people.$error.required">Required</span>
                                                         <span class="help-block" ng-show="yourFood.max_people.$error.pattern">Invalid Number</span>
@@ -200,7 +200,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.cancellation_notice_period.$invalid && yourFood.cancellation_notice_period.$dirty)}">
                                                 <label class="allLabel">Cancellation period(Days).<span>*</span></label>
-                                                <input  name="cancellation_notice_period" min="0" class="form-control m-b-30" ng-model="dashboard.company.cancellation_notice_period" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input  name="cancellation_notice_period" min="0" class="form-control " ng-model="dashboard.company.cancellation_notice_period" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.cancellation_notice_period.$dirty) && yourFood.cancellation_notice_period.$invalid"> 
                                                         <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.required">Required</span>
                                                         <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.pattern">Invalid Number</span>
@@ -209,7 +209,7 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.minimum_amount_order.$invalid && yourFood.minimum_amount_order.$dirty)}">
                                                 <label class="allLabel">Minimum order amount.<span>*</span></label>
-                                                <input  name="minimum_amount_order" min="0" class="form-control m-b-30" ng-model="dashboard.company.minimum_amount_order" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input  name="minimum_amount_order" min="0" class="form-control" ng-model="dashboard.company.minimum_amount_order" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.minimum_amount_order.$dirty) && yourFood.minimum_amount_order.$invalid"> 
                                                         <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.required">Required</span>
                                                         <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.pattern">Invalid Number</span>
@@ -226,7 +226,7 @@
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.no_days_before_order.$invalid && yourFood.no_days_before_order.$dirty)}">
                                                  <p class="text-white">&nbsp;</p>
                                                 <label class="allLabel">How many days before a client have to order?<span>*</span></label>
-                                                <input  name="no_days_before_order" min="0" class="form-control m-b-30" ng-model="dashboard.company.no_days_before_order" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input  name="no_days_before_order" min="0" class="form-control" ng-model="dashboard.company.no_days_before_order" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.no_days_before_order.$dirty) && yourFood.no_days_before_order.$invalid"> 
                                                         <span class="help-block" ng-show="yourFood.no_days_before_order.$error.required">Required</span>
                                                         <span class="help-block" ng-show="yourFood.no_days_before_order.$error.pattern">Invalid Number</span>
@@ -263,7 +263,7 @@
                                                 <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.events.$invalid && service_you_offerd.events.$dirty)}">
                                                 <label class="allLabel">What type of events you serve?<span>*</span></label>
                                                 <oi-select name="events"
-                                                    class="m-b-30" style="height: 47px"
+                                                    class="" style="height: 47px"
                                                     oi-options="typeOfEvent.name for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
                                                     ng-model="dashboard.company.events"
                                                     multiple required>
@@ -280,7 +280,7 @@
                                                 <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.services.$invalid && service_you_offerd.services.$dirty)}">
                                                 <label class="allLabel">Services you offer?<span>*</span></label>
                                                 <oi-select name="services"
-                                                    class="m-b-30" style="height: 47px"
+                                                    class="" style="height: 47px"
                                                     oi-options="serviceOffered.name for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
                                                     ng-model="dashboard.company.services"
                                                     multiple required>
@@ -296,7 +296,7 @@
                                                 <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.services_type.$invalid && service_you_offerd.services_type.$dirty)}">
                                                 <label class="allLabel">Type of service<span>*</span></label>
                                                 <oi-select name="services_type"
-                                                    class="m-b-30" style="height: 47px"
+                                                    class="" style="height: 47px"
                                                     oi-options="typeOfService.name for typeOfService in dashboard.typeOfServices track by typeOfService._id"
                                                     ng-model="dashboard.company.services_type"
                                                     multiple required>
