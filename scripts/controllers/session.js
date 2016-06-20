@@ -2,6 +2,10 @@
 
 function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
 
+    if ($localStorage.user!=null) {
+        $state.go('app.apps.calendar');
+    }
+
     var ctrl = this;
     var token = $location.search().userToken;
     $scope.signin = function(){
