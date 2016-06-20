@@ -19,7 +19,7 @@
                                 <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered')" aria-expanded="false"><img src="images/service-offerd.png" height="49" width="49"/></a>
-                                <p>Service you offerd</p>
+                                <p>Service you offered</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="" ng-class="{active:dashboard.selectedTab === 'info'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'info');" aria-expanded="false"><img src="images/info.png" height="49" width="49"/></a>
@@ -33,7 +33,7 @@
                                         <div class="outer pull-left">
                                             <div class="col-sm-6 service-input">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.companyName.$invalid && registrationForm.companyName.$dirty)}">
-                                                <label class="allLabel">Brand Name</label>
+                                                <label class="allLabel">Brand Name<span>*</span></label>
                                                     <input name="companyName" class="form-control" ng-model="dashboard.company.brand_name" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.companyName.$dirty) && registrationForm.companyName.$invalid"> 
                                                         <span class="help-block" ng-show="registrationForm.companyName.$error.required">Required</span>
@@ -50,7 +50,7 @@
 
 
                                                 
-                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.uploadLogo"
+                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.image_upload"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow ,'display_image')"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
@@ -60,13 +60,16 @@
                                                      flow-drop style="display: inline-flex;">
                                                     <span>
                                                         
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop Display Image here
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop Display Image
                                                         <div style="display: inline-block;margin-left: 20px;">
                                                             
                                                         </div>
                                                     </span>
-                                                    <img flow-img="$flow.files[0]" style="width: 100px;height: 100px;margin-left: 15px; "  class="img-responsive"" ng-if="$flow.files.length > 0 && showNewDisplayImage" ng-model="dashboard.company.display_image">
-                                                        <img ng-if="showOldDisplayImage" src="{{dashboard.company.display_image}}" class="img-responsive" style="height: 100px;margin-left: 15px;">
+
+                                                    <img  flow-img="$flow.files[0]" style="width: 100px;height: 100px;margin-left: 15px; "  class="img-responsive"" ng-if="$flow.files.length > 0 && showNewDisplayImage" ng-model="dashboard.company.display_image" required>
+                                                    <div id="display_image">
+                                                    <img  ng-if="showOldDisplayImage" src="{{dashboard.company.display_image}}" class="img-responsive" style="height: 100px;width:100px;margin-left: 15px;" ng-model="dashboard.company.display_image">
+                                                    </div>
                                                    <!--  <span ng-show="showRemovedLogoButton" ng-click="removeUploadedLogoImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span -->
 
 
@@ -76,7 +79,7 @@
                                                 </div> -->
 
                                                 
-                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.uploadBanner"
+                                                <div class="col-xs-12 m-b-30 drop drop-design" flow-init="dashboard.image_upload"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow ,'banner')"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
@@ -86,13 +89,15 @@
                                                      flow-drop style="display: inline-flex;" >
                                                     <span>
                                                         
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER here
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER
                                                         <div style="display: inline-block;margin-left: 20px;">
                                                         </div>
                                                        <!--  <span ng-show="showRemovedBannerButton" ng-click="removeUploadedBannerImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
                                                     </span>
                                                     <img ng-if="showNewBannerImage" flow-img="$flow.files[0]" style="width: 100px;height: 100px;margin-left: 15px; " class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.banner">
+                                                    <div id='banner'>
                                                     <img ng-if="showOldBannerImage" style="width: 100px;height: 100px;margin-left: 15px; " src="{{dashboard.company.banner}}" ng-show="dashboard.company.banner" class="img-responsive"  style="height: 130px">
+                                                    </div>
                                                 </div>
                                                 
 
@@ -100,65 +105,141 @@
                                             </div>
                                             <div class="col-sm-6 service-input-inner">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.tagline.$invalid && registrationForm.tagline.$dirty)}">
-                                                <label class="allLabel">Tag Line</label>
+                                                <label class="allLabel">Tag Line<span>*</span></label>
 
                                                     <input name="tagline" class="form-control" ng-model="dashboard.company.tagline" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.tagline.$dirty) && registrationForm.tagline.$invalid"> 
                                                         <span class="help-block" ng-show="registrationForm.tagline.$error.required">Required</span>
                                                     </div>
                                                 </div>
-                                                <label class="allLabel">Description</label>
-                                                <textarea rows="5" cols="100%" class="form-control m-b-30" ng-model="dashboard.company.description" maxlength="500"></textarea>
+
+
+                                                <div class="m-b-30" ng-class="{'has-error': (registrationForm.description.$invalid && registrationForm.description.$dirty)}">
+                                                <label class="allLabel">Description<span>*</span></label>
+                                                <textarea rows="5" cols="100%" name="description" class="form-control" ng-model="dashboard.company.description" maxlength="500" required></textarea>
+                                                <div class="error,help-block" ng-show="(registrationForm.description.$dirty) && registrationForm.description.$invalid"> 
+                                                        <span class="help-block" ng-show="registrationForm.description.$error.required">Required</span>
+                                                    </div>
+                                                </div>
                                                 
                                             </div>
                                             <div class="col-sm-12">
                                                 <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
-                                                <button class="btn btn-orange pull-right continue-btn" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" >Continue <i class="fa fa-arrow-right"></i></button>
+                                                <button class="btn btn-orange pull-right continue-btn" ng-disabled="((registrationForm.companyName.$untouched && registrationForm.companyName.$invalid )|| dashboard.company.brand_name==null) || ((registrationForm.tagline.$untouched && registrationForm.tagline.$invalid)|| dashboard.company.tagline==null) ||((registrationForm.description.$untouched && registrationForm.description.$invalid)|| dashboard.company.description==null) || (dashboard.company.display_image==null) ||(dashboard.company.banner==null)" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" >Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane" ng-class="{active:dashboard.selectedTab === 'aboutFood'}" ng-show="dashboard.selectedTab === 'aboutFood'">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" name="yourFood">
                                         <div class="outer col-sm-12 service-input">
                                             <div class="col-sm-6">
                                                 <!--<input class="form-control m-b-30" placeholder="What type of cuisine you serve " ng-model="dashboard.company.typeOfCuisines"/>-->
-                                                <label class="allLabel">What type of cuisine you serve?</label>
-                                                <oi-select
-                                                    class="m-b-30" style="height: 47px"
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.cuisine.$invalid && yourFood.cuisine.$dirty)}">
+                                                <label class="allLabel">What type of cuisine you serve?<span>*</span></label>
+                                                <oi-select name="cuisine"
+                                                    class="" style="height: 47px"
                                                     oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
                                                     ng-model="dashboard.company.cuisine"
-                                                    multiple>
+                                                    multiple required>
                                                 </oi-select>
+                                                 <div class="error,help-block" ng-show="(yourFood.cuisine.$dirty) && yourFood.cuisine.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.cuisine.$error.required">Required</span>
+                                                    </div>
+                                                </div>
 <!--                                                <input class="form-control m-b-30" placeholder="Do you provide special need  " ng-model="dashboard.company.specialNeeds"/>-->
-                                                <label class="allLabel">Do you provide special need?</label>
-                                                <oi-select
-                                                    class="m-b-30" style="height: 47px"
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.special_need.$invalid && yourFood.special_need.$dirty)}">
+                                                <label class="allLabel">Do you provide special need?<span>*</span></label>
+                                                <oi-select name="special_need"
+                                                    class="" style="height: 47px"
                                                     oi-options="specialNeed.name for specialNeed in dashboard.specialNeeds track by specialNeed._id"
                                                     ng-model="dashboard.company.special_need"
-                                                    multiple>
+                                                    multiple required>
                                                 </oi-select>
+                                                 <div class="error,help-block" ng-show="(yourFood.special_need.$dirty) && yourFood.special_need.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.special_need.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+
 
                                                 
-                                                <label class="allLabel">Number of people you serve</label>
+                                                <label class="allLabel">Number of people you serve<span>*</span></label>
 
-                                                <label class="text-white" style="display: block;">Min</label>
-                                                <input type="number" min="1" class="form-control m-b-30" ng-model="dashboard.company.min_people"/>
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.min_people.$invalid && yourFood.min_people.$dirty)}">
+                                                <label class="text-white" style="display: block;">Min<span>*</span></label>
+                                                <input  name="min_people" min="0" class="form-control" ng-model="dashboard.company.min_people" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(yourFood.min_people.$dirty) && yourFood.min_people.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.min_people.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.min_people.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
 
-                                                <label class="text-white">Max</label>
-                                                <input type="number" min="1" class="form-control m-b-30" ng-model="dashboard.company.max_people"/>
+
+
+
+                                                <!-- <label class="text-white" style="display: block;">Min</label>
+                                                <input type="number" min="1" class="form-control m-b-30" ng-model="dashboard.company.min_people"/> -->
+
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.max_people.$invalid && yourFood.max_people.$dirty)}">
+                                                <label class="text-white">Max<span>*</span></label>
+                                                <input  name="max_people" min="0" class="form-control" ng-model="dashboard.company.max_people" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(yourFood.max_people.$dirty) && yourFood.max_people.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.max_people.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.max_people.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <!-- <label class="text-white">Max</label>
+                                                <input type="number" min="1" class="form-control m-b-30" ng-model="dashboard.company.max_people"/> -->
 
                                             </div>
                                             <div class="col-sm-6 service-input">
 
-                                                <label class="allLabel">Cancellation period(Days).</label>
-                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.cancellation_notice_period"/>
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.cancellation_notice_period.$invalid && yourFood.cancellation_notice_period.$dirty)}">
+                                                <label class="allLabel">Cancellation period(Days).<span>*</span></label>
+                                                <input  name="cancellation_notice_period" min="0" class="form-control " ng-model="dashboard.company.cancellation_notice_period" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(yourFood.cancellation_notice_period.$dirty) && yourFood.cancellation_notice_period.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
 
-                                                <label class="allLabel">Minimum order amount.</label>
-                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.minimum_amount_order"/>
-                                               <p class="text-white">&nbsp;</p>
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.minimum_amount_order.$invalid && yourFood.minimum_amount_order.$dirty)}">
+                                                <label class="allLabel">Minimum order amount.<span>*</span></label>
+                                                <input  name="minimum_amount_order" min="0" class="form-control" ng-model="dashboard.company.minimum_amount_order" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(yourFood.minimum_amount_order.$dirty) && yourFood.minimum_amount_order.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                                <!-- <label class="allLabel">Minimum order amount.</label>
+                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.minimum_amount_order"/> -->
+
+                                                <div class="m-b-30" ng-class="{'has-error': (yourFood.no_days_before_order.$invalid && yourFood.no_days_before_order.$dirty)}">
+                                                 <p class="text-white">&nbsp;</p>
+                                                <label class="allLabel">How many days before a client have to order?<span>*</span></label>
+                                                <input  name="no_days_before_order" min="0" class="form-control" ng-model="dashboard.company.no_days_before_order" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(yourFood.no_days_before_order.$dirty) && yourFood.no_days_before_order.$invalid"> 
+                                                        <span class="help-block" ng-show="yourFood.no_days_before_order.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.no_days_before_order.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
+
+
+                                               <!-- <p class="text-white">&nbsp;</p>
                                                 <label class="allLabel">How many days before a client have to order?</label>
-                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.no_days_before_order"/>
+                                                <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.no_days_before_order"/> -->
+
+
                                                 <label class="allLabel">Do you offer delivery ( Yes / No )</label></br>
                                                 <label class="switch switch-lg mb15 m-b-30 mt5 ">
                                                     <input type="checkbox" checked="" ng-model="dashboard.company.delivery">
@@ -169,63 +250,96 @@
                                             </div>
                                             <div class="col-sm-12">
                                                 <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
-                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
+                                                <button class="btn btn-orange pull-right continue-btn " ng-disabled="((yourFood.min_people.$untouched && yourFood.min_people.$invalid)||dashboard.company.min_people==null) || ((yourFood.max_people.$untouched && yourFood.max_people.$invalid)||dashboard.company.max_people==null) || ((yourFood.cancellation_notice_period.$untouched && yourFood.cancellation_notice_period.$invalid)|| dashboard.company.cancellation_notice_period==null) || ((yourFood.no_days_before_order.$untouched && yourFood.no_days_before_order.$invalid)||dashboard.company.no_days_before_order==null) || ((yourFood.minimum_amount_order.$untouched && yourFood.minimum_amount_order.$invalid)||dashboard.company.minimum_amount_order==null) || ((yourFood.special_need.$untouched && yourFood.special_need.$invalid) || dashboard.company.special_need==null)|| ((yourFood.cuisine.$untouched && yourFood.cuisine.$invalid)||dashboard.company.cuisine==null)" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}" ng-show="dashboard.selectedTab === 'serviceOffered'">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" name="service_you_offerd">
                                         <div class="outer col-sm-12 service-input">
                                             <div class="col-sm-12">
-                                                <label class="allLabel">What type of events you serve?</label>
-                                                <oi-select
-                                                    class="m-b-30" style="height: 47px"
+
+                                                <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.events.$invalid && service_you_offerd.events.$dirty)}">
+                                                <label class="allLabel">What type of events you serve?<span>*</span></label>
+                                                <oi-select name="events"
+                                                    class="" style="height: 47px"
                                                     oi-options="typeOfEvent.name for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
                                                     ng-model="dashboard.company.events"
-                                                    multiple>
+                                                    multiple required>
                                                 </oi-select>
+                                                <div class="error,help-block" ng-show="(service_you_offerd.events.$dirty) && service_you_offerd.events.$invalid"> 
+                                                        <span class="help-block" ng-show="service_you_offerd.events.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+
+
                                                 <!--<input class="form-control m-b-30" placeholder="What type of events you serve " ng-model="dashboard.company.typeOfEvents"/>-->
                                             </div>
                                             <div class="col-sm-12">
-                                                <label class="allLabel">Services you offer?</label>
-                                                <oi-select
-                                                    class="m-b-30" style="height: 47px"
+                                                <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.services.$invalid && service_you_offerd.services.$dirty)}">
+                                                <label class="allLabel">Services you offer?<span>*</span></label>
+                                                <oi-select name="services"
+                                                    class="" style="height: 47px"
                                                     oi-options="serviceOffered.name for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
                                                     ng-model="dashboard.company.services"
-                                                    multiple>
+                                                    multiple required>
                                                 </oi-select>
+                                                <div class="error,help-block" ng-show="(service_you_offerd.services.$dirty) && service_you_offerd.services.$invalid"> 
+                                                        <span class="help-block" ng-show="service_you_offerd.services.$error.required">Required</span>
+                                                    </div>
+                                                </div>
                                                 <!--<input class="form-control m-b-30" placeholder="Services you offer" ng-model="dashboard.company.servicesOffered"/>-->
                                             </div>
                                             <div class="col-sm-12">
-                                                <label class="allLabel">Type of service</label>
-                                                <oi-select
-                                                    class="m-b-30" style="height: 47px"
+
+                                                <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.services_type.$invalid && service_you_offerd.services_type.$dirty)}">
+                                                <label class="allLabel">Type of service<span>*</span></label>
+                                                <oi-select name="services_type"
+                                                    class="" style="height: 47px"
                                                     oi-options="typeOfService.name for typeOfService in dashboard.typeOfServices track by typeOfService._id"
                                                     ng-model="dashboard.company.services_type"
-                                                    multiple>
+                                                    multiple required>
                                                 </oi-select>
+                                                <div class="error,help-block" ng-show="(service_you_offerd.services_type.$dirty) && service_you_offerd.services_type.$invalid"> 
+                                                        <span class="help-block" ng-show="service_you_offerd.services_type.$error.required">Required</span>
+                                                    </div>
+                                                </div>
                                                 <!--<input class="form-control m-b-30" placeholder="Type of service" ng-model="dashboard.company.typeOfService"/>-->
                                             </div>
                                             <div class="col-sm-12">
                                                 <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
-                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">Continue <i class="fa fa-arrow-right"></i></button>
+                                                <button ng-disabled="((service_you_offerd.events.$untouched && service_you_offerd.events.$invalid)||dashboard.company.events==null) ||((service_you_offerd.services.$untouched && service_you_offerd.services.$invalid)||dashboard.company.services==null) ||((service_you_offerd.services_type.$untouched && service_you_offerd.services_type.$invalid)|| dashboard.company.services_type==null)" class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">Continue <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div id="contacts4" class="tab-pane" ng-class="{active:dashboard.selectedTab === 'info'}" ng-show="dashboard.selectedTab === 'info'">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" name="company_info">
                                         <div class="outer col-sm-12 service-input">
                                             <div class="col-sm-6">
-                                                <label class="allLabel">Company Name</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.name"/>
-                                                <label class="allLabel">Company VAT Number</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.vat"/>
+
+                                                <div class="m-b-30" ng-class="{'has-error': (company_info.name.$invalid && company_info.name.$dirty)}">
+                                                <label class="allLabel">Company Name<span>*</span></label>
+                                                <input name="name" class="form-control" ng-model="dashboard.company.name" required/>
+                                                 <div class="error,help-block" ng-show="(company_info.name.$dirty) && company_info.name.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.name.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="m-b-30" ng-class="{'has-error': (company_info.vat.$invalid && company_info.vat.$dirty)}">
+                                                <label class="allLabel">Company VAT Number<span>*</span></label>
+                                                <input name="vat" class="form-control" ng-model="dashboard.company.vat" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.vat.$dirty) && company_info.vat.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.vat.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.vat.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div class="col-sm-6">
-                                                <label class="allLabel">Company Logo</label>
-                                                <div style="height: auto;" class="drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
+                                                <label class="allLabel">Company Logo<span>*</span></label>
+                                                <div style="height: auto;" class="drop" flow-init="dashboard.image_upload" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow, 'logo' )"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
@@ -234,78 +348,167 @@
                                                      flow-file-progress="dashboard.uploadImageProgress()"
                                                      flow-drop>
                                                     <span>
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Logo here
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Logo
                                                         <!-- <div style="display: inline-block;margin-left: 20px;">
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div> -->
                                                     </span>
                                                      <!-- <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
-                                            
-                                                        <img src="{{dashboard.company.logo}}" ng-if="showOldLogo" style="display:inline-block;height: 130px;width: 150px;" class="img-responsive">
-                                                        <img ng-if="showNewLogo" flow-img="$flow.files[0]" style="height:130px;display: inline-block;margin-left: 20px;width: 150px;" class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.logo">
+                                                        <div id="logo" style="display: inline-block;">
+                                                            <img src="{{dashboard.company.logo}}" ng-if="showOldLogo" style="display:inline-block;height: 100px;width: 100px;" class="img-responsive">
+                                                        </div>    
+                                                        <img ng-if="showNewLogo" flow-img="$flow.files[0]" style="height:100px;display: inline-block;margin-left: 20px;width: 100px;" class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.logo">
                                                     
                                                 </div>
                                             </div>
 
+
+
+                                           
                                             <div class="col-sm-12">
-                                                <label class="allLabel">Company Address</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.address"/>
+                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.address.$invalid && company_info.address.$dirty)}">
+                                                <label class="allLabel">Company Address<span>*</span></label>
+                                                <input name="address" class="form-control" ng-model="dashboard.company.address" required />
+                                                <div class="error,help-block" ng-show="(company_info.address.$dirty) && company_info.address.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.address.$error.required">Required</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-sm-4">
-                                                <label class="allLabel">City</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.city"/>
+                                            <div class="m-b-30" ng-class="{'has-error': (company_info.city.$invalid && company_info.city.$dirty)}">
+                                                <label class="allLabel">City<span>*</span></label>
+                                                <input name="city" class="form-control" ng-model="dashboard.company.city" required />
+                                                <div class="error,help-block" ng-show="(company_info.city.$dirty) && company_info.city.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.city.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <label class="allLabel">City</label>
+                                                <input class="form-control m-b-30" ng-model="dashboard.company.city"/> -->
                                             </div>
                                             <div class="col-sm-4">
-                                                <label class="allLabel">Pincode</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.postal_code"/>
+                                                <div class="m-b-30" ng-class="{'has-error': (company_info.postal_code.$invalid && company_info.postal_code.$dirty)}">
+                                                <label class="allLabel">Pincode<span>*</span></label>
+                                                <input name="postal_code" class="form-control" ng-model="dashboard.company.postal_code" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.postal_code.$dirty) && company_info.postal_code.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.postal_code.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.postal_code.$error.pattern">Invalid Postal Code</span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <label class="allLabel">Pincode</label>
+                                                <input class="form-control m-b-30" ng-model="dashboard.company.postal_code"/> -->
                                             </div>
                                             <div class="col-sm-4">
-                                                <label class="allLabel">Telephone number</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.telephone_number"/>
+                                                <div class="m-b-30" ng-class="{'has-error': (company_info.telephone_number.$invalid && company_info.telephone_number.$dirty)}">
+                                                <label class="allLabel">Telephone number<span>*</span></label>
+                                                <input name="telephone_number" class="form-control" ng-model="dashboard.company.telephone_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.telephone_number.$dirty) && company_info.telephone_number.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.telephone_number.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.telephone_number.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <label class="allLabel">Telephone number</label>
+                                                <input class="form-control m-b-30" ng-model="dashboard.company.telephone_number"/> -->
                                             </div>
 
-
+                                            <div class="col-sm-12" style="margin-left:0px;padding-left: 0px;padding-right: 0px;margin-bottom: 30px;">
                                             <div class="col-sm-4">
-                                                <label class="allLabel">Bank Name</label>
-                                                <input class="form-control m-b-30" ng-model="dashboard.company.bank_name"/>
+                                                <div class="" ng-class="{'has-error': (company_info.bank_name.$invalid && company_info.bank_name.$dirty)}">
+                                                <label class="allLabel">Bank Name<span>*</span></label>
+                                                <input name="bank_name" class="form-control" ng-model="dashboard.company.bank_name"  required />
+                                                <div class="error,help-block" ng-show="(company_info.bank_name.$dirty) && company_info.bank_name.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.bank_name.$error.required">Required</span>
+                                                    
+                                                    </div>
+                                                </div>
+
+                                                <!-- <label class="allLabel">Bank Name</label>
+                                                <input class="form-control m-b-30" ng-model="dashboard.company.bank_name"/> -->
                                             </div>
 
                                              <div class="col-sm-4">
-                                                <label class="allLabel">A/C No</label>
-                                                <input class="form-control m-b-30" type="text" ng-model="dashboard.company.account_number"/>
+                                                <div class="" ng-class="{'has-error': (company_info.account_number.$invalid && company_info.account_number.$dirty)}">
+                                                <label class="allLabel">A/C No<span>*</span></label>
+                                                <input name="account_number" class="form-control" ng-model="dashboard.company.account_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.account_number.$dirty) && company_info.account_number.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.account_number.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.account_number.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <label class="allLabel">A/C No</label>
+                                                <input class="form-control m-b-30" type="text" ng-model="dashboard.company.account_number"/> -->
                                             </div>
+
                                             <!-- <div class="col-sm-4">
                                                 <label class="allLabel">Bank Name</label>
                                                 <input class="form-control m-b-30" ng-model="dashboard.company.bank_name"/>
                                             </div> -->
                                             <div class="col-sm-4">
-                                                <label class="allLabel">IBAN NUmber</label>
-                                                <input class="form-control m-b-30"  ng-model="dashboard.company.iban_number"/>
-                                            </div>
+                                                <div class="" ng-class="{'has-error': (company_info.iban_number.$invalid && company_info.iban_number.$dirty)}">
+                                                <label class="allLabel">IBAN NUmber<span>*</span></label>
+                                                <input name="iban_number" class="form-control" ng-model="dashboard.company.iban_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.iban_number.$dirty) && company_info.iban_number.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.iban_number.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.iban_number.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
 
+                                                <!-- <label class="allLabel">IBAN NUmber</label>
+                                                <input class="form-control m-b-30"  ng-model="dashboard.company.iban_number"/> -->
+                                            </div>
+                                            </div>
                                             <!--  <div class="col-sm-4">
                                                 <label class="allLabel">Email</label>
                                                 <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/>
                                             </div> -->
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-6" style="padding-left: 0px;">
                                                 <div class="col-sm-12">
-                                                    <label class="allLabel">Contact Person</label>
-                                                    <input class="form-control m-b-30"  ng-model="dashboard.company.contact_person"/>
+                                                    <div class="m-b-30" ng-class="{'has-error': (company_info.contact_person.$invalid && company_info.contact_person.$dirty)}">
+                                                <label class="allLabel">Contact Person<span>*</span></label>
+                                                <input name="contact_person" class="form-control " ng-model="dashboard.company.contact_person" required />
+                                                <div class="error,help-block" ng-show="(company_info.contact_person.$dirty) && company_info.contact_person.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.contact_person.$error.required">Required</span>
+                                                    </div>
+                                                </div>
+
+                                                    <!-- <label class="allLabel">Contact Person</label>
+                                                    <input class="form-control m-b-30"  ng-model="dashboard.company.contact_person"/> -->
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <label class="allLabel">Email</label>
-                                                    <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/>
+                                                <div class="m-b-30" ng-class="{'has-error': (company_info.email.$invalid && company_info.email.$dirty)}">
+                                                <label class="allLabel">Email<span>*</span></label>
+                                                <input name="email" class="form-control" ng-model="dashboard.company.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.email.$dirty) && company_info.email.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.email.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.email.$error.pattern">Invalid email</span>
+                                                    </div>
+                                                </div>
+
+                                                    <!-- <label class="allLabel">Email</label>
+                                                    <input class="form-control m-b-30" type="email" ng-model="dashboard.company.email"/> -->
                                                 </div>
                                                 <div class="col-sm-12">
-                                                    <label class="allLabel">Contact Number</label>
-                                                    <input class="form-control m-b-30" type="number" ng-model="dashboard.company.contact_number"/>
+                                                <div class="m-b-30" ng-class="{'has-error': (company_info.contact_number.$invalid && company_info.contact_number.$dirty)}">
+                                                <label class="allLabel">Contact Number<span>*</span></label>
+                                                <input name="contact_number" class="form-control" ng-model="dashboard.company.contact_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <div class="error,help-block" ng-show="(company_info.contact_number.$dirty) && company_info.contact_number.$invalid"> 
+                                                        <span class="help-block" ng-show="company_info.contact_number.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.contact_number.$error.pattern">Invalid Number</span>
+                                                    </div>
+                                                </div>
+
+                                                    <!-- <label class="allLabel">Contact Number</label>
+                                                    <input class="form-control m-b-30" type="number" ng-model="dashboard.company.contact_number"/> -->
                                                 </div>
                                                 
                                             </div>
 
 
                                             <div class="col-sm-6">
-                                                <label class="allLabel">Profile picture</label>
-                                                <div style="height: auto;" class="drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
+                                                <label class="allLabel">Profile picture<span>*</span></label>
+                                                <div style="height: auto;" class="drop" flow-init="dashboard.image_upload" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow,'profile_pic')"
                                                      flow-file-added="dashboard.imageAdded( $file, $event, $flow )"
@@ -314,19 +517,20 @@
                                                      flow-file-progress="dashboard.uploadImageProgress()"
                                                      flow-drop>
                                                     <span>
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Profile here
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Profile
                                                         <!-- <div style="display: inline-block;margin-left: 20px;">
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div> -->
                                                     </span>
                                                      <!-- <span ng-show="showRemovedButton" ng-click="removeUploadedImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 13px;width: 95px;margin-top: 10px;"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
-                                                     
-                                                        <img ng-if="showOldProfilePic" src="{{dashboard.company.profile_pic}}" style="display:inline-block;height: 145px;width: 145px;" class="img-responsive">
-                                                        <img ng-if="showNewProfilePic" flow-img="$flow.files[0]" style="height:130px;display: inline-block;margin-left: 20px;width: 145px;" class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.profile_pic">
+                                                        <div id="profile_pic" style="display:inline-block;">
+                                                            <img ng-if="showOldProfilePic" src="{{dashboard.company.profile_pic}}" style="display:inline-block;height: 100px;width: 100px;" class="img-responsive">
+                                                        </div>
+                                                        <img ng-if="showNewProfilePic" flow-img="$flow.files[0]" style="height:100px;display: inline-block;margin-left: 20px;width: 100px;" class="img-responsive" ng-if="$flow.files.length > 0" ng-model="dashboard.company.profile_pic">
                                                     
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button class="btn btn-orange pull-right continue-btn " ng-click="dashboard.register();" style="padding: 1.5% 9%;margin-top: 20px;">Submit</button>
+                                                <button class="btn btn-orange pull-right"  ng-disabled="company_info.$invalid || dashboard.company.profile_pic==null || dashboard.company.logo==null" continue-btn " ng-click="dashboard.register();" style="padding: 1.5% 9%;margin-top: 60px;">Submit</button>
                                             </div>
                                             <!-- <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"

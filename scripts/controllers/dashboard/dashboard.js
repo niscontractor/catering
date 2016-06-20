@@ -20,6 +20,7 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
 
 
 
+
     // $scope.showRemovedButton = true;
     // $scope.userProfileImage = true;
     // $scope.userLogoImage = true;
@@ -57,7 +58,20 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         CompanyService.getCompanyById($rootScope.company_id).then(function (response) {
             
             ctrl.company = response;
-            console.log(ctrl.company);
+            console.log(ctrl.company.display_image);
+            if (ctrl.company.display_image==null) {
+                $('#display_image').css('display','none');
+            }
+            if (ctrl.company.banner==null) {
+                $('#banner').css('display','none');
+            }
+            if (ctrl.company.profile_pic==null) {
+                $('#profile_pic').css('display','none');
+            }
+            if (ctrl.company.logo==null) {
+                $('#logo').css('display','none');
+            }
+
         }).catch(function (response) {
 
         });
@@ -105,26 +119,33 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     ctrl.fileUploaded = false;
     ctrl.allowFileUpload = false;
 
-    ctrl.uploadLogo = {
-        target: $rootScope.apipath + '/company/logo/' + $localStorage.company_id,
+    ctrl.image_upload = {
+        target: $rootScope.apipath + '/company/image_upload',
         singleFile: true,
         testChunks: false,
         chunkSize: 1024*1024*5
     };
 
-    ctrl.uploadProfilePhoto = {
-        target: $rootScope.apipath + '/company/profile-pic/' + $localStorage.company_id,
-        singleFile: true,
-        testChunks: false,
-        chunkSize: 1024*1024*5
-    };
+    // ctrl.uploadLogo = {
+    //     target: $rootScope.apipath + '/company/logo/' + $localStorage.company_id,
+    //     singleFile: true,
+    //     testChunks: false,
+    //     chunkSize: 1024*1024*5
+    // };
 
-    ctrl.uploadBanner = {
-        target: $rootScope.apipath + '/company/banner/' + $localStorage.company_id,
-        singleFile: true,
-        testChunks: false,
-        chunkSize: 1024*1024*5
-    };
+    // ctrl.uploadProfilePhoto = {
+    //     target: $rootScope.apipath + '/company/profile-pic/' + $localStorage.company_id,
+    //     singleFile: true,
+    //     testChunks: false,
+    //     chunkSize: 1024*1024*5
+    // };
+
+    // ctrl.uploadBanner = {
+    //     target: $rootScope.apipath + '/company/banner/' + $localStorage.company_id,
+    //     singleFile: true,
+    //     testChunks: false,
+    //     chunkSize: 1024*1024*5
+    // };
 
     ctrl.uploadImage = function ($file, $event, $flow) {
         ctrl.fileUploaded = true;
@@ -136,33 +157,39 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         var fileName = JSON.parse($message).filename;
         if (type == 'display_image') {
             ctrl.company.display_image = fileName;
-            console.log(type);
+            $scope.showOldDisplayImage = false;
+            $scope.showNewDisplayImage = true;
+
         } 
         else if(type == 'banner'){
             ctrl.company.banner = fileName;
-            console.log(type);
+            $scope.showOldBannerImage = false;
+            $scope.showNewBannerImage = true;
         }
         else if(type == 'logo'){
             ctrl.company.logo = fileName;
-            console.log(type);
+            $scope.showOldLogo = false;
+            $scope.showNewLogo = true;
         }
         else if(type == 'profile_pic'){
             ctrl.company.profile_pic = fileName;
-            console.log(type);
+            $scope.showOldProfilePic = false;
+            $scope.showNewProfilePic = true;
         }
         else{
             
         }
         console.log('success');
-        $scope.showOldLogo = false;
-        $scope.showNewLogo = true;
-        $scope.showOldProfilePic = false;
-        $scope.showNewProfilePic = true;
-        $scope.showOldDisplayImage = false;
-        $scope.showNewDisplayImage = true;
-        $scope.showOldBannerImage = false;
-        $scope.showNewBannerImage = true;
-         $scope.fileSize = $file.size;
+        $scope.fileSize = $file.size;
+        // $scope.showOldLogo = false;
+        // $scope.showNewLogo = true;
+        // $scope.showOldProfilePic = false;
+        // $scope.showNewProfilePic = true;
+        // $scope.showOldDisplayImage = false;
+        // $scope.showNewDisplayImage = true;
+        // $scope.showOldBannerImage = false;
+        // $scope.showNewBannerImage = true;
+         
         // $scope.showRemovedLogoButton = true;
         // $scope.showRemovedButton = true;
         // $scope.showUploadedImage = true;

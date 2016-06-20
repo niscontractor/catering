@@ -1,5 +1,5 @@
 <div data-ng-controller="galleryCtrl" ng-init="getUserPackages()">
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="margin-top:-20px;">
         <button ui-sref="app.apps.newpackage" class="btn btn-green mb20"><span class="fa fa-plus mr5"></span><span> New Package</span></button>
     </div>
     <hr>
@@ -40,6 +40,13 @@
         <label class="col-sm-3 control-label">Name</label>
         <div class="col-sm-9">
         <p>{{packDetailDetail.name}}</p>
+        </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-sm-3 control-label">Package Title</label>
+        <div class="col-sm-9">
+        <p>{{packDetailDetail.title}}</p>
         </div>
         </div>
 
