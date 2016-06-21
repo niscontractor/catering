@@ -106,6 +106,7 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
 //        submit data
         console.log(ctrl.company);
         ctrl.company._id = $localStorage.company_id;
+        ctrl.company.user_id = $localStorage.user.id;
         CompanyService.saveOrUpdate(ctrl.company).then(function (response) {
             $rootScope.user.profile_pic = response.profile_pic;
             $localStorage.profile_pic = response.profile_pic;
