@@ -62,7 +62,7 @@
                          flow-file-progress="uploadImageProgress()"
                          flow-drop>
                         <span> 
-                            <img flow-img="$flow.files[0]" style="width: 75px;"  class="img-float" ng-if="$flow.files.length > 0" src="{{package.image}}">
+                            <img flow-img="$flow.files[0]" style="width: 75px;"  class="img-float" ng-if="$flow.files.length > 0" >
                             <img style="width: 75px;" class="img-float" ng-if="showOldPackageUploadedImage" src="{{package.image}}">
                             <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
                             <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>

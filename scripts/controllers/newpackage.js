@@ -131,173 +131,175 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
             $scope.showOldPackageUploadedImage = false;
         };
 
-    $scope.uploadImageFailure = function ($file, $message, $flow) {
-        //console.log('failed');
-        $scope.showProgressBar = false;
-        //addMessage("Upload Failed");
-    };
+        $scope.uploadImageFailure = function ($file, $message, $flow) {
+            //console.log('failed');
+            $scope.showProgressBar = false;
+            //addMessage("Upload Failed");
+        };
 
-    $scope.uploadImageProgress = function ($file, $flow) {
-        $scope.showProgressBar = true;
-    };
+        $scope.uploadImageProgress = function ($file, $flow) {
+            $scope.showProgressBar = true;
+        };
 
-    $scope.imageAdded = function ($file, $event, $flow) {
-        $scope.$file = $file;
+        $scope.imageAdded = function ($file, $event, $flow) {
+            $scope.$file = $file;
 
-        if ($file.size > 1024 * 1024 * 5) {
-            SweetAlert.swal("Failed!", "Upload Image less than 5MB");
-            console.log("Can not upload");
-            return false;
+            if ($file.size > 1024 * 1024 * 5) {
+                SweetAlert.swal("Failed!", "Upload Image less than 5MB");
+                console.log("Can not upload");
+                return false;
 
-        }
-        var imageExtension = ["png", "gif", "jpg", "jpeg"];
-        if ((imageExtension.indexOf($file.getExtension())) < 0) {
-            //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
-            console.log('inside image extension');
-            $scope.allowFileUpload = false;
-        } else {
-            $scope.allowFileUpload = true;
-        }
-    };
+            }
+            var imageExtension = ["png", "gif", "jpg", "jpeg"];
+            if ((imageExtension.indexOf($file.getExtension())) < 0) {
+                //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
+                console.log('inside image extension');
+                $scope.allowFileUpload = false;
+            } else {
+                $scope.allowFileUpload = true;
+            }
+        };
 
-    $scope.ok = function () {
-        var obj = new Object();
-        var obj = {};
-        obj.name = $scope.package.name;
-        obj.title = $scope.package.title;
-        obj.image = $scope.fileName;
-        obj.desc = $scope.package.desc;
-        obj.price = $scope.package.price;
-        obj.qty = $scope.package.qty;
-        if ($scope.showNewPackageUploadedImage == false) {
-            obj.image = "";
-        }
-        var packageJson = JSON.stringify(obj);
-        console.log(obj);
-        $modalInstance.close(packageJson);
-    };
+        $scope.ok = function () {
+            var obj = new Object();
+            var obj = {};
+            obj.name = $scope.package.name;
+            obj.title = $scope.package.title;
+            obj.image = $scope.fileName;
+            obj.desc = $scope.package.desc;
+            obj.price = $scope.package.price;
+            obj.qty = $scope.package.qty;
+            if ($scope.showNewPackageUploadedImage == false) {
+                obj.image = "";
+            }
+            var packageJson = JSON.stringify(obj);
+            console.log(obj);
+            $modalInstance.close(packageJson);
+        };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-        $state.go('app.apps.gallery');
-    };
-}
-
-function EditPackageCtrl($scope, $modalInstance, $rootScope) {
-    $scope.showNewPackageUploadedImage = true;
-    $scope.showNewPackageRemove = false;
-    $scope.showOldPackageUploadedImage = true;
-    PackageService.getPackageById($rootScope.packageId).then(function (result) {
-        $scope.package = result;
-        $scope.fileName = result.image;
-    });
-
-    $scope.removeNewPackageImage = function () {
-        $scope.showNewPackageUploadedImage = false;
-        $scope.showNewPackageRemove = false;
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+            $state.go('app.apps.gallery');
+        };
     }
 
-    $scope.uploadPhoto = {};
-    $scope.$file;
-    $scope.showProgressBar = false;
-    $scope.fileUploaded = false;
-    $scope.allowFileUpload = false;
-    $scope.profilePhoto = '';
-
-    $scope.uploadCategoryImage = {
-        target: $rootScope.apipath + '/package' + '/item-upload',
-        singleFile: true,
-        testChunks: false,
-    };
-
-    $scope.uploadImage = function ($file, $event, $flow) {
-        $scope.fileUploaded = true;
-        if ($scope.allowFileUpload) {
-            $flow.upload();
-            $scope.newimage = true;
-            $scope.showProgressBar = true;
-        }
-    };
-    $scope.uploadImageSuccess = function ($file, $message, $flow) {
-        //console.log('success');
-        $scope.showNewPackageRemove = true;
+    function EditPackageCtrl($scope, $modalInstance, $rootScope) {
         $scope.showNewPackageUploadedImage = true;
-        $scope.showOldPackageUploadedImage = false;
-        $scope.profilePhoto = JSON.parse($message);
-        $scope.fileName = $scope.profilePhoto.filename;
-        $scope.showProgressBar = false;
-    };
+        $scope.showNewPackageRemove = false;
+        $scope.showOldPackageUploadedImage = true;
+        PackageService.getPackageById($rootScope.packageId).then(function (result) {
+            $scope.package = result;
+            $rootScope.fileName = result.image;
+        });
 
-    $scope.uploadImageFailure = function ($file, $message, $flow) {
-        //console.log('failed');
-        $scope.showProgressBar = false;
-        //addMessage("Upload Failed");
-    };
-
-    $scope.uploadImageProgress = function ($file, $flow) {
-        $scope.showProgressBar = true;
-    };
-
-    $scope.imageAdded = function ($file, $event, $flow) {
-        $scope.$file = $file;
-        var imageExtension = ["png", "gif", "jpg", "jpeg"];
-        if ((imageExtension.indexOf($file.getExtension())) < 0) {
-            //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
-            console.log('inside image extension');
-            $scope.allowFileUpload = false;
-        } else {
-            $scope.allowFileUpload = true;
+        $scope.removeNewPackageImage = function () {
+            $scope.showNewPackageUploadedImage = false;
+            $scope.showNewPackageRemove = false;
         }
+
+        $scope.uploadPhoto = {};
+        $scope.$file;
+        $scope.showProgressBar = false;
+        $scope.fileUploaded = false;
+        $scope.allowFileUpload = false;
+        $scope.profilePhoto = '';
+
+        $scope.uploadCategoryImage = {
+            target: $rootScope.apipath + '/package' + '/item-upload',
+            singleFile: true,
+            testChunks: false,
+        };
+
+        $scope.uploadImage = function ($file, $event, $flow) {
+            $scope.fileUploaded = true;
+            if ($scope.allowFileUpload) {
+                $flow.upload();
+                $scope.newimage = true;
+                $scope.showProgressBar = true;
+            }
+        };
+
+        $scope.uploadImageSuccess = function ($file, $message, $flow, type) {
+            var fileName = JSON.parse($message).filename;
+            $rootScope.fileName = fileName;
+            $scope.package.image = fileName;
+            $scope.showNewPackageUploadedImage = true;
+            $scope.showProgressBar = false;
+            $scope.showOldPackageUploadedImage = false;
+            $scope.package.image = $rootScope.fileName;
+        };
+
+        $scope.uploadImageFailure = function ($file, $message, $flow) {
+            //console.log('failed');
+            $scope.showProgressBar = false;
+            //addMessage("Upload Failed");
+        };
+
+        $scope.uploadImageProgress = function ($file, $flow) {
+            $scope.showProgressBar = true;
+        };
+
+        $scope.imageAdded = function ($file, $event, $flow) {
+            $scope.$file = $file;
+            var imageExtension = ["png", "gif", "jpg", "jpeg"];
+            if ((imageExtension.indexOf($file.getExtension())) < 0) {
+                //addMessage("Only PNG,GIF,JPG,JPEG files allowed.Please upload valid file.");
+                console.log('inside image extension');
+                $scope.allowFileUpload = false;
+            } else {
+                $scope.allowFileUpload = true;
+            }
+        };
+
+        $scope.ok = function () {
+            var obj = new Object();
+            var obj = {};
+            obj.name = $scope.package.name;
+            obj.title = $scope.package.title;
+            console.log("$scope.package.image : "+$scope.package.image);
+            obj.image = $scope.package.image;
+            obj.desc = $scope.package.desc;
+            obj.price = $scope.package.price;
+            obj.qty = $scope.package.qty;
+            obj._id = $rootScope.packageId;
+            var packageJson = JSON.stringify(obj);
+            console.log(obj);
+            $modalInstance.close(packageJson);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+            $state.go('app.apps.gallery');
+        };
+    }
+
+
+    $scope.getPackageData = function () {
+        PackageService.getPackageById($rootScope.$stateParams.packageId).then(function (result) {
+            $scope.currentPackage = result;
+        });
+    }
+
+    ctrl.addSection = function () {
+        $scope.currentPackage.sections.push({});
+        console.log("in new js");
     };
 
-    $scope.ok = function () {
-        var obj = new Object();
-        var obj = {};
-        obj.name = $scope.package.name;
-        obj.title = $scope.package.title;
-        obj.image = $scope.fileName;
-        obj.desc = $scope.package.desc;
-        obj.price = $scope.package.price;
-        obj.qty = $scope.package.qty;
-        obj._id = $rootScope.packageId;
-        var packageJson = JSON.stringify(obj);
-        console.log(obj);
-        $modalInstance.close(packageJson);
+    ctrl.saveSections = function () {
+        PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function (result) {
+            $state.go('app.apps.gallery');
+        });
     };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-        $state.go('app.apps.gallery');
-    };
-}
+    ctrl.removeSectionItem = function (section, item) {
+        var index = section.indexOf(item);
+        section.splice(index, 1);
+    }
 
-
-$scope.getPackageData = function () {
-    PackageService.getPackageById($rootScope.$stateParams.packageId).then(function (result) {
-        $scope.currentPackage = result;
-    });
-}
-
-ctrl.addSection = function () {
-    $scope.currentPackage.sections.push({});
-    console.log("in new js");
-};
-
-ctrl.saveSections = function () {
-    PackageService.addSectionToPackage($rootScope.$stateParams.packageId, $scope.currentPackage.sections).then(function (result) {
-        $state.go('app.apps.gallery');
-    });
-};
-
-ctrl.removeSectionItem = function (section, item) {
-    var index = section.indexOf(item);
-    section.splice(index, 1);
-}
-
-ctrl.removeSection = function (section, item) {
-    var index = section.indexOf(item);
-    section.splice(index, 1);
-}
+    ctrl.removeSection = function (section, item) {
+        var index = section.indexOf(item);
+        section.splice(index, 1);
+    }
 }
 
 angular
