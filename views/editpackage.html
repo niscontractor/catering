@@ -17,73 +17,78 @@
     </form>
 </div>
 <script type="text/ng-template" id="editpackage.html" >
-    <div ui-jq="checkBo">
+<div ui-jq="checkBo">
     <div class="modal-header bg-green-dark-package">
-    <h3 class="modal-title">Package Detail</h3>
+        <h3 class="modal-title">Package Detail</h3>
     </div>
     <div class="modal-body package-detail">
-    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addPackageForm">
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Package Name</label>
-    <div class="col-sm-9">
-    <input type="text" class="form-control" ng-model="package.name" ng-required="true"/> 
-    </div>
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Package Title</label>
-    <div class="col-sm-9">
-    <input type="text" class="form-control" ng-model="package.title" ng-required="true"/> 
-    </div>
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Price</label>
-    <div class="col-sm-9">
-    <input type="number" class="form-control" ng-model="package.price" ng-required="true" >  
-    </div>
-    </div>
-
-    <div class="form-group">
-    <label class="col-sm-3 control-label">No. of Serve</label>
-    <div class="col-sm-9">
-    <input type="number" class="form-control" ng-model="package.qty" ng-required="true">  
-    </div>
-    </div>
-
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Upload Image</label>
-    <div class="col-sm-9">
-            
-            <div class="drop drop-design" flow-init="uploadCategoryImage"
-                 flow-name="uploadPhoto.flow"
-                 flow-file-success="uploadImageSuccess( $file, $message, $flow )"
-                 flow-file-added="imageAdded( $file, $event, $flow )"
-                 flow-files-submitted="uploadImage( $files, $event, $flow )"
-                 flow-file-error="uploadImageFailure( $file, $message, $flow )"
-                 flow-file-progress="uploadImageProgress()"
-                 flow-drop>
-                <span> 
-                    <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
-                    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
-                    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
-                </span>
-                <span ng-show="showNewPackageRemove" ng-click="removeNewPackageImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 12px;width: 95px;"> <i class="glyphicon glyphicon-trash"> Remove</span></i>
+        <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addPackageForm">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Package Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="package.name" ng-required="true"/> 
                 </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Package Title</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="package.title" ng-required="true"/> 
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Price</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" ng-model="package.price" ng-required="true" >  
+                </div>
+            </div>
 
-    </div> 
-    </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">No. of Serve</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" ng-model="package.qty" ng-required="true">  
+                </div>
+            </div>
 
-    <div class="form-group">
-    <label class="col-sm-3 control-label">Description</label>
-    <div class="col-sm-9">
-    <textarea type="text" class="form-control" row="5" cols="100%" ng-model="package.desc" ng-required="true"></textarea>
-    </div>
-    </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Upload Image</label>
+                <div class="col-sm-9">
+            
+                    <div class="drop drop-design" flow-init="uploadCategoryImage"
+                         flow-name="uploadPhoto.flow"
+                         flow-file-success="uploadImageSuccess( $file, $message, $flow )"
+                         flow-file-added="imageAdded( $file, $event, $flow )"
+                         flow-files-submitted="uploadImage( $files, $event, $flow )"
+                         flow-file-error="uploadImageFailure( $file, $message, $flow )"
+                         flow-file-progress="uploadImageProgress()"
+                         flow-drop>
+                        <span> 
+                            <img flow-img="$flow.files[0]" style="width: 75px;"  class="img-float" ng-if="$flow.files.length > 0" >
+                            <img style="width: 75px;" class="img-float" ng-if="showOldPackageUploadedImage" src="{{package.image}}">
+                            <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
+                            <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
+                        </span>
+                    </div>
+                    <div class="col-xs-3"></div>
 
-    <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="ok()" ng-disabled="addPackageForm.$invalid">Save</button>
-    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+                    <div class="col-xs-offset-3 col-xs-9">
+                        <div ng-show="showProgressBar">Uploading...</div>
+                    </div>
+
+                </div> 
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Description</label>
+                <div class="col-sm-9">
+                    <textarea type="text" class="form-control" row="5" cols="100%" ng-model="package.desc" ng-required="true"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" ng-click="ok()" ng-disabled="addPackageForm.$invalid">Save</button>
+                <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
     </div>
-    </form>
-    </div>
-    </div>
+</div>
 </script> 

@@ -111,23 +111,24 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
             target: $rootScope.apipath + '/package' + '/item-upload',
             singleFile: true,
             testChunks: false,
-            chunkSize: 1024 * 1024 * 5
+            chunkSize: 1024 * 1024 * 5,
         };
 
         $scope.uploadImage = function ($file, $event, $flow) {
             $scope.fileUploaded = true;
             if ($scope.allowFileUpload) {
+                console.log("in upload");
                 $flow.upload();
                 $scope.showProgressBar = true;
             }
         };
-        $scope.uploadImageSuccess = function ($file, $message, $flow) {
-            //console.log('success');
-            //$scope.showNewPackageRemove = true;
+
+        $scope.uploadImageSuccess = function ($file, $message, $flow, type) {
+            var fileName = JSON.parse($message).filename;
+            $scope.fileName = fileName;
             $scope.showNewPackageUploadedImage = true;
-            $scope.profilePhoto = JSON.parse($message);
-            $scope.fileName = $scope.profilePhoto.filename;
             $scope.showProgressBar = false;
+            $scope.showOldPackageUploadedImage = false;
         };
 
         $scope.uploadImageFailure = function ($file, $message, $flow) {
@@ -185,9 +186,10 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
     function EditPackageCtrl($scope, $modalInstance, $rootScope) {
         $scope.showNewPackageUploadedImage = true;
         $scope.showNewPackageRemove = false;
-        console.log("--- in edit ctr : " + $rootScope.packageId);
+        $scope.showOldPackageUploadedImage = true;
         PackageService.getPackageById($rootScope.packageId).then(function (result) {
             $scope.package = result;
+            $rootScope.fileName = result.image;
         });
 
         $scope.removeNewPackageImage = function () {
@@ -212,16 +214,19 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
             $scope.fileUploaded = true;
             if ($scope.allowFileUpload) {
                 $flow.upload();
+                $scope.newimage = true;
                 $scope.showProgressBar = true;
             }
         };
-        $scope.uploadImageSuccess = function ($file, $message, $flow) {
-            //console.log('success');
-            $scope.showNewPackageRemove = true;
+
+        $scope.uploadImageSuccess = function ($file, $message, $flow, type) {
+            var fileName = JSON.parse($message).filename;
+            $rootScope.fileName = fileName;
+            $scope.package.image = fileName;
             $scope.showNewPackageUploadedImage = true;
-            $scope.profilePhoto = JSON.parse($message);
-            $scope.fileName = $scope.profilePhoto.filename;
             $scope.showProgressBar = false;
+            $scope.showOldPackageUploadedImage = false;
+            $scope.package.image = $rootScope.fileName;
         };
 
         $scope.uploadImageFailure = function ($file, $message, $flow) {
@@ -251,14 +256,12 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
             var obj = {};
             obj.name = $scope.package.name;
             obj.title = $scope.package.title;
-            obj.image = $scope.fileName;
+            console.log("$scope.package.image : "+$scope.package.image);
+            obj.image = $scope.package.image;
             obj.desc = $scope.package.desc;
             obj.price = $scope.package.price;
             obj.qty = $scope.package.qty;
             obj._id = $rootScope.packageId;
-            if ($scope.showNewPackageUploadedImage == false) {
-                obj.image = "";
-            }
             var packageJson = JSON.stringify(obj);
             console.log(obj);
             $modalInstance.close(packageJson);
