@@ -58,7 +58,8 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         CompanyService.getCompanyById($rootScope.company_id).then(function (response) {
             
             ctrl.company = response;
-            console.log(ctrl.company.display_image);
+
+            console.log(ctrl.company);
             if (ctrl.company.display_image==null) {
                 $('#display_image').css('display','none');
             }
@@ -104,7 +105,10 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     ctrl.register = function () {
 //        submit data
         console.log(ctrl.company);
+        ctrl.company._id = $localStorage.company_id;
         CompanyService.saveOrUpdate(ctrl.company).then(function (response) {
+            $rootScope.user.profile_pic = response.profile_pic;
+            $localStorage.profile_pic = response.profile_pic;
             $rootScope.addMessage('Company updated successfully', 'success');
             $state.go('app.apps.calendar');
         }).catch(function (response) {
@@ -154,6 +158,8 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         }
     };
     ctrl.uploadImageSuccess = function ($file, $message, $flow , type) {
+
+
         var fileName = JSON.parse($message).filename;
         if (type == 'display_image') {
             ctrl.company.display_image = fileName;
@@ -206,6 +212,7 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         Common.getUserById($localStorage.user.id).then(function (response) {
             $rootScope.user = response;
             $localStorage.user = $rootScope.user;
+            $localStorage.user.profile_pic = $localStorage.profile_pic;
         }).catch(function (response) {
             $rootScope.addMessage('Invalid User.', 'error');
         });
