@@ -48,6 +48,7 @@ function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Comm
             var obj = new Object();
             obj.email = ctrl.email;
             obj.password = ctrl.password;
+            obj.role = 2;
             var jsonString = JSON.stringify(obj);
             $rootScope.addMessage('Please wait...', 'success');  
             Common.authenticate(jsonString).then(function (response) {

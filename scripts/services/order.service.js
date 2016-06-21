@@ -6,7 +6,8 @@ function OrderService($q, $http, $rootScope, $localStorage) {
 
     output.today = function () {
         var deferred = $q.defer();
-        $http.get(apiUrl + $localStorage.user.id + '/today')
+        var role = 2;
+        $http.get(apiUrl + $localStorage.user.id+'/'+role+ '/today')
                 .success(function (data) {
                     deferred.resolve(data);
                 })
@@ -18,8 +19,9 @@ function OrderService($q, $http, $rootScope, $localStorage) {
 
     output.month = function () {
         var month = new Date().getMonth();
+        var role = 2;
         var deferred = $q.defer();
-        $http.get(apiUrl + $localStorage.user.id + '/' + (month + 1))
+        $http.get(apiUrl + $localStorage.user.id+ '/'+role+ '/' + (month + 1))
                 .success(function (data) {
                     deferred.resolve(data);
                 })

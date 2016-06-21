@@ -329,10 +329,10 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.vat.$invalid && company_info.vat.$dirty)}">
                                                 <label class="allLabel">Company VAT Number<span>*</span></label>
-                                                <input name="vat" class="form-control" ng-model="dashboard.company.vat" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="vat" class="form-control" ng-model="dashboard.company.vat" required />
                                                 <div class="error,help-block" ng-show="(company_info.vat.$dirty) && company_info.vat.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.vat.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.vat.$error.pattern">Invalid Number</span>
+                                                       
                                                     </div>
                                                 </div>
 
@@ -448,10 +448,9 @@
                                             <div class="col-sm-4">
                                                 <div class="" ng-class="{'has-error': (company_info.iban_number.$invalid && company_info.iban_number.$dirty)}">
                                                 <label class="allLabel">IBAN NUmber<span>*</span></label>
-                                                <input name="iban_number" class="form-control" ng-model="dashboard.company.iban_number" ng-pattern="/^[0-9]{1,45}$/" required />
+                                                <input name="iban_number" class="form-control" ng-model="dashboard.company.iban_number" required />
                                                 <div class="error,help-block" ng-show="(company_info.iban_number.$dirty) && company_info.iban_number.$invalid"> 
                                                         <span class="help-block" ng-show="company_info.iban_number.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.iban_number.$error.pattern">Invalid Number</span>
                                                     </div>
                                                 </div>
 

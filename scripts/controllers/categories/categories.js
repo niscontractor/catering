@@ -104,7 +104,6 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
     };
 
     ctrl.editCategoryItem = function (item, category) {
-        $scope.showDeleteIcon = true;
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
             controller: ('EditItemCtrl', ['SweetAlert','$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
@@ -201,7 +200,12 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
 
 
 function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) {
-    $scope.showNewItemUploadedImage = true;
+    $scope.categoryItemavailable = true;
+    $scope.showNewItemUploadedImage = false;
+    $scope.changed = function(data){
+        console.log(data);
+    }
+
     $scope.removeNewItemImage = function(){
         console.log("Removed");
         $scope.showNewItemUploadedImage = false;
@@ -229,7 +233,8 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
     $scope.uploadCategoryImage = {
         target: $rootScope.apipath + '/category/' + categoryId._id + '/item-upload/',
         singleFile: true,
-        testChunks: true,
+        testChunks: false,
+        chunkSize: 1024*1024*5
 
     };
 
@@ -269,6 +274,7 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
             console.log('inside image extension');
             $scope.allowFileUpload = false;
         } else {
+
             $scope.allowFileUpload = true;
         }
     };
@@ -279,7 +285,7 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
         obj.desc = $scope.categoryItem.desc;
         obj.qty = $scope.categoryItem.qty;
         obj.price = $scope.categoryItem.price;
-        obj.available = $scope.categoryItem.available;
+        obj.available = $scope.categoryItemavailable;
         obj.image = $scope.profilePhoto.filename || '';
         obj.tag = $scope.categoryItem.tag;
         obj.categoryName = categoryId._id;
@@ -292,7 +298,7 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
 }
 
 function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryItem) {
-    
+    $scope.showOldItemImage = true;
     $scope.categoryItem = categoryItem;
     $scope.profilePhoto = '';
     $scope.tags = $rootScope.tags;
@@ -306,9 +312,11 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
         target: $rootScope.apipath + '/category/' + categoryItem.category + '/item-upload',
         singleFile: true,
         testChunks: false,
+        chunkSize: 1024*1024*5
     };
 
     $scope.uploadImage = function ($file, $event, $flow) {
+        $scope.showOldItemImage = false;
         $scope.fileUploaded = true;
         if ($scope.allowFileUpload) {
             $flow.upload();
@@ -317,12 +325,14 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
         
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
+        $scope.showOldItemImage = false;
         $scope.profilePhoto = JSON.parse($message);
         $scope.showProgressBar = false;
 
     };
     $scope.uploadImageFailure = function ($file, $message, $flow) {
         console.log('failed');
+        $scope.showOldItemImage = true;
         $scope.showProgressBar = false;
     };
     $scope.uploadImageProgress = function ($file, $flow) {
@@ -330,8 +340,8 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
     };
     $scope.imageAdded = function ($file, $event, $flow) {
         $scope.$file = $file;
-        if ($file.size > 1024 * 1024) {
-            SweetAlert.swal("Failed!", "Upload Image less than 1MB");
+        if ($file.size > 1024 * 1024 * 5) {
+            SweetAlert.swal("Failed!", "Upload Image less than 5MB");
             console.log("Can not upload");
             return false;
         }
@@ -350,7 +360,6 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
     $scope.deleteItemImage = function(){
         console.log("deleted");
         $scope.categoryItem.image = "";
-        $scope.showDeleteIcon = true;
         $scope.isImageAdded = false;
 
     }
