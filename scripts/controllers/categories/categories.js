@@ -8,12 +8,16 @@ function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, Ca
         CategoryService.getCategories('').then(angular.bind(this, function then() {
             console.log(CategoryService.categories);
             ctrl.categoryList = CategoryService.categories;
+            
         }));
-        }
 
-        ReadJson.getTags().then(angular.bind(this, function then() {
+    ReadJson.getTags().then(angular.bind(this, function then() {
         $rootScope.tags = ReadJson.tags;
     }));
+
+    }
+
+        
 
             ctrl.editCategory = function (category) {
                 var modalInstance = $modal.open({
