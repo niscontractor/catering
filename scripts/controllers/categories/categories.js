@@ -1,6 +1,6 @@
 'use strict';
 
-function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, CategoryService) {
+function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, CategoryService) {
     var ctrl = this;
     $scope.getCategoryList = function () {
 
@@ -9,30 +9,30 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
             console.log(CategoryService.categories);
             ctrl.categoryList = CategoryService.categories;
         }));
-    }
+        }
 
-    ReadJson.getTags().then(angular.bind(this, function then() {
+        ReadJson.getTags().then(angular.bind(this, function then() {
         $rootScope.tags = ReadJson.tags;
     }));
 
-    ctrl.editCategory = function (category) {
-        var modalInstance = $modal.open({
-            templateUrl: 'editCategory.html',
-            controller: ('EditCategoryCtrl', ['$scope', '$modalInstance', 'category', EditCategoryCtrl]),
-            size: 'med',
-            resolve: {
-                category: function () {
-                    return category;
-                }
+            ctrl.editCategory = function (category) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'editCategory.html',
+                    controller: ('EditCategoryCtrl', ['$scope', '$modalInstance', 'category', EditCategoryCtrl]),
+                    size: 'med',
+                    resolve: {
+                        category: function () {
+                            return category;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (category) {
+                    CategoryService.editCategories(category).then(angular.bind(this, function then() {
+
+                    }));
+                });
             }
-        });
-
-        modalInstance.result.then(function (category) {
-            CategoryService.editCategories(category).then(angular.bind(this, function then() {
-
-            }));
-        });
-    }
 
     ctrl.addCategory = function () {
         var modalInstance = $modal.open({
@@ -52,37 +52,37 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
     ctrl.deleteCategory = function (category) {
 
         SweetAlert.swal({
-           title: "Are you sure?",
-           text: "Your will not be able to recover this category!",
-           type: "warning",
-           showCancelButton: true,
-           confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
-           cancelButtonText: "No, cancel!",
-           closeOnConfirm: false,
-           closeOnCancel: false }, 
-        function(isConfirm){ 
-           if (isConfirm) {
-              SweetAlert.swal("Deleted!", "Your category has been deleted.", "success");
-              CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
-                console.log(CategoryService.category);
-                CategoryService.getCategories('').then(angular.bind(this, function then() {
-                console.log(CategoryService.categories);
-                ctrl.categoryList = CategoryService.categories;
-                }));
-
+            title: "Are you sure?",
+            text: "Your will not be able to recover this category!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                SweetAlert.swal("Deleted!", "Your category has been deleted.", "success");
+                CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
+                    console.log(CategoryService.category);
+                    CategoryService.getCategories('').then(angular.bind(this, function then() {
+                        console.log(CategoryService.categories);
+                        ctrl.categoryList = CategoryService.categories;
                     }));
-           } 
 
-           else {
-              SweetAlert.swal("Cancelled", "Your category is safe :)", "error");
-           }
+                }));
+            }
+
+            else {
+                SweetAlert.swal("Cancelled", "Your category is safe :)", "error");
+            }
         });
     };
 
     ctrl.addCategoryItem = function (id) {
         var modalInstance = $modal.open({
             templateUrl: 'addCategoryItem.html',
-            controller: ('AddItemCtrl', ['SweetAlert','$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
+            controller: ('AddItemCtrl', ['SweetAlert', '$rootScope', '$scope', '$modalInstance', 'categoryId', AddItemCtrl]),
             size: 'med',
             resolve: {
                 categoryId: function () {
@@ -106,7 +106,7 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
     ctrl.editCategoryItem = function (item, category) {
         var modalInstance = $modal.open({
             templateUrl: 'editCategoryItem.html',
-            controller: ('EditItemCtrl', ['SweetAlert','$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
+            controller: ('EditItemCtrl', ['SweetAlert', '$rootScope', '$scope', '$modalInstance', 'categoryItem', EditItemCtrl]),
             size: 'med',
             resolve: {
                 categoryItem: function () {
@@ -137,29 +137,29 @@ function categoryCtrl(SweetAlert,$scope, $modal, $log,ReadJson, $rootScope, Cate
 
     ctrl.deleteCategoryItem = function (item, category) {
         SweetAlert.swal({
-           title: "Are you sure?",
-           text: "Your will not be able to recover this item!",
-           type: "warning",
-           showCancelButton: true,
-           confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
-           cancelButtonText: "No, cancel!",
-           closeOnConfirm: false,
-           closeOnCancel: false }, 
-        function(isConfirm){ 
-           if (isConfirm) {
-              SweetAlert.swal("Deleted!", "Your item has been deleted.", "success");
-               CategoryService.deleteCategoryItem(category._id, item.name).then(angular.bind(this, function then() {
-                CategoryService.getCategories('').then(angular.bind(this, function then() {
-                    ctrl.categoryList = CategoryService.categories;
+            title: "Are you sure?",
+            text: "Your will not be able to recover this item!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                SweetAlert.swal("Deleted!", "Your item has been deleted.", "success");
+                CategoryService.deleteCategoryItem(category._id, item.name).then(angular.bind(this, function then() {
+                    CategoryService.getCategories('').then(angular.bind(this, function then() {
+                        ctrl.categoryList = CategoryService.categories;
+                    }));
                 }));
-            }));
-           } 
+            }
 
-           else {
-              SweetAlert.swal("Cancelled", "Your item is safe :)", "error");
-           }
+            else {
+                SweetAlert.swal("Cancelled", "Your item is safe :)", "error");
+            }
         });
-        
+
     }
 
 }
@@ -198,22 +198,11 @@ function EditCategoryCtrl($scope, $modalInstance, category) {
 
 
 
-
 function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) {
     $scope.categoryItemavailable = true;
     $scope.showNewItemUploadedImage = false;
-    $scope.changed = function(data){
-        console.log(data);
-    }
-
-    $scope.removeNewItemImage = function(){
-        console.log("Removed");
-        $scope.showNewItemUploadedImage = false;
-        $scope.showNewItemRemove = false;
-    }
-
     $scope.showNewItemRemove = false;
-    $scope.tags = $rootScope.tags; 
+    $scope.tags = $rootScope.tags;
     $scope.uploadPhoto = {};
     $scope.$file;
     $scope.showProgressBar = false;
@@ -235,7 +224,6 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
         singleFile: true,
         testChunks: false,
         chunkSize: 1024*1024*5
-
     };
 
     $scope.uploadImage = function ($file, $event, $flow) {
@@ -247,7 +235,7 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
         console.log('success');
-        
+
         $scope.profilePhoto = JSON.parse($message);
         $scope.showProgressBar = false;
         $scope.showNewItemRemove = true;
@@ -297,6 +285,7 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
     };
 }
 
+
 function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryItem) {
     $scope.showOldItemImage = true;
     $scope.categoryItem = categoryItem;
@@ -322,7 +311,7 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
             $flow.upload();
             $scope.showProgressBar = true;
         }
-        
+
     };
     $scope.uploadImageSuccess = function ($file, $message, $flow) {
         $scope.showOldItemImage = false;
@@ -357,7 +346,7 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
 
     };
 
-    $scope.deleteItemImage = function(){
+    $scope.deleteItemImage = function () {
         console.log("deleted");
         $scope.categoryItem.image = "";
         $scope.isImageAdded = false;
@@ -380,7 +369,7 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
         if ($scope.profilePhoto && $scope.profilePhoto.filename) {
             obj.image = $scope.profilePhoto.filename;
         }
-        if ($scope.isImageAdded==false) {
+        if ($scope.isImageAdded == false) {
             obj.image = "";
         }
 
@@ -394,4 +383,4 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
 
 angular
         .module('urbanApp')
-        .controller('categoryCtrl', ['SweetAlert','$scope', '$modal', '$log','ReadJson','$rootScope', 'CategoryService', categoryCtrl]);
+        .controller('categoryCtrl', ['SweetAlert', '$scope', '$modal', '$log', 'ReadJson', '$rootScope', 'CategoryService', categoryCtrl]);
