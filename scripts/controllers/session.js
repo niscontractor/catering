@@ -10,14 +10,16 @@ function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Comm
     var token = $location.search().userToken;
     $scope.signin = function(){
         var baseUrl = $rootScope.baseUrl + '/api/forgetPassword';
-        $http.post(baseUrl,{'emailAddress':$scope.emailAddress})
+        $http.post(baseUrl,{'emailAddress':$scope.emailAddress,'role':2})
             .success(function(response){
+                console.log(response);
                 if (response.success=="true") {
                     SweetAlert.swal('Success', response.message, 'success');
                     $state.go('user.signin');
                 }
                 else{
-
+                    SweetAlert.swal('Failed', response.message);
+                    
                 }
             })
             .error(function(error){

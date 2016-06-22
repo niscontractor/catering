@@ -2,16 +2,21 @@
   <div class="center-content">
     <div class="row no-margin">
       <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4  bg-white p-t-b">
-        <form role="form" class="form-layout p-l-r">
+        <form role="form" name="send_password_reset" class="form-layout p-l-r">
           <div class="text-center mb15">
             <img data-ng-src="images/logo-dark.png" />
           </div>
           <p class="text-center mb25">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
           <div class="form-inputs login-fonts">
-            <input type="email" class="form-control input-lg" ng-model="emailAddress" placeholder="Email address" autofocus>
+          <div class="" ng-class="{'has-error': (send_password_reset.email.$invalid && send_password_reset.email.$dirty)}">
+            <input type="email" name="email" class="form-control input-lg" ng-model="emailAddress" placeholder="Email address" ng-required="true" autofocus>
+            <div class="error,help-block" ng-show="(send_password_reset.email.$dirty) && send_password_reset.email.$invalid"> 
+              <span class="help-block" ng-show="send_password_reset.email.$error.required">Required</span>
+              <span class="help-block" ng-show="send_password_reset.email.$error.email">Invalid Email</span>
+              </div>
           </div>
 
-          <button class="btn btn-orange btn-block btn-lg mb15" type="submit" data-ng-click="signin()">Send Password Reset</button>
+          <button ng-disabled="send_password_reset.$invalid" class="btn btn-orange btn-block btn-lg mb15" type="submit" data-ng-click="signin()">Send Password Reset</button>
         </form>
       </div>
     </div>

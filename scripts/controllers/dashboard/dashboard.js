@@ -18,7 +18,9 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     $scope.showOldBannerImage = true;
     $scope.showNewBannerImage = false;
 
-
+    $scope.hideSkip = function(){
+        $rootScope.isFirstTime = false;
+    }
 
 
     // $scope.showRemovedButton = true;

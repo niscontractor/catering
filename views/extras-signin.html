@@ -11,7 +11,7 @@
                     <div ng-class="{'has-error': (login.loginForm.email.$invalid && login.loginForm.email.$dirty)}">
                         <input type="email" name="email" class="form-control input-lg" placeholder="Email Address" ng-model="login.email" required="true">
                         <div class="error,help-block" ng-show="(login.loginForm.email.$dirty) && login.loginForm.email.$invalid"> 
-                                <span class="help-block" ng-show="login.loginForm.email.$error.required">Enter Email Address</span>
+                                <span class="help-block" ng-show="login.loginForm.email.$error.required">Required</span>
                                 <span class="help-block" ng-show="login.loginForm.email.$error.email">Enter valid Email Address</span>
                         </div>
                     </div>    
