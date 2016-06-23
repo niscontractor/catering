@@ -26,28 +26,55 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">Package Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" ng-model="package.name" ng-required="true"/> 
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Package Title</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" ng-model="package.title" ng-required="true"/> 
-                </div>
-            </div>
-            <div class="form-group">
+                <div  ng-class="{'has-error': (addPackageForm.name.$invalid && addPackageForm.name.$dirty)}">
+                    <input type="text" name="name" class="form-control" ng-model="package.name" ng-required="true"/> 
+                <div class="error,help-block" ng-show="(addPackageForm.name.$dirty) && addPackageForm.name.$invalid"> 
+            <span class="help-block" ng-show="addPackageForm.name.$error.required">Package name is required</span>
+    </div>
+    </div>  
+    </div>
+    </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Package Title</label>
+            <div class="col-sm-9">
+            <div  ng-class="{'has-error': (addPackageForm.title.$invalid && addPackageForm.title.$dirty)}">
+                <input type="text" name="title" class="form-control" ng-model="package.title" ng-required="true"/> 
+                 <div class="error,help-block" ng-show="(addPackageForm.title.$dirty) && addPackageForm.title.$invalid"> 
+        <span class="help-block" ng-show="addPackageForm.title.$error.required">Package title is required</span>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        <div class="form-group">
                 <label class="col-sm-3 control-label">Price</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" ng-model="package.price" ng-required="true" >  
-                </div>
-            </div>
+                 <div  ng-class="{'has-error': (addPackageForm.price.$invalid && addPackageForm.price.$dirty)}">
+                    <input name="price" class="form-control" ng-model="package.price" ng-required="true" ng-pattern="/^[0-9]{1,45}$/">  
+                 <div class="error,help-block" ng-show="(addPackageForm.price.$dirty) && addPackageForm.price.$invalid"> 
+            <span class="help-block" ng-show="addPackageForm.price.$error.required">Price is required</span>
+            <span class="help-block" ng-show="addPackageForm.price.$error.pattern">Invalid price</span>
+    </div>
+    </div>  
+    </div>
+    </div>
 
             <div class="form-group">
                 <label class="col-sm-3 control-label">No. of Serve</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" ng-model="package.qty" ng-required="true">  
-                </div>
-            </div>
+                <div  ng-class="{'has-error': (addPackageForm.qty.$invalid && addPackageForm.qty.$dirty)}">
+                    <input name="qty" class="form-control" ng-model="package.qty" ng-required="true" ng-pattern="/^[0-9]{1,45}$/">  
+                <div class="error,help-block" ng-show="(addPackageForm.qty.$dirty) && addPackageForm.qty.$invalid"> 
+            <span class="help-block" ng-show="addPackageForm.qty.$error.required">No of serve is required</span>
+            <span class="help-block" ng-show="addPackageForm.qty.$error.pattern">Invalid number</span>
+    </div>
+    </div>  
+    </div>
+    </div> 
+
 
             <div class="form-group">
                 <label class="col-sm-3 control-label">Upload Image</label>
@@ -79,10 +106,15 @@
 
             <div class="form-group">
                 <label class="col-sm-3 control-label">Description</label>
+                 <div  ng-class="{'has-error': (addPackageForm.des.$invalid && addPackageForm.des.$dirty)}">
                 <div class="col-sm-9">
-                    <textarea type="text" class="form-control" row="5" cols="100%" ng-model="package.desc" ng-required="true"></textarea>
-                </div>
-            </div>
+                    <textarea type="text" name="des" class="form-control" row="5" cols="100%" ng-model="package.desc" ng-required="true"></textarea>
+                <div class="error,help-block" ng-show="(addPackageForm.des.$dirty) && addPackageForm.des.$invalid"> 
+            <span class="help-block" ng-show="addPackageForm.des.$error.required">Description is required</span>       
+    </div>
+    </div>  
+    </div>
+    </div>    
 
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" ng-click="ok()" ng-disabled="addPackageForm.$invalid">Save</button>
