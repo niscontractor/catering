@@ -1,6 +1,6 @@
 'use strict';
 
-function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
+function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -9,6 +9,8 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
 
     $scope.initCalendar = function () {
         OrderService.today().then(function(response) {
+            console.log(response);
+            $scope.response = response;
             for(var row in response) {
                 $scope.events.push({
                     id:response[row].order_id,
@@ -17,16 +19,49 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
                     listColor: 'danger',
                     className: ['event-danger', 'event-name-light'],
                     customer_name : response[row].customer_name,
+                    customer_address : response[row].customer_address,
                     order_location : response[row].customer_city,
+                    customer_pin : response[row].customer_pincode,
+                    customer_state : response[row].customer_state,
                     totalAmount : response[row].totalAmount,
                     items : response[row].item_info
                 });
+
+                // $scope.events.items.push('totalPrice',$scope.events.items[row].totalNumber*$scope.events.items[row].itemPrice);
             }
+            console.log($scope.events);
         });
 
-        OrderService.month().then(function(response) {
-            $scope.eventSources = response;
+        // OrderService.month().then(function(response) {
+        //     $scope.eventSources = response;
+        // });
+    }
+
+    $scope.orderModal = function(index){
+        
+        var modalInstance = $modal.open({
+            templateUrl: 'orderInfo.html',
+            controller: ('orderInfoEventCtrl', ['$scope', '$modalInstance', '$rootScope','object', orderInfoEventCtrl]),
+            resolve: {
+                object: function () {
+                    return $scope.response[index];
+                }
+            },
+            size: 'med',
+            keyboard: false,
+            backdrop: 'static'
         });
+    }
+
+    function orderInfoEventCtrl($scope,$modalInstance,$rootScope,object){
+        $scope.e = object;
+        $scope.e.id = object.order_id;
+        $scope.e.items = object.item_info;
+        console.log(object);
+
+         $scope.closeModal = function(){
+            $modalInstance.close();
+        }
     }
 
     $scope.changeTo = 'Hungarian';
@@ -83,7 +118,31 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
     /* alert on eventClick */
     $scope.alertOnEventClick = function (date, jsEvent, view) {
         $scope.alertMessage = (date.title + ' was clicked ');
-    };
+        $scope.orderInfoData = date;
+        var modalInstance = $modal.open({
+            templateUrl: 'orderInfo.html',
+            controller: ('orderInfoCtrl', ['$scope', '$modalInstance', '$rootScope','order', orderInfoCtrl]),
+            resolve: {
+                order: function () {
+                    return date;
+                }
+            },
+            size: 'med',
+            keyboard: false,
+            backdrop: 'static'
+        });
+
+        
+  };
+
+    function orderInfoCtrl($scope,$modalInstance,$rootScope,order){
+        console.log(order);
+        $scope.e = order;
+        $scope.closeModal = function(){
+            $modalInstance.close();
+        }
+    }
+
     /* alert on Drop */
     $scope.alertOnDrop = function (event, delta, revertFunc, jsEvent, ui, view) {
         $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
@@ -141,7 +200,7 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
     $scope.uiConfig = {
         calendar: {
             height: 550,
-            editable: true,
+            editable: false,
             header: {
                 left: 'title',
                 right: 'month,agendaWeek,agendaDay today prev,next',
@@ -150,7 +209,7 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
                 prev: ' fa fa-caret-left',
                 next: ' fa fa-caret-right',
             },
-            droppable: true, // this allows things to be dropped onto the calendar !!!
+            droppable: false, // this allows things to be dropped onto the calendar !!!
             axisFormat: 'h:mm',
             columnFormat: {
                 month: 'ddd', // Mon
@@ -184,4 +243,4 @@ function CalendarCtrl($scope, $compile, uiCalendarConfig, OrderService) {
 
 angular
         .module('urbanApp')
-        .controller('CalendarCtrl', ['$scope', '$compile', 'uiCalendarConfig', 'OrderService', CalendarCtrl]);
+        .controller('CalendarCtrl', ['$modal','$scope', '$compile', 'uiCalendarConfig', 'OrderService', CalendarCtrl]);

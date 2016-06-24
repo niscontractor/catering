@@ -1,3 +1,108 @@
+<script type="text/ng-template" id="orderInfo.html">
+    
+    
+    <div class="modal-header bg-green-dark-package">
+    <span style="font-size: 22px;" class="modal-title">Order : </span><span>{{e.id}}</span>
+    </div>
+    <div class="modal-body package-detail">
+    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+
+    
+        
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Name : </label>
+    <div class="col-sm-9" >
+     <label class="control-label"> {{e.customer_name}}</label>
+    </div>
+    </div>
+
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Delivery Address : </label>
+    <div class="col-sm-9" >
+        <label class="control-label"> {{e.customer_address}} , {{e.order_location}} , {{e.customer_state}}</label>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Delivery Date : </label>
+    <div class="col-sm-9">
+        <label class="control-label"> 12/07/2015</label>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <div class="panel-body"> 
+    <table class="table mb0"> 
+        <thead> 
+            <tr> 
+                <th class="col-md-5"> 
+                <span></span>Description 
+                </th>
+                <th class="col-md-2">
+                Qty 
+                </th>
+                <th class="col-md-2">Price 
+                </th>
+                <th class="col-md-2">Amount 
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in e.items">
+            <tr> 
+                <td>{{item.itemName}}</td>
+                <td>{{item.totalNumber}}</td>
+                <td>{{item.itemPrice}}</td>
+                <td>{{item.itemPrice*item.totalNumber}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="font-size: 13px;font-weight: bolder;">Total  </td>
+                <td style="font-size: 13px;font-weight: bolder;">{{e.totalAmount}}</td>
+            </tr>
+        </tfoot>
+        </table> 
+        </div>
+   
+    </div>
+
+
+
+
+
+    </div>    
+
+
+
+    
+
+     
+
+
+
+    <div class="modal-footer">
+    
+    <button class="btn btn-warning btn-sm" ng-click="closeModal()">Cancel</button>
+    </div>
+    </form>
+    </div>
+    </div>
+
+
+    
+
+</script>
+
+
+
+
+
+
+
+
 <div class="row" ng-controller="CalendarCtrl" ng-init="initCalendar()">
     <div class="col-sm-3">
 
@@ -10,15 +115,15 @@
         <hr>
 
         <ul class="external-events">
-            <li ng-repeat="e in events">
+            <li ng-repeat="e in events" ng-click="orderModal($index)" style="cursor: pointer;">
                 <div class="external-event event-primary">
                     <div class="row">
                         <div class="col-sm-12">
-                            <input ng-model="e.order_event" class="form-control no-border no-bg pl0 danger">
+<!--                             <input ng-model="e.order_event" class="form-control no-border no-bg pl0 danger"> -->
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-sm-6">
                             <small>Order Id : <span style="color:#7bc147">{{e.id}}</span></small><br/>
                             <small>Customer : <span style="color:#7bc147">{{e.customer_name}}</span></small><br/>
@@ -43,7 +148,7 @@
     </div>
     <div class="col-sm-9">
         <div class="calendar-viewer">
-            <div ui-calendar="uiConfig.calendar" class="fullcalendar" calendar="myCalendar" ng-model="eventSources"></div>
+            <div ui-calendar="uiConfig.calendar" class="fullcalendar" calendar="myCalendar" ng-model="eventSources" ></div>
         </div>
     </div>
 </div>

@@ -139,7 +139,7 @@
                                                 <label class="allLabel">What type of cuisine you serve?<span>*</span></label>
                                                 <oi-select name="cuisine"
                                                     class="" style="height: 47px"
-                                                    oi-options="cuisineType.cuisine for cuisineType in dashboard.typeOfCuisines track by cuisineType.id"
+                                                    oi-options="cuisineType.name for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
                                                     ng-model="dashboard.company.cuisine"
                                                     multiple required>
                                                 </oi-select>

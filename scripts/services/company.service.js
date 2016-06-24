@@ -40,7 +40,7 @@ function readJson($q, $http, $rootScope) {
     output.getCuisines = function () {
         output.typeOfCuisines = [];
         var deferred = $q.defer();
-        return $http.get(cuisineUrl)
+        return $http.get($rootScope.baseUrl+'/api2/cuisine')
                 .success(function (data) {
                     output.typeOfCuisines = data;
                     deferred.resolve(data);
@@ -56,7 +56,7 @@ function readJson($q, $http, $rootScope) {
     output.getSpecialNeeds = function () {
         output.specialNeeds = [];
         var deferred = $q.defer();
-        return $http.get(specialNeedsUrl)
+        return $http.get($rootScope.baseUrl+'/api2/specialNeed')
                 .success(function (data) {
                     output.specialNeeds = data;
                     deferred.resolve(data);
@@ -71,7 +71,7 @@ function readJson($q, $http, $rootScope) {
     output.getTypeOfEvents = function () {
         output.typeOfEvents = [];
         var deferred = $q.defer();
-        return $http.get(typeOfEventsUrl)
+        return $http.get($rootScope.baseUrl+'/api2/occasion')
                 .success(function (data) {
                     output.typeOfEvents = data;
                     deferred.resolve(data);
@@ -86,7 +86,7 @@ function readJson($q, $http, $rootScope) {
     output.getOfferedServices = function () {
         output.servicesOffered = [];
         var deferred = $q.defer();
-        return $http.get(serviceOfferedUrl)
+        return $http.get($rootScope.baseUrl+'/api2/offeredServices')
                 .success(function (data) {
                     output.servicesOffered = data;
                     deferred.resolve(data);
@@ -101,7 +101,7 @@ function readJson($q, $http, $rootScope) {
     output.getTypeOfServices = function () {
         output.typeOfServices = [];
         var deferred = $q.defer();
-        return $http.get(typeOfServicesUrl)
+        return $http.get($rootScope.baseUrl+'/api2/typeOfServices')
                 .success(function (data) {
                     output.typeOfServices = data;
                     deferred.resolve(data);

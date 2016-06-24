@@ -480,6 +480,7 @@ angular
                                             {
                                                 serie: true,
                                                 files: [
+                                                
                                                     'vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js',
                                                     'vendor/chosen_v1.4.0/chosen.jquery.min.js',
                                                     'vendor/jquery.tagsinput/src/jquery.tagsinput.js',
