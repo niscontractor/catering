@@ -11,23 +11,29 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
         OrderService.today().then(function(response) {
             console.log(response);
             $scope.response = response;
-            for(var row in response) {
-                $scope.events.push({
-                    id:response[row].order_id,
-                    title: response[row].order_event,
-                    start: new Date(),
-                    listColor: 'danger',
-                    className: ['event-danger', 'event-name-light'],
-                    customer_name : response[row].customer_name,
-                    customer_address : response[row].customer_address,
-                    order_location : response[row].customer_city,
-                    customer_pin : response[row].customer_pincode,
-                    customer_state : response[row].customer_state,
-                    totalAmount : response[row].totalAmount,
-                    items : response[row].item_info
-                });
+            if (response.success=="false") {
+                
+            }
+            else {
+                
+                for(var row in response) {
+                    $scope.events.push({
+                        id:response[row].order_id,
+                        title: response[row].order_event,
+                        start: new Date(),
+                        listColor: 'danger',
+                        className: ['event-danger', 'event-name-light'],
+                        customer_name : response[row].customer_name,
+                        customer_address : response[row].customer_address,
+                        order_location : response[row].customer_city,
+                        customer_pin : response[row].customer_pincode,
+                        customer_state : response[row].customer_state,
+                        totalAmount : response[row].totalAmount,
+                        items : response[row].item_info
+                    });
 
                 // $scope.events.items.push('totalPrice',$scope.events.items[row].totalNumber*$scope.events.items[row].itemPrice);
+            }
             }
             console.log($scope.events);
         });

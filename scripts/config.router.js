@@ -24,7 +24,7 @@ angular
 
                 $rootScope.$state = $state;
 
-                //$rootScope.baseUrl = 'http://192.168.0.106:3000';
+                $rootScope.baseUrl = 'http://192.168.0.101:3000';
                 //$rootScope.baseUrl = 'http://139.162.20.41:3000';
                 $rootScope.baseUrl = 'http://139.162.184.95:3000';
 
