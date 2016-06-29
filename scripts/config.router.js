@@ -24,9 +24,9 @@ angular
 
                 $rootScope.$state = $state;
 
-                $rootScope.baseUrl = 'http://192.168.0.101:3000';
+                //$rootScope.baseUrl = 'http://192.168.0.101:3000';
                 //$rootScope.baseUrl = 'http://139.162.20.41:3000';
-                //$rootScope.baseUrl = 'http://139.162.184.95:3000';
+                $rootScope.baseUrl = 'http://139.162.184.95:3000';
 
                 // $rootScope.baseUrl = 'http://localhost:3000';
                 $rootScope.apipath = $rootScope.baseUrl + '/api';
@@ -1207,7 +1207,7 @@ angular
                                                     'vendor/bootstrap-daterangepicker/daterangepicker.js',
                                                     'vendor/bootstrap-datepicker/js/bootstrap-datepicker.js',
                                                     'vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
-                                                    
+
                                                 ]
                                             }]).then(function () {
                                             return $ocLazyLoad.load(['scripts/services/report.service.js',]);
