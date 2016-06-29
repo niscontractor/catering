@@ -1,0 +1,150 @@
+<script type="text/ng-template" id="orderInfo.html">  
+    <div class="modal-header bg-green-dark-package">
+    <span style="font-size: 22px;" class="modal-title">Order : </span><span>{{e.id}}</span>
+    </div>
+    <div class="modal-body package-detail">
+    <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
+
+    
+        
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Name : </label>
+    <div class="col-sm-9" >
+     <label class="control-label"> {{e.customer_name}}</label>
+    </div>
+    </div>
+
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Delivery Address : </label>
+    <div class="col-sm-9" >
+        <label class="control-label"> {{e.customer_address}} , {{e.order_location}} , {{e.customer_state}}</label>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Delivery Date : </label>
+    <div class="col-sm-9">
+        <label class="control-label"> 12/07/2015</label>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <div class="panel-body"> 
+    <table class="table mb0"> 
+        <thead> 
+            <tr> 
+                <th class="col-md-5"> 
+                <span></span>Description 
+                </th>
+                <th class="col-md-2">
+                Qty 
+                </th>
+                <th class="col-md-2">Price 
+                </th>
+                <th class="col-md-2">Amount 
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in e.items">
+            <tr> 
+                <td>{{item.itemName}}</td>
+                <td>{{item.totalNumber}}</td>
+                <td>{{item.itemPrice}}</td>
+                <td>{{item.itemPrice*item.totalNumber}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="font-size: 13px;font-weight: bolder;">Total  </td>
+                <td style="font-size: 13px;font-weight: bolder;">{{e.totalAmount}}</td>
+            </tr>
+        </tfoot>
+        </table> 
+        </div>
+   
+    </div>
+
+    </div>    
+    <div class="modal-footer">
+    
+    <button class="btn btn-warning btn-sm" ng-click="closeModal()">Cancel</button>
+    </div>
+    </form>
+    </div>
+    </div>   
+</script>
+
+
+
+
+
+
+
+
+
+
+<div ng-controller="reportCtrl">
+
+<div style="display:block" >
+	<button class="btn btn-primary" ng-click="today()">Today</button>
+	<button class="btn btn-primary" ng-click="week()">Week</button>
+	<select class="btn btn-primary" ng-model="month" ng-change="selectedMonth()" ng-options="currMonth.key as currMonth.value for currMonth in months"></select>
+	From : <input  placeholder='Start date' ui-jq="datepicker" ng-model="fromDate"/>
+	To : <input  placeholder='End date' ui-jq="datepicker" ng-model="toDate"/>
+
+	<button ng-click="fromToDateOrder()" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-search"></span> Find
+    </button>
+	 <!-- <button type="button" class="btn btn-success btn-sm btn-icon loading-demo mr5" ng-csv="getCompanies()" filename="companies.csv">
+            <i class="fa fa-file-excel-o mr5"></i> <span>Csv</span> 
+        </button> -->
+        <button style="font-size:15px;" class="btn btn-link" ng-click="getPDF()">
+            <span class="fa fa-file-pdf-o mr5"></span>Export to Pdf 
+        </button>
+
+        <button style="font-size:15px;" class="btn btn-link" ng-click="exportToExcel('#table1')">
+        	<span class="glyphicon glyphicon-share"></span> Export to Excel
+    	</button>
+
+</div>
+
+<br/>
+<br/>
+
+ <div class="form-group">
+    <div class="panel-body"> 
+    <table class="table mb0" id="table1"> 
+        <thead> 
+            <tr> 
+            	<th class="col-md-2"> 
+                <span></span>Sr. No 
+                </th>
+                <th class="col-md-3"> 
+                <span></span>Order No 
+                </th>
+                <th class="col-md-3">
+                Order Date 
+                </th>
+                <th class="col-md-3">Amount 
+                </th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="order in orders">
+            <tr> 
+            	<td>{{$index+1}}</td>
+                <td style="cursor:pointer" ng-click="orderModal($index)">{{order.order_id}}</td>
+                <td>{{order.created_at}}</td>
+                <td>{{order.totalAmount}}</td>
+                <th style="cursor:pointer"><a href="{{order.pdfUrl}}" target="_blank" class="fa fa-print" aria-hidden="true"></a></th>
+            </tr>
+        </tbody>
+        </table> 
+        </div>
+   
+    </div>
+
+</div>

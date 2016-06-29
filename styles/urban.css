@@ -11833,9 +11833,9 @@ td.align-middle {
 .navbar-right .dropdown-menu {
     left: 0 !important;
 }
-.dropdown-menu {
+/*.dropdown-menu {
     min-width: 100% !important;
-}
+}*/
 .sign-in {
     font-family: 'OpenSans-bold' !important;
     font-weight: normal !important;

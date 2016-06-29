@@ -24,9 +24,9 @@ angular
 
                 $rootScope.$state = $state;
 
-                //$rootScope.baseUrl = 'http://192.168.0.101:3000';
+                $rootScope.baseUrl = 'http://192.168.0.101:3000';
                 //$rootScope.baseUrl = 'http://139.162.20.41:3000';
-                $rootScope.baseUrl = 'http://139.162.184.95:3000';
+                //$rootScope.baseUrl = 'http://139.162.184.95:3000';
 
                 // $rootScope.baseUrl = 'http://localhost:3000';
                 $rootScope.apipath = $rootScope.baseUrl + '/api';
@@ -1171,6 +1171,51 @@ angular
                             },
                             data: {
                                 title: 'Social Profile',
+                            }
+                        })
+
+                        .state('app.apps.report', {
+                            url: '/report',
+                            templateUrl: 'views/report.html',
+                            resolve: {
+                                loggedIn: checkLogin,
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            {
+                                                insertBefore: '#load_styles_before',
+                                                files: [
+                                                    'vendor/bootstrap-touchspin/src/jquery.bootstrap-touchspin.css',
+                                                    'vendor/chosen_v1.4.0/chosen.min.css',
+                                                    'vendor/jquery.tagsinput/src/jquery.tagsinput.css',
+                                                    'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
+                                                    'vendor/intl-tel-input/build/css/intlTelInput.css',
+                                                    'vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
+                                                    'vendor/bootstrap-daterangepicker/daterangepicker-bs3.css',
+
+                                                ]
+                                            },
+                                            {
+                                                serie: true,
+                                                files: [
+                                                    'scripts/controllers/report/report.js',
+                                                    'vendor/bootstrap-touchspin/src/jquery.bootstrap-touchspin.js',
+                                                    'vendor/chosen_v1.4.0/chosen.jquery.min.js',
+                                                    'vendor/jquery.tagsinput/src/jquery.tagsinput.js',
+                                                    'vendor/checkbo/src/0.1.4/js/checkBo.min.js',
+                                                    'vendor/intl-tel-input//build/js/intlTelInput.min.js',
+                                                    'vendor/moment/min/moment.min.js',
+                                                    'vendor/bootstrap-daterangepicker/daterangepicker.js',
+                                                    'vendor/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                                                    'vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
+                                                    
+                                                ]
+                                            }]).then(function () {
+                                            return $ocLazyLoad.load(['scripts/services/report.service.js',]);
+                                        });
+                                    }]
+                            },
+                            data: {
+                                title: 'report',
                             }
                         })
 
