@@ -5,7 +5,7 @@
   <!-- /toggle offscreen menu -->
 
   <!-- logo -->
-  <div class="brand-logo" style="cursor:pointer">
+  <div class="brand-logo" style="cursor:pointer"  >
     <img data-ng-src="images/LOGO.png"" ui-sref="app.apps.calendar" height="auto" width="100%" alt="">
     <!-- <span style="font-family: Lato bold;color: white;font-weight: bolder;">ONLINE CATERING</span> -->
   </div>
@@ -20,7 +20,7 @@
 
 
 <ul class="nav navbar-nav navbar-right hidden-xs inner-space">
-  <li>
+  <li ng-if="showMenu">
     <a href="javascript:;" quick-launch>
     <p class="hamburger-icon v2">
        <span></span>

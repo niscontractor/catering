@@ -1141,6 +1141,25 @@ angular
                                 title: 'Gallery',
                             }
                         })
+                        .state('app.apps.admin', {
+                            url: '/admin',
+                            loggedIn: checkLogin,
+                            templateUrl: 'views/app-admin.html',
+                            resolve: {
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            'scripts/controllers/adminlogin.js'
+                                        ]).then(function () {
+                                            return $ocLazyLoad.load('scripts/services/common.service.js');
+                                        });
+                                    }]
+                            },
+                            data: {
+                                appClasses: 'bg-white usersession',
+                                contentClasses: 'full-height'
+                            }
+                            
+                        })
                         .state('app.apps.messages', {
                             url: '/messages',
                             loggedIn: checkLogin,
@@ -1341,6 +1360,23 @@ angular
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
                                             'scripts/controllers/session.js'
+                                        ]).then(function () {
+                                            return $ocLazyLoad.load('scripts/services/common.service.js');
+                                        });
+                                    }]
+                            },
+                            data: {
+                                appClasses: 'bg-white usersession',
+                                contentClasses: 'full-height'
+                            }
+                        })
+                        .state('user.adminsignin', {
+                            url: '/admin/signin',
+                            templateUrl: 'views/extras-signin.html',
+                            resolve: {
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            'scripts/controllers/adminlogin.js'
                                         ]).then(function () {
                                             return $ocLazyLoad.load('scripts/services/common.service.js');
                                         });

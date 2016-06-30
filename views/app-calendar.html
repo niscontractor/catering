@@ -32,6 +32,13 @@
     </div>
 
     <div class="form-group">
+    <label class="col-sm-3 control-label">Event Time : </label>
+    <div class="col-sm-9">
+        <label class="control-label"> {{e.eventTime}}</label>
+    </div>
+    </div>
+
+    <div class="form-group">
     <div class="panel-body"> 
     <table class="table mb0"> 
         <thead> 
@@ -132,6 +139,7 @@
                             <small>Location :<span style="color:#7bc147"> {{e.order_location}}</span></small><br/>
                             <small> Price : <span style="color:#7bc147">{{e.totalAmount}}&euro;</span></small><br/>
                             <small> Delivery Date : <span style="color:#7bc147">{{e.eventDate}}</span></small><br/>
+                            <small> Event Time : <span style="color:#7bc147">{{e.eventTime}}</span></small><br/>
                         </div>
                     </div>
                     <div class="row ">

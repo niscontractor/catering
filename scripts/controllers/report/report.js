@@ -2,29 +2,40 @@
 
 function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportService,$modal,Excel,$timeout) {
 
-	ReportService.today().then(function(data){
-			$scope.orders = data;
 
-			for(var i=0; i<data.length; i++){
-				var d = new Date($scope.orders[i].created_at),
-				month = '' + (d.getMonth() + 1),
-			    day = '' + d.getDate(),
-			    year = d.getFullYear(),
+    var customizedDate = function(data){
+        for(var i=0; i<data.length; i++){
+                var d = new Date($scope.orders[i].created_at),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear(),
                 de = new Date($scope.orders[i].eventDate),
                 monthE = '' + (de.getMonth() + 1),
                 dayE = '' + de.getDate(),
                 yearE = de.getFullYear();
 
-			    if (month.length < 2) month = '0' + month;
-			    if (day.length < 2) day = '0' + day;
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
 
                 if (monthE.length < 2) monthE = '0' + monthE;
                 if (dayE.length < 2) dayE = '0' + dayE;
 
-			    $scope.orders[i].created_at = [day, month, year].join('/');
+                $scope.orders[i].created_at = [day, month, year].join('/');
                 $scope.orders[i].eventDate = [dayE, monthE, yearE].join('/');
-			}
-		});
+            }
+    }
+
+    
+
+	ReportService.today().then(function(data){
+        if (data.success=="false") {
+            $scope.orders = [];
+        }
+        else {
+			$scope.orders = data;
+            customizedDate(data);
+        }
+	});
 
 	$scope.months = [
       {"key": "null",
@@ -56,6 +67,10 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
     ];
 
     $scope.month = 'null';
+    $scope.excelButton = true;
+    $scope.pdfButton = true;
+    $scope.dataFound = true;
+    $scope.dataNotFound = false;
 
 
     $scope.exportToExcel=function(tableId){ // ex: '#my-table'
@@ -120,13 +135,14 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
 
 
     $scope.fromToDateOrder = function(){
-
-    	if ($scope.fromDate==undefined) {
-    		alert("Select Start Date");
+        console.log($scope.fromDate);
+        console.log($scope.toDate);
+    	if ($scope.fromDate==undefined || $scope.fromDate=='') {
+    		SweetAlert.swal('Select Start Date');
     		return;
     	}
-    	if ($scope.toDate==undefined) {
-    		alert("Select End Date");
+    	if ($scope.toDate==undefined || $scope.toDate=='') {
+    		SweetAlert.swal('Select End Date');
     		return;
     	}
 
@@ -142,80 +158,92 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
 			console.log(data);
 			if (data.success=="false") {
     			$scope.orders = null;
+                $scope.excelButton = false;
+                $scope.pdfButton = false;
+                $scope.dataFound = false;
+                $scope.dataNotFound = true;
+                SweetAlert.swal('Not Found!','No orders found for selected date');
     		}
     		else {
 				$scope.orders = data;
-				for(var i=0; i<data.length; i++){
-				var d = new Date($scope.orders[i].created_at),
-				month = '' + (d.getMonth() + 1),
-			    day = '' + d.getDate(),
-			    year = d.getFullYear();
-
-			    if (month.length < 2) month = '0' + month;
-			    if (day.length < 2) day = '0' + day;
-
-			    $scope.orders[i].created_at = [day, month, year].join('/');
-			}
-				
+                $scope.excelButton = true;
+                $scope.pdfButton = true;
+                $scope.dataFound = true;
+                $scope.dataNotFound = false;
+				customizedDate(data);	
 			}
 		})
     }
 
     $scope.selectedMonth = function(){
+        $scope.fromDate = '';
+        $scope.toDate = '';
     	ReportService.month($scope.month).then(function(data){
     		if (data.success=="false") {
     			$scope.orders = null;
+                $scope.excelButton = false;
+                $scope.pdfButton = false;
+                $scope.dataFound = false;
+                $scope.dataNotFound = true;
+                SweetAlert.swal('Not Found!','No orders found for selected month');
     		}
     		else {
+                $scope.dataFound = true;
+                $scope.dataNotFound = false;
+                $scope.excelButton = true;
+                $scope.pdfButton = true;
 				$scope.orders = data;
-				for(var i=0; i<data.length; i++){
-				var d = new Date($scope.orders[i].created_at),
-				month = '' + (d.getMonth() + 1),
-			    day = '' + d.getDate(),
-			    year = d.getFullYear();
-
-			    if (month.length < 2) month = '0' + month;
-			    if (day.length < 2) day = '0' + day;
-
-			    $scope.orders[i].created_at = [day, month, year].join('/');
-			}
+				customizedDate(data);
 			}
 		})
     }
 
 	$scope.today = function(){
+        $scope.fromDate = '';
+        $scope.toDate = '';
 		ReportService.today().then(function(data){
-			$scope.orders = data;
-			$scope.month = 'null';
-			for(var i=0; i<data.length; i++){
-				var d = new Date($scope.orders[i].created_at),
-				month = '' + (d.getMonth() + 1),
-			    day = '' + d.getDate(),
-			    year = d.getFullYear();
-
-			    if (month.length < 2) month = '0' + month;
-			    if (day.length < 2) day = '0' + day;
-
-			    $scope.orders[i].created_at = [day, month, year].join('/');
-			}
+            if (data.success=="false") {
+                $scope.orders = null;
+                $scope.excelButton = false;
+                $scope.pdfButton = false;
+                $scope.dataFound = false;
+                $scope.dataNotFound = true;
+                SweetAlert.swal('Not Found!','No orders found for today');
+            }
+            else {    
+                $scope.dataFound = true;
+                $scope.dataNotFound = false;
+                $scope.excelButton = true;
+                $scope.pdfButton = true;
+    			$scope.orders = data;
+    			$scope.month = 'null';
+                customizedDate(data);
+    			
+            }
 		})
 	}
 
 	$scope.week = function(){
+        $scope.fromDate = '';
+        $scope.toDate = '';
 		ReportService.week().then(function(data){
-			$scope.orders = data;
-			$scope.month = 'null';
-			for(var i=0; i<data.length; i++){
-				var d = new Date($scope.orders[i].created_at),
-				month = '' + (d.getMonth() + 1),
-			    day = '' + d.getDate(),
-			    year = d.getFullYear();
-
-			    if (month.length < 2) month = '0' + month;
-			    if (day.length < 2) day = '0' + day;
-
-			    $scope.orders[i].created_at = [day, month, year].join('/');
-			}
+            if (data.success=="false") {
+                $scope.orders = null;
+                $scope.excelButton = false;
+                $scope.pdfButton = false;
+                $scope.dataFound = false;
+                $scope.dataNotFound = true;
+                SweetAlert.swal('Not Found!','No orders found for this week');
+            }
+            else {             
+                $scope.dataFound = true;
+                $scope.dataNotFound = false;   
+                $scope.excelButton = true;
+                $scope.pdfButton = true;
+    			$scope.orders = data;
+    			$scope.month = 'null';
+    			customizedDate(data);
+            }
 		})
 	}
 	$scope.orderModal = function(index){
@@ -237,6 +265,7 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
     function orderInfoEventCtrl($scope,$modalInstance,$rootScope,object){
         $scope.e = object;
         $scope.e.id = object.order_id;
+        $scope.e.pdfUrl = object.pdfUrl;
         $scope.e.items = object.item_info;
         console.log(object);
 

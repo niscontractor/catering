@@ -41,5 +41,54 @@ oi-select .select-search-list-item_selection {
 .reportMenu .inputDatePicker {
 	display: inline-block;
     width: inherit;
-    height: 36px;
+	height: 36px;
+}
+.tableHeader {
+	    background-color: #dddddd;
+}
+    
+.tableHeader th{
+	text-align: center;
+}
+
+@media screen and (max-width: 980px){
+	
+}
+
+.reportMenu .datePicker {
+	display: inline-block;
+}
+
+
+
+@media screen and (max-width: 980px){
+
+	.reportHead {
+		text-align: left;
+	}
+	.reportMenu {
+		margin-left: 15px;
+	}
+	.reportMenu .datePicker {
+		display: block;
+		margin-top: 10px;
+	}
+	.reportMenu button {
+		width: 130px;
+	}
+	.pdf {
+		width: 90px !important;
+	}
+	.excel {
+		width: 90px !important;
+	}
+	
+}
+
+.admin {
+	margin-top: 50px;
+}
+
+.admin .createUserCaterer{
+	display: block;
 }

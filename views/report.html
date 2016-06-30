@@ -30,6 +30,13 @@
     </div>
 
     <div class="form-group">
+    <label class="col-sm-3 control-label">Event Time : </label>
+    <div class="col-sm-9">
+        <label class="control-label"> {{e.eventTime}}</label>
+    </div>
+    </div>
+
+    <div class="form-group">
     <div class="panel-body"> 
     <table class="table mb0"> 
         <thead> 
@@ -69,7 +76,7 @@
 
     </div>    
     <div class="modal-footer">
-    
+    <a class="btn btn-success" style="cursor:pointer;width: 60px;height: 30px;" href="{{e.pdfUrl}}" target="_blank" aria-hidden="true"><span class="fa fa-print"></span></a>
     <button class="btn btn-warning btn-sm" ng-click="closeModal()">Cancel</button>
     </div>
     </form>
@@ -89,25 +96,28 @@
 <div ng-controller="reportCtrl" class="reportHead">
 
 <div class="reportMenu" >
-	<button class="btn btn-primary" ng-click="today()">Today</button>
-	<button class="btn btn-primary" ng-click="week()">Week</button>
-	<select class="btn btn-primary" ng-model="month" ng-change="selectedMonth()" ng-options="currMonth.key as currMonth.value for currMonth in months"></select>
-	<input class="form-control inputDatePicker" placeholder='Start date' ui-jq="datepicker" ng-model="fromDate"/>
-	<input class="form-control inputDatePicker" placeholder='End date' ui-jq="datepicker" ng-model="toDate"/>
+	<button class="btn" ng-click="today()">Today</button>
+	<button class="btn" ng-click="week()">Week</button>
+	<select class="btn" ng-model="month" ng-change="selectedMonth()" ng-options="currMonth.key as currMonth.value for currMonth in months"></select>
+	<div class="datePicker">
+        <input class="form-control inputDatePicker" placeholder='Start date' ui-jq="datepicker" ng-model="fromDate"/>
+	   <input class="form-control inputDatePicker" placeholder='End date' ui-jq="datepicker" ng-model="toDate"/>
 
-	<button ng-click="fromToDateOrder()" type="button" class="btn btn-default">
-      <span class="glyphicon glyphicon-search"></span> Find
-    </button>
-	 <!-- <button type="button" class="btn btn-success btn-sm btn-icon loading-demo mr5" ng-csv="getCompanies()" filename="companies.csv">
-            <i class="fa fa-file-excel-o mr5"></i> <span>Csv</span> 
-        </button> -->
-        <button style="font-size:15px;" class="btn btn-link" ng-click="getPDF()">
+	   <button ng-click="fromToDateOrder()" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span> Find
+        </button>
+        <button style="font-size:15px;padding-right: 0px;" ng-show="pdfButton" class="btn btn-link pdf" ng-click="getPDF()">
             <span class="fa fa-file-pdf-o mr5"></span>Pdf 
         </button>
 
-        <button style="font-size:15px;" class="btn btn-link" ng-click="exportToExcel('#table1')">
-        	<span class="glyphicon glyphicon-share"></span>Excel
-    	</button>
+        <button style="font-size:15px;" class="btn btn-link excel" ng-show="excelButton" ng-click="exportToExcel('#table1')">
+            <span class="glyphicon glyphicon-share"></span>Excel
+        </button>
+    </div>
+	 <!-- <button type="button" class="btn btn-success btn-sm btn-icon loading-demo mr5" ng-csv="getCompanies()" filename="companies.csv">
+            <i class="fa fa-file-excel-o mr5"></i> <span>Csv</span> 
+        </button> -->
+      
 
 </div>
 
@@ -117,8 +127,8 @@
  <div class="form-group">
     <div class="panel-body"> 
     <table class="table mb0" id="table1"> 
-        <thead> 
-            <tr> 
+        <thead class="tableHeader"> 
+            <tr ng-if="dataFound"> 
             	<th class="col-md-2"> 
                 <span></span>Sr. No 
                 </th>
@@ -131,6 +141,11 @@
                 <th class="col-md-3">Amount 
                 </th>
                 <th class="col-md-1"></th>
+            </tr>
+            <tr ng-if="dataNotFound">
+                <th class="col-md-2">
+                    Data Not Found...
+                </th>
             </tr>
         </thead>
         <tbody ng-repeat="order in orders">

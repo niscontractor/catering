@@ -9,27 +9,18 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
 
     $scope.initCalendar = function () {
         OrderService.today().then(function(response) {
-            console.log(response);
             $scope.response = response;
-
-            if (response.success=="false") {
-                
+            if (response.success=="false") {                
             }
-            else {
-                
+            else {                
                 for(var row in response) {
                     var d = new Date(response[row].eventDate),
                     month = '' + (d.getMonth() + 1),
                     day = '' + d.getDate(),
                     year = d.getFullYear();
-
                     if (month.length < 2) month = '0' + month;
                     if (day.length < 2) day = '0' + day;
-
-                    response[row].eventDate = [day, month, year].join('/');
-                    console.log(response[row].eventDate);
-
-                    
+                    response[row].eventDate = [day, month, year].join('/'); 
                     $scope.events.push({
                         id:response[row].order_id,
                         title: response[row].order_event,
@@ -44,12 +35,12 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
                         totalAmount : response[row].totalAmount,
                         items : response[row].item_info,
                         eventDate : response[row].eventDate,
+                        eventTime : response[row].eventTime
                     });
 
                 // $scope.events.items.push('totalPrice',$scope.events.items[row].totalNumber*$scope.events.items[row].itemPrice);
             }
             }
-            console.log($scope.events);
         });
 
         // OrderService.month().then(function(response) {
@@ -77,7 +68,6 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
         $scope.e = object;
         $scope.e.id = object.order_id;
         $scope.e.items = object.item_info;
-        console.log(object);
 
          $scope.closeModal = function(){
             $modalInstance.close();
@@ -156,7 +146,6 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
   };
 
     function orderInfoCtrl($scope,$modalInstance,$rootScope,order){
-        console.log(order);
         $scope.e = order;
         $scope.closeModal = function(){
             $modalInstance.close();
