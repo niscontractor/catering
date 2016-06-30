@@ -20,3 +20,26 @@ and open the template in the editor.
 oi-select .select-search-list-item_selection {
     background-color: #7bc147;
 }
+
+.reportHead {
+	text-align: center;
+}
+
+.reportMenu {
+	display: block;
+	padding: 10px 0px;
+    font-size: 15px;
+}
+
+.reportMenu select {
+	height: 34px;
+}
+
+.reportMenu button {
+}
+
+.reportMenu .inputDatePicker {
+	display: inline-block;
+    width: inherit;
+    height: 36px;
+}

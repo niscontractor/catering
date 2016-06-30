@@ -4,16 +4,25 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
 
 	ReportService.today().then(function(data){
 			$scope.orders = data;
+
 			for(var i=0; i<data.length; i++){
 				var d = new Date($scope.orders[i].created_at),
 				month = '' + (d.getMonth() + 1),
 			    day = '' + d.getDate(),
-			    year = d.getFullYear();
+			    year = d.getFullYear(),
+                de = new Date($scope.orders[i].eventDate),
+                monthE = '' + (de.getMonth() + 1),
+                dayE = '' + de.getDate(),
+                yearE = de.getFullYear();
 
 			    if (month.length < 2) month = '0' + month;
 			    if (day.length < 2) day = '0' + day;
 
+                if (monthE.length < 2) monthE = '0' + monthE;
+                if (dayE.length < 2) dayE = '0' + dayE;
+
 			    $scope.orders[i].created_at = [day, month, year].join('/');
+                $scope.orders[i].eventDate = [dayE, monthE, yearE].join('/');
 			}
 		});
 

@@ -11,12 +11,25 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
         OrderService.today().then(function(response) {
             console.log(response);
             $scope.response = response;
+
             if (response.success=="false") {
                 
             }
             else {
                 
                 for(var row in response) {
+                    var d = new Date(response[row].eventDate),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                    if (month.length < 2) month = '0' + month;
+                    if (day.length < 2) day = '0' + day;
+
+                    response[row].eventDate = [day, month, year].join('/');
+                    console.log(response[row].eventDate);
+
+                    
                     $scope.events.push({
                         id:response[row].order_id,
                         title: response[row].order_event,
@@ -29,7 +42,8 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
                         customer_pin : response[row].customer_pincode,
                         customer_state : response[row].customer_state,
                         totalAmount : response[row].totalAmount,
-                        items : response[row].item_info
+                        items : response[row].item_info,
+                        eventDate : response[row].eventDate,
                     });
 
                 // $scope.events.items.push('totalPrice',$scope.events.items[row].totalNumber*$scope.events.items[row].itemPrice);

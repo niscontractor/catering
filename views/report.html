@@ -25,7 +25,7 @@
     <div class="form-group">
     <label class="col-sm-3 control-label">Delivery Date : </label>
     <div class="col-sm-9">
-        <label class="control-label"> 12/07/2015</label>
+        <label class="control-label"> {{e.eventDate}}</label>
     </div>
     </div>
 
@@ -86,14 +86,14 @@
 
 
 
-<div ng-controller="reportCtrl">
+<div ng-controller="reportCtrl" class="reportHead">
 
-<div style="display:block" >
+<div class="reportMenu" >
 	<button class="btn btn-primary" ng-click="today()">Today</button>
 	<button class="btn btn-primary" ng-click="week()">Week</button>
 	<select class="btn btn-primary" ng-model="month" ng-change="selectedMonth()" ng-options="currMonth.key as currMonth.value for currMonth in months"></select>
-	From : <input  placeholder='Start date' ui-jq="datepicker" ng-model="fromDate"/>
-	To : <input  placeholder='End date' ui-jq="datepicker" ng-model="toDate"/>
+	<input class="form-control inputDatePicker" placeholder='Start date' ui-jq="datepicker" ng-model="fromDate"/>
+	<input class="form-control inputDatePicker" placeholder='End date' ui-jq="datepicker" ng-model="toDate"/>
 
 	<button ng-click="fromToDateOrder()" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-search"></span> Find
@@ -102,11 +102,11 @@
             <i class="fa fa-file-excel-o mr5"></i> <span>Csv</span> 
         </button> -->
         <button style="font-size:15px;" class="btn btn-link" ng-click="getPDF()">
-            <span class="fa fa-file-pdf-o mr5"></span>Export to Pdf 
+            <span class="fa fa-file-pdf-o mr5"></span>Pdf 
         </button>
 
         <button style="font-size:15px;" class="btn btn-link" ng-click="exportToExcel('#table1')">
-        	<span class="glyphicon glyphicon-share"></span> Export to Excel
+        	<span class="glyphicon glyphicon-share"></span>Excel
     	</button>
 
 </div>

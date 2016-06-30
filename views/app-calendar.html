@@ -27,7 +27,7 @@
     <div class="form-group">
     <label class="col-sm-3 control-label">Delivery Date : </label>
     <div class="col-sm-9">
-        <label class="control-label"> 12/07/2015</label>
+        <label class="control-label"> {{e.eventDate}}</label>
     </div>
     </div>
 
@@ -131,6 +131,7 @@
                         <div class="col-sm-6">
                             <small>Location :<span style="color:#7bc147"> {{e.order_location}}</span></small><br/>
                             <small> Price : <span style="color:#7bc147">{{e.totalAmount}}&euro;</span></small><br/>
+                            <small> Delivery Date : <span style="color:#7bc147">{{e.eventDate}}</span></small><br/>
                         </div>
                     </div>
                     <div class="row ">
