@@ -1,21 +1,29 @@
 'use strict';
 
+function adminCatererCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth, catererData, catererId){
+    $scope.catererId = catererId;
+    $scope.catererData = catererData;
+    $scope.closeModal = function(){
+        $modalInstance.close();
+    }
+} 
+
 
 function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth, isCaterer){
     var ctrl = this;
+
+    $scope.cancelSignUp = function(){
+        $modalInstance.close();
+    }
+
+
     ctrl.register = function () {
         if (ctrl.signUpForm.$valid) {
             var obj = new Object();
             obj.email = ctrl.user.email;
-            obj.password = ctrl.user.password;
-            obj.repassword = ctrl.user.confpassword;
-            obj.name = ctrl.user.firstName;
-            obj.mobile = ctrl.user.mobile;
-            obj.company = ctrl.user.company;
-            obj.isCaterer = true;
             var jsonString = JSON.stringify(obj);
-            var baseUrl = $rootScope.baseUrl + '/api/createBetaUsers';
-            $http.post(baseUrl,{'name':obj.name,'email':obj.email,'password':obj.password,'mobile':obj.mobile,'role':$scope.role,'company':obj.company,'isCaterer':isCaterer})
+            var baseUrl = $rootScope.baseUrl + '/api/addBetaUsers';
+            $http.post(baseUrl,{'email':obj.email,'isCaterer':isCaterer})
             .success(function(response){
                 console.log(response);
                 if (response.success==false) {
@@ -30,18 +38,6 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
                 console.log(error);
                 // $state.go('user.signin');
             });
-
-            // Common.signup(jsonString).then(function (response) {
-            //    if(response.succes){
-            //         $rootScope.addMessage(response.msg, 'success');
-            //         $state.go('user.signin');
-            //    }else{
-            //        $rootScope.addMessage(response.msg, 'error');
-            //    }
-            // }).catch(function (response) {
-                
-            //     $rootScope.addMessage('Email already exists.','error');
-            // });
         }
         else {
             $rootScope.addMessage('Fill Required Fields');
@@ -51,10 +47,11 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
 
 function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
 
-   var baseUrl = $rootScope.baseUrl + '/api/getBetaUserList'; 
-   $http.get(baseUrl)
+   // var baseUrl = $rootScope.baseUrl + '/api/getBetaUserList'; 
+   $http.get($rootScope.baseUrl + '/api/getBetaUserList')
             .success(function(response){
                 console.log(response);
+                $scope.data = response;
             })
             .error(function(error){
                 console.log(error);
@@ -64,6 +61,46 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
     var ctrl = this;
     var token = $location.search().userToken;
     var modalInstance;
+
+    $scope.getCaterersList = function(){
+        $http.get($rootScope.baseUrl + '/api/getCatererList')
+            .success(function(response){
+                console.log(response);
+                $scope.data = response;
+            })
+            .error(function(error){
+                console.log(error);
+            });
+    }
+
+    $scope.getCaterer = function(id){
+        $http.get($rootScope.baseUrl + '/api/adminCatererDetails/'+id)
+            .success(function(response){
+                console.log(response);
+                var modalInstance = $modal.open({
+                    templateUrl: 'views/adminCaterer.html',
+                    controller: adminCatererCtrl,
+                    resolve: {
+                        catererData: function () {
+                            return response;
+                        },
+                        catererId: function(){
+                            return id;
+                        }
+                    },
+                    controllerAs : 'signUp',
+                    size: 'med',
+                    keyboard: false,
+                    backdrop: 'static'
+                });
+                
+            })
+            .error(function(error){
+                console.log(error);
+            });
+    }
+
+
 
     $scope.createAcount = function(data){
         if (data=='caterer') {
@@ -96,6 +133,7 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                 console.log(response);
                 if (response.success=="true") {
                     SweetAlert.swal('Success', response.message, 'success');
+
                     $state.go('user.signin');
                 }
                 else{
@@ -169,4 +207,5 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
 angular
         .module('urbanApp')
         .controller('sessionCtrl', ['$modal','$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth', sessionCtrl])
-        .controller('signUpCtrl', ['$modalInstance','$modal','$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth','isCaterer', signUpCtrl]);
+        .controller('signUpCtrl', ['$modalInstance','$modal','$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth','isCaterer', signUpCtrl])
+        .controller('adminCatererCtrl', ['$modalInstance','$modal','$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth','catererData','catererId', adminCatererCtrl]);

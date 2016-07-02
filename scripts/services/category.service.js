@@ -121,7 +121,7 @@ function CategoryService($q, $http, $rootScope, $localStorage) {
 
 function readJson($q, $http, $rootScope) {
     var output = {};
-    var tagUrl = 'data/tags.json';
+    var tagUrl = $rootScope.apipath+'/productTags';
     output.getTags = function () {
         output.tags = [];
         var deferred = $q.defer();
