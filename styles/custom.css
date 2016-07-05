@@ -92,3 +92,54 @@ oi-select .select-search-list-item_selection {
 .admin .createUserCaterer{
 	display: block;
 }
+
+.addAdminTags {
+	display: inline-flex;
+	padding: 10px;
+    margin: 10px;
+}
+.addCuisines {
+	display: inline-block;
+	padding: 10px;
+    margin: 10px;
+    background: #fff;
+    width: 180px;
+}
+.addAdminTags .repeat {
+	overflow: auto;
+	height: 200px;
+	margin: 10px 0px;
+}
+
+.addSpecialNeeds {
+	display: inline-block;
+	padding: 10px;
+    margin: 10px;
+    background: #fff;
+    width: 180px;
+}
+.addTypeOfEvents {
+	display: block;
+	padding: 10px;
+    margin: 10px;
+    background: #fff;
+    width: 180px;
+}
+.addServicesOffered {
+	display: block;
+	padding: 10px;
+    margin: 10px;
+    background: #fff;
+    width: 180px;
+}
+.addTypeOfServices {
+	display: block;
+	padding: 10px;
+    margin: 10px;
+    background: #fff;
+    width: 180px;
+}
+
+.addAdminTags button {
+	width: 100%;
+}

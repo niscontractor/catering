@@ -1160,6 +1160,25 @@ angular
                             }
                             
                         })
+                        .state('app.apps.addByAdmin', {
+                            url: '/add',
+                            loggedIn: checkLogin,
+                            templateUrl: 'views/addByAdmin.html',
+                            resolve: {
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                        return $ocLazyLoad.load([
+                                            'scripts/controllers/addByAdmin.js'
+                                        ]).then(function () {
+                                            return $ocLazyLoad.load('scripts/services/addByAdmin.service.js');
+                                        });
+                                    }]
+                            },
+                            data: {
+                                appClasses: 'bg-white usersession',
+                                contentClasses: 'full-height'
+                            }
+                            
+                        })
                         .state('app.apps.messages', {
                             url: '/messages',
                             loggedIn: checkLogin,

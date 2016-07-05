@@ -189,7 +189,7 @@
             <label class="col-sm-3 control-label">Price<span style="color:red">*</span></label>
             <div class="col-sm-9">
                 <div class="" ng-class="{'has-error': (addCategoryItemForm.price.$invalid && addCategoryItemForm.price.$dirty)}">
-                <input name="price" class="form-control" ng-model="categoryItem.price" placeholder="€" ng-pattern="/^[0-9]{1,45}$/" ng-required="true">  
+                <input name="price" class="form-control" ng-model="categoryItem.price" placeholder="€" ng-pattern="/^[0-9.]{1,45}$/" ng-required="true">  
                 <div class="error,help-block has-error" ng-show="(addCategoryItemForm.price.$dirty) && addCategoryItemForm.price.$invalid"> 
                     <span class="help-block" ng-show="addCategoryItemForm.price.$error.required">Required</span>
                     <span class="help-block" ng-show="addCategoryItemForm.price.$error.pattern">Invalid Number</span>

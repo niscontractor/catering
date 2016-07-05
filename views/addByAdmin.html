@@ -1,0 +1,130 @@
+<script type="text/ng-template" id="addItemByAdmin.html"> 
+
+<div>
+    <div class="modal-header bg-green-dark-package">
+        <h3 class="modal-title">Add {{object}}</h3>
+    </div>
+    <div class="modal-body package-detail">
+        <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addItem">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">English Name</label>
+                <div class="col-sm-9">
+                <div  ng-class="{'has-error': (addItem.english.$invalid && addItem.english.$dirty)}">
+                    <input type="text" name="english" class="form-control" ng-model="english" ng-required="true"/> 
+                <div class="error,help-block" ng-show="(addItem.english.$dirty) && addItem.english.$invalid"> 
+            <span class="help-block" ng-show="addItem.english.$error.required">Required</span>
+    </div>
+    </div>  
+    </div>
+    </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Spanish Name</label>
+                <div class="col-sm-9">
+                <div  ng-class="{'has-error': (addItem.spanish.$invalid && addItem.spanish.$dirty)}">
+                    <input type="text" name="spanish" class="form-control" ng-model="spanish" ng-required="true"/> 
+                <div class="error,help-block" ng-show="(addItem.spanish.$dirty) && addItem.spanish.$invalid"> 
+            <span class="help-block" ng-show="addItem.spanish.$error.required">Required</span>
+    </div>
+    </div>  
+    </div>
+    </div> 
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" ng-click="save(object)" ng-disabled="addItem.$invalid">Save</button>
+                <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+</script>
+
+
+
+
+
+
+<div ng-controller="addByAdmin">
+<div style="float:right">
+  <span><a class="icon-lang" ng-click="changeLanguage('en')"><img src="images/eng_lg.png"></a></span>
+  <span><a class="icon-lang" ng-click="changeLanguage('sp')"><img src="images/esp_lg.png"></a></span>
+</div>
+
+<div  class="addAdminTags">
+    <div class="addCuisines">
+        <button class="btn btn-success" ng-click="add('Cuisine')">Add Cuisine</button>
+        <div class="repeat">
+        <div ng-repeat="cuisine in cuisines" ng-if="isEnglish">
+            {{cuisine.name.en}}
+        </div>
+        <div ng-repeat="cuisine in cuisines" ng-if="isSpanish">
+            {{cuisine.name.sp}}
+        </div>
+
+        </div>
+    </div>
+
+    <div class="addSpecialNeeds">
+        <button class="btn btn-success" ng-click="add('Special Need')">Add Special Need</button>
+        <div class="repeat">
+        <div ng-repeat="specialNeed in specialNeeds" ng-if="isEnglish">
+            {{specialNeed.name.en}}
+        </div>
+        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+            {{specialNeed.name.sp}}
+        </div>
+        </div>
+    </div>
+
+    <div class="addTypeOfEvents">
+        <button class="btn btn-success" ng-click="add('Occasion')">Add Occasion</button>
+        <div class="repeat">
+        <div ng-repeat="typeOfEvent in typeOfEvents" ng-if="isEnglish">
+            {{typeOfEvent.name.en}}
+        </div>
+        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+            {{specialNeed.name.sp}}
+        </div>
+        </div>
+    </div>
+
+    <div class="addServicesOffered">
+        <button class="btn btn-success" ng-click="add('Offered Services')">Add Offered Services</button>
+        <div class="repeat">
+        <div ng-repeat="serviceOffered in servicesOffered" ng-if="isEnglish">
+            {{serviceOffered.name.en}}
+        </div>
+        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+            {{specialNeed.name.sp}}
+        </div>
+        </div>
+    </div>
+
+    <div class="addTypeOfServices">
+        <button class="btn btn-success" ng-click="add('Type of services')">Add Type of services</button>
+        <div class="repeat">
+        <div ng-repeat="typeOfService in typeOfServices" ng-if="isEnglish">
+            {{typeOfService.name.en}}
+        </div>
+        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+            {{specialNeed.name.sp}}
+        </div>
+        </div>
+    </div>
+
+    <div class="addTypeOfServices">
+        <button class="btn btn-success" ng-click="add('Product Tags')">Add Product Tags</button>
+        <div class="repeat">
+        <div ng-repeat="tag in tags" ng-if="isEnglish">
+            {{tag.name.en}}
+        </div>
+        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+            {{specialNeed.name.sp}}
+        </div>
+        </div>
+    </div>
+</div>
+</div>
