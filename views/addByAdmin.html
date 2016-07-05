@@ -32,6 +32,7 @@
 
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" ng-click="save(object)" ng-disabled="addItem.$invalid">Save</button>
+                <button class="btn btn-danger btn-sm" ng-click="delete()" ng-if="deleteButton">Delete</button>
                 <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
             </div>
         </form>
@@ -57,10 +58,10 @@
     <div class="addCuisines">
         <button class="btn btn-success" ng-click="add('Cuisine')">Add Cuisine</button>
         <div class="repeat">
-        <div ng-repeat="cuisine in cuisines" ng-if="isEnglish">
+        <div ng-repeat="cuisine in cuisines"  ng-click="editData('Cuisine',$index)" ng-if="isEnglish" class="repeatElement">
             {{cuisine.name.en}}
         </div>
-        <div ng-repeat="cuisine in cuisines" ng-if="isSpanish">
+        <div ng-repeat="cuisine in cuisines" ng-click="editData('Cuisine',$index)" ng-if="isSpanish" class="repeatElement">
             {{cuisine.name.sp}}
         </div>
 
@@ -70,10 +71,10 @@
     <div class="addSpecialNeeds">
         <button class="btn btn-success" ng-click="add('Special Need')">Add Special Need</button>
         <div class="repeat">
-        <div ng-repeat="specialNeed in specialNeeds" ng-if="isEnglish">
+        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Special Need',$index)" ng-if="isEnglish" class="repeatElement">
             {{specialNeed.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Special Need',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -82,10 +83,10 @@
     <div class="addTypeOfEvents">
         <button class="btn btn-success" ng-click="add('Occasion')">Add Occasion</button>
         <div class="repeat">
-        <div ng-repeat="typeOfEvent in typeOfEvents" ng-if="isEnglish">
+        <div ng-repeat="typeOfEvent in typeOfEvents" ng-click="editData('Occasion',$index)" ng-if="isEnglish" class="repeatElement">
             {{typeOfEvent.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Occasion',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -94,10 +95,10 @@
     <div class="addServicesOffered">
         <button class="btn btn-success" ng-click="add('Offered Services')">Add Offered Services</button>
         <div class="repeat">
-        <div ng-repeat="serviceOffered in servicesOffered" ng-if="isEnglish">
+        <div ng-repeat="serviceOffered in servicesOffered" ng-click="editData('Offered Services',$index)" ng-if="isEnglish" class="repeatElement">
             {{serviceOffered.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Offered Services',$index)"  ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -106,10 +107,10 @@
     <div class="addTypeOfServices">
         <button class="btn btn-success" ng-click="add('Type of services')">Add Type of services</button>
         <div class="repeat">
-        <div ng-repeat="typeOfService in typeOfServices" ng-if="isEnglish">
+        <div ng-repeat="typeOfService in typeOfServices" ng-click="editData('Type of services',$index)"  ng-if="isEnglish" class="repeatElement">
             {{typeOfService.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Type of services',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -118,10 +119,10 @@
     <div class="addTypeOfServices">
         <button class="btn btn-success" ng-click="add('Product Tags')">Add Product Tags</button>
         <div class="repeat">
-        <div ng-repeat="tag in tags" ng-if="isEnglish">
+        <div ng-repeat="tag in tags" ng-click="editData('Product Tags',$index)" ng-if="isEnglish" class="repeatElement">
             {{tag.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-if="isSpanish">
+        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Product Tags',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>

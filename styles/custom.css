@@ -107,8 +107,10 @@ oi-select .select-search-list-item_selection {
 }
 .addAdminTags .repeat {
 	overflow: auto;
-	height: 200px;
+	height: 215px;
 	margin: 10px 0px;
+	font-family: Roboto;
+    font-size: 16px;
 }
 
 .addSpecialNeeds {
@@ -142,4 +144,13 @@ oi-select .select-search-list-item_selection {
 
 .addAdminTags button {
 	width: 100%;
+}
+
+.repeat .repeatElement {
+	cursor: pointer;
+}
+
+.repeat .repeatElement:hover {
+	cursor: pointer;
+	color: black;
 }
