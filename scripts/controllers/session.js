@@ -2,6 +2,7 @@
 
 function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
 
+    $localStorage.role = null;
     if ($localStorage.user!=null) {
         $state.go('app.apps.calendar');
     }

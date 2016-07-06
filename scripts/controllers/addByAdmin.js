@@ -87,7 +87,6 @@ function addByAdmin($scope,$rootScope,Common,$modal) {
         if (name=='cuisine') {
           Common.getCuisines().then(angular.bind(this, function then() {
             $scope.cuisines = Common.typeOfCuisines;
-            console.log($scope.cuisines);
           }));
         }
         else if (name=='specialNeed') {
@@ -179,6 +178,7 @@ function addByAdmin($scope,$rootScope,Common,$modal) {
 function addItemByAdminCtrl($http,$scope,$modalInstance,$rootScope,object,data){
   $scope.object = object;
   $scope.data = data;
+
   $scope.deleteButton = false;
   if (data!=null) {
     $scope.english = data.name.en;
@@ -196,7 +196,9 @@ function addItemByAdminCtrl($http,$scope,$modalInstance,$rootScope,object,data){
   }
 
   $scope.delete = function(){
-    console.log(object);
+  if (object=='productTags') {
+    apiUrl = $rootScope.apipath;
+  }
    var id = {"id": data._id};
    $http({
       method: 'DELETE',

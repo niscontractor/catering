@@ -1,0 +1,140 @@
+
+<div ng-controller="adminReportCtrl" class="reportHead">
+
+<div class="reportMenu">
+	<div class="datePicker">
+        <input class="form-control inputDatePicker" placeholder='Start date' ui-jq="datepicker" ng-model="startDate" ng-show="showDatePicker"/>
+	   <input class="form-control inputDatePicker" placeholder='End date' ui-jq="datepicker" ng-model="endDate" ng-show="showDatePicker"/>
+
+	   <button ng-click="fromToDateOrder()" type="button" class="btn btn-default" ng-show="showFindButton">
+            <span class="glyphicon glyphicon-search"></span> Find
+        </button>
+        <button style="font-size:15px;padding-right: 0px;" ng-show="pdfButton" class="btn btn-link pdf" ng-click="getPDF()">
+            <span class="fa fa-file-pdf-o mr5"></span>Pdf 
+        </button>
+
+        <button style="font-size:15px;" class="btn btn-link excel" ng-show="excelButton" ng-click="exportToExcel('#table1')">
+            <span class="glyphicon glyphicon-share"></span>Excel
+        </button>
+    </div>
+	 <!-- <button type="button" class="btn btn-success btn-sm btn-icon loading-demo mr5" ng-csv="getCompanies()" filename="companies.csv">
+            <i class="fa fa-file-excel-o mr5"></i> <span>Csv</span> 
+        </button> -->
+      
+
+</div>
+
+<br/>
+<br/>
+
+
+
+
+ <div class="form-group" ng-show="AllCaterersDetail">
+    <div class="panel-body"> 
+    <table class="table mb0" id="table1"> 
+        <thead class="tableHeader"> 
+            <tr ng-if="dataFound"> 
+            	<th class="col-md-1"> 
+                <span></span>Sr. No 
+                </th>
+                <th class="col-md-2"> 
+                <span></span>Email 
+                </th>
+                <th class="col-md-2">
+                Name
+                </th>
+                <th class="col-md-2">Mobile 
+                </th>
+                <th class="col-md-2">Total Order 
+                </th>
+                <th class="col-md-2">Total Amount 
+                </th>
+                <th class="col-md-1"></th>
+            </tr>
+            <tr ng-if="dataNotFound">
+                <th class="col-md-2">
+                    Data Not Found...
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="caterer in caterers">
+            <tr> 
+            	<td>{{$index+1}}</td>
+                <td>{{caterer.email}}</td>
+                <td>{{caterer.name}}</td>
+                <td>{{caterer.mobile}}</td>
+                <td>{{caterer.totalOrders}}</td>
+                <td>{{caterer.totalAmount}}</td>
+                <th><a ng-click="ShowDetails($index)">details</a></th>
+            </tr>
+        </tbody>
+        </table> 
+        </div>
+   
+    </div>
+
+
+
+<div ng-show="catererDetails">
+
+<div class="companyInfoHeader">
+
+    <div class="left">
+        <label>Caterer : </label> <span>{{companyInfo.catererName}}</span><br/>
+        <label>Company : </label> <span>{{companyInfo.CompanyName}}</span><br/>
+        <label>Mobile : </label> <span>{{companyInfo.catererMobile}}</span><br/>
+        <label>Email : </label> <span>{{companyInfo.email}}</span><br/>
+        <label>Created On : </label> <span>{{companyInfo.createdOn}}</span><br/>
+    </div>
+
+    <div class="right">
+        <label>Account No : </label> <span>{{companyInfo.accountNo}}</span><br/>
+        <label>Address : </label> <span>{{companyInfo.address}}</span><br/>
+        <label>IBAN : </label> <span>{{companyInfo.ibanNumber}}</span><br/>
+    </div>
+
+</div>
+    <div class="form-group" >
+    <div class="panel-body"> 
+    <table class="table mb0" id="table1"> 
+        <thead class="tableHeader"> 
+            <tr ng-if="dataFound"> 
+                <th class="col-md-1"> 
+                <span></span>Sr. No 
+                </th>
+                <th class="col-md-3"> 
+                <span></span>Order No 
+                </th>
+                <th class="col-md-2">
+                Order Date
+                </th>
+                <th class="col-md-3">Transaction Id 
+                </th>
+                <th class="col-md-2">Amount
+                </th>
+                <th class="col-md-1"></th>
+            </tr>
+            <tr ng-if="dataNotFound">
+                <th class="col-md-2">
+                    Data Not Found...
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="orderInfo in ordersInfo">
+            <tr> 
+                <td>{{$index+1}}</td>
+                <td>{{orderInfo.order_id}}</td>
+                <td>{{orderInfo.created_at}}</td>
+                <td>{{orderInfo.transactionId}}</td>
+                <td>{{orderInfo.totalAmount}}</td>
+                 <th style="cursor:pointer"><a href="{{orderInfo.pdfUrl}}" target="_blank" class="fa fa-print" aria-hidden="true"></a></th>
+            </tr>
+        </tbody>
+        </table> 
+        </div>
+   
+    </div>
+    </div>
+
+</div>

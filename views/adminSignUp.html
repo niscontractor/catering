@@ -1,0 +1,23 @@
+<div>
+	    <form role="form" class="form-layout p-l-r" name='signUp.signUpForm' novalidate>
+            <div class="text-center mb15">
+                <img data-ng-src="images/logo-dark.png" />
+            </div>
+            <p class="text-center mb25">Welcome to Online Catering. Please sign up to new account</p>
+            <div class="form-inputs">
+                <div ng-class="{'has-error': (signUp.signUpForm.email.$invalid && signUp.signUpForm.email.$dirty)}">
+                    <input type="email" ng-model='signUp.user.email' name='email' class="form-control input-lg" placeholder="Email Address" maxlength="500" required> 
+                    <div class="error,help-block" ng-show="(signUp.signUpForm.email.$dirty) && signUp.signUpForm.email.$invalid"> 
+                        <span class="help-block" ng-show="signUp.signUpForm.email.$error.required">Enter Email Address</span>
+                        <span class="help-block" ng-show="signUp.signUpForm.email.$error.email">Enter valid Email Address</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-orange btn-block btn-lg mb15" type="submit" ng-click="signUp.register()">
+                <span>Signup</span>
+            </button>
+            <p>
+                <a class='pull-right' ng-click='cancelSignUp()'>Cancel</a>
+            </p>
+        </form>   
+	</div>

@@ -17,6 +17,7 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
     }
 
 
+
     ctrl.register = function () {
         if (ctrl.signUpForm.$valid) {
             var obj = new Object();
@@ -48,6 +49,7 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
 function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
 
    // var baseUrl = $rootScope.baseUrl + '/api/getBetaUserList'; 
+   $localStorage.role = 0;
    $http.get($rootScope.baseUrl + '/api/getBetaUserList')
             .success(function(response){
                 console.log(response);

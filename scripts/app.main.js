@@ -6,6 +6,16 @@ angular
             function AppCtrl($scope, $rootScope, $http, $localStorage) {
 
                 $scope.mobileView = 767;
+            
+
+                if ($localStorage.role==0) {
+                    $scope.isAdmin = true;
+                }
+                else {
+                    $scope.isAdmin = false;
+                }
+
+                console.log($scope.isAdmin);
 
                 $scope.app = {
                     name: 'Online Catering',

@@ -86,7 +86,7 @@
         <div ng-repeat="typeOfEvent in typeOfEvents" ng-click="editData('Occasion',$index)" ng-if="isEnglish" class="repeatElement">
             {{typeOfEvent.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Occasion',$index)" ng-if="isSpanish" class="repeatElement">
+        <div ng-repeat="typeOfEvent in typeOfEvents" ng-click="editData('Occasion',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -98,7 +98,7 @@
         <div ng-repeat="serviceOffered in servicesOffered" ng-click="editData('Offered Services',$index)" ng-if="isEnglish" class="repeatElement">
             {{serviceOffered.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Offered Services',$index)"  ng-if="isSpanish" class="repeatElement">
+        <div ng-repeat="serviceOffered in servicesOffered" ng-click="editData('Offered Services',$index)"  ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -110,7 +110,7 @@
         <div ng-repeat="typeOfService in typeOfServices" ng-click="editData('Type of services',$index)"  ng-if="isEnglish" class="repeatElement">
             {{typeOfService.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Type of services',$index)" ng-if="isSpanish" class="repeatElement">
+        <div ng-repeat="typeOfService in typeOfServices" ng-click="editData('Type of services',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>
@@ -122,7 +122,7 @@
         <div ng-repeat="tag in tags" ng-click="editData('Product Tags',$index)" ng-if="isEnglish" class="repeatElement">
             {{tag.name.en}}
         </div>
-        <div ng-repeat="specialNeed in specialNeeds" ng-click="editData('Product Tags',$index)" ng-if="isSpanish" class="repeatElement">
+        <div ng-repeat="tag in tags" ng-click="editData('Product Tags',$index)" ng-if="isSpanish" class="repeatElement">
             {{specialNeed.name.sp}}
         </div>
         </div>

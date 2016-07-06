@@ -7,18 +7,15 @@ function mainAppCtrl($scope, $rootScope, $state, $localStorage, Auth) {
 		return;
 	};
 
-	$scope.showMenu = true;
-	if ($localStorage.role==0) {
-		$scope.showMenu = false;
-	}
-
 	$scope.logoutUser = function() {
 		$rootScope.user = '';
+		
 		Auth.setUser(null);
 		if ($localStorage.role==0) {
 			$state.go('user.adminsignin');
 		}
 		else {
+			
 			$state.go('user.signin');
 		}
 		$localStorage.$reset();

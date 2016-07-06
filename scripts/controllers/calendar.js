@@ -8,7 +8,7 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
     $scope.events = [];
 
     $scope.initCalendar = function () {
-        OrderService.today().then(function(response) {
+        OrderService.todayEvent().then(function(response) {
             $scope.response = response;
             if (response.success=="false") {                
             }

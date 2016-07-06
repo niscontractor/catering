@@ -159,7 +159,7 @@
            <div class="col-sm-9">
                <div class="" ng-class="{'has-error': (addCategoryItemForm.tag_name.$invalid && addCategoryItemForm.tag_name.$dirty)}">
                 <oi-select name="tag_name" class=""
-                    oi-options="tag.name for tag in tags track by tag._id"
+                    oi-options="tag.name.en for tag in tags track by tag._id"
                     ng-model="categoryItem.tag"
                     multiple ng-required="true">
                 </oi-select>
@@ -282,7 +282,7 @@
             <div class="col-sm-9">
             <div class="" ng-class="{'has-error': (editCategoryItemForm.tag_product.$invalid && editCategoryItemForm.tag_product.$dirty)}">
             <oi-select name="tag_product" class=""
-                oi-options="tag.name for tag in tags track by tag._id"
+                oi-options="tag.name.en for tag in tags track by tag._id"
                 ng-model="categoryItem.tag"
                 multiple ng-required="true">
             </oi-select>

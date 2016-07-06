@@ -4,6 +4,19 @@ function OrderService($q, $http, $rootScope, $localStorage) {
     var output = {};
     var apiUrl = $rootScope.apipath + '/orders/';
 
+    output.todayEvent = function () {
+        var deferred = $q.defer();
+        var role = 2;
+        $http.get(apiUrl + $localStorage.user.id+'/'+role+ '/todayEvent')
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        return deferred.promise;
+    };
+
     output.today = function () {
         var deferred = $q.defer();
         var role = 2;

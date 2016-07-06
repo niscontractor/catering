@@ -139,7 +139,7 @@
                                                 <label class="allLabel">What type of cuisine you serve?<span>*</span></label>
                                                 <oi-select name="cuisine"
                                                     class="" style="height: 47px"
-                                                    oi-options="cuisineType.name for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
+                                                    oi-options="cuisineType.name.en for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
                                                     ng-model="dashboard.company.cuisine"
                                                     multiple required>
                                                 </oi-select>
@@ -152,7 +152,7 @@
                                                 <label class="allLabel">Do you provide special need?<span>*</span></label>
                                                 <oi-select name="special_need"
                                                     class="" style="height: 47px"
-                                                    oi-options="specialNeed.name for specialNeed in dashboard.specialNeeds track by specialNeed._id"
+                                                    oi-options="specialNeed.name.en for specialNeed in dashboard.specialNeeds track by specialNeed._id"
                                                     ng-model="dashboard.company.special_need"
                                                     multiple required>
                                                 </oi-select>
@@ -264,7 +264,7 @@
                                                 <label class="allLabel">What type of events you serve?<span>*</span></label>
                                                 <oi-select name="events"
                                                     class="" style="height: 47px"
-                                                    oi-options="typeOfEvent.name for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
+                                                    oi-options="typeOfEvent.name.en for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
                                                     ng-model="dashboard.company.events"
                                                     multiple required>
                                                 </oi-select>
@@ -281,7 +281,7 @@
                                                 <label class="allLabel">Services you offer?<span>*</span></label>
                                                 <oi-select name="services"
                                                     class="" style="height: 47px"
-                                                    oi-options="serviceOffered.name for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
+                                                    oi-options="serviceOffered.name.en for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
                                                     ng-model="dashboard.company.services"
                                                     multiple required>
                                                 </oi-select>
@@ -297,7 +297,7 @@
                                                 <label class="allLabel">Type of service<span>*</span></label>
                                                 <oi-select name="services_type"
                                                     class="" style="height: 47px"
-                                                    oi-options="typeOfService.name for typeOfService in dashboard.typeOfServices track by typeOfService._id"
+                                                    oi-options="typeOfService.name.en for typeOfService in dashboard.typeOfServices track by typeOfService._id"
                                                     ng-model="dashboard.company.services_type"
                                                     multiple required>
                                                 </oi-select>
