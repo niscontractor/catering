@@ -87,7 +87,7 @@
             {{typeOfEvent.name.en}}
         </div>
         <div ng-repeat="typeOfEvent in typeOfEvents" ng-click="editData('Occasion',$index)" ng-if="isSpanish" class="repeatElement">
-            {{specialNeed.name.sp}}
+            {{typeOfEvent.name.sp}}
         </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
             {{serviceOffered.name.en}}
         </div>
         <div ng-repeat="serviceOffered in servicesOffered" ng-click="editData('Offered Services',$index)"  ng-if="isSpanish" class="repeatElement">
-            {{specialNeed.name.sp}}
+            {{serviceOffered.name.sp}}
         </div>
         </div>
     </div>
@@ -111,7 +111,7 @@
             {{typeOfService.name.en}}
         </div>
         <div ng-repeat="typeOfService in typeOfServices" ng-click="editData('Type of services',$index)" ng-if="isSpanish" class="repeatElement">
-            {{specialNeed.name.sp}}
+            {{typeOfService.name.sp}}
         </div>
         </div>
     </div>
@@ -123,7 +123,7 @@
             {{tag.name.en}}
         </div>
         <div ng-repeat="tag in tags" ng-click="editData('Product Tags',$index)" ng-if="isSpanish" class="repeatElement">
-            {{specialNeed.name.sp}}
+            {{tag.name.sp}}
         </div>
         </div>
     </div>

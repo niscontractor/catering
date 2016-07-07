@@ -7,17 +7,33 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
     var y = date.getFullYear();
     $scope.events = [];
 
+    function formatAMPM(d) {
+      var hours = d.getHours();
+      var minutes = d.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
+    }
+
     $scope.initCalendar = function () {
         OrderService.todayEvent().then(function(response) {
             $scope.response = response;
+
             if (response.success=="false") {                
             }
             else {                
                 for(var row in response) {
+
                     var d = new Date(response[row].eventDate),
                     month = '' + (d.getMonth() + 1),
                     day = '' + d.getDate(),
                     year = d.getFullYear();
+                    var hours = d.getHours();
+                     
+
                     if (month.length < 2) month = '0' + month;
                     if (day.length < 2) day = '0' + day;
                     response[row].eventDate = [day, month, year].join('/'); 
@@ -35,8 +51,9 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
                         totalAmount : response[row].totalAmount,
                         items : response[row].item_info,
                         eventDate : response[row].eventDate,
-                        eventTime : response[row].eventTime
+                        eventTime : formatAMPM(d)
                     });
+                    $scope.response[row].eventTime = $scope.events[row].eventTime;
 
                 // $scope.events.items.push('totalPrice',$scope.events.items[row].totalNumber*$scope.events.items[row].itemPrice);
             }

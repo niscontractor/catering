@@ -50,14 +50,47 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
 
    // var baseUrl = $rootScope.baseUrl + '/api/getBetaUserList'; 
    $localStorage.role = 0;
-   $http.get($rootScope.baseUrl + '/api/getBetaUserList')
+    $http.get($rootScope.baseUrl + '/api/getActiveCatererCount')
             .success(function(response){
                 console.log(response);
-                $scope.data = response;
+                $scope.activeCaterer = response.totalActiveCaterer;
             })
             .error(function(error){
                 console.log(error);
-            });
+            });  
+    $http.get($rootScope.baseUrl + '/api/getInActiveCatererCount')
+            .success(function(response){
+                console.log(response);
+                $scope.inActiveCaterer = response.totalInActiveCaterer;
+            })
+            .error(function(error){
+                console.log(error);
+            });   
+    $http.get($rootScope.baseUrl + '/api/getActiveUserCount')
+            .success(function(response){
+                console.log(response);
+                $scope.activeUser = response.totalActiveUser;
+            })
+            .error(function(error){
+                console.log(error);
+            });  
+    $http.get($rootScope.baseUrl + '/api/getInActiveUserCount')
+            .success(function(response){
+                console.log(response);
+                $scope.inActiveUser = response.totalInActiveUser;
+            })
+            .error(function(error){
+                console.log(error);
+            });   
+    $http.get($rootScope.baseUrl + '/api/getAllOrders')
+            .success(function(response){
+                console.log(response);
+                $scope.totalOrders = response.totalOrder;
+                $scope.totalAmount = response.totalAmount;
+            })
+            .error(function(error){
+                console.log(error);
+            });  
 
 
     var ctrl = this;

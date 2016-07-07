@@ -8,7 +8,8 @@ function signupCtrl($state, Common,$rootScope,$localStorage) {
             obj.email = ctrl.user.email;
             obj.password = ctrl.user.password;
             obj.repassword = ctrl.user.confpassword;
-            obj.name = ctrl.user.firstName;
+            obj.firstName = ctrl.user.firstName;
+            obj.lastName = ctrl.user.lastName;
             obj.mobile = ctrl.user.mobile;
             obj.company = ctrl.user.company;
             obj.isCaterer = true;

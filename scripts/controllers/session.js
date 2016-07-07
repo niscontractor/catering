@@ -64,10 +64,14 @@ function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Comm
                     $localStorage.user = $rootScope.user;
                     Auth.setUser(response);
 //                    $rootScope.addMessage('Login successful.', 'success');
-                    if ($rootScope.isFirstTime==true) {
+                    if ($rootScope.isFirstTime==true && $rootScope.user.name!=null) {
                         console.log($rootScope.isFirstTime);
                         $state.go('app.apps.social');
-                    } else {
+                    } 
+                    else if($rootScope.isFirstTime==true && $rootScope.user.name==null){
+                        $state.go('user.editSignUp');
+                    }
+                    else {
                         $state.go('app.apps.calendar');
                     }
                 }).catch(function (response) {

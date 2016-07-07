@@ -1503,6 +1503,21 @@ angular
                                 contentClasses: 'full-height'
                             }
                         })
+                        .state('user.editSignUp', {
+                            url: '/editSignUp',
+                            templateUrl: 'views/edit_user_info.html',
+                            resolve: {
+                                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                         return $ocLazyLoad.load('scripts/controllers/editSignUpCtrl.js').then(function () {
+                                            return $ocLazyLoad.load('scripts/services/common.service.js');
+                                        });
+                                    }]
+                            },
+                            data: {
+                                appClasses: 'bg-white usersession',
+                                contentClasses: 'full-height'
+                            }
+                        })
                         .state('user.forgot', {
                             url: '/forgot',
                             templateUrl: 'views/extras-forgot.html',

@@ -15,11 +15,13 @@
                 <th class="col-md-3">
                 Email 
                 </th>
-                <th class="col-md-3">Name 
+                <th class="col-md-2">Name 
                 </th>
-                <th class="col-md-3">Type 
+                <th class="col-md-2">Type 
                 </th>
-                <th class="col-md-3">Status 
+                <th class="col-md-2">Status 
+                </th>
+                <th class="col-md-2">Change Status 
                 </th>
             </tr>
         </thead>
@@ -31,6 +33,7 @@
                 <td ng-if="item.role=='2'">caterer</td>
                 <td ng-if="item.role=='1'">user</td>
                 <td>{{item.status}}</td>
+                <td><label class="switch switch-sm" style="margin-bottom:0px;"><input type="checkbox" checked="" ng-change="changeStatus($index)" ng-model="item.status1"><span> <i class="handle"></i> </span></label></td>
             </tr>
         </tbody>
         

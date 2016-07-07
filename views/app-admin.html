@@ -1,37 +1,12 @@
 <script type="text/ng-template" id="adminSignUp.html">
 	
-	<div>
-    
-        
-            
-                <form role="form" class="form-layout p-l-r" name='signUp.signUpForm' novalidate>
-                    <div class="text-center mb15">
-                        <img data-ng-src="images/logo-dark.png" />
-                    </div>
-
-                    <p class="text-center mb25">Welcome to Online Catering. Please sign up to new account</p>
-                    <!-- <div class='row form-inputs login-fonts'>
-                        <div class='col-md-6' style='padding-left: 15px' ng-class="{'has-error': (signUp.signUpForm.firstName.$invalid && signUp.signUpForm.firstName.$dirty)}">
-                            <input type="text" name='firstName' ng-model='signUp.user.firstName' class="form-control input-lg" placeholder="First Name" maxlength="100" required>
-                            <div class="error,help-block" ng-show="(signUp.signUpForm.firstName.$dirty) && signUp.signUpForm.firstName.$invalid"> 
-                                <span class="help-block" ng-show="signUp.signUpForm.firstName.$error.required">Enter first name</span>
-                            </div>
-                        </div>
-                        <div class='col-md-6' style='padding-right: 15px' ng-class="{'has-error': (signUp.signUpForm.lastName.$invalid && signUp.signUpForm.lastName.$dirty)}">
-                            <input type="text" class="form-control input-lg" ng-model='signUp.user.lastName' placeholder="Last Name" name='lastName' maxlength="100" required>
-                            <div class="error,help-block" ng-show="(signUp.signUpForm.lastName.$dirty) && signUp.signUpForm.lastName.$invalid"> 
-                                <span class="help-block" ng-show="signUp.signUpForm.lastName.$error.required">Enter last name</span>
-                            </div>
-                        </div>
-                    </div> -->
+	<div>        
+        <form role="form" class="form-layout p-l-r" name='signUp.signUpForm' novalidate>
+            <div class="text-center mb15">
+                <img data-ng-src="images/logo-dark.png" />
+            </div>
+                <p class="text-center mb25">Welcome to Online Catering. Please sign up to new account</p>    
                     <div class="form-inputs">
-                       <!--  <div ng-class="{'has-error': (signUp.signUpForm.company.$invalid && signUp.signUpForm.company.$dirty)}">
-                            <input name='company' type="text" class="form-control input-lg" placeholder="Company" ng-model='signUp.user.company' required>
-                            <div class="error,help-block" ng-show="(signUp.signUpForm.company.$dirty) && signUp.signUpForm.company.$invalid"> 
-                                <span class="help-block" ng-show="signUp.signUpForm.company.$error.required">Enter company</span>
-                            </div>
-                        </div> -->
-
                         <div ng-class="{'has-error': (signUp.signUpForm.email.$invalid && signUp.signUpForm.email.$dirty)}">
                             <input type="email" ng-model='signUp.user.email' name='email' class="form-control input-lg" placeholder="Email Address" maxlength="500" required> 
                             <div class="error,help-block" ng-show="(signUp.signUpForm.email.$dirty) && signUp.signUpForm.email.$invalid"> 
@@ -39,103 +14,87 @@
                                 <span class="help-block" ng-show="signUp.signUpForm.email.$error.email">Enter valid Email Address</span>
                             </div>
                         </div>
-
-                        <!-- <div ng-class="{'has-error': (signUp.signUpForm.mobile.$invalid && signUp.signUpForm.mobile.$dirty)}">
-                            <input type="text" class="form-control input-lg" ng-model='signUp.user.mobile' placeholder="Mobile" name='mobile'>
-                            <div class="error,help-block" ng-show="(signUp.signUpForm.mobile.$dirty) && signUp.signUpForm.mobile.$invalid"> 
-                                <span class="help-block" ng-show="signUp.signUpForm.mobile.$error.required">Enter mobile number</span>
-                                <span class="help-block" ng-show="signUp.signUpForm.mobile.$error.pattern">Enter a valid 10 digit mobile number</span>
-                            </div>
-                        </div> -->
-                        <!-- <div ng-class="{'has-error': (signUp.signUpForm.password.$invalid && signUp.signUpForm.password.$dirty)}">
-                            <input type="password" class="form-control input-lg" placeholder="Password" ng-model='signUp.user.password' name='password' maxlength="50" required>
-                            <div class="error,help-block" ng-show="(signUp.signUpForm.password.$dirty) && signUp.signUpForm.password.$invalid"> 
-                                <span class="help-block" ng-show="signUp.signUpForm.password.$error.required">Enter password</span>
-                            </div>
-                        </div> -->
-                      <!--   <div ng-class="{'has-error': ((signUp.signUpForm.confpassword.$dirty && signUp.signUpForm.confpassword.$invalid) || (signUp.signUpForm.confpassword.$dirty && signUp.user.password !== signUp.user.confpassword))}">    
-                            <input type="password" class="form-control input-lg" placeholder="Retype Password" ng-model='signUp.user.confpassword' name='confpassword' maxlength="50" compare-to="signUp.user.password" required>
-                            <div class="error,help-block" ng-show="signUp.signUpForm.confpassword.$dirty && signUp.signUpForm.confpassword.$invalid"> 
-                                <span class="help-block" ng-show="signUp.signUpForm.confpassword.$error.required">Enter confirm password</span>
-                            </div>
-                            <div class="error,help-block" ng-show="signUp.signUpForm.confpassword.$dirty && signUp.user.password !== signUp.user.confpassword">
-                                <span class="help-block">Passwords do not match</span>
-                            </div>
-                            
-                        </div> -->
                     </div>
                     <button class="btn btn-orange btn-block btn-lg mb15" type="submit" ng-click="signUp.register()">
                         <span>Signup</span>
                     </button>
-                    <p>
-                        <a class='pull-right' ng-click='cancelSignUp()'>Cancel</a>
-                    </p>
-                </form>
-            
-        
-
-   
+                <p>
+                    <a class='pull-right' ng-click='cancelSignUp()'>Cancel</a>
+                </p>
+        </form>   
 </div>
-
-
 </script>
 
 
 
+<div class="adminDashboard" ng-controller="sessionCtrl">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-user text-white"></i></span>
 
-
-
-
-
-
-
-
-
-
-
-<div class="admin" ng-controller="sessionCtrl">
-
-
- 	<div class="createUserCaterer">
- 		<button ng-click="createAcount('caterer')">Create Caterer</button>
- 		<button ng-click="createAcount('user')"> Create User</button>
- 		<button ng-click="getCaterersList('caterer')">Get Caterer</button>
- 	</div>
-
- 	 <div class="form-group">
-    <div class="panel-body"> 
-    <table class="table mb0"> 
-        <thead> 
-            <tr> 
-                <th class="col-md-1"> 
-                Sr. No 
-                </th>
-                <th class="col-md-3">
-                Email 
-                </th>
-                <th class="col-md-3">Name 
-                </th>
-                <th class="col-md-3">Type 
-                </th>
-                <th class="col-md-3">Status 
-                </th>
-            </tr>
-        </thead>
-        <tbody ng-repeat="item in data">
-            <tr> 
-                <td>{{$index+1}}</td>
-                <td style="cursor:pointer" ng-click="getCaterer(item.id)">{{item.email}}</td>
-                <td>{{item.name}}</td>
-                <td ng-if="item.role=='2'">caterer</td>
-                <td ng-if="item.role=='1'">user</td>
-                <td>{{item.status}}</td>
-            </tr>
-        </tbody>
-        
-        </table> 
+            <div class="info-box-content">
+              <div style=" margin-top: 15px;">
+              <span class="info-box-text">Active Caterers : </span>
+              <span class="info-box-number">{{activeCaterer}}</span><br/>
+              <span class="info-box-text">InActive Caterers : </span>
+              <span class="info-box-number">{{inActiveCaterer}}</span>
+              </div>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-   
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-user text-white"></i></span>
+
+            <div class="info-box-content">
+            <div style=" margin-top: 15px;">
+              <span class="info-box-text">Active Users : </span>
+              <span class="info-box-number">{{activeUser}}</span><br/>
+              <span class="info-box-text">InActive Users : </span>
+              <span class="info-box-number">{{inActiveUser}}</span>
+            </div>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-rocket text-white"></i></span>
+            
+            <div class="info-box-content">
+            <div style=" margin-top: 15px;">
+              <span class="info-box-text">Total Orders : </span>
+              <span class="info-box-number">{{totalOrders}}</span>
+            </div>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-money text-white"></i></span>
+            
+            <div class="info-box-content">
+            <div style=" margin-top: 15px;">
+              <span class="info-box-text">Total Amount : </span>
+              <span class="info-box-number">{{totalAmount}}</span>
+            </div>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
     </div>
+
+    
 </div>
 
 

@@ -5,10 +5,37 @@ function addUserAdmin($modal,$http,$scope, $rootScope, $state, $localStorage) {
             .success(function(response){
                 console.log(response);
                 $scope.data = response;
+                for(var i=0; i<response.length; i++){
+                    if ($scope.data[i].status=='Active') {
+                        $scope.data[i].status1 = true;
+                    }
+                    else {
+                        $scope.data[i].status1 = false;
+                    }
+                }
             })
             .error(function(error){
                 console.log(error);
             });
+
+    $scope.changeStatus = function(index){
+        console.log($scope.data[index]._id);
+        var status;
+        if ($scope.data[index].status=="Active") {
+            status = "InActive";
+        }
+        else {
+            status = "Active";
+        }
+        $http.post($rootScope.baseUrl + '/api/changeUserStatus',{'userId':$scope.data[index]._id,'userStatus':status})
+            .success(function(response){
+                console.log(response);
+                $scope.data[index].status = status;
+            })
+            .error(function(error){
+                console.log(error);
+            });
+    }
 
     $scope.createAcount = function(data){
         if (data=='caterer') {
@@ -32,15 +59,35 @@ function addUserAdmin($modal,$http,$scope, $rootScope, $state, $localStorage) {
             backdrop: 'static'
         });
 
-        modalInstance.result.then(function () {
-            $http.get($rootScope.baseUrl + '/api/getUserList')
-            .success(function(response){
+        modalInstance.result.then(function (data) {
+            if (data=='cancel') {
+                $http.get($rootScope.baseUrl + '/api/getUserList')
+                .success(function(response){
+                    console.log(response);
+                    $scope.data = response;
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+            }
+            else{
+                $http.get($rootScope.baseUrl + '/api/getUserList')
+                .success(function(response){
                 console.log(response);
                 $scope.data = response;
+                for(var i=0; i<response.length; i++){
+                    if ($scope.data[i].status=='Active') {
+                        $scope.data[i].status1 = true;
+                    }
+                    else {
+                        $scope.data[i].status1 = false;
+                    }
+                }
             })
             .error(function(error){
                 console.log(error);
             });
+            }
         });
 
     }
@@ -51,7 +98,7 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
     var ctrl = this;
 
     $scope.cancelSignUp = function(){
-        $modalInstance.close();
+        $modalInstance.close('cancel');
     }
 
 

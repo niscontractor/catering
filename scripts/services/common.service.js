@@ -48,6 +48,22 @@ function common($q, $http, $rootScope,$state) {
                 });
         return deferred.promise;
     };
+
+     output.editSignUp = function (json) {
+        var deferred = $q.defer();
+        $http.post(apiUrl + '/updateUsers', json)
+                .success(function (data) {
+                    if (data.result === "true") {
+                        deferred.resolve(data);
+                    } else {
+                        deferred.reject(data);
+                    }
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+        return deferred.promise;
+    };
     
     return output;
 }

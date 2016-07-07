@@ -43,6 +43,7 @@ function addByAdmin($scope,$rootScope,Common,$modal) {
 
     $scope.editData = function(name,index){
         var editName;
+
         if (name=='Cuisine') {
           $scope.editableData = $scope.cuisines[index];
           editName = 'cuisine';
@@ -194,11 +195,10 @@ function addItemByAdminCtrl($http,$scope,$modalInstance,$rootScope,object,data){
   $scope.cancel = function(){
     $modalInstance.close();
   }
-
-  $scope.delete = function(){
-  if (object=='productTags') {
+  if (object == 'productTags') {
     apiUrl = $rootScope.apipath;
   }
+  $scope.delete = function(){
    var id = {"id": data._id};
    $http({
       method: 'DELETE',
@@ -236,12 +236,13 @@ function addItemByAdminCtrl($http,$scope,$modalInstance,$rootScope,object,data){
       'enName':$scope.english,
       'spName':$scope.spanish
     }
-    var editData = {
+    
+    if (data!=null) {
+      var editData = {
       'enName':$scope.english,
       'spName':$scope.spanish,
       'id':data._id
-    }
-    if (data!=null) {
+      }
       $http.put(apiUrl+'/'+name, editData)
         .success(function(data){
           $modalInstance.close(name);

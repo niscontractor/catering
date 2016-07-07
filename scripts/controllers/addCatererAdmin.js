@@ -5,6 +5,14 @@ function addCatererAdmin($modal,$http,$scope, $rootScope, $state, $localStorage)
             .success(function(response){
                 console.log(response);
                 $scope.data = response;
+                for(var i=0; i<response.length; i++){
+                    if ($scope.data[i].status=='Active') {
+                        $scope.data[i].status1 = true;
+                    }
+                    else {
+                        $scope.data[i].status1 = false;
+                    }
+                }
             })
             .error(function(error){
                 console.log(error);
@@ -51,15 +59,28 @@ function addCatererAdmin($modal,$http,$scope, $rootScope, $state, $localStorage)
             backdrop: 'static'
         });
 
-        modalInstance.result.then(function () {
+        modalInstance.result.then(function (data) {
+            if (data=='cancel') {
+
+            }
+            else {
         	$http.get($rootScope.baseUrl + '/api/getCatererList')
             .success(function(response){
                 console.log(response);
                 $scope.data = response;
+                for(var i=0; i<response.length; i++){
+                    if ($scope.data[i].status=='Active') {
+                        $scope.data[i].status1 = true;
+                    }
+                    else {
+                        $scope.data[i].status1 = false;
+                    }
+                }
             })
             .error(function(error){
                 console.log(error);
             });
+            }
         });
 
     }
@@ -70,7 +91,7 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
     var ctrl = this;
 
     $scope.cancelSignUp = function(){
-        $modalInstance.close();
+        $modalInstance.close('cancel');
     }
 
 

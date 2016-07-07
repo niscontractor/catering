@@ -33,7 +33,7 @@
                 <td ng-if="item.role=='2'">caterer</td>
                 <td ng-if="item.role=='1'">user</td>
                 <td>{{item.status}}</td>
-                <td><a ng-click="changeStatus($index)">Change</a></td>
+                <td><label class="switch switch-sm" style="margin-bottom:0px;"><input type="checkbox" checked="" ng-change="changeStatus($index)" ng-model="item.status1"><span> <i class="handle"></i> </span></label></td>
             </tr>
         </tbody>
         
