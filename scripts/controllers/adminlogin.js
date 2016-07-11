@@ -99,7 +99,7 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
 
     $scope.addBetaUser = function(){
          var modalInstance = $modal.open({
-                    templateUrl: 'views/adminSignUp.html',
+                    templateUrl: 'adminSignUp.html',
                     controller: function($modalInstance,$http,$scope){
                         this.register = function(){
                             var user = {};
