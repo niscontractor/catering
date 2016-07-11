@@ -58,17 +58,19 @@ function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Comm
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
                 $localStorage.company_id = $rootScope.company_id;
+                $localStorage.firstName = response.user.firstName;
 
                 Common.getUserById(response.user._id).then(function (response) {
                     $rootScope.user = response;
                     $localStorage.user = $rootScope.user;
                     Auth.setUser(response);
+                    console.log($localStorage.firstName);
 //                    $rootScope.addMessage('Login successful.', 'success');
-                    if ($rootScope.isFirstTime==true && $rootScope.user.firstName!=null) {
+                    if ($rootScope.isFirstTime==true && $localStorage.firstName!=undefined) {
                         console.log($rootScope.isFirstTime);
                         $state.go('app.apps.social');
                     } 
-                    else if($rootScope.isFirstTime==true && $rootScope.user.firstName==null){
+                    else if($rootScope.isFirstTime==true &&$localStorage.firstName==undefined){
                         $state.go('user.editSignUp');
                     }
                     else {

@@ -4,7 +4,9 @@ function addUserAdmin($modal,$http,$scope, $rootScope, $state, $localStorage) {
 	$http.get($rootScope.baseUrl + '/api/getUserList')
             .success(function(response){
                 console.log(response);
-                $scope.data = response;
+                
+                if (response.success != "false") {
+                    $scope.data = response;
                 for(var i=0; i<response.length; i++){
                     if ($scope.data[i].status=='Active') {
                         $scope.data[i].status1 = true;
@@ -12,6 +14,7 @@ function addUserAdmin($modal,$http,$scope, $rootScope, $state, $localStorage) {
                     else {
                         $scope.data[i].status1 = false;
                     }
+                }
                 }
             })
             .error(function(error){

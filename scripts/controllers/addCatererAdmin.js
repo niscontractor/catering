@@ -4,6 +4,7 @@ function addCatererAdmin($modal,$http,$scope, $rootScope, $state, $localStorage)
 	$http.get($rootScope.baseUrl + '/api/getCatererList')
             .success(function(response){
                 console.log(response);
+                if (response.success != "false") {
                 $scope.data = response;
                 for(var i=0; i<response.length; i++){
                     if ($scope.data[i].status=='Active') {
@@ -13,7 +14,12 @@ function addCatererAdmin($modal,$http,$scope, $rootScope, $state, $localStorage)
                         $scope.data[i].status1 = false;
                     }
                 }
+                }
+                else{
+
+                }
             })
+
             .error(function(error){
                 console.log(error);
             });

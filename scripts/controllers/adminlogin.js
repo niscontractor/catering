@@ -120,7 +120,7 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                                 // $state.go('user.signin');
                             });
                         }
-                        this.cancel = function(){
+                        this.cancelSignUp = function(){
                             $modalInstance.close();
                         }
                     },
