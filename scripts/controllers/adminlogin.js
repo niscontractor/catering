@@ -97,6 +97,40 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
     var token = $location.search().userToken;
     var modalInstance;
 
+    $scope.addBetaUser = function(){
+         var modalInstance = $modal.open({
+                    templateUrl: 'views/adminSignUp.html',
+                    controller: function($modalInstance,$http,$scope){
+                        this.register = function(){
+                            var user = {};
+                            var baseUrl = $rootScope.baseUrl + '/api/addBetaUsers';
+                            $http.post(baseUrl,{'email':this.user.email})
+                            .success(function(response){
+                                console.log(response);
+                                if (response.success=="false") {
+                                    SweetAlert.swal('Failed', response.message);
+                                }
+                                else {
+                                    SweetAlert.swal('Success', response.message, 'success');
+                                    $modalInstance.close();
+                                }
+                            })
+                            .error(function(error){
+                                console.log(error);
+                                // $state.go('user.signin');
+                            });
+                        }
+                        this.cancel = function(){
+                            $modalInstance.close();
+                        }
+                    },
+                    controllerAs : 'signUp',
+                    size: 'med',
+                    keyboard: false,
+                    backdrop: 'static'
+                });
+    }
+
     $scope.getCaterersList = function(){
         $http.get($rootScope.baseUrl + '/api/getCatererList')
             .success(function(response){
@@ -114,7 +148,7 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                 console.log(response);
                 var modalInstance = $modal.open({
                     templateUrl: 'views/adminCaterer.html',
-                    controller: adminCatererCtrl,
+                    controller: signUpCtrl,
                     resolve: {
                         catererData: function () {
                             return response;
