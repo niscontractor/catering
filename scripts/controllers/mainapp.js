@@ -19,6 +19,7 @@ function mainAppCtrl($scope, $rootScope, $state, $localStorage, Auth) {
 			$state.go('user.signin');
 		}
 		$localStorage.$reset();
+		
 	}
 }
 
