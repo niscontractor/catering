@@ -99,6 +99,29 @@
       <button class="btn btn-primary" ng-click="addBetaUser()">Add Beta User</button>
     </div>
 
+    <div class="betaUserList" style="max-width:650px;">
+    <div class="panel-body" style="padding-left:0px;"> 
+    <table class="table mb0" id="table1"> 
+        <thead class="tableHeader"> 
+            <tr > 
+                <th class="col-md-6" style="text-align: left;"> 
+                <span></span>Sr. No 
+                </th>
+                <th class="col-md-6" style="text-align: left;"> 
+                <span></span>Email 
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="bl in betaUserList">
+            <tr> 
+              <td>{{$index+1}}</td>
+              <td>{{bl.email}}</td>
+            </tr>
+        </tbody>
+        </table> 
+        </div>
+    </div>
+
     
 </div>
 

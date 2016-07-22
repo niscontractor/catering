@@ -1,60 +1,39 @@
 'use strict';
 
-function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
+function CalendarCtrl($http,$modal,$scope, $compile, uiCalendarConfig, OrderService) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
     $scope.events = [];
 
-    function formatAMPM(d) {
-      var hours = d.getHours();
-      var minutes = d.getMinutes();
-      var ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0'+minutes : minutes;
-      var strTime = hours + ':' + minutes + ' ' + ampm;
-      return strTime;
-    }
+    
 
     $scope.initCalendar = function () {
         OrderService.todayEvent().then(function(response) {
             $scope.response = response;
-
             if (response.success=="false") {                
             }
             else {                
                 for(var row in response) {
-
-                    var d = new Date(response[row].eventDate),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
-                    var hours = d.getHours();
-                     
-
-                    if (month.length < 2) month = '0' + month;
-                    if (day.length < 2) day = '0' + day;
-                    response[row].eventDate = [day, month, year].join('/'); 
                     $scope.events.push({
                         id:response[row].order_id,
                         title: response[row].order_event,
                         start: new Date(),
                         listColor: 'danger',
                         className: ['event-danger', 'event-name-light'],
-                        customer_name : response[row].customer_name,
-                        customer_address : response[row].customer_address,
-                        order_location : response[row].customer_city,
-                        customer_pin : response[row].customer_pincode,
-                        customer_state : response[row].customer_state,
+                        customer_name : response[row].customerInfo.firstName +' '+response[row].customerInfo.lastName,
+                        customer_addressLine1 : response[row].customerInfo.addressLine1,
+                        customer_addressLine2 : response[row].customerInfo.addressLine2,
+                        customer_city : response[row].customerInfo.city,
+                        customer_pin : response[row].customerInfo.pincode,
+                        customer_state : response[row].customerInfo.state,
                         totalAmount : response[row].totalAmount,
                         items : response[row].item_info,
                         eventDate : response[row].eventDate,
-                        eventTime : formatAMPM(d)
+                        eventTime : response[row].eventTime
                     });
                     $scope.response[row].eventTime = $scope.events[row].eventTime;
-
                 // $scope.events.items.push('totalPrice',$scope.events.items[row].totalNumber*$scope.events.items[row].itemPrice);
             }
             }
@@ -83,9 +62,17 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
 
     function orderInfoEventCtrl($scope,$modalInstance,$rootScope,object){
         $scope.e = object;
+        $scope.e.customer_name = object.customerInfo.firstName + ' ' + object.customerInfo.lastName;
+        $scope.e.customer_addressLine1 = object.customerInfo.addressLine1;
+        $scope.e.customer_addressLine2 = object.customerInfo.addressLine2;
+        $scope.e.customer_city = object.customerInfo.city;
+        $scope.e.customer_state = object.customerInfo.state;
+        $scope.e.customer_pin = object.customerInfo.pincode;
+
+        
+        console.log($scope.e);
         $scope.e.id = object.order_id;
         $scope.e.items = object.item_info;
-
          $scope.closeModal = function(){
             $modalInstance.close();
         }
@@ -143,15 +130,16 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
         ]
     };
     /* alert on eventClick */
-    $scope.alertOnEventClick = function (date, jsEvent, view) {
-        $scope.alertMessage = (date.title + ' was clicked ');
-        $scope.orderInfoData = date;
+    $scope.alertOnEventClick = function (data, jsEvent, view) {
+        $scope.alertMessage = (data.title + ' was clicked ');
+        $scope.orderInfoData = data;
+        console.log(data);
         var modalInstance = $modal.open({
             templateUrl: 'orderInfo.html',
             controller: ('orderInfoCtrl', ['$scope', '$modalInstance', '$rootScope','order', orderInfoCtrl]),
             resolve: {
                 order: function () {
-                    return date;
+                    return data;
                 }
             },
             size: 'med',
@@ -269,4 +257,4 @@ function CalendarCtrl($modal,$scope, $compile, uiCalendarConfig, OrderService) {
 
 angular
         .module('urbanApp')
-        .controller('CalendarCtrl', ['$modal','$scope', '$compile', 'uiCalendarConfig', 'OrderService', CalendarCtrl]);
+        .controller('CalendarCtrl', ['$http','$modal','$scope', '$compile', 'uiCalendarConfig', 'OrderService', CalendarCtrl]);

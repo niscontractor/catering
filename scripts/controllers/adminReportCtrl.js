@@ -166,12 +166,7 @@ function reportCtrl($http,SweetAlert,$scope, $rootScope, $state, $localStorage,$
 
 
     $scope.ShowDetails = function(index){
-        $scope.AllCaterersDetail = false;
-        $scope.catererDetails = true;
-        $scope.showDatePicker = true;
-        $scope.showFindButton = true;
-        $scope.excelButton = false;
-        $scope.pdfButton = false;
+        
         $scope.selectedIndex = index;
         var catererId = $scope.caterers[index].id;
         var role = 2;
@@ -188,11 +183,18 @@ function reportCtrl($http,SweetAlert,$scope, $rootScope, $state, $localStorage,$
         $http.get($rootScope.baseUrl + '/api/adminCatererDetails/'+catererId)
             .success(function(response){
                 console.log(response);
-                $scope.companyInfo = response;
+                    $scope.AllCaterersDetail = false;
+                    $scope.catererDetails = true;
+                    $scope.showDatePicker = true;
+                    $scope.showFindButton = true;
+                    $scope.excelButton = false;
+                    $scope.pdfButton = false;
+                    $scope.companyInfo = response;
 
             })
             .error(function(error){
                 console.log(error);
+                SweetAlert.swal('No Details Found');
             });
 
         $http.get($rootScope.baseUrl + '/api/orders/'+catererId+'/'+role+'/'+startDate+'/'+endDate)

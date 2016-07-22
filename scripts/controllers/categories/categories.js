@@ -224,7 +224,7 @@ function AddItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryId) 
 // }
 
     $scope.uploadCategoryImage = {
-        target: $rootScope.apipath + '/category/' + categoryId._id + '/item-upload/',
+        target: $rootScope.apipath + '/image_upload',
         singleFile: true,
         testChunks: false,
         chunkSize: 1024*1024*5
@@ -302,7 +302,7 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
     $scope.allowFileUpload = false;
 
     $scope.uploadCategoryImage = {
-        target: $rootScope.apipath + '/category/' + categoryItem.category + '/item-upload',
+        target: $rootScope.apipath + '/image_upload',
         singleFile: true,
         testChunks: false,
         chunkSize: 1024*1024*5

@@ -10,7 +10,7 @@
     <div class="form-group">
     <label class="col-sm-3 control-label">Name : </label>
     <div class="col-sm-9" >
-     <label class="control-label"> {{e.customer_name}}</label>
+     <label class="control-label"> {{e.customerInfo.firstName}}  {{e.customerInfo.lastName}}</label>
     </div>
     </div>
 
@@ -18,7 +18,7 @@
     <div class="form-group">
     <label class="col-sm-3 control-label">Delivery Address : </label>
     <div class="col-sm-9" >
-        <label class="control-label"> {{e.customer_address}} , {{e.order_location}} , {{e.customer_state}}</label>
+        <label class="control-label"> {{e.customerInfo.addressLine1}} ,  {{e.customerInfo.addressLine2}} , {{e.customerInfo.pincode}} , {{e.customerInfo.city}} , {{e.customerInfo.state}}</label>
     </div>
     </div>
 

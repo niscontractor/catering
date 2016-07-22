@@ -77,7 +77,7 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
         $scope.profilePhoto = '';
 
         $scope.uploadCategoryImage = {
-            target: $rootScope.apipath + '/package' + '/item-upload',
+            target: $rootScope.apipath +  '/image_upload',
             singleFile: true,
             testChunks: false,
         };

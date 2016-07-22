@@ -24,7 +24,7 @@ angular
 
                 $rootScope.$state = $state;
 
-                //$rootScope.baseUrl = 'http://192.168.0.103:3000';
+                //$rootScope.baseUrl = 'http://192.168.0.104:5555';
                 $rootScope.baseUrl = 'http://139.162.20.41:3000';
                 //$rootScope.baseUrl = 'http://139.162.184.95:3000';
 
@@ -1477,7 +1477,7 @@ angular
                             resolve: {
                                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                         return $ocLazyLoad.load([
-                                            'scripts/controllers/adminlogin.js'
+                                            'scripts/controllers/adminSignIn.js'
                                         ]).then(function () {
                                             return $ocLazyLoad.load('scripts/services/common.service.js');
                                         });
@@ -1618,4 +1618,23 @@ angular
                 }
             }
             return fallbackSrc;
+        })
+        .factory('httpRequestInterceptor', function ($localStorage) {
+          return {
+            request: function (config) {
+
+              // use this to destroying other existing headers
+              //config.headers = {'Authentication':'authentication'}
+
+              // use this to prevent destroying other existing headers
+              config.headers['Authorization'] = $localStorage.token;
+
+              return config;
+            }
+          };
+        })
+
+        .config(function ($httpProvider) {
+          $httpProvider.interceptors.push('httpRequestInterceptor');
         });
+

@@ -127,7 +127,7 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
     ctrl.allowFileUpload = false;
 
     ctrl.image_upload = {
-        target: $rootScope.apipath + '/company/image_upload',
+        target: $rootScope.apipath + '/image_upload',
         singleFile: true,
         testChunks: false,
         chunkSize: 1024*1024*5

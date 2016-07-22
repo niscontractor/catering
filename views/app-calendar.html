@@ -20,7 +20,7 @@
     <div class="form-group">
     <label class="col-sm-3 control-label">Delivery Address : </label>
     <div class="col-sm-9" >
-        <label class="control-label"> {{e.customer_address}} , {{e.order_location}} , {{e.customer_state}}</label>
+        <label class="control-label"> {{e.customer_addressLine1}} , {{e.customer_addressLine1}} , {{e.customer_pin}} ,{{e.customer_city}} , {{e.customer_state}}</label>
     </div>
     </div>
 
@@ -136,7 +136,7 @@
                             <small>Customer : <span style="color:#7bc147">{{e.customer_name}}</span></small><br/>
                         </div>
                         <div class="col-sm-6">
-                            <small>Location :<span style="color:#7bc147"> {{e.order_location}}</span></small><br/>
+                            <small>Location :<span style="color:#7bc147"> {{e.customer_addressLine1}}</span></small><br/>
                             <small> Price : <span style="color:#7bc147">{{e.totalAmount}}&euro;</span></small><br/>
                             <small> Delivery Date : <span style="color:#7bc147">{{e.eventDate}}</span></small><br/>
                             <small> Event Time : <span style="color:#7bc147">{{e.eventTime}}</span></small><br/>

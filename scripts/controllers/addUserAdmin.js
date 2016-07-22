@@ -64,14 +64,14 @@ function addUserAdmin($modal,$http,$scope, $rootScope, $state, $localStorage) {
 
         modalInstance.result.then(function (data) {
             if (data=='cancel') {
-                $http.get($rootScope.baseUrl + '/api/getUserList')
-                .success(function(response){
-                    console.log(response);
-                    $scope.data = response;
-                })
-                .error(function(error){
-                    console.log(error);
-                });
+                // $http.get($rootScope.baseUrl + '/api/getUserList')
+                // .success(function(response){
+                //     console.log(response);
+                //     $scope.data = response;
+                // })
+                // .error(function(error){
+                //     console.log(error);
+                // });
             }
             else{
                 $http.get($rootScope.baseUrl + '/api/getUserList')
@@ -115,11 +115,11 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
             $http.post(baseUrl,{'email':obj.email,'isCaterer':isCaterer})
             .success(function(response){
                 console.log(response);
-                if (response.success==false) {
+                if (response.success=="false") {
                     SweetAlert.swal('Failed', response.message);
                 }
                 else {
-                    SweetAlert.swal('Success', response.message, 'success');
+                    SweetAlert.swal('Success', response.message,'success');
                     $modalInstance.close();
                 }
             })

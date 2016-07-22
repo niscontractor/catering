@@ -66,7 +66,7 @@ function addCatererAdmin($modal,$http,$scope, $rootScope, $state, $localStorage)
         });
 
         modalInstance.result.then(function (data) {
-            if (data=='cancel') {
+            if (data =='cancel') {
 
             }
             else {
@@ -111,11 +111,11 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
             $http.post(baseUrl,{'email':obj.email,'isCaterer':isCaterer})
             .success(function(response){
                 console.log(response);
-                if (response.success==false) {
+                if (response.success=="false") {
                     SweetAlert.swal('Failed', response.message);
                 }
                 else {
-                    SweetAlert.swal('Success', response.message, 'success');
+                    SweetAlert.swal('success', response.message,'success');
                     $modalInstance.close();
                 }
             })

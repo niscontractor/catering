@@ -9,6 +9,7 @@ function OrderService($q, $http, $rootScope, $localStorage) {
         var role = 2;
         $http.get(apiUrl + $localStorage.user.id+'/'+role+ '/todayEvent')
                 .success(function (data) {
+                    console.log(data);
                     deferred.resolve(data);
                 })
                 .error(function (data) {

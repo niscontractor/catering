@@ -23,7 +23,7 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
             var obj = new Object();
             obj.email = ctrl.user.email;
             var jsonString = JSON.stringify(obj);
-            var baseUrl = $rootScope.baseUrl + '/api/addBetaUsers';
+            var baseUrl = $rootScope.baseUrl + '/api/betaUsers';
             $http.post(baseUrl,{'email':obj.email,'isCaterer':isCaterer})
             .success(function(response){
                 console.log(response);
@@ -49,6 +49,7 @@ function signUpCtrl($modalInstance,$modal,$location,SweetAlert,$http,$scope, $ro
 function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
 
    // var baseUrl = $rootScope.baseUrl + '/api/getBetaUserList'; 
+   $scope.betaUserList = [];
    $localStorage.role = 0;
     $http.get($rootScope.baseUrl + '/api/getActiveCatererCount')
             .success(function(response){
@@ -91,7 +92,14 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
             .error(function(error){
                 console.log(error);
             });  
-
+    $http.get($rootScope.baseUrl + '/api/betaUsers')
+            .success(function(data){
+                $scope.betaUserList = data;
+                console.log($scope.betaUserList);
+            })
+            .error(function(error){
+                console.log(error);
+            });
 
     var ctrl = this;
     var token = $location.search().userToken;
@@ -103,7 +111,7 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                     controller: function($modalInstance,$http,$scope){
                         this.register = function(){
                             var user = {};
-                            var baseUrl = $rootScope.baseUrl + '/api/addBetaUsers';
+                            var baseUrl = $rootScope.baseUrl + '/api/betaUsers';
                             $http.post(baseUrl,{'email':this.user.email})
                             .success(function(response){
                                 console.log(response);
@@ -112,7 +120,14 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                                 }
                                 else {
                                     SweetAlert.swal('Success', response.message, 'success');
-                                    $modalInstance.close();
+                                    
+                                    $http.get(baseUrl)
+                                    .success(function(data){
+                                        $modalInstance.close(data);
+                                    })
+                                    .error(function(error){
+                                        console.log(error);
+                                    });
                                 }
                             })
                             .error(function(error){
@@ -129,6 +144,10 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                     keyboard: false,
                     backdrop: 'static'
                 });
+
+         modalInstance.result.then(function (data) {
+            $scope.betaUserList = data;
+         });
     }
 
     $scope.getCaterersList = function(){
@@ -252,6 +271,7 @@ function sessionCtrl($modal,$location,SweetAlert,$http,$scope, $rootScope, $stat
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
                 $localStorage.company_id = $rootScope.company_id;
+                $localStorage.token = response.token;
 
                 Common.getUserById(response.user._id).then(function (response) {
                     $rootScope.user = response;
