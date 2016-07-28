@@ -1,8 +1,9 @@
 'use strict';
 
-function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportService,$modal,Excel,$timeout) {
+function reportCtrl(ngTranslation,$interval,SweetAlert,$scope, $rootScope, $state, $localStorage,ReportService,$modal,Excel,$timeout) {
 
-
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
     var customizedDate = function(data){
         for(var i=0; i<data.length; i++){
                 var d = new Date($scope.orders[i].created_at),
@@ -25,7 +26,14 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
             }
     }
 
-    
+    $interval(function () {
+        if ($localStorage.selectedLanguage == 'sp') {
+            $scope.months = $scope.monthsSp;
+        }
+        else {
+            $scope.months = $scope.monthsEn;
+        }
+    }, 1000);
 
 	ReportService.today().then(function(data){
         if (data.success=="false") {
@@ -37,7 +45,9 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
         }
 	});
 
-	$scope.months = [
+    $scope.months = [];
+
+	$scope.monthsEn = [
       {"key": "null",
        "value": "Select Month"},
       {"key": "1",
@@ -65,6 +75,41 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
       {"key": "12",
       "value": "12 - Dec"}
     ];
+    $scope.monthsSp = [
+      {"key": "null",
+       "value": "Seleccione mes"},
+      {"key": "1",
+      "value": "01 - Ene"},
+      {"key": "2",
+      "value": "02 - Feb"},
+      {"key": "3",
+      "value": "03 - Mar"},
+      {"key": "4",
+      "value": "04 - Abr"},
+      {"key": "5",
+      "value": "05 - May"},
+      {"key": "6",
+      "value": "06 - Jun"},
+      {"key": "7",
+      "value": "07 - Jul"},
+      {"key": "8",
+      "value": "08 - Ago"},
+      {"key": "9",
+      "value": "09 - Sep"},
+      {"key": "10",
+      "value": "10 - Oct"},
+      {"key": "11",
+      "value": "11 - Nov"},
+      {"key": "12",
+      "value": "12 - Dic"}
+    ];
+
+    if ($localStorage.selectedLanguage=='sp') {
+        $scope.months = $scope.monthsSp;
+    }
+    else {
+        $scope.months = $scope.monthsEn;
+    }
 
     $scope.month = 'null';
     $scope.excelButton = true;
@@ -162,7 +207,12 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
                 $scope.pdfButton = false;
                 $scope.dataFound = false;
                 $scope.dataNotFound = true;
-                SweetAlert.swal('Not Found!','No orders found for selected date');
+                if ($localStorage.selectedLanguage=='sp') {
+                    SweetAlert.swal('Extraviado!','No se han órdenes encontrado para date seleccionado');
+                }
+                else {
+                    SweetAlert.swal('Not Found!','No orders found for selected date');
+                }
     		}
     		else {
 				$scope.orders = data;
@@ -185,7 +235,12 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
                 $scope.pdfButton = false;
                 $scope.dataFound = false;
                 $scope.dataNotFound = true;
-                SweetAlert.swal('Not Found!','No orders found for selected month');
+                if ($localStorage.selectedLanguage=='sp') {
+                    SweetAlert.swal('Extraviado!','No se han órdenes encontrado para el mes seleccionado ');
+                }
+                else {
+                    SweetAlert.swal('Not Found!','No orders found for selected month');
+                }
     		}
     		else {
                 $scope.dataFound = true;
@@ -281,7 +336,7 @@ function reportCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage,ReportS
 
 angular
         .module('urbanApp')
-        .controller('reportCtrl', ['SweetAlert','$scope', '$rootScope', '$state', '$localStorage','ReportService','$modal','Excel','$timeout', reportCtrl])
+        .controller('reportCtrl', ['ngTranslation','$interval','SweetAlert','$scope', '$rootScope', '$state', '$localStorage','ReportService','$modal','Excel','$timeout', reportCtrl])
         .factory('Excel',function($window){
         var uri='data:application/vnd.ms-excel;base64,',
             template='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',

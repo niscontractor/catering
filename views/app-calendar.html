@@ -2,7 +2,7 @@
     
     
     <div class="modal-header bg-green-dark-package">
-    <span style="font-size: 22px;" class="modal-title">Order : </span><span>{{e.id}}</span>
+    <span style="font-size: 22px;" class="modal-title">{{ 'dashboard.order_id'  | translate }} : </span><span>{{e.id}}</span>
     </div>
     <div class="modal-body package-detail">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid">
@@ -10,7 +10,7 @@
     
         
     <div class="form-group">
-    <label class="col-sm-3 control-label">Name : </label>
+    <label class="col-sm-3 control-label">{{ 'dashboard.name'  | translate }} : </label>
     <div class="col-sm-9" >
      <label class="control-label"> {{e.customer_name}}</label>
     </div>
@@ -18,21 +18,21 @@
 
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Delivery Address : </label>
+    <label class="col-sm-3 control-label">{{ 'dashboard.delivery_address'  | translate }} : </label>
     <div class="col-sm-9" >
         <label class="control-label"> {{e.customer_addressLine1}} , {{e.customer_addressLine1}} , {{e.customer_pin}} ,{{e.customer_city}} , {{e.customer_state}}</label>
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Delivery Date : </label>
+    <label class="col-sm-3 control-label">{{ 'dashboard.delivery_date'  | translate }} : </label>
     <div class="col-sm-9">
         <label class="control-label"> {{e.eventDate}}</label>
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Event Time : </label>
+    <label class="col-sm-3 control-label">{{ 'dashboard.event_time'  | translate }} : </label>
     <div class="col-sm-9">
         <label class="control-label"> {{e.eventTime}}</label>
     </div>
@@ -44,14 +44,14 @@
         <thead> 
             <tr> 
                 <th class="col-md-5"> 
-                <span></span>Description 
+                <span></span>{{ 'dashboard.description'  | translate }} 
                 </th>
                 <th class="col-md-2">
-                Qty 
+                {{ 'dashboard.qty'  | translate }} 
                 </th>
-                <th class="col-md-2">Price 
+                <th class="col-md-2">{{ 'dashboard.price'  | translate }} 
                 </th>
-                <th class="col-md-2">Amount 
+                <th class="col-md-2">{{ 'dashboard.amount'  | translate }} 
                 </th>
             </tr>
         </thead>
@@ -67,7 +67,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td style="font-size: 13px;font-weight: bolder;">Total  </td>
+                <td style="font-size: 13px;font-weight: bolder;">{{ 'dashboard.total'  | translate }}   </td>
                 <td style="font-size: 13px;font-weight: bolder;">{{e.totalAmount}}</td>
             </tr>
         </tfoot>
@@ -92,7 +92,7 @@
 
     <div class="modal-footer">
     
-    <button class="btn btn-warning btn-sm" ng-click="closeModal()">Cancel</button>
+    <button class="btn btn-warning btn-sm" ng-click="closeModal()">{{ 'dashboard.cancel'  | translate }} </button>
     </div>
     </form>
     </div>
@@ -117,7 +117,7 @@
               <span class="fa fa-plus mr5"></span>
               <span>Add new event</span>
             </button>-->
-        <span  class="btn-green col-sm-12 center-content">Todays event</span>
+        <span  class="btn-green col-sm-12 center-content">{{ 'dashboard.todays_event'  | translate }}</span>
         <br/>
         <hr>
 
@@ -132,19 +132,19 @@
 
                     <div class="row" >
                         <div class="col-sm-6">
-                            <small>Order Id : <span style="color:#7bc147">{{e.id}}</span></small><br/>
-                            <small>Customer : <span style="color:#7bc147">{{e.customer_name}}</span></small><br/>
+                            <small>{{ 'dashboard.order_id'  | translate }} : <span style="color:#7bc147">{{e.id}}</span></small><br/>
+                            <small>{{ 'dashboard.customer'  | translate }} : <span style="color:#7bc147">{{e.customer_name}}</span></small><br/>
                         </div>
                         <div class="col-sm-6">
-                            <small>Location :<span style="color:#7bc147"> {{e.customer_addressLine1}}</span></small><br/>
-                            <small> Price : <span style="color:#7bc147">{{e.totalAmount}}&euro;</span></small><br/>
-                            <small> Delivery Date : <span style="color:#7bc147">{{e.eventDate}}</span></small><br/>
-                            <small> Event Time : <span style="color:#7bc147">{{e.eventTime}}</span></small><br/>
+                            <small>{{ 'dashboard.location'  | translate }} :<span style="color:#7bc147"> {{e.customer_addressLine1}}</span></small><br/>
+                            <small> {{ 'dashboard.price'  | translate }} : <span style="color:#7bc147">{{e.totalAmount}}&euro;</span></small><br/>
+                            <small> {{ 'dashboard.delivery_date'  | translate }} : <span style="color:#7bc147">{{e.eventDate}}</span></small><br/>
+                            <small> {{ 'dashboard.event_time'  | translate }} : <span style="color:#7bc147">{{e.eventTime}}</span></small><br/>
                         </div>
                     </div>
                     <div class="row ">
                         <div class="col-sm-12 small">
-                            Product :
+                            {{ 'dashboard.product'  | translate }} :
                             <div ng-repeat="item in e.items" style="color:#7bc147">
                                 {{item.itemName}}  :  {{item.totalNumber}}
                             </div>

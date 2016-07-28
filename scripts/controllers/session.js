@@ -1,6 +1,9 @@
 'use strict';
 
-function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
+function sessionCtrl(ngTranslation,$location,SweetAlert,$http,$scope, $rootScope, $state, Common, $localStorage, Auth) {
+
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
 
     $localStorage.role = null;
     if ($localStorage.user!=null) {
@@ -53,7 +56,12 @@ function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Comm
             obj.password = ctrl.password;
             obj.role = 2;
             var jsonString = JSON.stringify(obj);
-            $rootScope.addMessage('Please wait...', 'success');  
+            if ($localStorage.selectedLanguage=='sp') {
+                $rootScope.addMessage('por favor espera...', 'success');
+            }
+            else {
+                $rootScope.addMessage('Please wait...', 'success');  
+            }
             Common.authenticate(jsonString).then(function (response) {
                 $rootScope.company_id = response.user.company_id;
                 $rootScope.isFirstTime = response.isFirstTime;
@@ -78,18 +86,33 @@ function sessionCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, Comm
                         $state.go('app.apps.calendar');
                     }
                 }).catch(function (response) {
-                    $rootScope.addMessage('Invalid User.', 'error');
+                    if ($localStorage.selectedLanguage=='sp') {
+                        $rootScope.addMessage('Usuario invalido.', 'error');
+                    }
+                    else {
+                        $rootScope.addMessage('Invalid User.', 'error');
+                    }
                 });
             }).catch(function (response) {
                 console.log('failure', response);
-                $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+                if ($localStorage.selectedLanguage=='sp') {
+                    $rootScope.addMessage('Credenciales de acceso invalidos. Por favor, inténtelo de nuevo.', 'error');
+                }
+                else {
+                    $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+                }
             });
         } else {
-            $rootScope.addMessage('Email and password are required.', 'error');
+            if ($localStorage.selectedLanguage=='sp') {
+                $rootScope.addMessage('Se requieren de correo electrónico y contraseña .', 'error');
+            }
+            else {
+                $rootScope.addMessage('Email and password are required.', 'error');
+            }
         }
     };
 }
 
 angular
         .module('urbanApp')
-        .controller('sessionCtrl', ['$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth', sessionCtrl]);
+        .controller('sessionCtrl', ['ngTranslation','$location','SweetAlert','$http','$scope', '$rootScope', '$state', 'Common', '$localStorage', 'Auth', sessionCtrl]);

@@ -1,40 +1,10 @@
 'use strict';
 
-function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS, CategoryService, PackageService) {
+function packageCtrl(ngTranslation,$localStorage,$scope, $state, $rootScope, $modal, $modal$interval, COLORS, CategoryService, PackageService) {
+    
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
     var ctrl = this;
-//    $scope.getCategoryList = function () {
-
-//TODO $rootScope.user.username
-//        CategoryService.getCategories('').then(angular.bind(this, function then() {
-//            console.log("result " + result);
-//            console.log("--- back " + CategoryService.categories);
-//            ctrl.categories = [];
-//            angular.forEach(CategoryService.categories, function (category) {
-//                var cat = {};
-//                cat.text = category.name;
-//                cat.id = category._id;
-//                cat.selectable = false;
-//                cat.nodes = [];
-//                var index = 0;
-//                angular.forEach(category.items, function (item) {
-//                    var node = {};
-//                    node.id = item._id;
-//                    node.selectable = false;
-//                    node.text = item.name;
-//                    node.tags = [index];
-//                    index = index + 1;
-//                    cat.nodes.push(node);
-//                });
-//                ctrl.categories.push(cat);
-//            });
-//        }, function (reason) {
-//            alert('Failed: ' + reason);
-//        }, function (update) {
-//            alert('Got notification: ' + update);
-//        }));
-//    }
-//    ctrl.package = {"sections": [{"list_of_menu": [{"id": 1, "text": "Tomato", "selectable": false, "tags": [1]}]}], "name": "Package Lunch", "price": "350", "title": "Happy hours", "description": "Delicious lunch"};
-
     $scope.editPackage = function () {
         alert(5);
         console.log("-" + $rootScope.packageId);
@@ -165,4 +135,4 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
 
 angular
         .module('urbanApp')
-        .controller('packageCtrl', ['$scope', '$state', '$rootScope', '$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);
+        .controller('packageCtrl', ['ngTranslation','$localStorage','$scope', '$state', '$rootScope', '$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);

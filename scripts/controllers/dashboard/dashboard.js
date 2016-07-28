@@ -1,6 +1,9 @@
 'use strict';
 
-function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $interval, $timeout, ReadJson, CompanyService, Common) {
+function dashboardCtrl(ngTranslation,SweetAlert,$scope, $rootScope, $state, $localStorage, $interval, $timeout, ReadJson, CompanyService, Common) {
+    
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
     var ctrl = this;
     ctrl.company = {};
     ctrl.selectedTab = 'company';
@@ -20,6 +23,17 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
 
     $scope.hideSkip = function(){
         $rootScope.isFirstTime = false;
+    }
+    $rootScope.isEnglish = true;
+    $rootScope.isSpanish = false;
+
+    if ($localStorage.selectedLanguage=='en') {  
+        $rootScope.isEnglish = true;
+        $rootScope.isSpanish = false;
+    }
+    else {
+        $rootScope.isEnglish = false;
+        $rootScope.isSpanish = true;
     }
 
 
@@ -112,10 +126,20 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
         CompanyService.saveOrUpdate(ctrl.company).then(function (response) {
             $rootScope.user.profile_pic = response.profile_pic;
             $localStorage.profile_pic = response.profile_pic;
-            $rootScope.addMessage('Company updated successfully', 'success');
+            if ($localStorage.selectedLanguage=='sp') {
+                $rootScope.addMessage('Company ha actualizado correctamente', 'success');
+            }
+            else {
+                $rootScope.addMessage('Company updated successfully', 'success');
+            }
             $state.go('app.apps.calendar');
         }).catch(function (response) {
-            $rootScope.addMessage('Company update failed', 'error');
+            if ($localStorage.selectedLanguage=='sp') {
+                $rootScope.addMessage('actualización empresa no', 'error');
+            }
+            else {
+                $rootScope.addMessage('Company update failed', 'error');
+            }
         });
     }
 
@@ -217,7 +241,12 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
             $localStorage.user = $rootScope.user;
             $localStorage.user.profile_pic = $localStorage.profile_pic;
         }).catch(function (response) {
-            $rootScope.addMessage('Invalid User.', 'error');
+            if ($localStorage.selectedLanguage=='sp') {
+                $rootScope.addMessage('Usuario invalido.', 'error');              
+            }
+            else {
+                $rootScope.addMessage('Invalid User.', 'error');              
+            }
         });
     };
     ctrl.uploadImageFailure = function ($file, $message, $flow) {
@@ -255,4 +284,4 @@ function dashboardCtrl(SweetAlert,$scope, $rootScope, $state, $localStorage, $in
 
 angular
         .module('urbanApp')
-        .controller('dashboardCtrl', ['SweetAlert','$scope', '$rootScope', '$state', '$localStorage', '$interval', '$timeout', 'ReadJson', 'CompanyService', 'Common', dashboardCtrl]);
+        .controller('dashboardCtrl', ['ngTranslation','SweetAlert','$scope', '$rootScope', '$state', '$localStorage', '$interval', '$timeout', 'ReadJson', 'CompanyService', 'Common', dashboardCtrl]);

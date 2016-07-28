@@ -1,6 +1,8 @@
 'use strict';
 
-function galleryCtrl(SweetAlert, $scope, $modal, $state, PackageService,$rootScope) {
+function galleryCtrl(ngTranslation,$localStorage,SweetAlert, $scope, $modal, $state, PackageService,$rootScope) {
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
     $scope.ran = [];
     for (var i = 1; i <= 28; i += 1) {
         $scope.ran.push(i);
@@ -11,8 +13,13 @@ function galleryCtrl(SweetAlert, $scope, $modal, $state, PackageService,$rootSco
             $scope.userPackages = response;
         }).catch(function (response) {
             console.log('failure', response);
-            $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
-        });
+            if ($localStorage.selectedLanguage=='sp') {
+                $rootScope.addMessage('Credenciales de acceso invalidos. Por favor, inténtelo de nuevo.', 'error');
+            }
+            else {
+                $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+            }
+            });
     }
 
     $scope.getPackageDetail = function (packageD) {
@@ -54,31 +61,61 @@ function galleryCtrl(SweetAlert, $scope, $modal, $state, PackageService,$rootSco
     $scope.deletePackage = function (index) {
         window.event.stopPropagation();
         var package_id = $scope.userPackages[index]._id;
-        SweetAlert.swal({
-            title: "Are you sure?",
-            text: "Your will not be able to recover this package!",
+        if ($localStorage.selectedLanguage=='sp') {
+            SweetAlert.swal({
+            title: "¿Estás seguro?",
+            text: "Su no será capaz de recuperar este paquete!",
             type: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
+            confirmButtonColor: "#DD6B55", confirmButtonText: "Sí, estoy seguro!",
+            cancelButtonText: "No, cancelar!",
             closeOnConfirm: false,
             closeOnCancel: false},
-        function (isConfirm) {
-            if (isConfirm) {
-                SweetAlert.swal("Deleted!", "Your package has been deleted.", "success");
-                PackageService.deletePackage(package_id).then(angular.bind(this, function then() {
-                    PackageService.getPackages().then(function (response) {
-                        $scope.userPackages = response;
-                    }).catch(function (response) {
-                        console.log('failure', response);
-                        $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
-                    });
-                }));
-            }
-            else {
-                SweetAlert.swal("Cancelled", "Your package is safe :)", "error");
-            }
-        });
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("Suprimido!", "Su paquete ha sido borrada.", "success");
+                    PackageService.deletePackage(package_id).then(angular.bind(this, function then() {
+                        PackageService.getPackages().then(function (response) {
+                            $scope.userPackages = response;
+                        }).catch(function (response) {
+                            console.log('failure', response);
+                            $rootScope.addMessage('Credenciales de acceso invalidos. Por favor, inténtelo de nuevo.', 'error');
+                        });
+                    }));
+                }
+                else {
+                    SweetAlert.swal("Cancelado", "Su paquete es seguro :)", "error");
+                }
+            });
+        }
+        else {
+            SweetAlert.swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this package!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                closeOnConfirm: false,
+                closeOnCancel: false},
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("Deleted!", "Your package has been deleted.", "success");
+                    PackageService.deletePackage(package_id).then(angular.bind(this, function then() {
+                        PackageService.getPackages().then(function (response) {
+                            $scope.userPackages = response;
+                        }).catch(function (response) {
+                            console.log('failure', response);
+                            $rootScope.addMessage('Invalid login credentials. Please try again.', 'error');
+                            
+                        });
+                    }));
+                }
+                else {
+                    SweetAlert.swal("Cancelled", "Your package is safe :)", "error");
+                }
+            });
+        }
     }
 
 
@@ -109,4 +146,4 @@ function galleryCtrl(SweetAlert, $scope, $modal, $state, PackageService,$rootSco
 
 angular
         .module('urbanApp')
-        .controller('galleryCtrl', ['SweetAlert', '$scope', '$modal', '$state', 'PackageService','$rootScope', galleryCtrl]);
+        .controller('galleryCtrl', ['ngTranslation','$localStorage','SweetAlert', '$scope', '$modal', '$state', 'PackageService','$rootScope', galleryCtrl]);

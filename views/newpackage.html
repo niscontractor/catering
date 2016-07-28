@@ -10,8 +10,8 @@
                 <div>{{package.title}}</div>
             </div>
             <div class="col-sm-6 text-right">
-                <button class="btn btn-danger" ng-click="packageCtr.addSection()">Add Section</button>
-                <button class="btn btn-primary" ng-click="">Save Section</button>
+                <button class="btn btn-danger" ng-click="packageCtr.addSection()">{{ 'packages.add_section'  | translate }}</button>
+                <button class="btn btn-primary" ng-click="">{{ 'packages.save_section'  | translate }}</button>
             </div>
         </div>
     </form>
@@ -41,7 +41,7 @@
 <script type="text/ng-template" id="addPackage.html" >
     <div ui-jq="checkBo">
     <div class="modal-header bg-green-dark-package">
-    <h3 class="modal-title">Package Detail</h3>
+    <h3 class="modal-title">{{ 'packages.package_detail'  | translate }}</h3>
     </div>
     <div class="modal-body package-detail">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addPackageForm">
@@ -49,12 +49,12 @@
     
         
     <div class="form-group">
-    <label class="col-sm-3 control-label">Package Name<span style="color:red"><span style="color:red">*</span></span></label>
+    <label class="col-sm-3 control-label">{{ 'packages.package_name'  | translate }}<span style="color:red"><span style="color:red">*</span></span></label>
     <div class="col-sm-9" >
     <div  ng-class="{'has-error': (addPackageForm.name.$invalid && addPackageForm.name.$dirty)}">
         <input type="text" name="name" class="form-control" ng-model="package.name" required="true">
         <div class="error,help-block" ng-show="(addPackageForm.name.$dirty) && addPackageForm.name.$invalid"> 
-            <span class="help-block" ng-show="addPackageForm.name.$error.required">Package name is required</span>
+            <span class="help-block" ng-show="addPackageForm.name.$error.required">{{ 'packages.required'  | translate }}</span>
     </div>
     </div>  
     </div>
@@ -62,38 +62,38 @@
 
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Package Title<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'packages.package_title'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9" >
     <div  ng-class="{'has-error': (addPackageForm.title.$invalid && addPackageForm.title.$dirty)}">
         <input type="text" name="title" class="form-control" ng-model="package.title" required="true">
         <div class="error,help-block" ng-show="(addPackageForm.title.$dirty) && addPackageForm.title.$invalid"> 
-            <span class="help-block" ng-show="addPackageForm.title.$error.required">Package title is required</span>
+            <span class="help-block" ng-show="addPackageForm.title.$error.required">{{ 'packages.required'  | translate }}</span>
     </div>
     </div>  
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Price<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'packages.price'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div  ng-class="{'has-error': (addPackageForm.price.$invalid && addPackageForm.price.$dirty)}">
         <input  name="price"  class="form-control" ng-model="package.price"  required="true"  ng-pattern="/^[0-9]{1,45}$/">
         <div class="error,help-block" ng-show="(addPackageForm.price.$dirty) && addPackageForm.price.$invalid"> 
-            <span class="help-block" ng-show="addPackageForm.price.$error.required">Price is required</span>
-            <span class="help-block" ng-show="addPackageForm.price.$error.pattern">Invalid price</span>
+            <span class="help-block" ng-show="addPackageForm.price.$error.required">{{ 'packages.required'  | translate }}</span>
+            <span class="help-block" ng-show="addPackageForm.price.$error.pattern">{{ 'packages.invalid_price'  | translate }}</span>
     </div>
     </div>  
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">No. of Serve<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'packages.no_of_serve'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div  ng-class="{'has-error': (addPackageForm.qty.$invalid && addPackageForm.qty.$dirty)}">
         <input  name="qty"  class="form-control" ng-model="package.qty"  required="true"  ng-pattern="/^[0-9]{1,45}$/">
         <div class="error,help-block" ng-show="(addPackageForm.qty.$dirty) && addPackageForm.qty.$invalid"> 
-            <span class="help-block" ng-show="addPackageForm.qty.$error.required">No of serve is required</span>
-            <span class="help-block" ng-show="addPackageForm.qty.$error.pattern">Invalid number</span>
+            <span class="help-block" ng-show="addPackageForm.qty.$error.required">{{ 'packages.required'  | translate }}</span>
+            <span class="help-block" ng-show="addPackageForm.qty.$error.pattern">{{ 'packages.invalid_number'  | translate }}</span>
     </div>
     </div>  
     </div>
@@ -102,7 +102,7 @@
 
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Upload Image<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'packages.upload_image'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9"> 
             
             <div class="drop drop-design" flow-init="uploadCategoryImage"
@@ -116,7 +116,7 @@
                 <span > 
                     <img flow-img="$flow.files[0]" style="width: 75px;" class="img-float" ng-if="$flow.files.length > 0">
                     <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
-                    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
+                    <span style="color:#616161"><strong>OR </strong>{{ 'packages.drag_and_drop'  | translate }}</span>
                 </span>
                <!--  <span ng-show="showNewPackageRemove" ng-click="removeNewPackageImage()" class="browse btn btn-orange" style="margin-bottom: 50px;display: block;font-size: 12px;width: 95px;"> <i class="glyphicon glyphicon-trash"> Remove</span> --></i>
                 </div>
@@ -125,12 +125,12 @@
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Description<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'packages.description'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div  ng-class="{'has-error': (addPackageForm.des.$invalid && addPackageForm.des.$dirty)}">
         <textarea  name="des"  class="form-control" ng-model="package.desc"  required="true"></textarea>
         <div class="error,help-block" ng-show="(addPackageForm.des.$dirty) && addPackageForm.des.$invalid"> 
-            <span class="help-block" ng-show="addPackageForm.des.$error.required">Description is required</span>       
+            <span class="help-block" ng-show="addPackageForm.des.$error.required">{{ 'packages.required'  | translate }}</span>       
     </div>
     </div>  
     </div>
@@ -142,8 +142,8 @@
     </div> -->
 
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="ok()" ng-disabled="addPackageForm.$invalid">Save</button>
-    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary btn-sm" ng-click="ok()" ng-disabled="addPackageForm.$invalid">{{ 'packages.save'  | translate }}</button>
+    <button class="btn btn-warning btn-sm" ng-click="cancel()">{{ 'packages.cancel'  | translate }}</button>
     </div>
     </form>
     </div>

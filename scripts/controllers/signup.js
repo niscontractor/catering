@@ -1,6 +1,8 @@
 'use strict';
 
-function signupCtrl($state, Common,$rootScope,$localStorage) {
+function signupCtrl(ngTranslation,$state, Common,$rootScope,$localStorage) {
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
     var ctrl = this;
     ctrl.register = function () {
         if (ctrl.signUpForm.$valid) {
@@ -23,12 +25,16 @@ function signupCtrl($state, Common,$rootScope,$localStorage) {
                    $rootScope.addMessage(response.msg, 'error');
                }
             }).catch(function (response) {
-                
-                $rootScope.addMessage('Email already exists.','error');
+                if ($localStorage.selectedLanguage=='sp') {
+                    $rootScope.addMessage('Email ya existe.','error');
+                }
+                else {
+                    $rootScope.addMessage('Email already exists.','error');
+                }
             });
         }
     };
 }
 angular
         .module('urbanApp')
-        .controller('signupCtrl', ['$state','Common','$rootScope', signupCtrl]);
+        .controller('signupCtrl', ['ngTranslation','$state','Common','$rootScope','$localStorage', signupCtrl]);

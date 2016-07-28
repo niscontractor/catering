@@ -1,9 +1,10 @@
 'use strict';
 
-function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS, CategoryService, PackageService) {
+function packageCtrl(ngTranslation,$localStorage,$scope, $state, $rootScope, $modal, $modal$interval, COLORS, CategoryService, PackageService) {
+    
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
     var ctrl = this;
-
-
     $scope.onlyNumbers = /^\d+$/;
 
     $scope.getCategoryList = function () {
@@ -304,4 +305,4 @@ function packageCtrl($scope, $state, $rootScope, $modal, $modal$interval, COLORS
 
 angular
         .module('urbanApp')
-        .controller('packageCtrl', ['$scope', '$state', '$rootScope', '$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);
+        .controller('packageCtrl', ['ngTranslation','$localStorage','$scope', '$state', '$rootScope', '$modal', '$interval', 'COLORS', 'CategoryService', 'PackageService', packageCtrl]);

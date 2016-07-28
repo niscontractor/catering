@@ -1,6 +1,9 @@
 'use strict';
 
-function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, CategoryService) {
+function categoryCtrl(ngTranslation,$localStorage,SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, CategoryService) {
+    
+    var name = $localStorage.selectedLanguage;
+    // ngTranslation.use(name);
     var ctrl = this;
     $scope.getCategoryList = function () {
 
@@ -11,11 +14,11 @@ function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, Ca
             
         }));
 
-    ReadJson.getTags().then(angular.bind(this, function then() {
-        $rootScope.tags = ReadJson.tags;
-    }));
+        ReadJson.getTags().then(angular.bind(this, function then() {
+            $rootScope.tags = ReadJson.tags;
+        }));
 
-    }
+        }
 
         
 
@@ -54,33 +57,62 @@ function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, Ca
     };
 
     ctrl.deleteCategory = function (category) {
+        if ($localStorage.selectedLanguage=='sp') {
+                SweetAlert.swal({
+                title: "¿Estás seguro?",
+                text: "Su no será capaz de recuperar el objeto!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55", confirmButtonText: "Sí, estoy seguro!",
+                cancelButtonText: "No, cancelar !",
+                closeOnConfirm: false,
+                closeOnCancel: false},
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("suprimido!", "Su artículo ha sido borrado.", "success");
+                    CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
+                        console.log(CategoryService.category);
+                        CategoryService.getCategories('').then(angular.bind(this, function then() {
+                            console.log(CategoryService.categories);
+                            ctrl.categoryList = CategoryService.categories;
+                        }));
 
-        SweetAlert.swal({
-            title: "Are you sure?",
-            text: "Your will not be able to recover this category!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            closeOnConfirm: false,
-            closeOnCancel: false},
-        function (isConfirm) {
-            if (isConfirm) {
-                SweetAlert.swal("Deleted!", "Your category has been deleted.", "success");
-                CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
-                    console.log(CategoryService.category);
-                    CategoryService.getCategories('').then(angular.bind(this, function then() {
-                        console.log(CategoryService.categories);
-                        ctrl.categoryList = CategoryService.categories;
                     }));
+                }
 
-                }));
-            }
+                else {
+                    SweetAlert.swal("Cancelado", "Su artículo es seguro :)", "error");
+                }
+            });
+        }
+        else {
+            SweetAlert.swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this category!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55", confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                closeOnConfirm: false,
+                closeOnCancel: false},
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("Deleted!", "Your category has been deleted.", "success");
+                    CategoryService.deleteCategory(category).then(angular.bind(this, function then() {
+                        console.log(CategoryService.category);
+                        CategoryService.getCategories('').then(angular.bind(this, function then() {
+                            console.log(CategoryService.categories);
+                            ctrl.categoryList = CategoryService.categories;
+                        }));
 
-            else {
-                SweetAlert.swal("Cancelled", "Your category is safe :)", "error");
-            }
-        });
+                    }));
+                }
+
+                else {
+                    SweetAlert.swal("Cancelled", "Your category is safe :)", "error");
+                }
+            });
+        }
     };
 
     ctrl.addCategoryItem = function (id) {
@@ -140,7 +172,34 @@ function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, Ca
     };
 
     ctrl.deleteCategoryItem = function (item, category) {
-        SweetAlert.swal({
+        
+        if ($localStorage.selectedLanguage=='sp') {
+                SweetAlert.swal({
+                title: "¿Estás seguro?",
+                text: "Su no será capaz de recuperar el objeto!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55", confirmButtonText: "Sí, estoy seguro!",
+                cancelButtonText: "No, cancelar !",
+                closeOnConfirm: false,
+                closeOnCancel: false},
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("suprimido!", "Su artículo ha sido borrado.", "success");
+                    CategoryService.deleteCategoryItem(category._id, item.name).then(angular.bind(this, function then() {
+                        CategoryService.getCategories('').then(angular.bind(this, function then() {
+                            ctrl.categoryList = CategoryService.categories;
+                        }));
+                    }));
+                }
+
+                else {
+                    SweetAlert.swal("Cancelado", "Su artículo es seguro :)", "error");
+                }
+            });
+        }
+        else {
+            SweetAlert.swal({
             title: "Are you sure?",
             text: "Your will not be able to recover this item!",
             type: "warning",
@@ -149,20 +208,21 @@ function categoryCtrl(SweetAlert, $scope, $modal, $log, ReadJson, $rootScope, Ca
             cancelButtonText: "No, cancel!",
             closeOnConfirm: false,
             closeOnCancel: false},
-        function (isConfirm) {
-            if (isConfirm) {
-                SweetAlert.swal("Deleted!", "Your item has been deleted.", "success");
-                CategoryService.deleteCategoryItem(category._id, item.name).then(angular.bind(this, function then() {
-                    CategoryService.getCategories('').then(angular.bind(this, function then() {
-                        ctrl.categoryList = CategoryService.categories;
+            function (isConfirm) {
+                if (isConfirm) {
+                    SweetAlert.swal("Deleted!", "Your item has been deleted.", "success");
+                    CategoryService.deleteCategoryItem(category._id, item.name).then(angular.bind(this, function then() {
+                        CategoryService.getCategories('').then(angular.bind(this, function then() {
+                            ctrl.categoryList = CategoryService.categories;
+                        }));
                     }));
-                }));
-            }
+                }
 
-            else {
-                SweetAlert.swal("Cancelled", "Your item is safe :)", "error");
-            }
-        });
+                else {
+                    SweetAlert.swal("Cancelled", "Your item is safe :)", "error");
+                }
+            });
+        }
 
     }
 
@@ -387,4 +447,4 @@ function EditItemCtrl(SweetAlert,$rootScope, $scope, $modalInstance, categoryIte
 
 angular
         .module('urbanApp')
-        .controller('categoryCtrl', ['SweetAlert', '$scope', '$modal', '$log', 'ReadJson', '$rootScope', 'CategoryService', categoryCtrl]);
+        .controller('categoryCtrl', ['ngTranslation','$localStorage','SweetAlert', '$scope', '$modal', '$log', 'ReadJson', '$rootScope', 'CategoryService', categoryCtrl]);

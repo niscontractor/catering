@@ -4,7 +4,7 @@
     <div class="col-sm-12">
         <button data-ng-click="categories.addCategory()" class="btn btn-green mb20" type="button">
             <span class="fa fa-plus mr5"></span>
-            <span>Add New Category</span>
+            <span>{{ 'products.add_new_category'  | translate }}</span>
         </button>
     </div>
 
@@ -42,20 +42,20 @@
 
 <script type="text/ng-template" id="addCategory.html">
     <div class="modal-header bg-green">
-    <h4 class="modal-title">Add New Category </h4>
+    <h4 class="modal-title">{{ 'products.add_new_category'  | translate }} </h4>
     </div>
     <div class="modal-body">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addCategoryForm">
 
     
     <div class="form-group">
-    <label class="col-sm-2 control-label">Title<span style="color:red">*</span></label>
+    <label class="col-sm-2 control-label">{{ 'products.title'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-10">
     <div class="" ng-class="{'has-error': (addCategoryForm.title.$invalid && addCategoryForm.title.$dirty)}">
     <input type="text" name="title" class="form-control" ng-model="category.name" ng-required="true">
     </div>
     <div class="error,help-block has-error" ng-show="(addCategoryForm.title.$dirty) && addCategoryForm.title.$invalid"> 
-    <span class="help-block" ng-show="addCategoryForm.title.$error.required">Required</span>
+    <span class="help-block" ng-show="addCategoryForm.title.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
@@ -63,21 +63,21 @@
 
     
     <div class="form-group">
-    <label class="col-sm-2 control-label">Description<span style="color:red">*</span></label>
+    <label class="col-sm-2 control-label">{{ 'products.description'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-10">
     <div class="" ng-class="{'has-error': (addCategoryForm.desc.$invalid && addCategoryForm.desc.$dirty)}">
     <textarea name="desc" rows="3" class="form-control" ng-model="category.desc" ng-required="true"></textarea>
     </div>
     <div class="error,help-block has-error" ng-show="(addCategoryForm.desc.$dirty) && addCategoryForm.desc.$invalid"> 
-    <span class="help-block" ng-show="addCategoryForm.desc.$error.required">Required</span>
+    <span class="help-block" ng-show="addCategoryForm.desc.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
 
 
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" data-ng-click="ok()" type="submit" ng-disabled="addCategoryForm.$invalid">OK</button>
-    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary btn-sm" data-ng-click="ok()" type="submit" ng-disabled="addCategoryForm.$invalid">{{ 'products.ok'  | translate }}</button>
+    <button class="btn btn-warning btn-sm" ng-click="cancel()">{{ 'products.cancel'  | translate }}</button>
     </div>
     </form>
     </div>
@@ -85,40 +85,40 @@
 
 <script type="text/ng-template" id="editCategory.html">
     <div class="modal-header bg-green">
-    <h4 class="modal-title">Edit Category </h4>
+    <h4 class="modal-title">{{ 'products.edit_category'  | translate }} </h4>
     </div>
     <div class="modal-body">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="editCategoryForm">
 
 
     <div class="form-group">
-    <label class="col-sm-2 control-label">Title<span style="color:red">*</span></label>
+    <label class="col-sm-2 control-label">{{ 'products.title'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-10">
     <div class="" ng-class="{'has-error': (editCategoryForm.title.$invalid && editCategoryForm.title.$dirty)}">
     <input type="text" name="title" class="form-control" ng-model="category.name" ng-required="true" >
     </div>
     <div class="error,help-block has-error" ng-show="(editCategoryForm.title.$dirty) && editCategoryForm.title.$invalid"> 
-    <span class="help-block" ng-show="editCategoryForm.title.$error.required">Required</span>
+    <span class="help-block" ng-show="editCategoryForm.title.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
     
 
     <div class="form-group">
-    <label class="col-sm-2 control-label">Description<span style="color:red">*</span></label>
+    <label class="col-sm-2 control-label">{{ 'products.description'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-10">
     <div class="" ng-class="{'has-error': (editCategoryForm.desc.$invalid && editCategoryForm.desc.$dirty)}">
     <textarea  name="desc"  rows="3" class="form-control" ng-model="category.desc" ng-required="true"></textarea>
     </div>
     <div class="error,help-block has-error" ng-show="(editCategoryForm.desc.$dirty) && editCategoryForm.desc.$invalid"> 
-    <span class="help-block" ng-show="editCategoryForm.desc.$error.required">Required</span>
+    <span class="help-block" ng-show="editCategoryForm.desc.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
 
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" data-ng-click="ok()" type="submit" ng-disabled="editCategoryForm.$invalid">OK</button>
-    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary btn-sm" data-ng-click="ok()" type="submit" ng-disabled="editCategoryForm.$invalid">{{ 'products.ok'  | translate }}</button>
+    <button class="btn btn-warning btn-sm" ng-click="cancel()">{{ 'products.cancel'  | translate }}</button>
     </div>
     </form>
     </div>
@@ -126,36 +126,36 @@
 
 <script type="text/ng-template" id="addCategoryItem.html">
 <div class="modal-header bg-green">
-    <h4 class="modal-title">Add New Item </h4>
+    <h4 class="modal-title">{{ 'products.add_new_item'  | translate }} </h4>
 </div>
 <div class="modal-body">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="addCategoryItemForm">
         <div class="form-group">
-            <label class="col-sm-3 control-label">Title<span style="color:red">*</span></label>
+            <label class="col-sm-3 control-label">{{ 'products.title'  | translate }}<span style="color:red">*</span></label>
             <div class="col-sm-9">
 
                 <div class="" ng-class="{'has-error': (addCategoryItemForm.title.$invalid && addCategoryItemForm.title.$dirty)}">
                 <input type="text" name="title" class="form-control" ng-model="categoryItem.name" ng-required="true">
                 <div class="error,help-block has-error" ng-show="(addCategoryItemForm.title.$dirty) && addCategoryItemForm.title.$invalid"> 
-                <span class="help-block" ng-show="addCategoryItemForm.title.$error.required">Required</span>
+                <span class="help-block" ng-show="addCategoryItemForm.title.$error.required">{{ 'products.required'  | translate }}</span>
                 </div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Description<span style="color:red">*</span></label>
+            <label class="col-sm-3 control-label">{{ 'products.description'  | translate }}<span style="color:red">*</span></label>
             <div class="col-sm-9">
                 <div class="" ng-class="{'has-error': (addCategoryItemForm.desc.$invalid && addCategoryItemForm.desc.$dirty)}">
                 <textarea rows="3" name="desc" class="form-control" ng-model="categoryItem.desc" ng-required="true"></textarea>
                 <div class="error,help-block has-error" ng-show="(addCategoryItemForm.desc.$dirty) && addCategoryItemForm.desc.$invalid"> 
-                <span class="help-block" ng-show="addCategoryItemForm.desc.$error.required">Required</span>
+                <span class="help-block" ng-show="addCategoryItemForm.desc.$error.required">{{ 'products.required'  | translate }}</span>
                 </div>
                 </div>
 
             </div>
         </div>
         <div class="form-group">
-           <label class="col-sm-3 control-label">Tag your product<span style="color:red">*</span></label>
+           <label class="col-sm-3 control-label">{{ 'products.tag_your_product'  | translate }}<span style="color:red">*</span></label>
            <div class="col-sm-9">
                <div class="" ng-class="{'has-error': (addCategoryItemForm.tag_name.$invalid && addCategoryItemForm.tag_name.$dirty)}">
                 <oi-select name="tag_name" class=""
@@ -164,7 +164,7 @@
                     multiple ng-required="true">
                 </oi-select>
                 <div class="error,help-block has-error" ng-show="(addCategoryItemForm.tag_name.$dirty) && addCategoryItemForm.tag_name.$invalid"> 
-                    <span class="help-block" ng-show="addCategoryItemForm.tag_name.$error.required">Required</span>
+                    <span class="help-block" ng-show="addCategoryItemForm.tag_name.$error.required">{{ 'products.required'  | translate }}</span>
                 </div>
                 </div> 
             </div>
@@ -172,13 +172,13 @@
         
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">No. of Serve<span style="color:red">*</span></label>
+            <label class="col-sm-3 control-label">{{ 'products.no_of_serve'  | translate }}<span style="color:red">*</span></label>
             <div class="col-sm-9">
                 <div class="" ng-class="{'has-error': (addCategoryItemForm.no_of_serve.$invalid && addCategoryItemForm.no_of_serve.$dirty)}">
                 <input  name="no_of_serve" class="form-control" ng-model="categoryItem.qty" ng-pattern="/^[0-9]{1,45}$/" ng-required="true">
                 <div class="error,help-block has-error" ng-show="(addCategoryItemForm.no_of_serve.$dirty) && addCategoryItemForm.no_of_serve.$invalid"> 
-                    <span class="help-block" ng-show="addCategoryItemForm.no_of_serve.$error.required">Required</span>
-                    <span class="help-block" ng-show="addCategoryItemForm.no_of_serve.$error.pattern">Invalid Number</span>
+                    <span class="help-block" ng-show="addCategoryItemForm.no_of_serve.$error.required">{{ 'products.required'  | translate }}</span>
+                    <span class="help-block" ng-show="addCategoryItemForm.no_of_serve.$error.pattern">{{ 'products.invalid_number'  | translate }}</span>
                 </div>
                 </div>
         </div>
@@ -186,13 +186,13 @@
 
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">Price<span style="color:red">*</span></label>
+            <label class="col-sm-3 control-label">{{ 'products.price'  | translate }}<span style="color:red">*</span></label>
             <div class="col-sm-9">
                 <div class="" ng-class="{'has-error': (addCategoryItemForm.price.$invalid && addCategoryItemForm.price.$dirty)}">
                 <input name="price" class="form-control" ng-model="categoryItem.price" placeholder="€" ng-pattern="/^[0-9.]{1,45}$/" ng-required="true">  
                 <div class="error,help-block has-error" ng-show="(addCategoryItemForm.price.$dirty) && addCategoryItemForm.price.$invalid"> 
-                    <span class="help-block" ng-show="addCategoryItemForm.price.$error.required">Required</span>
-                    <span class="help-block" ng-show="addCategoryItemForm.price.$error.pattern">Invalid Number</span>
+                    <span class="help-block" ng-show="addCategoryItemForm.price.$error.required">{{ 'products.required'  | translate }}</span>
+                    <span class="help-block" ng-show="addCategoryItemForm.price.$error.pattern">{{ 'products.invalid_number'  | translate }}</span>
                 </div>
                 </div>
             </div>  
@@ -201,7 +201,7 @@
 
 
         <div class="form-group">
-            <label class="col-sm-3 control-label" style="padding-top: 15px;">Available for sale</label>
+            <label class="col-sm-3 control-label" style="padding-top: 15px;">{{ 'products.available_for_sale'  | translate }}</label>
             <div class="col-sm-9">
                 <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
                     <input type="checkbox" checked="" ng-model="categoryItemavailable">
@@ -212,7 +212,7 @@
 
 
         <div class="form-group"">
-             <label class="col-sm-3 control-label">Item Cover<span style="color:red">*</span></label>
+             <label class="col-sm-3 control-label">{{ 'products.item_cover'  | translate }}<span style="color:red">*</span></label>
             <div class="col-xs-6 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
                  flow-name="uploadPhoto.flow"
                  flow-file-success="uploadImageSuccess( $file, $message, $flow )"
@@ -223,8 +223,8 @@
                  flow-drop>
                 <span> 
                     <img ng-show="showNewItemUploadedImage" flow-img="$flow.files[0]" style="width: 100px;height: 100px;" class="img-float" ng-if="$flow.files.length > 0">
-                    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
-                    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span> 
+                    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> {{ 'products.browse'  | translate }}</span>
+                    <span style="color:#616161"><strong>OR </strong>{{ 'products.drag_and_drop'  | translate }}</span> 
                 </span>
                 <!-- <span ng-show="showNewItemRemove" ng-click="removeNewItemImage()" class="browse btn btn-orange" style="margin-bottom: 50px;"> <i class="glyphicon glyphicon-trash"> Remove</span></i> -->
 
@@ -232,12 +232,12 @@
             <div class="col-xs-3"></div>
 
             <div class="col-xs-offset-3 col-xs-9">
-                <div ng-show="showProgressBar">Uploading...</div>
+                <div ng-show="showProgressBar">{{ 'products.uploading'  | translate }}...</div>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary btn-sm" type="submit" data-ng-click="ok()" type="submit" ng-disabled="addCategoryItemForm.$invalid || !showNewItemUploadedImage">OK</button>
-            <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary btn-sm" type="submit" data-ng-click="ok()" type="submit" ng-disabled="addCategoryItemForm.$invalid || !showNewItemUploadedImage">{{ 'products.ok'  | translate }}</button>
+            <button class="btn btn-warning btn-sm" ng-click="cancel()">{{ 'products.cancel'  | translate }}</button>
         </div>
 
     </form>
@@ -246,39 +246,39 @@
 
 <script type="text/ng-template" id="editCategoryItem.html">
     <div class="modal-header bg-green">
-    <h4 class="modal-title">Edit Item </h4>
+    <h4 class="modal-title">{{ 'products.edit_item'  | translate }} </h4>
     </div>
     <div class="modal-body">
     <form role="form" class="form-horizontal bordered-group ng-pristine ng-valid" name="editCategoryItemForm">
 
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Title<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'products.title'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div class="" ng-class="{'has-error': (editCategoryItemForm.title.$invalid && editCategoryItemForm.title.$dirty)}">
     <input type="text" name="title" class="form-control" ng-model="categoryItem.name" ng-required="true">
     </div>
     <div class="error,help-block has-error" ng-show="(editCategoryItemForm.title.$dirty) && editCategoryItemForm.title.$invalid"> 
-            <span class="help-block" ng-show="editCategoryItemForm.title.$error.required">Required</span>
+            <span class="help-block" ng-show="editCategoryItemForm.title.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Description<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'products.description'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div class="" ng-class="{'has-error': (editCategoryItemForm.desc.$invalid && editCategoryItemForm.desc.$dirty)}">
     <textarea name="desc" rows="3" class="form-control" ng-model="categoryItem.desc" ng-required="true"></textarea>
     </div>
     <div class="error,help-block has-error" ng-show="(editCategoryItemForm.desc.$dirty) && editCategoryItemForm.desc.$invalid"> 
-            <span class="help-block" ng-show="editCategoryItemForm.desc.$error.required">Required</span>
+            <span class="help-block" ng-show="editCategoryItemForm.desc.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
 
 
     <div class="form-group">
-            <label class="col-sm-3 control-label">Tag your product<span style="color:red">*</span></label>
+            <label class="col-sm-3 control-label">{{ 'products.tag_your_product'  | translate }}<span style="color:red">*</span></label>
             <div class="col-sm-9">
             <div class="" ng-class="{'has-error': (editCategoryItemForm.tag_product.$invalid && editCategoryItemForm.tag_product.$dirty)}">
             <oi-select name="tag_product" class=""
@@ -288,33 +288,33 @@
             </oi-select>
             </div>
             <div class="error,help-block has-error" ng-show="(editCategoryItemForm.tag_product.$dirty) && editCategoryItemForm.tag_product.$invalid"> 
-            <span class="help-block" ng-show="editCategoryItemForm.tag_product.$error.required">Required</span>
+            <span class="help-block" ng-show="editCategoryItemForm.tag_product.$error.required">{{ 'products.required'  | translate }}</span>
     </div>
     </div>
     </div>
 
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">No. of Serve<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'products.no_of_serve'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div class="" ng-class="{'has-error': (editCategoryItemForm.no_of_serve.$invalid && editCategoryItemForm.no_of_serve.$dirty)}">
     <input name="no_of_serve" class="form-control" ng-model="categoryItem.qty" ng-pattern="/^[0-9]{1,45}$/" ng-required="true">
    <div class="error,help-block has-error" ng-show="(editCategoryItemForm.no_of_serve.$dirty) && editCategoryItemForm.no_of_serve.$invalid"> 
-                    <span class="help-block" ng-show="editCategoryItemForm.no_of_serve.$error.required">Required</span>
-                    <span class="help-block" ng-show="editCategoryItemForm.no_of_serve.$error.pattern">Invalid Number</span>
+                    <span class="help-block" ng-show="editCategoryItemForm.no_of_serve.$error.required">{{ 'products.required'  | translate }}</span>
+                    <span class="help-block" ng-show="editCategoryItemForm.no_of_serve.$error.pattern">{{ 'products.invalid_number'  | translate }}</span>
             </div>
             </div>
     </div>
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Price<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'products.price'  | translate }}<span style="color:red">*</span></label>
     <div class="col-sm-9">
     <div class="" ng-class="{'has-error': (editCategoryItemForm.price.$invalid && editCategoryItemForm.price.$dirty)}">
     <input name="price" class="form-control" ng-model="categoryItem.price" ng-pattern="/^[0-9]{1,45}$/" ng-required="true">  
     <div class="error,help-block has-error" ng-show="(editCategoryItemForm.price.$dirty) && editCategoryItemForm.price.$invalid"> 
-                    <span class="help-block" ng-show="editCategoryItemForm.price.$error.required">Required</span>
-                    <span class="help-block" ng-show="editCategoryItemForm.price.$error.pattern">Invalid Number</span>
+                    <span class="help-block" ng-show="editCategoryItemForm.price.$error.required">{{ 'products.required'  | translate }}</span>
+                    <span class="help-block" ng-show="editCategoryItemForm.price.$error.pattern">{{ 'products.invalid_number'  | translate }}</span>
             </div>
             </div>
     </div>
@@ -322,7 +322,7 @@
 
 
     <div class="form-group">
-    <label class="col-sm-3 control-label" style="padding-top: 15px;">Available for sale</label>
+    <label class="col-sm-3 control-label" style="padding-top: 15px;">{{ 'products.available_for_sale'  | translate }}</label>
     <div class="col-sm-9">
     <label class="switch switch-lg mb15 pull-left m-b-30 mt5">
     <input type="checkbox" checked="" ng-model="categoryItem.available">
@@ -332,7 +332,7 @@
     </div>
 
     <div class="form-group">
-    <label class="col-sm-3 control-label">Item Cover<span style="color:red">*</span></label>
+    <label class="col-sm-3 control-label">{{ 'products.item_cover'  | translate }}<span style="color:red">*</span></label>
     <div class="col-xs-6 m-b-30 drop drop-design" flow-init="uploadCategoryImage"
     flow-name="uploadPhoto.flow"
     flow-file-success="uploadImageSuccess( $file, $message, $flow )"
@@ -344,8 +344,8 @@
     <span> 
     <img flow-img="$flow.files[0]" style="width:100px;height:100px;" class="img-float" ng-if="$flow.files.length > 0">
     <img ng-if="showOldItemImage" src="{{categoryItem.image}}" class="img-float img-responsive" style="height:100px;width:100px;">
-    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span>
-    <span style="color:#616161"><strong>OR </strong>Drag and drop your Item cover here</span>
+    <span class="browse btn btn-orange"  flow-btn> <i class="glyphicon glyphicon-search"/> {{ 'products.browse'  | translate }}</span>
+    <span style="color:#616161"><strong>OR </strong>{{ 'products.drag_and_drop'  | translate }}</span>
     </span>
     </div>
     <div class="col-xs-3">
@@ -356,13 +356,13 @@
     </div>
 
     <div class="col-xs-offset-3 col-xs-9">
-    <div ng-show="showProgressBar">Uploading...</div>
+    <div ng-show="showProgressBar">{{ 'products.uploading'  | translate }}...</div>
     </div>
     </div>
 
     <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="ok()" type="submit" ng-disabled="editCategoryItemForm.$invalid">OK</button>
-    <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary btn-sm" ng-click="ok()" type="submit" ng-disabled="editCategoryItemForm.$invalid">{{ 'products.ok'  | translate }}</button>
+    <button class="btn btn-warning btn-sm" ng-click="cancel()">{{ 'products.cancel'  | translate }}</button>
     </div>
     </form>
     </div>

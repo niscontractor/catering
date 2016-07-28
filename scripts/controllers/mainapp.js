@@ -1,11 +1,12 @@
 'use strict';
 
-function mainAppCtrl($scope, $rootScope, $state, $localStorage, Auth,$timeout) {	
+function mainAppCtrl(ngTranslation,$scope, $rootScope, $state, $localStorage, Auth,$timeout) {	
 
 	if (!Auth.isLoggedIn()) {
 		$state.go('user.signin');
 		return;
 	};
+
 
 	$scope.logoutUser = function() {
 		
@@ -22,11 +23,24 @@ function mainAppCtrl($scope, $rootScope, $state, $localStorage, Auth,$timeout) {
 		$timeout(function () {
         	window.location.reload();
     	}, 150);
-		
-		
 	}
-}
+	$scope.changeLanguage = function(name){
+        $localStorage.selectedLanguage = name;    
+        ngTranslation.use(name);
+        if (name=='en') {
+            $rootScope.isEnglish = true;
+            $rootScope.isSpanish = false;
+            $localStorage.selectedLanguage = name;
+        }
+        else {
+            $rootScope.isEnglish = false;
+            $rootScope.isSpanish = true;
+            $localStorage.selectedLanguage = name;
+        }
+    }
+
+	}
 
 angular
         .module('urbanApp')
-        .controller('MainAppCtrl', ['$scope', '$rootScope', '$state', '$localStorage', 'Auth','$timeout', mainAppCtrl]);
+        .controller('MainAppCtrl', ['ngTranslation','$scope', '$rootScope', '$state', '$localStorage', 'Auth','$timeout', mainAppCtrl]);

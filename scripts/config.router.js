@@ -24,7 +24,7 @@ angular
 
                 $rootScope.$state = $state;
 
-                //$rootScope.baseUrl = 'http://192.168.0.104:5555';
+                //$rootScope.baseUrl = 'http://192.168.0.103:3000';
                 $rootScope.baseUrl = 'http://139.162.20.41:3000';
                 //$rootScope.baseUrl = 'http://139.162.184.95:3000';
 
@@ -143,25 +143,6 @@ angular
                                 title: 'Dashboard',
                             }
                         })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         //SERVICE
@@ -1636,5 +1617,19 @@ angular
 
         .config(function ($httpProvider) {
           $httpProvider.interceptors.push('httpRequestInterceptor');
-        });
+        })
+         .config(['$ocLazyLoadProvider','ngTranslationProvider', function ($ocLazyLoadProvider,ngTranslationProvider) {
+                $ocLazyLoadProvider.config({
+                    debug: true,
+                    events: false
+                });
+                ngTranslationProvider
+                  .setDirectory('dist/assets/static')
+                  .setFilesSuffix('.json')
+                  .langsFiles({
+                    en: 'en',
+                    sp: 'sp',
+                  })
+                  .fallbackLanguage('en');
+            }]);
 

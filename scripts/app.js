@@ -21,7 +21,8 @@ angular
             'flow',
             'oi.select',
             'toaster',
-            'oitozero.ngSweetAlert'
+            'oitozero.ngSweetAlert',
+            'ng-translation'
         ])
         .constant('COLORS', {
             'default': '#e2e2e2',

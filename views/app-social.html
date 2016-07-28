@@ -11,19 +11,19 @@
                         <ul class="nav nav-tabs">
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'company'}"> 
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'company')" aria-expanded="false"><img src="images/company.png" height="49" width="49"/></a>
-                                <p class="inactive-text">Company</p>
+                                <p class="inactive-text">{{ 'profile.company'  | translate }}</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'aboutFood'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" aria-expanded="false"><img src="images/food_icon.png" height="49" width="49"/></a>
-                                <p class="inactive-text">Tell us about your food</p>
+                                <p class="inactive-text">{{ 'profile.tell_us_about_your_food'  | translate }}</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="position-r" ng-class="{active:dashboard.selectedTab === 'serviceOffered'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered')" aria-expanded="false"><img src="images/service-offerd.png" height="49" width="49"/></a>
-                                <p>Service you offered</p>
+                                <p>{{ 'profile.service_you_offered'  | translate }}</p>
                                 <span class="process-bar-inner"><img src="images/process-bar-inactive.png" height="3" width="214"/></span> </li>
                             <li class="" ng-class="{active:dashboard.selectedTab === 'info'}">
                                 <a data-toggle="tab" ng-click="dashboard.selectTab(registrationForm, 'info');" aria-expanded="false"><img src="images/info.png" height="49" width="49"/></a>
-                                <p>Company Info</p>
+                                <p>{{ 'profile.company_info'  | translate }}</p>
                             </li>
                         </ul>
                         <div class="service-info">
@@ -33,10 +33,10 @@
                                         <div class="outer pull-left">
                                             <div class="col-sm-6 service-input">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.companyName.$invalid && registrationForm.companyName.$dirty)}">
-                                                <label class="allLabel">Brand Name<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.brand_name'  | translate }}<span>*</span></label>
                                                     <input name="companyName" class="form-control" ng-model="dashboard.company.brand_name" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.companyName.$dirty) && registrationForm.companyName.$invalid"> 
-                                                        <span class="help-block" ng-show="registrationForm.companyName.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="registrationForm.companyName.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
                                                 <!--<input type="file"  class="file">-->
@@ -60,7 +60,7 @@
                                                      flow-drop style="display: inline-flex;">
                                                     <span>
                                                         
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop Display Image
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> {{ 'profile.browse'  | translate }}</span> <strong>OR</strong> {{ 'profile.drag_and_drop_display_image'  | translate }}
                                                         <div style="display: inline-block;margin-left: 20px;">
                                                             
                                                         </div>
@@ -89,7 +89,7 @@
                                                      flow-drop style="display: inline-flex;" >
                                                     <span>
                                                         
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your BANNER
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> {{ 'profile.browse'  | translate }}</span> <strong>OR</strong>{{ 'profile.drag_and_drop_your_banner'  | translate }}
                                                         <div style="display: inline-block;margin-left: 20px;">
                                                         </div>
                                                        <!--  <span ng-show="showRemovedBannerButton" ng-click="removeUploadedBannerImage()" class="browse btn btn-orange" style="display: block;font-size: 13px;width: 95px"> <i class="glyphicon glyphicon-trash"></i> Remove</span> -->
@@ -105,27 +105,27 @@
                                             </div>
                                             <div class="col-sm-6 service-input-inner">
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.tagline.$invalid && registrationForm.tagline.$dirty)}">
-                                                <label class="allLabel">Tag Line<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.tag_line'  | translate }}<span>*</span></label>
 
                                                     <input name="tagline" class="form-control" ng-model="dashboard.company.tagline" required/>
                                                     <div class="error,help-block" ng-show="(registrationForm.tagline.$dirty) && registrationForm.tagline.$invalid"> 
-                                                        <span class="help-block" ng-show="registrationForm.tagline.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="registrationForm.tagline.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
 
                                                 <div class="m-b-30" ng-class="{'has-error': (registrationForm.description.$invalid && registrationForm.description.$dirty)}">
-                                                <label class="allLabel">Description<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.description'  | translate }}<span>*</span></label>
                                                 <textarea rows="5" cols="100%" name="description" class="form-control" ng-model="dashboard.company.description" maxlength="500" required></textarea>
                                                 <div class="error,help-block" ng-show="(registrationForm.description.$dirty) && registrationForm.description.$invalid"> 
-                                                        <span class="help-block" ng-show="registrationForm.description.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="registrationForm.description.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
                                                 
                                             </div>
                                             <div class="col-sm-12">
-                                                <a ng-show="isFirstTime" ng-click="hideSkip()" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
-                                                <button class="btn btn-orange pull-right continue-btn" ng-disabled="((registrationForm.companyName.$untouched && registrationForm.companyName.$invalid )|| dashboard.company.brand_name==null) || ((registrationForm.tagline.$untouched && registrationForm.tagline.$invalid)|| dashboard.company.tagline==null) ||((registrationForm.description.$untouched && registrationForm.description.$invalid)|| dashboard.company.description==null) || (dashboard.company.display_image==null) ||(dashboard.company.banner==null)" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" >Continue <i class="fa fa-arrow-right"></i></button>
+                                                <a ng-show="isFirstTime" ng-click="hideSkip()" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">{{ 'profile.skip'  | translate }} <i class="fa fa-arrow-right"></i></a>
+                                                <button class="btn btn-orange pull-right continue-btn" ng-disabled="((registrationForm.companyName.$untouched && registrationForm.companyName.$invalid )|| dashboard.company.brand_name==null) || ((registrationForm.tagline.$untouched && registrationForm.tagline.$invalid)|| dashboard.company.tagline==null) ||((registrationForm.description.$untouched && registrationForm.description.$invalid)|| dashboard.company.description==null) || (dashboard.company.display_image==null) ||(dashboard.company.banner==null)" ng-click="dashboard.selectTab(registrationForm, 'aboutFood');" >{{ 'profile.continue'  | translate }} <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -136,40 +136,52 @@
                                             <div class="col-sm-6">
                                                 <!--<input class="form-control m-b-30" placeholder="What type of cuisine you serve " ng-model="dashboard.company.typeOfCuisines"/>-->
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.cuisine.$invalid && yourFood.cuisine.$dirty)}">
-                                                <label class="allLabel">What type of cuisine you serve?<span>*</span></label>
-                                                <oi-select name="cuisine"
+                                                <label class="allLabel">{{ 'profile.what_type_of_cuisine_you_serve'  | translate }}<span>*</span></label>
+                                                <oi-select name="cuisine" ng-if="isEnglish"
                                                     class="" style="height: 47px"
                                                     oi-options="cuisineType.name.en for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
                                                     ng-model="dashboard.company.cuisine"
                                                     multiple required>
                                                 </oi-select>
+                                                <oi-select name="cuisine" ng-if="isSpanish"
+                                                    class="" style="height: 47px"
+                                                    oi-options="cuisineType.name.sp for cuisineType in dashboard.typeOfCuisines track by cuisineType._id"
+                                                    ng-model="dashboard.company.cuisine"
+                                                    multiple required>
+                                                </oi-select>
                                                  <div class="error,help-block" ng-show="(yourFood.cuisine.$dirty) && yourFood.cuisine.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.cuisine.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.cuisine.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 <!--                                                <input class="form-control m-b-30" placeholder="Do you provide special need  " ng-model="dashboard.company.specialNeeds"/>-->
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.special_need.$invalid && yourFood.special_need.$dirty)}">
-                                                <label class="allLabel">Do you provide special need?<span>*</span></label>
-                                                <oi-select name="special_need"
+                                                <label class="allLabel">{{ 'profile.do_you_provide_special_need'  | translate }}<span>*</span></label>
+                                                <oi-select name="special_need" ng-if="isEnglish"
                                                     class="" style="height: 47px"
                                                     oi-options="specialNeed.name.en for specialNeed in dashboard.specialNeeds track by specialNeed._id"
                                                     ng-model="dashboard.company.special_need"
                                                     multiple required>
                                                 </oi-select>
+                                                <oi-select name="special_need" ng-if="isSpanish"
+                                                    class="" style="height: 47px"
+                                                    oi-options="specialNeed.name.sp for specialNeed in dashboard.specialNeeds track by specialNeed._id"
+                                                    ng-model="dashboard.company.special_need"
+                                                    multiple required>
+                                                </oi-select>
                                                  <div class="error,help-block" ng-show="(yourFood.special_need.$dirty) && yourFood.special_need.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.special_need.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.special_need.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
 
                                                 
-                                                <label class="allLabel">Number of people you serve<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.number_of_people_you_Serve'  | translate }}<span>*</span></label>
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.min_people.$invalid && yourFood.min_people.$dirty)}">
                                                 <label class="text-white" style="display: block;">Min<span>*</span></label>
                                                 <input  name="min_people" min="0" class="form-control" ng-model="dashboard.company.min_people" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.min_people.$dirty) && yourFood.min_people.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.min_people.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.min_people.$error.required">{{ 'profile.required'  | translate }}</span>
                                                         <span class="help-block" ng-show="yourFood.min_people.$error.pattern">Invalid Number</span>
                                                     </div>
                                                 </div>
@@ -184,7 +196,7 @@
                                                 <label class="text-white">Max<span>*</span></label>
                                                 <input  name="max_people" min="0" class="form-control" ng-model="dashboard.company.max_people" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.max_people.$dirty) && yourFood.max_people.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.max_people.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="yourFood.max_people.$error.required">{{ 'profile.required'  | translate }}</span>
                                                         <span class="help-block" ng-show="yourFood.max_people.$error.pattern">Invalid Number</span>
                                                     </div>
                                                 </div>
@@ -199,20 +211,20 @@
                                             <div class="col-sm-6 service-input">
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.cancellation_notice_period.$invalid && yourFood.cancellation_notice_period.$dirty)}">
-                                                <label class="allLabel">Cancellation period(Days).<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.cancellation_period'  | translate }}<span>*</span></label>
                                                 <input  name="cancellation_notice_period" min="0" class="form-control " ng-model="dashboard.company.cancellation_notice_period" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.cancellation_notice_period.$dirty) && yourFood.cancellation_notice_period.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.pattern">Invalid Number</span>
+                                                        <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="yourFood.cancellation_notice_period.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.minimum_amount_order.$invalid && yourFood.minimum_amount_order.$dirty)}">
-                                                <label class="allLabel">Minimum order amount.<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.minimum_order_amount'  | translate }}<span>*</span></label>
                                                 <input  name="minimum_amount_order" min="0" class="form-control" ng-model="dashboard.company.minimum_amount_order" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.minimum_amount_order.$dirty) && yourFood.minimum_amount_order.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.pattern">Invalid Number</span>
+                                                        <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="yourFood.minimum_amount_order.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -225,11 +237,11 @@
 
                                                 <div class="m-b-30" ng-class="{'has-error': (yourFood.no_days_before_order.$invalid && yourFood.no_days_before_order.$dirty)}">
                                                  <p class="text-white">&nbsp;</p>
-                                                <label class="allLabel">How many days before a client have to order?<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.how_many_days_before_a_client_have_to_order'  | translate }}<span>*</span></label>
                                                 <input  name="no_days_before_order" min="0" class="form-control" ng-model="dashboard.company.no_days_before_order" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(yourFood.no_days_before_order.$dirty) && yourFood.no_days_before_order.$invalid"> 
-                                                        <span class="help-block" ng-show="yourFood.no_days_before_order.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="yourFood.no_days_before_order.$error.pattern">Invalid Number</span>
+                                                        <span class="help-block" ng-show="yourFood.no_days_before_order.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="yourFood.no_days_before_order.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -240,7 +252,7 @@
                                                 <input type="number" min="0" class="form-control m-b-30" ng-model="dashboard.company.no_days_before_order"/> -->
 
 
-                                                <label class="allLabel">Do you offer delivery ( Yes / No )</label></br>
+                                                <label class="allLabel">{{ 'profile.do_you_offer_delivery'  | translate }} {{ 'profile.yes_no'  | translate }}</label></br>
                                                 <label class="switch switch-lg mb15 m-b-30 mt5 ">
                                                     <input type="checkbox" checked="" ng-model="dashboard.company.delivery">
                                                     <span> <i class="handle"></i> </span>
@@ -249,8 +261,8 @@
 
                                             </div>
                                             <div class="col-sm-12">
-                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
-                                                <button class="btn btn-orange pull-right continue-btn " ng-disabled="((yourFood.min_people.$untouched && yourFood.min_people.$invalid)||dashboard.company.min_people==null) || ((yourFood.max_people.$untouched && yourFood.max_people.$invalid)||dashboard.company.max_people==null) || ((yourFood.cancellation_notice_period.$untouched && yourFood.cancellation_notice_period.$invalid)|| dashboard.company.cancellation_notice_period==null) || ((yourFood.no_days_before_order.$untouched && yourFood.no_days_before_order.$invalid)||dashboard.company.no_days_before_order==null) || ((yourFood.minimum_amount_order.$untouched && yourFood.minimum_amount_order.$invalid)||dashboard.company.minimum_amount_order==null) || ((yourFood.special_need.$untouched && yourFood.special_need.$invalid) || dashboard.company.special_need==null)|| ((yourFood.cuisine.$untouched && yourFood.cuisine.$invalid)||dashboard.company.cuisine==null)" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">Continue <i class="fa fa-arrow-right"></i></button>
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">{{ 'profile.skip'  | translate }} <i class="fa fa-arrow-right"></i></a>
+                                                <button class="btn btn-orange pull-right continue-btn " ng-disabled="((yourFood.min_people.$untouched && yourFood.min_people.$invalid)||dashboard.company.min_people==null) || ((yourFood.max_people.$untouched && yourFood.max_people.$invalid)||dashboard.company.max_people==null) || ((yourFood.cancellation_notice_period.$untouched && yourFood.cancellation_notice_period.$invalid)|| dashboard.company.cancellation_notice_period==null) || ((yourFood.no_days_before_order.$untouched && yourFood.no_days_before_order.$invalid)||dashboard.company.no_days_before_order==null) || ((yourFood.minimum_amount_order.$untouched && yourFood.minimum_amount_order.$invalid)||dashboard.company.minimum_amount_order==null) || ((yourFood.special_need.$untouched && yourFood.special_need.$invalid) || dashboard.company.special_need==null)|| ((yourFood.cuisine.$untouched && yourFood.cuisine.$invalid)||dashboard.company.cuisine==null)" ng-click="dashboard.selectTab(registrationForm, 'serviceOffered');">{{ 'profile.continue'  | translate }} <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -261,15 +273,21 @@
                                             <div class="col-sm-12">
 
                                                 <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.events.$invalid && service_you_offerd.events.$dirty)}">
-                                                <label class="allLabel">What type of events you serve?<span>*</span></label>
-                                                <oi-select name="events"
+                                                <label class="allLabel">{{ 'profile.what_type_of_event_you_serve'  | translate }}<span>*</span></label>
+                                                <oi-select name="events" ng-if="isEnglish"
                                                     class="" style="height: 47px"
                                                     oi-options="typeOfEvent.name.en for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
                                                     ng-model="dashboard.company.events"
                                                     multiple required>
                                                 </oi-select>
+                                                <oi-select name="events" ng-if="isSpanish"
+                                                    class="" style="height: 47px"
+                                                    oi-options="typeOfEvent.name.sp for typeOfEvent in dashboard.typeOfEvents track by typeOfEvent._id"
+                                                    ng-model="dashboard.company.events"
+                                                    multiple required>
+                                                </oi-select>
                                                 <div class="error,help-block" ng-show="(service_you_offerd.events.$dirty) && service_you_offerd.events.$invalid"> 
-                                                        <span class="help-block" ng-show="service_you_offerd.events.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="service_you_offerd.events.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -278,15 +296,21 @@
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.services.$invalid && service_you_offerd.services.$dirty)}">
-                                                <label class="allLabel">Services you offer?<span>*</span></label>
-                                                <oi-select name="services"
+                                                <label class="allLabel">{{ 'profile.services_you_offer'  | translate }}<span>*</span></label>
+                                                <oi-select name="services" ng-if="isEnglish"
                                                     class="" style="height: 47px"
                                                     oi-options="serviceOffered.name.en for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
                                                     ng-model="dashboard.company.services"
                                                     multiple required>
                                                 </oi-select>
+                                                <oi-select name="services" ng-if="isSpanish"
+                                                    class="" style="height: 47px"
+                                                    oi-options="serviceOffered.name.sp for serviceOffered in dashboard.servicesOffered track by serviceOffered._id"
+                                                    ng-model="dashboard.company.services"
+                                                    multiple required>
+                                                </oi-select>
                                                 <div class="error,help-block" ng-show="(service_you_offerd.services.$dirty) && service_you_offerd.services.$invalid"> 
-                                                        <span class="help-block" ng-show="service_you_offerd.services.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="service_you_offerd.services.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
                                                 <!--<input class="form-control m-b-30" placeholder="Services you offer" ng-model="dashboard.company.servicesOffered"/>-->
@@ -294,22 +318,28 @@
                                             <div class="col-sm-12">
 
                                                 <div class="m-b-30" ng-class="{'has-error': (service_you_offerd.services_type.$invalid && service_you_offerd.services_type.$dirty)}">
-                                                <label class="allLabel">Type of service<span>*</span></label>
-                                                <oi-select name="services_type"
+                                                <label class="allLabel">{{ 'profile.type_of_service'  | translate }}<span>*</span></label>
+                                                <oi-select name="services_type" ng-if="isEnglish"
                                                     class="" style="height: 47px"
                                                     oi-options="typeOfService.name.en for typeOfService in dashboard.typeOfServices track by typeOfService._id"
                                                     ng-model="dashboard.company.services_type"
                                                     multiple required>
                                                 </oi-select>
+                                                <oi-select name="services_type" ng-if="isSpanish"
+                                                    class="" style="height: 47px"
+                                                    oi-options="typeOfService.name.sp for typeOfService in dashboard.typeOfServices track by typeOfService._id"
+                                                    ng-model="dashboard.company.services_type"
+                                                    multiple required>
+                                                </oi-select>
                                                 <div class="error,help-block" ng-show="(service_you_offerd.services_type.$dirty) && service_you_offerd.services_type.$invalid"> 
-                                                        <span class="help-block" ng-show="service_you_offerd.services_type.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="service_you_offerd.services_type.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
                                                 <!--<input class="form-control m-b-30" placeholder="Type of service" ng-model="dashboard.company.typeOfService"/>-->
                                             </div>
                                             <div class="col-sm-12">
-                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">Skip <i class="fa fa-arrow-right"></i></a>
-                                                <button ng-disabled="((service_you_offerd.events.$untouched && service_you_offerd.events.$invalid)||dashboard.company.events==null) ||((service_you_offerd.services.$untouched && service_you_offerd.services.$invalid)||dashboard.company.services==null) ||((service_you_offerd.services_type.$untouched && service_you_offerd.services_type.$invalid)|| dashboard.company.services_type==null)" class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">Continue <i class="fa fa-arrow-right"></i></button>
+                                                <a ng-show="isFirstTime" ui-sref="app.apps.calendar" class="btn btn-orange pull-right continue-btn" style="margin-left:20px;">{{ 'profile.skip'  | translate }} <i class="fa fa-arrow-right"></i></a>
+                                                <button ng-disabled="((service_you_offerd.events.$untouched && service_you_offerd.events.$invalid)||dashboard.company.events==null) ||((service_you_offerd.services.$untouched && service_you_offerd.services.$invalid)||dashboard.company.services==null) ||((service_you_offerd.services_type.$untouched && service_you_offerd.services_type.$invalid)|| dashboard.company.services_type==null)" class="btn btn-orange pull-right continue-btn " ng-click="dashboard.selectTab(registrationForm, 'info');">{{ 'profile.continue'  | translate }} <i class="fa fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -320,25 +350,25 @@
                                             <div class="col-sm-6">
 
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.name.$invalid && company_info.name.$dirty)}">
-                                                <label class="allLabel">Company Name<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.company_name'  | translate }}<span>*</span></label>
                                                 <input name="name" class="form-control" ng-model="dashboard.company.name" required/>
                                                  <div class="error,help-block" ng-show="(company_info.name.$dirty) && company_info.name.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.name.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.name.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.vat.$invalid && company_info.vat.$dirty)}">
-                                                <label class="allLabel">Company VAT Number<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.company_vat_number'  | translate }}<span>*</span></label>
                                                 <input name="vat" class="form-control" ng-model="dashboard.company.vat" required />
                                                 <div class="error,help-block" ng-show="(company_info.vat.$dirty) && company_info.vat.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.vat.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.vat.$error.required">{{ 'profile.required'  | translate }}</span>
                                                        
                                                     </div>
                                                 </div>
 
                                             </div>
                                             <div class="col-sm-6">
-                                                <label class="allLabel">Company Logo<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.company_logo'  | translate }}<span>*</span></label>
                                                 <div style="height: auto;" class="drop" flow-init="dashboard.image_upload" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow, 'logo' )"
@@ -348,7 +378,7 @@
                                                      flow-file-progress="dashboard.uploadImageProgress()"
                                                      flow-drop>
                                                     <span>
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Logo
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> {{ 'profile.browse'  | translate }}</span> <strong>OR</strong> {{ 'profile.drag_and_drop_your_logo'  | translate }}
                                                         <!-- <div style="display: inline-block;margin-left: 20px;">
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div> -->
                                                     </span>
@@ -366,19 +396,19 @@
                                            
                                             <div class="col-sm-12">
                                                  <div class="m-b-30" ng-class="{'has-error': (company_info.address.$invalid && company_info.address.$dirty)}">
-                                                <label class="allLabel">Company Address<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.company_address'  | translate }}<span>*</span></label>
                                                 <input name="address" class="form-control" ng-model="dashboard.company.address" required />
                                                 <div class="error,help-block" ng-show="(company_info.address.$dirty) && company_info.address.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.address.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.address.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                             <div class="m-b-30" ng-class="{'has-error': (company_info.city.$invalid && company_info.city.$dirty)}">
-                                                <label class="allLabel">City<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.city'  | translate }}<span>*</span></label>
                                                 <input name="city" class="form-control" ng-model="dashboard.company.city" required />
                                                 <div class="error,help-block" ng-show="(company_info.city.$dirty) && company_info.city.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.city.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.city.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -388,21 +418,21 @@
 
                                             <div class="col-sm-3">
                                             <div class="m-b-30" ng-class="{'has-error': (company_info.area.$invalid && company_info.area.$dirty)}">
-                                                <label class="allLabel">Area<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.area'  | translate }}<span>*</span></label>
                                                 <input name="area" class="form-control" ng-model="dashboard.company.area" required />
                                                 <div class="error,help-block" ng-show="(company_info.area.$dirty) && company_info.area.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.area.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.area.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-3">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.postal_code.$invalid && company_info.postal_code.$dirty)}">
-                                                <label class="allLabel">Pincode<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.pincode'  | translate }}<span>*</span></label>
                                                 <input name="postal_code" class="form-control" ng-model="dashboard.company.postal_code" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.postal_code.$dirty) && company_info.postal_code.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.postal_code.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.postal_code.$error.pattern">Invalid Postal Code</span>
+                                                        <span class="help-block" ng-show="company_info.postal_code.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="company_info.postal_code.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -411,11 +441,11 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.telephone_number.$invalid && company_info.telephone_number.$dirty)}">
-                                                <label class="allLabel">Telephone number<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.telephone_number'  | translate }}<span>*</span></label>
                                                 <input name="telephone_number" class="form-control" ng-model="dashboard.company.telephone_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.telephone_number.$dirty) && company_info.telephone_number.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.telephone_number.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.telephone_number.$error.pattern">Invalid Number</span>
+                                                        <span class="help-block" ng-show="company_info.telephone_number.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="company_info.telephone_number.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -426,10 +456,10 @@
                                             <div class="col-sm-12" style="margin-left:0px;padding-left: 0px;padding-right: 0px;margin-bottom: 30px;">
                                             <div class="col-sm-4">
                                                 <div class="" ng-class="{'has-error': (company_info.bank_name.$invalid && company_info.bank_name.$dirty)}">
-                                                <label class="allLabel">Bank Name<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.bank_name'  | translate }}<span>*</span></label>
                                                 <input name="bank_name" class="form-control" ng-model="dashboard.company.bank_name"  required />
                                                 <div class="error,help-block" ng-show="(company_info.bank_name.$dirty) && company_info.bank_name.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.bank_name.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.bank_name.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     
                                                     </div>
                                                 </div>
@@ -440,11 +470,11 @@
 
                                              <div class="col-sm-4">
                                                 <div class="" ng-class="{'has-error': (company_info.account_number.$invalid && company_info.account_number.$dirty)}">
-                                                <label class="allLabel">A/C No<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.a_c_number'  | translate }}<span>*</span></label>
                                                 <input name="account_number" class="form-control" ng-model="dashboard.company.account_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.account_number.$dirty) && company_info.account_number.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.account_number.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.account_number.$error.pattern">Invalid Number</span>
+                                                        <span class="help-block" ng-show="company_info.account_number.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="company_info.account_number.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -458,10 +488,10 @@
                                             </div> -->
                                             <div class="col-sm-4">
                                                 <div class="" ng-class="{'has-error': (company_info.iban_number.$invalid && company_info.iban_number.$dirty)}">
-                                                <label class="allLabel">IBAN Number<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.iban_number'  | translate }}<span>*</span></label>
                                                 <input name="iban_number" class="form-control" ng-model="dashboard.company.iban_number" required />
                                                 <div class="error,help-block" ng-show="(company_info.iban_number.$dirty) && company_info.iban_number.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.iban_number.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.iban_number.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -476,10 +506,10 @@
                                             <div class="col-sm-6" style="padding-left: 0px;">
                                                 <div class="col-sm-12">
                                                     <div class="m-b-30" ng-class="{'has-error': (company_info.contact_person.$invalid && company_info.contact_person.$dirty)}">
-                                                <label class="allLabel">Contact Person<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.contact_number'  | translate }}<span>*</span></label>
                                                 <input name="contact_person" class="form-control " ng-model="dashboard.company.contact_person" required />
                                                 <div class="error,help-block" ng-show="(company_info.contact_person.$dirty) && company_info.contact_person.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.contact_person.$error.required">Required</span>
+                                                        <span class="help-block" ng-show="company_info.contact_person.$error.required">{{ 'profile.required'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -488,11 +518,11 @@
                                                 </div>
                                                 <div class="col-sm-12">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.email.$invalid && company_info.email.$dirty)}">
-                                                <label class="allLabel">Email<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.email'  | translate }}<span>*</span></label>
                                                 <input name="email" class="form-control" ng-model="dashboard.company.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.email.$dirty) && company_info.email.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.email.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.email.$error.pattern">Invalid email</span>
+                                                        <span class="help-block" ng-show="company_info.email.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="company_info.email.$error.pattern">{{ 'profile.invalid_email'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -501,11 +531,11 @@
                                                 </div>
                                                 <div class="col-sm-12">
                                                 <div class="m-b-30" ng-class="{'has-error': (company_info.contact_number.$invalid && company_info.contact_number.$dirty)}">
-                                                <label class="allLabel">Contact Number<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.contact_number'  | translate }}<span>*</span></label>
                                                 <input name="contact_number" class="form-control" ng-model="dashboard.company.contact_number" ng-pattern="/^[0-9]{1,45}$/" required />
                                                 <div class="error,help-block" ng-show="(company_info.contact_number.$dirty) && company_info.contact_number.$invalid"> 
-                                                        <span class="help-block" ng-show="company_info.contact_number.$error.required">Required</span>
-                                                        <span class="help-block" ng-show="company_info.contact_number.$error.pattern">Invalid Number</span>
+                                                        <span class="help-block" ng-show="company_info.contact_number.$error.required">{{ 'profile.required'  | translate }}</span>
+                                                        <span class="help-block" ng-show="company_info.contact_number.$error.pattern">{{ 'profile.invalid_number'  | translate }}</span>
                                                     </div>
                                                 </div>
 
@@ -517,7 +547,7 @@
 
 
                                             <div class="col-sm-6">
-                                                <label class="allLabel">Profile picture<span>*</span></label>
+                                                <label class="allLabel">{{ 'profile.profile_picture'  | translate }}<span>*</span></label>
                                                 <div style="height: auto;" class="drop" flow-init="dashboard.image_upload" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"
                                                      flow-file-success="dashboard.uploadImageSuccess( $file, $message, $flow,'profile_pic')"
@@ -527,7 +557,7 @@
                                                      flow-file-progress="dashboard.uploadImageProgress()"
                                                      flow-drop>
                                                     <span>
-                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> Browse</span> <strong>OR</strong> Drag and drop your Profile
+                                                        <span class="browse btn btn-orange" flow-btn> <i class="glyphicon glyphicon-search"/> {{ 'profile.browse'  | translate }}</span> <strong>OR</strong> {{ 'profile.drag_and_drop_your_profile'  | translate }}
                                                         <!-- <div style="display: inline-block;margin-left: 20px;">
                                                         <img flow-img="$flow.files[0]" style="width: 75px;" ng-if="$flow.files.length > 0"></div> -->
                                                     </span>
@@ -540,7 +570,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button class="btn btn-orange pull-right"  ng-disabled="company_info.$invalid || dashboard.company.profile_pic==null || dashboard.company.logo==null" continue-btn " ng-click="dashboard.register();" style="padding: 1.5% 9%;margin-top: 60px;">Submit</button>
+                                                <button class="btn btn-orange pull-right"  ng-disabled="company_info.$invalid || dashboard.company.profile_pic==null || dashboard.company.logo==null" continue-btn " ng-click="dashboard.register();" style="padding: 1.5% 9%;margin-top: 60px;">{{ 'profile.submit'  | translate }}</button>
                                             </div>
                                             <!-- <div class="col-sm-8 m-b-30 drop" flow-init="dashboard.uploadProfilePhoto" style="margin-left: 15px;"
                                                      flow-name="dashboard.uploadPhoto.flow"

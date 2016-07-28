@@ -1,14 +1,15 @@
 'use strict';
 
-function CalendarCtrl($http,$modal,$scope, $compile, uiCalendarConfig, OrderService) {
+function CalendarCtrl(ngTranslation,$localStorage,$http,$modal,$scope, $compile, uiCalendarConfig, OrderService) {
+    
+    var name = $localStorage.selectedLanguage;
+    ngTranslation.use(name);
+
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
     $scope.events = [];
-
-    
-
     $scope.initCalendar = function () {
         OrderService.todayEvent().then(function(response) {
             $scope.response = response;
@@ -257,4 +258,4 @@ function CalendarCtrl($http,$modal,$scope, $compile, uiCalendarConfig, OrderServ
 
 angular
         .module('urbanApp')
-        .controller('CalendarCtrl', ['$http','$modal','$scope', '$compile', 'uiCalendarConfig', 'OrderService', CalendarCtrl]);
+        .controller('CalendarCtrl', ['ngTranslation','$localStorage','$http','$modal','$scope', '$compile', 'uiCalendarConfig', 'OrderService', CalendarCtrl]);

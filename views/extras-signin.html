@@ -9,17 +9,17 @@
 
                     <div class="form-inputs login-fonts">
                     <div ng-class="{'has-error': (login.loginForm.email.$invalid && login.loginForm.email.$dirty)}">
-                        <input type="email" name="email" class="form-control input-lg" placeholder="Email Address" ng-model="login.email" required="true">
+                        <input type="email" name="email" class="form-control input-lg" placeholder="{{ 'logiIn.email'  | translate }}" ng-model="login.email" required="true">
                         <div class="error,help-block" ng-show="(login.loginForm.email.$dirty) && login.loginForm.email.$invalid"> 
-                                <span class="help-block" ng-show="login.loginForm.email.$error.required">Required</span>
-                                <span class="help-block" ng-show="login.loginForm.email.$error.email">Enter valid Email Address</span>
+                                <span class="help-block" ng-show="login.loginForm.email.$error.required">{{ 'logiIn.required'  | translate }}</span>
+                                <span class="help-block" ng-show="login.loginForm.email.$error.email">{{ 'logiIn.enter_valid_email_address'  | translate }}</span>
                         </div>
                     </div>    
 
                     <div ng-class="{'has-error': (login.loginForm.password.$invalid && login.loginForm.password.$dirty)}">
-                            <input type="password" class="form-control input-lg" placeholder="Password" ng-model='login.password' name='password' maxlength="50" required>
+                            <input type="password" class="form-control input-lg" placeholder="{{ 'logiIn.enter_password'  | translate }}" ng-model='login.password' name='password' maxlength="50" required>
                             <div class="error,help-block" ng-show="(login.loginForm.password.$dirty) && login.loginForm.password.$invalid"> 
-                                <span class="help-block" ng-show="login.loginForm.password.$error.required">Enter password</span>
+                                <span class="help-block" ng-show="login.loginForm.password.$error.required">{{ 'logiIn.enter_password'  | translate }}</span>
                             </div>
                     </div>
 
@@ -27,13 +27,13 @@
 
                     <button ng-disabled="(login.loginForm.email.$dirty && login.loginForm.email.$invalid || login.loginForm.email.$pristine) ||
                     (login.loginForm.password && login.loginForm.password.$invalid || login.loginForm.password.$pristine)" class="btn btn-orange btn-block btn-lg mb15" data-ng-click="login.submit()">
-                        <span class="sign-in">SIGN IN</span>
+                        <span class="sign-in">{{ 'logiIn.login'  | translate }}</span>
                     </button>
 
                     <p class="text-center lower-btn">
 
-                        <a ui-sref="user.signup">Create an account</a> ·
-                        <a ui-sref="user.forgot">Forgot your password?</a>
+                        <a ui-sref="user.signup">{{ 'logiIn.create_an_account'  | translate }}</a> ·
+                        <a ui-sref="user.forgot">{{ 'logiIn.forgot_password'  | translate }}</a>
 
                     </p>
                 </form>

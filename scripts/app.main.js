@@ -2,9 +2,11 @@
 
 angular
         .module('urbanApp')
-        .controller('AppCtrl', ['$scope', '$rootScope', '$http', '$localStorage',
-            function AppCtrl($scope, $rootScope, $http, $localStorage) {
+        .controller('AppCtrl', ['ngTranslation','$scope', '$rootScope', '$http', '$localStorage',
+            function AppCtrl(ngTranslation,$scope, $rootScope, $http, $localStorage) {
 
+                var name = $localStorage.selectedLanguage;
+                ngTranslation.use(name);
                 $scope.mobileView = 767;
             
 

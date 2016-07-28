@@ -26,8 +26,12 @@ function editSignUpCtrl($location,SweetAlert,$http,$scope, $rootScope, $state, C
 
                }
             }).catch(function (response) {
-                
-                $rootScope.addMessage('Email already exists.','error');
+                if ($localStorage.selectedLanguage=='sp') {
+                    $rootScope.addMessage('Email ya existe.','error');   
+                }
+                else {
+                    $rootScope.addMessage('Email already exists.','error');   
+                }
             });
         }
     };

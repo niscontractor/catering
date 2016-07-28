@@ -44,7 +44,11 @@
         <a href="javascript:;">Help</a>
       </li>
       <li>
-        <a ng-click="logoutUser()">Logout</a>
+        <a ng-click="logoutUser()">{{'logout' | translate}}</a>
+      </li>
+      <li style="margin-left: 10px;cursor: pointer;">
+        <span class="icon-lang" ng-click="changeLanguage('en')">En/</span>
+        <span class="icon-lang" ng-click="changeLanguage('sp')">Sp</span>
       </li>
     </ul>
 
